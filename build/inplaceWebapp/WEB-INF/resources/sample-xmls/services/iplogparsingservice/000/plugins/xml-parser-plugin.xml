@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-parser-plugin>
+<instance id="000">
+	<record-wise-xml-format>false</record-wise-xml-format>
+	<source-date-format>ddMMyyyy|HHmmss</source-date-format>
+	<common-fields>ecapreport|stp,ecapreport|collector,ecapreport|startdate,ecapreport|starttime,ecapreport|enddate,ecapreport|endtime</common-fields>
+	<attribute-list>
+		<attribute>
+			<unified-field>RecordNumber</unified-field>
+			<source-field>sourceunitname,recordindex</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+
+		<attribute>
+			<unified-field>APartyMDN</unified-field>
+			<source-field>ecapreport|record|sccp|cgpadigits</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+
+		<attribute>
+			<unified-field>BPartyMDN</unified-field>
+			<source-field>ecapreport|record|sccp|cdpadigits</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+
+		<attribute>
+			<unified-field>StartDate</unified-field>
+			<source-field>ecapreport|startdate,ecapreport|starttime</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+
+		<attribute>
+			<unified-field>EndDate</unified-field>
+			<source-field>ecapreport|enddate,ecapreport|endtime</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+
+		<attribute>
+			<unified-field>General1</unified-field>
+			<source-field>ecapreport|stp</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General2</unified-field>
+			<source-field>ecapreport|starttime</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General3</unified-field>
+			<source-field>ecapreport|endtime</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General4</unified-field>
+			<source-field>ecapreport|record|linkid</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+
+		<attribute>
+			<unified-field>General5</unified-field>
+			<source-field>ecapreport|record|msucount</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+
+		<attribute>
+			<unified-field>General6</unified-field>
+			<source-field>ecapreport|record|octcount</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+
+		<attribute>
+			<unified-field>General7</unified-field>
+			<source-field>ecapreport|record|mtp|opc</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+
+		<attribute>
+			<unified-field>General8</unified-field>
+			<source-field>ecapreport|record|mtp|dpc</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+
+		<attribute>
+			<unified-field>General9</unified-field>
+			<source-field>ecapreport|record|map</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+
+		<attribute>
+			<unified-field>General10</unified-field>
+			<source-field>ecapreport|record|map|opcode</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+
+		<attribute>
+			<unified-field>General11</unified-field>
+			<source-field>ecapreport|record|sccp|cgpapc</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+
+		<attribute>
+			<unified-field>General12</unified-field>
+			<source-field>ecapreport|record|sccp|cdpapc</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General13</unified-field>
+			<source-field>ecapreport|collector</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General14</unified-field>
+			<source-field>ecapreport|record|signalingstandard</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+
+		<attribute>
+			<unified-field>General15</unified-field>
+			<source-field>ecapreport|record|si</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>PartnerId1</unified-field>
+			<source-field></source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+
+		<attribute>
+			<unified-field>PartnerId2</unified-field>
+			<source-field></source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+
+
+		<attribute>
+			<unified-field>EventType</unified-field>
+			<source-field></source-field>
+			<default-value>-</default-value>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		<attribute>
+			<unified-field>EventSubType</unified-field>
+			<source-field></source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		<attribute>
+			<unified-field>OnNetCode</unified-field>
+			<source-field></source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		<attribute>
+			<unified-field>DistanceBand</unified-field>
+			<source-field></source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		<attribute>
+			<unified-field>CallDirection</unified-field>
+			<source-field></source-field>
+			<default-value>-</default-value>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>Duration</unified-field>
+			<source-field>duration</source-field>
+			<default-value>0</default-value>
+			<trim-chars>"</trim-chars>
+		</attribute>
+	</attribute-list>
+	</instance>
+</xml-parser-plugin>
+
+
+<!--  
+
+For DIGITEL mapping 
+
+<?xml version="1.0" encoding="UTF-8"?>	
+<xml-parser-plugin>
+
+	<record-wise-xml-format>true</record-wise-xml-format>
+	<source-date-format>E MMM dd HH:mm:ss Z yyyy</source-date-format>
+	<common-fields>nx-charging:transaction,nx-charging:transaction|nx-charging:context,nx-charging:transaction|nx-charging:user,nx-charging:transaction|nx-charging:service,nx-charging:transaction|nx-charging:request,nx-charging:transaction|nx-charging:response,nx-charging:transaction|nx-charging:volume,nx-charging:transaction|nx-charging:time,nx-charging:transaction|nx-charging:process,nx-charging:transaction|nx-charging:additional-parameter,nx-charging:transaction|nx-charging:cdrType</common-fields>
+	
+	<attribute-list>
+		<attribute>
+			<unified-field>RecordNumber</unified-field>
+			<source-field>nx-charging:transaction|id</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>OriginalRecordNumber</unified-field>
+			<source-field>nx-charging:transaction|id</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+ 		<attribute>
+			<unified-field>APartyMDN</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:user</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>+63,0063,+91,0091</trim-chars>
+		</attribute>
+		
+		<attribute>
+            <unified-field>APartyMIN</unified-field>
+            <source-field>nx-charging:transaction|nx-charging:user|type</source-field>            
+            <default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+        </attribute>
+        
+        <attribute>
+            <unified-field>APartyLocationCode</unified-field>
+            <source-field>nx-charging:transaction|nx-charging:user|ip</source-field>
+            <default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+        </attribute>
+        
+		<attribute>
+            <unified-field>EventType</unified-field>
+            <source-field>nx-charging:transaction|nx-charging:request|nx-charging:bearer</source-field>            
+            <default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+        </attribute>        
+        
+        <attribute>
+            <unified-field>EventSubType</unified-field>
+            <source-field>nx-charging:transaction|nx-charging:cdrType</source-field>  
+            <default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+        </attribute>
+        
+		<attribute>
+			<unified-field>StartDate</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:context|nx-charging:date</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+
+		<attribute>
+			<unified-field>EndDate</unified-field>
+			<source-field></source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>Duration</unified-field>
+			<source-field></source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General1</unified-field>
+			<source-field>nx-charging:transaction|version</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General2</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:context|timeInMs</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General3</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:service|nx-charging:serviceId</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General4</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:service|nx-charging:providerId</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General5</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:request|nx-charging:requestedUrl</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General6</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:request|nx-charging:content|length</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General7</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:request|nx-charging:content|parts</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General8</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:request|nx-charging:content|nx-charging:type</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General9</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:response|status-code</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General10</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:response|nx-charging:responseStatusCode</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General11</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:response|nx-charging:responseContentLength</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General12</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:response|nx-charging:responseContentTypes|nx-charging:contentType</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General13</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:response|nx-charging:content|length</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General14</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:response|nx-charging:content|nx-charging:type</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General15</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:response|nx-charging:content|nx-charging:type|name</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General16</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:response|nx-charging:content|nx-charging:type|length</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General17</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:volume|nx-charging:allocated</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General18</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:volume|nx-charging:consumed</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+	
+		<attribute>
+			<unified-field>General19</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:time|nx-charging:allocated</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General20</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:time|nx-charging:consumed</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General21</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:process|nx-charging:connector</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General22</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:process|nx-charging:policyType</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General23</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:process|nx-charging:rate</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General24</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:process|nx-charging:finalStatus</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General25</unified-field>
+			<source-field>nx-charging:transaction|nx-charging:additional-parameter</source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General26</unified-field>
+			<source-field></source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General27</unified-field>
+			<source-field></source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General28</unified-field>
+			<source-field></source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General29</unified-field>
+			<source-field></source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General30</unified-field>
+			<source-field></source-field>
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+		
+	</attribute-list>
+</xml-parser-plugin>
+
+-->
+
+
+<!--
+	<source-date-format>ddMMyyyy|HHmmss</source-date-format>
+	
+		This field is for date format whatever user want to keep in configuration will be reflected in the
+		unified packet.
+		
+	<common-fields>ecapreport|stp,ecapreport|collector,ecapreport|startdate,ecapreport|starttime,ecapreport|enddate,ecapreport|endtime</common-fields>
+	
+		Common fields are comma seperated which are common fields in XML file. This are the fields which are common
+		to every unified packet.
+		
+	<attribute-list>
+		<attribute>
+			<unified-field>RecordNumber</unified-field>
+			<source-field>unitname,recordindex</source-field>
+			<source-field-type>N</source-field-type>  A - Attribute , N - Node 
+			<default-value></default-value>
+			<source-field-format></source-field-format>
+			<trim-chars>"</trim-chars>
+		</attribute>
+	</attribute-list>
+	
+		This is a mapping of source field which will be coming from XML file and unified field. In the above sample
+		unified-field "RecordNumber" will be mapped to "unitname,recordindex".
+-->

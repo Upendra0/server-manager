@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE driver-mapping SYSTEM "http://www.elitecore.com">-->
+
+<local-distribution-driver>
+
+	<path-list>
+		<path>
+			<read-file-path></read-file-path>        <!-- source path from where we have to read file -->
+			<archive-path></archive-path>
+			<read-filename-prefix></read-filename-prefix>     <!-- Read only those file whose prefix is this -->
+			<read-filename-suffix></read-filename-suffix>     <!-- Read only those file whose suffix is this -->
+			<max-files-count-alert></max-files-count-alert>  <!-- Provide Limit for maximum files to generate alert -->
+			<read-filename-contains></read-filename-contains> <!-- Read only those file whose name contains this -->
+			<read-filename-exclude-types></read-filename-exclude-types>	<!-- Read files except this extension list -->
+			<is-compressed-input-file>false</is-compressed-input-file> <!-- If input file is compressed or not compressed  -->
+			<is-compressed-output-file>false</is-compressed-output-file> <!--  If output file is compressed or not compressed -->
+			<write-file-path></write-file-path> <!-- Comma separated destination path -->
+			<plugin-list>
+				<plugin>
+					<plugin-name>DEFAULT_COMPOSER_PLUGIN</plugin-name>
+					<file-name-prefix></file-name-prefix>
+					<file-name-postfix></file-name-postfix>
+					<plugin-instance-id>000</plugin-instance-id>
+					<destination-path>C:\MEDIATION_ROOT\composer</destination-path>
+					<file-extension-after-rename>.DATA</file-extension-after-rename>
+					<character-renaming-operation>
+						<character>
+							<sequence-no>1</sequence-no>
+							<query></query>
+							<position>left</position>
+							<start-index>0</start-index>
+							<end-index>2</end-index>
+							<padding type="right"></padding>
+							<default-value></default-value>
+							<length></length>
+						</character>
+					</character-renaming-operation>
+				</plugin>
+			</plugin-list>
+		</path>
+	</path-list>
+	
+	<max-retry-count>1</max-retry-count>
+	
+	<file-range></file-range><!-- <file-range>15-20</file-range> -->
+	
+	<file-sequence-order>false</file-sequence-order>
+	
+	<no-files-alert-interval /> <!-- Interval in Seconds and apply if interval is greater than Zero and if any files not received since configurable time then send the trap to ME. -->
+	
+</local-distribution-driver>
+
+<!-- ========================================================== -->
+<!-- Details of each configuration parameter                    -->
+<!-- ========================================================== -->
+<!-- 
+	<source-path>D:\device\SSTP</source-path>
+		The path from which the raw files are to be collected.
+		
+	<source-file-types>.xml</source-file-types>
+		Represents the extension type of the files which are to be picked for
+		collection from the source path.
+		
+	<is-compressed-output>false</is-compressed-output>
+		We have a support of compressed output file in distribution drivers. If value of this tag is true then mediation server can
+		able to write the .gz file according to the given extension.
+		
+	<filter-pattern>
+		<action>rename</action>	
+		<param name="destpath" value=".col"/>
+		
+		Represents the extension type by which the files are to be renamed on
+		the FTP Server which are collected to the destination path for filtering,
+		so that the files are not picked up again.
+		
+		<action>move</action>	
+		<param name="destpath" value="D:\device\SSTP1"/>
+		Above action will move the files from soure to specified destination after colletion.
+	</filter-pattern>	
+	
+	<max-retry-count>1</max-retry-count>
+		Number of times by which the service will retry in terms of any failure.
+		
+	<file-grouping enabled="true"> To enable file grouping
+		<grouping-type>day</grouping-type>
+			Service will insert files into archived folder in form of,
+	        If Day, duplicate/Year/Month/Day/
+    	    If Month, duplicate/Year/Month/
+        	If Year, duplicate/Year/
+		<for-archive>false</for-archive>
+			To move or not file in archieve.
+		<for-duplicate>false</for-duplicate>
+			To move or not file in duplicate.
+	</file-grouping>
+	
+	<plugin-instance-id>000</plugin-instance-id>  This would be the instance id configured in the plugin
+		
+ -->
+<!-- ========================================================== -->
+<!-- End of configuration details                               -->
+<!-- ========================================================== -->

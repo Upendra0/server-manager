@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+ 
+	<!-- Change set id should start with <Your Initials>70000000001 like. NP80000000001 -->
+	<changeSet author="elitecore" id="SE80000000001" dbms="oracle,postgresql,mysql">
+		<comment>remove "Enable Rest API Call" parameter from SystemParameter</comment>
+		<sql splitStatements="true" stripComments="true">		   
+		   UPDATE TBLMSYSTEMPARAMETER set ENABLED='N' WHERE ALIAS='REST_API_CALL';
+		</sql>
+	</changeSet>
+	<changeSet author="elitecore" id="SE80000000002">
+		<comment>Modify datatype of UNIFIEDFIELD for ParserAttribute</comment>
+		<modifyDataType  columnName="UNIFIEDFIELD" newDataType="VARCHAR2(500)" tableName="TBLTPARSERATTR"/>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SE80000000003">
+		<comment>Modify datatype of EQUALCHECKFIELD for ParsingService</comment>
+		<modifyDataType  columnName="EQUALCHECKFIELD" newDataType="VARCHAR2(500)" tableName="TBLTPARSINGSERVICE"/>
+	</changeSet>
+	
+	
+	
+	<changeSet author="elitecore" id="SE80000000004">
+		<comment>Modify datatype of FIELDIDENTIFIER for ParserAttribute</comment>
+		<modifyDataType  columnName="FIELDIDENTIFIER" newDataType="VARCHAR2(500)" tableName="TBLTPARSERATTR"/>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SE80000000005">
+		<comment>Modify datatype of ACROSSFILEDUPLICATEDATEFIELD for tbltpathlist</comment>
+		<modifyDataType  columnName="ACROSSFILEDUPLICATEDATEFIELD" newDataType="VARCHAR2(500)" tableName="TBLTPATHLIST"/>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SE80000000006">
+		<comment>Modify datatype of UNIFIEDFIELD for tbltpolicycondition</comment>
+		<modifyDataType  columnName="UNIFIEDFIELD" newDataType="VARCHAR2(500)" tableName="TBLTPOLICYCONDITION"/>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SE80000000008" dbms="oracle">
+		<comment>Adding system parameter for enable kubernates environment</comment>
+		<sql>
+			 INSERT INTO TBLMSYSTEMPARAMETER(PARAMETERID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, 
+ 			 LASTUPDATEDDATE, STATUS, ALIAS, DESCRIPTION, DISPLAYORDER, enabled, ERRORMSG,  NAME, REGEX, VALUE, SYSTEMPARAMGROUPID) 
+			  VALUES ((select max(parameterid)+1 from TBLMSYSTEMPARAMETER), 0, SYSDATE, 0, SYSDATE, 'ACTIVE','ENABLE_KUBERNATES', 'make system kubernates enable', 35, 
+			  'Y', 'systemParameter.lookup.download.limit.error', 'Enable Kubernates', '[A-Za-z]*', 'false', 1);
+			
+			INSERT INTO TBLMSYSTEMPARAMETERVALUEPOOL(parameterpoolid,createdbystaffid,createddate,lastupdatedbystaffid,lastupdateddate,status,name,value,parameterid)
+			  VALUES ((select max(parameterpoolid)+1 from TBLMSYSTEMPARAMETERVALUEPOOL), 0, SYSDATE, 0, SYSDATE, 'ACTIVE','Yes',
+			   'true', (select parameterid from TBLMSYSTEMPARAMETER where alias='ENABLE_KUBERNATES'));
+			   
+			INSERT INTO TBLMSYSTEMPARAMETERVALUEPOOL(parameterpoolid,createdbystaffid,createddate,lastupdatedbystaffid,lastupdateddate,status,name,value,parameterid)
+			  VALUES ((select max(parameterpoolid)+1 from TBLMSYSTEMPARAMETERVALUEPOOL), 0, SYSDATE, 0, SYSDATE, 'ACTIVE','No',
+			   'false', (select parameterid from TBLMSYSTEMPARAMETER where alias='ENABLE_KUBERNATES')); 
+		</sql>
+	</changeSet>
+	
+	
+	<changeSet author="elitecore" id="SE80000000009" dbms="postgresql">
+		<comment>Adding system parameter for enable kubernates environment</comment>
+		<sql>
+	      INSERT INTO TBLMSYSTEMPARAMETER(PARAMETERID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, 
+ 			 LASTUPDATEDDATE, STATUS, ALIAS, DESCRIPTION, DISPLAYORDER, enabled, ERRORMSG,  NAME, REGEX, VALUE, SYSTEMPARAMGROUPID) 
+			  VALUES ((select max(parameterid)+1 from TBLMSYSTEMPARAMETER), 0, now(), 0, now(), 'ACTIVE','ENABLE_KUBERNATES', 'make system kubernates enable', 35, 
+			  'Y', 'systemParameter.lookup.download.limit.error', 'Enable Kubernates', '[A-Za-z]*', 'false', 1);
+			
+			INSERT INTO TBLMSYSTEMPARAMETERVALUEPOOL(parameterpoolid,createdbystaffid,createddate,lastupdatedbystaffid,lastupdateddate,status,name,value,parameterid)
+			  VALUES ((select max(parameterpoolid)+1 from TBLMSYSTEMPARAMETERVALUEPOOL), 0, now(), 0, now(), 'ACTIVE','Yes',
+			   'true', (select parameterid from TBLMSYSTEMPARAMETER where alias='ENABLE_KUBERNATES'));
+			   
+			INSERT INTO TBLMSYSTEMPARAMETERVALUEPOOL(parameterpoolid,createdbystaffid,createddate,lastupdatedbystaffid,lastupdateddate,status,name,value,parameterid)
+			  VALUES ((select max(parameterpoolid)+1 from TBLMSYSTEMPARAMETERVALUEPOOL), 0, now(), 0, now(), 'ACTIVE','No',
+			   'false', (select parameterid from TBLMSYSTEMPARAMETER where alias='ENABLE_KUBERNATES'));		     
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SE80000000010" dbms="mysql">
+		<comment>Adding system parameter for enable kubernates environment</comment>
+		<sql>
+			INSERT INTO TBLMSYSTEMPARAMETER(PARAMETERID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, 
+ 			 LASTUPDATEDDATE, STATUS, ALIAS, DESCRIPTION, DISPLAYORDER, enabled, ERRORMSG,  NAME, REGEX, VALUE, SYSTEMPARAMGROUPID) 
+			  VALUES ((select max(parameterid)+1 from TBLMSYSTEMPARAMETER as t), 0, now(), 0, now(), 'ACTIVE','ENABLE_KUBERNATES', 'make system kubernates enable', 35, 
+			  'Y', 'systemParameter.lookup.download.limit.error', 'Enable Kubernates', '[A-Za-z]*', 'false', 1);
+			
+			INSERT INTO TBLMSYSTEMPARAMETERVALUEPOOL(parameterpoolid,createdbystaffid,createddate,lastupdatedbystaffid,lastupdateddate,status,name,value,parameterid)
+			  VALUES ((select max(parameterpoolid)+1 from TBLMSYSTEMPARAMETERVALUEPOOL as t), 0, now(), 0, now(), 'ACTIVE','Yes',
+			   'true', (select parameterid from TBLMSYSTEMPARAMETER where alias='ENABLE_KUBERNATES'));
+			   
+			INSERT INTO TBLMSYSTEMPARAMETERVALUEPOOL(parameterpoolid,createdbystaffid,createddate,lastupdatedbystaffid,lastupdateddate,status,name,value,parameterid)
+			  VALUES ((select max(parameterpoolid)+1 from TBLMSYSTEMPARAMETERVALUEPOOL as t), 0, now(), 0, now(), 'ACTIVE','No',
+			   'false', (select parameterid from TBLMSYSTEMPARAMETER where alias='ENABLE_KUBERNATES'));     
+		</sql>
+	</changeSet>	
+	<changeSet author="elitecore" id="BB80000000001" dbms="oracle">
+		<comment>Adding system parameter for version migration</comment>
+		<sql>
+			 INSERT INTO TBLMSYSTEMPARAMETER(PARAMETERID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, 
+ 			 LASTUPDATEDDATE, STATUS, ALIAS, DESCRIPTION, DISPLAYORDER, enabled, ERRORMSG,  NAME, REGEX, VALUE, SYSTEMPARAMGROUPID) 
+			  VALUES ((select max(parameterid)+1 from TBLMSYSTEMPARAMETER), 0, SYSDATE, 0, SYSDATE, 'ACTIVE','VERSION_MIGRATE', 'make version migration enabled', 70, 
+			  'Y', 'systemParameter.lookup.download.limit.error', 'VERSION MIGRATE', '[A-Za-z]*', 'false', 1);
+			
+			INSERT INTO TBLMSYSTEMPARAMETERVALUEPOOL(parameterpoolid,createdbystaffid,createddate,lastupdatedbystaffid,lastupdateddate,status,name,value,parameterid)
+			  VALUES ((select max(parameterpoolid)+1 from TBLMSYSTEMPARAMETERVALUEPOOL), 0, SYSDATE, 0, SYSDATE, 'ACTIVE','Yes',
+			   'true', (select parameterid from TBLMSYSTEMPARAMETER where alias='VERSION_MIGRATE'));
+			   
+			INSERT INTO TBLMSYSTEMPARAMETERVALUEPOOL(parameterpoolid,createdbystaffid,createddate,lastupdatedbystaffid,lastupdateddate,status,name,value,parameterid)
+			  VALUES ((select max(parameterpoolid)+1 from TBLMSYSTEMPARAMETERVALUEPOOL), 0, SYSDATE, 0, SYSDATE, 'ACTIVE','No',
+			   'false', (select parameterid from TBLMSYSTEMPARAMETER where alias='VERSION_MIGRATE')); 
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="BB80000000002" dbms="postgresql">
+		<comment>Adding system parameter for version migration</comment>
+		<sql>
+			 INSERT INTO TBLMSYSTEMPARAMETER(PARAMETERID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, 
+ 			 LASTUPDATEDDATE, STATUS, ALIAS, DESCRIPTION, DISPLAYORDER, enabled, ERRORMSG,  NAME, REGEX, VALUE, SYSTEMPARAMGROUPID) 
+			  VALUES ((select max(parameterid)+1 from TBLMSYSTEMPARAMETER), 0, now(), 0, now(), 'ACTIVE','VERSION_MIGRATE', 'make version migration enabled', 70, 
+			  'Y', 'systemParameter.lookup.download.limit.error', 'VERSION MIGRATE', '[A-Za-z]*', 'false', 1);
+			
+			INSERT INTO TBLMSYSTEMPARAMETERVALUEPOOL(parameterpoolid,createdbystaffid,createddate,lastupdatedbystaffid,lastupdateddate,status,name,value,parameterid)
+			  VALUES ((select max(parameterpoolid)+1 from TBLMSYSTEMPARAMETERVALUEPOOL), 0, now(), 0, now(), 'ACTIVE','Yes',
+			   'true', (select parameterid from TBLMSYSTEMPARAMETER where alias='VERSION_MIGRATE'));
+			   
+			INSERT INTO TBLMSYSTEMPARAMETERVALUEPOOL(parameterpoolid,createdbystaffid,createddate,lastupdatedbystaffid,lastupdateddate,status,name,value,parameterid)
+			  VALUES ((select max(parameterpoolid)+1 from TBLMSYSTEMPARAMETERVALUEPOOL), 0, now(), 0, now(), 'ACTIVE','No',
+			   'false', (select parameterid from TBLMSYSTEMPARAMETER where alias='VERSION_MIGRATE')); 
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="BB80000000003" dbms="mysql">
+		<comment>Adding system parameter for version migration</comment>
+		<sql>
+			 INSERT INTO TBLMSYSTEMPARAMETER(PARAMETERID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, 
+ 			 LASTUPDATEDDATE, STATUS, ALIAS, DESCRIPTION, DISPLAYORDER, enabled, ERRORMSG,  NAME, REGEX, VALUE, SYSTEMPARAMGROUPID) 
+			  VALUES ((select max(parameterid)+1 from TBLMSYSTEMPARAMETER AS T), 0, now(), 0, now(), 'ACTIVE','VERSION_MIGRATE', 'make version migration enabled', 70, 
+			  'Y', 'systemParameter.lookup.download.limit.error', 'VERSION MIGRATE', '[A-Za-z]*', 'false', 1);
+			
+			INSERT INTO TBLMSYSTEMPARAMETERVALUEPOOL(parameterpoolid,createdbystaffid,createddate,lastupdatedbystaffid,lastupdateddate,status,name,value,parameterid)
+			  VALUES ((select max(parameterpoolid)+1 from TBLMSYSTEMPARAMETERVALUEPOOL AS T), 0, now(), 0, now(), 'ACTIVE','Yes',
+			   'true', (select parameterid from TBLMSYSTEMPARAMETER where alias='VERSION_MIGRATE'));
+			   
+			INSERT INTO TBLMSYSTEMPARAMETERVALUEPOOL(parameterpoolid,createdbystaffid,createddate,lastupdatedbystaffid,lastupdateddate,status,name,value,parameterid)
+			  VALUES ((select max(parameterpoolid)+1 from TBLMSYSTEMPARAMETERVALUEPOOL AS T), 0, now(), 0, now(), 'ACTIVE','No',
+			   'false', (select parameterid from TBLMSYSTEMPARAMETER where alias='VERSION_MIGRATE')); 
+		</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="BB80000000004" >
+		<comment>updating tblmregex column value for regex key CollectionDriverPathList.timeInterval </comment>
+		<sql>
+			UPDATE TBLMREGEX SET VALUE='0*([1-9]|[1-8][0-9]|9[0-9]|[1-6][0-9]{2}|7[0-2][0-9]|730)' WHERE REGEXKEY='CollectionDriverPathList.timeInterval';
+	    </sql>
+     </changeSet>
+
+	<changeSet author="sterlite" id="NP75000000001">
+	    <dropUniqueConstraint constraintName="TBLTPROFILENTITY_COLS" tableName="TBLTPROFILENTITY" uniqueColumns="ENTITYALIAS,ISDEFAULT,SERVERTYPEID,LICENSEID"/>
+	</changeSet>
+     
+	<changeSet author="sterlite" id="NP75000000002">
+		<comment>Deleting custom profile entity for all server types</comment>
+		<sql>
+			DELETE FROM TBLTPROFILENTITY WHERE ISDEFAULT='N';
+	    </sql>
+	</changeSet>
+
+	<changeSet author="sterlite" id="NP75000000003">
+    	<addUniqueConstraint columnNames="ENTITYALIAS,ISDEFAULT,SERVERTYPEID" constraintName="TBLTPROFILENTITY_COLS" tableName="TBLTPROFILENTITY"/>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="BB80000000009" >
+		<comment>Disable Kubernetes enable system paraameter</comment>
+		<sql>update TBLMSYSTEMPARAMETER set STATUS='INACTIVE' , ENABLED='N' where ALIAS='ENABLE_KUBERNATES'</sql>
+	</changeSet>
+	
+</databaseChangeLog>

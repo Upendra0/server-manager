@@ -1,0 +1,6 @@
+.required
+{
+	content: '*';
+	color: red;
+	position: inherit;
+}

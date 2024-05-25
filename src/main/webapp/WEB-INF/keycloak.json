@@ -1,0 +1,8 @@
+{
+  "realm": "master",
+  "auth-server-url": "http://10.151.1.17:8080/auth",
+  "ssl-required": "external",
+  "resource": "SM_ANUPA",
+  "public-client": true,
+  "confidential-port": 0
+}

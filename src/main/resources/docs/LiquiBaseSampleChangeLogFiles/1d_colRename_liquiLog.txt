@@ -1,0 +1,8 @@
+[liquibase:updateDatabase] Starting Liquibase.
+[liquibase:updateDatabase] Successfully acquired change log lock
+[liquibase:updateDatabase] Reading from SMADMIN.DATABASECHANGELOG
+[liquibase:updateDatabase] diffChgLog.xml: diffChgLog.xml::renameColumn-example::liquibase-docs: Column TBLMSERVERTYPE.TESTCOL renamed to TestColRename
+[liquibase:updateDatabase] diffChgLog.xml: diffChgLog.xml::renameColumn-example::liquibase-docs: ChangeSet diffChgLog.xml::renameColumn-example::liquibase-docs ran successfully in 420ms
+[liquibase:updateDatabase] Successfully released change log lock
+BUILD SUCCESSFUL
+Total time: 4 seconds

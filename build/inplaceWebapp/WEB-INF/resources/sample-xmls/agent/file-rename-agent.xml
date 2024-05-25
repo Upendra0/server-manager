@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file-rename-agent>
+	<initial-delay>60000</initial-delay>
+	<execution-interval>60000</execution-interval>
+	
+	<service-list>
+		<service>
+			<name>COLLECTION_SERVICE-000</name>
+			<dest-path></dest-path>
+			<file-extension-list>.u</file-extension-list> <!-- Comma seperated file extensions .inp,.warn,.error -->
+			<extension-after-rename></extension-after-rename> 
+			<character-renaming-operation>
+				<character>
+					<sequence-no>1</sequence-no>
+					<position>left</position>
+					<start-index></start-index>
+					<end-index></end-index>
+					<pedding type="right"></pedding>
+					<default-value>GSMT01_</default-value>
+					<length></length>
+				</character>
+				<character>
+					<sequence-no>2</sequence-no>
+					<position>left</position>
+					<start-index>8</start-index>
+					<end-index>10</end-index>
+					<pedding type="right"></pedding>
+					<default-value></default-value>
+					<length></length>
+				</character>
+				<character>
+					<sequence-no>3</sequence-no>
+					<position>left</position>
+					<start-index>11</start-index>
+					<end-index>13</end-index>
+					<pedding type="right"></pedding>
+					<default-value></default-value>
+					<length></length>
+				</character>
+				<character>
+					<sequence-no>4</sequence-no>
+					<position>left</position>
+					<start-index>16</start-index>
+					<end-index>18</end-index>
+					<pedding type="right"></pedding>
+					<default-value></default-value>
+					<length></length>
+				</character>
+				<character>
+					<sequence-no>5</sequence-no>
+					<position>left</position>
+					<start-index>19</start-index>
+					<end-index>21</end-index>
+					<pedding type="right"></pedding>
+					<default-value></default-value>
+					<length></length>
+				</character>
+				<character>
+					<sequence-no>6</sequence-no>
+					<position>left</position>
+					<start-index>22</start-index>
+					<end-index>24</end-index>
+					<pedding type="right"></pedding>
+					<default-value></default-value>
+					<length></length>
+				</character>
+				<character>
+					<sequence-no>7</sequence-no>
+					<position>left</position>
+					<start-index>25</start-index>
+					<end-index>27</end-index>
+					<pedding type="right"></pedding>
+					<default-value></default-value>
+					<length></length>
+				</character>
+				<character>
+					<sequence-no>8</sequence-no>
+					<position>left</position>
+					<start-index></start-index>
+					<end-index></end-index>
+					<pedding type="right"></pedding>
+					<default-value>_</default-value>
+					<length></length>
+				</character>
+				<character>
+					<sequence-no>9</sequence-no>
+					<position>right</position>
+					<start-index>6</start-index>
+					<end-index>1</end-index>
+					<pedding type="left">0</pedding>
+					<default-value></default-value>
+					<length>6</length>
+				</character>
+			</character-renaming-operation>
+		</service>
+		<service>
+			<name>PARSING_SERVICE-000</name>
+			<dest-path></dest-path>
+			<file-extension-list>.warn,.error</file-extension-list>
+			<extension-after-rename></extension-after-rename>
+			<character-renaming-operation></character-renaming-operation>
+		</service>
+		<service>
+			<name>PROCESSING_SERVICE-000</name>
+			<dest-path></dest-path>
+			<file-extension-list>.warn,.error</file-extension-list>
+			<extension-after-rename></extension-after-rename>
+			<character-renaming-operation></character-renaming-operation>
+		</service>
+		<service>
+			<name>DISTRIBUTION_SERVICE-000</name>
+			<dest-path></dest-path>
+			<file-extension-list>.warn,.error</file-extension-list>
+			<extension-after-rename></extension-after-rename>
+			<character-renaming-operation></character-renaming-operation>
+		</service>
+	</service-list>
+</file-rename-agent>

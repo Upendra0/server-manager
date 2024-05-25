@@ -1,0 +1,15 @@
+-- *********************************************************************
+-- Update Database Script
+-- *********************************************************************
+-- Change Log: ./createPostgreSqlSchema.xml
+-- Ran at: 24/10/22, 4:49 PM
+-- Against: postgres@jdbc:postgresql://127.0.0.1:5432/crestelsmngtkr
+-- Liquibase version: 3.4.2
+-- *********************************************************************
+
+-- Lock Database
+UPDATE public.databasechangeloglock SET LOCKED = TRUE, LOCKEDBY = 'kausik-stl (2402:3a80:1102:a381:e3b4:beb1:8df0:4862%wlp0s20f3)', LOCKGRANTED = '2022-10-24 16:49:08.142' WHERE ID = 1 AND LOCKED = FALSE;
+
+-- Release Database Lock
+UPDATE public.databasechangeloglock SET LOCKED = FALSE, LOCKEDBY = NULL, LOCKGRANTED = NULL WHERE ID = 1;
+

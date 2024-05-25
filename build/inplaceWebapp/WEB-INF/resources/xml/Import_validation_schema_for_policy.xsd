@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="policyWrapper" type="policyWrapper" />
+
+	<xs:element name="policy" type="policy" />
+
+	<xs:element name="policyAction" type="policyAction" />
+
+	<xs:element name="policyCondition" type="policyCondition" />
+
+	<xs:element name="policyGroup" type="policyGroup" />
+
+	<xs:element name="policyGroupRel" type="policyGroupRel" />
+
+	<xs:element name="policyGroupRuleRel" type="policyGroupRuleRel" />
+
+	<xs:element name="policyRule" type="policyRule" />
+	
+	<xs:complexType name="policyWrapper">
+	    <xs:complexContent>
+	      <xs:extension base="baseModel">
+	        <xs:sequence>
+	          <xs:element name="policyList" type="policy" minOccurs="0" maxOccurs="unbounded"/>
+	          <xs:element name="policyGroupList" type="policyGroup" minOccurs="0" maxOccurs="unbounded"/>
+	          <xs:element name="policyRuleList" type="policyRule" minOccurs="0" maxOccurs="unbounded"/>
+	          <xs:element name="policyConditionList" type="policyCondition" minOccurs="0" maxOccurs="unbounded"/>
+	          <xs:element name="policyActionList" type="policyAction" minOccurs="0" maxOccurs="unbounded"/>
+	          <xs:element name="databaseQueryList" type="databaseQuery" minOccurs="0" maxOccurs="unbounded"/>
+	        </xs:sequence>
+	      </xs:extension>
+	   </xs:complexContent>
+  </xs:complexType>
+
+
+	<xs:complexType name="policyGroupRuleRel">
+		<xs:complexContent>
+			<xs:extension base="baseModel">
+				<xs:sequence>
+					<xs:element name="id" type="xs:int" minOccurs="0"/>
+					<xs:element name="applicationOrder" type="xs:int" />
+					<xs:element ref="policyRule" minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="policyRule">
+		<xs:complexContent>
+			<xs:extension base="baseModel">
+				<xs:sequence>
+					<xs:element name="id" type="xs:int" minOccurs="0" />
+					<xs:element name="alias" type="xs:string" minOccurs="0" />
+					<xs:element name="name" type="xs:string" minOccurs="0" />
+					<xs:element name="operator" type="xs:string" minOccurs="0" />
+					<xs:element name="globalSequenceRuleId" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="description" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="alert" type="snmpAlert" minOccurs="0" />
+					<xs:element name="alertDescription" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="policyConditions" type="policyConditions"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="policyActions" type="policyActions"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="policyConditionStr" type="xs:string"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="policyActionStr" type="xs:string"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="category" type="xs:string" minOccurs="0" />
+					<xs:element name="severity" type="xs:string" minOccurs="0" />
+					<xs:element name="errorCode" type="xs:string" minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="policyAction">
+		<xs:complexContent>
+			<xs:extension base="baseModel">
+				<xs:sequence>
+					<xs:element name="id" type="xs:int" minOccurs="0"/>
+					<xs:element name="alias" type="xs:string" minOccurs="0" />
+					<xs:element name="name" type="xs:string" minOccurs="0" />
+					<xs:element name="description" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="action" type="xs:string" minOccurs="0" />
+					<xs:element name="operator" type="xs:string" minOccurs="0" />
+					<xs:element name="value" type="xs:string" minOccurs="0" />
+					<xs:element name="actionExpression" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="type" type="xs:string" minOccurs="0" />
+					<xs:element name="databaseQueryAlias" type="xs:string" minOccurs="0" />
+					<xs:element name="actionExpressionForSync" type="xs:string" minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="policyCondition">
+		<xs:complexContent>
+			<xs:extension base="baseModel">
+				<xs:sequence>
+					<xs:element name="id" type="xs:int" minOccurs="0"/>
+					<xs:element name="alias" type="xs:string" minOccurs="0" />
+					<xs:element name="name" type="xs:string" minOccurs="0" />
+					<xs:element name="unifiedField" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="description" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="operator" type="xs:string" minOccurs="0" />
+					<xs:element name="value" type="xs:string" minOccurs="0" />
+					<xs:element name="conditionExpression" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="type" type="xs:string" minOccurs="0" />
+					<xs:element name="databaseQueryAlias" type="xs:string" minOccurs="0" />
+					<xs:element name="conditionExpressionForSync" type="xs:string" minOccurs="0" />					
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="policyGroupRel">
+		<xs:complexContent>
+			<xs:extension base="baseModel">
+				<xs:sequence>
+					<xs:element name="applicationOrder" type="xs:int" />
+					<xs:element name="group" type="policyGroup" minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="policyConditions">
+		<xs:complexContent>
+			<xs:extension base="toStringProcessor">
+				<xs:sequence>
+					<xs:element name="policyCondition" type="xs:string"
+						minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="policyActions">
+		<xs:complexContent>
+			<xs:extension base="toStringProcessor">
+				<xs:sequence>
+					<xs:element name="policyAction" type="xs:string"
+						minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="policyRules">
+		<xs:complexContent>
+			<xs:extension base="toStringProcessor">
+				<xs:sequence>
+					<xs:element name="policyRule" type="xs:string"
+						minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="policyGroups">
+		<xs:complexContent>
+			<xs:extension base="toStringProcessor">
+				<xs:sequence>
+					<xs:element name="policyGroup" type="xs:string"
+						maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="policyGroup">
+		<xs:complexContent>
+			<xs:extension base="baseModel">
+				<xs:sequence>
+					<xs:element name="id" type="xs:int" minOccurs="0"/>
+					<xs:element name="alias" type="xs:string" minOccurs="0" />
+					<xs:element name="name" type="xs:string" minOccurs="0" />
+					<xs:element name="description" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="policyRules" type="policyRules"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="policyRuleStr" type="xs:string"
+						minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="policy">
+		<xs:complexContent>
+			<xs:extension base="baseModel">
+				<xs:sequence>
+					<xs:element name="id" type="xs:int" minOccurs="0"/>
+					<xs:element name="alias" type="xs:string" minOccurs="0" />
+					<xs:element name="name" type="xs:string" minOccurs="0" />
+					<xs:element name="description" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="policyGroups" type="policyGroups"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="policyGroupStr" type="xs:string"
+						minOccurs="0" maxOccurs="unbounded" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="databaseQuery">
+		<xs:complexContent>
+			<xs:extension base="baseModel">
+				<xs:sequence>
+					<xs:element name="id" type="xs:int" minOccurs="0"/>
+					<xs:element name="alias" type="xs:string" minOccurs="0" />
+					<xs:element name="queryName" type="xs:string" minOccurs="0" />
+					<xs:element name="queryValue" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="returnMultipleRowsEnable" type="xs:boolean"
+						minOccurs="0" />
+					<xs:element name="cacheEnable" type="xs:boolean"
+						minOccurs="0" />
+					<xs:element name="logicalOperator" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="conditionExpressionEnable" type="xs:boolean"
+						minOccurs="0" />
+					<xs:element name="conditionExpression" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="databaseQueryConditions" type="databaseQueryCondition"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="databaseQueryActions" type="databaseQueryAction"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="outputDbField" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="description" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="associationStatus" type="xs:string"
+						minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="databaseQueryCondition">
+		<xs:complexContent>
+			<xs:extension base="baseModel">
+				<xs:sequence>
+					<xs:element name="id" type="xs:int" minOccurs="0"/>
+					<xs:element name="databaseFieldName" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="policyConditionOperatorEnum" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="unifiedField" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="databaseKey" type="xs:boolean" 
+						minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="databaseQueryAction">
+		<xs:complexContent>
+			<xs:extension base="baseModel">
+				<xs:sequence>
+					<xs:element name="id" type="xs:int" minOccurs="0"/>
+					<xs:element name="databaseFieldName" type="xs:string"
+						minOccurs="0" />
+					<xs:element name="unifiedField" type="xs:string"
+						minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="baseModel" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="toStringProcessor">
+        <xs:sequence>
+          <xs:element name="createdByStaffId" type="xs:int" minOccurs="0"/>
+          <xs:element name="createdDate" type="xs:dateTime" minOccurs="0"/>
+          <xs:element name="lastUpdatedByStaffId" type="xs:int" minOccurs="0"/>
+          <xs:element name="lastUpdatedDate" type="xs:dateTime" minOccurs="0"/>
+          <xs:element name="status" type="stateEnum" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+
+	<xs:complexType name="toStringProcessor" abstract="true">
+		<xs:sequence />
+	</xs:complexType>
+
+	<xs:simpleType name="stateEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ACTIVE" />
+			<xs:enumeration value="INACTIVE" />
+			<xs:enumeration value="DELETED" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="snmpAlert">
+		<xs:complexContent>
+			<xs:extension base="baseModel">
+				<xs:sequence>
+					<xs:element name="alertId" type="xs:string" minOccurs="0" />
+					<xs:element name="alertType" type="snmpAlertType"
+						minOccurs="0" />
+					<xs:element name="desc" type="xs:string" minOccurs="0" />
+					<xs:element name="id" type="xs:int" />
+					<xs:element name="name" type="xs:string" minOccurs="0" />
+					<xs:element name="threshold" type="xs:int" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+
+	<xs:complexType name="snmpAlertType">
+		<xs:complexContent>
+			<xs:extension base="baseModel">
+				<xs:sequence>
+					<xs:element name="id" type="xs:int" />
+					<xs:element name="name" type="xs:string" minOccurs="0" />
+					<xs:element name="alias" type="xs:string" minOccurs="0" />
+					<xs:element name="category" type="snmpAlertTypeEnum"
+						minOccurs="0" />
+					<xs:element name="description" type="xs:string"
+						minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:simpleType name="snmpAlertTypeEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SERVER_INSTANCE" />
+			<xs:enumeration value="COLLECTION_SERVICE" />
+			<xs:enumeration value="DATA_CONSOLIDATION_SERVICE" />
+			<xs:enumeration value="DISTRIBUTION_SERVICE" />
+			<xs:enumeration value="GTPPRIME_COLLECTION_SERVICE" />
+			<xs:enumeration value="IPLOG_PARSING_SERVICE" />
+			<xs:enumeration value="NATFLOWBINARY_COLLECTION_SERVICE" />
+			<xs:enumeration value="NATFLOW_COLLECTION_SERVICE" />
+			<xs:enumeration value="PARSING_SERVICE" />
+			<xs:enumeration value="PROCESSING_SERVICE" />
+			<xs:enumeration value="RADIUS_COLLECTION_SERVICE" />
+			<xs:enumeration value="SYSLOG_COLLECTION_SERVICE" />
+			<xs:enumeration value="AGGREGATION_SERVICE" />
+			<xs:enumeration value="DIAMETER_COLLECTION_SERVICE" />
+			<xs:enumeration value="GENERIC" />
+		</xs:restriction>
+	</xs:simpleType>
+
+</xs:schema>
+

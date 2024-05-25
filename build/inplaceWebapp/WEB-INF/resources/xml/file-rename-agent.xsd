@@ -1,0 +1,55 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="file-rename-agent">
+    <xs:complexType>
+      <xs:all>
+        <xs:element type="xs:int" name="initial-delay"/>
+        <xs:element type="xs:int" name="execution-interval"/>
+        <xs:element name="service-list">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="service" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element type="xs:string" name="name"/>
+                    <xs:element type="xs:string" name="dest-path"/>
+                    <xs:element type="xs:string" name="file-extension-list"/>
+                    <xs:element type="xs:string" name="extension-after-rename"/>
+                    <xs:element name="character-renaming-operation">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="character" maxOccurs="unbounded" minOccurs="0" >
+                            <xs:complexType>
+                              <xs:all>
+                                <xs:element type="xs:byte" name="sequence-no"/>
+                                <xs:element type="xs:string" name="position"/>
+                                <xs:element type="xs:string" name="start-index"/>
+                                <xs:element type="xs:string" name="end-index"/>
+                                <xs:element name="pedding">
+                                  <xs:complexType>
+                                    <xs:simpleContent>
+                                      <xs:extension base="xs:string">
+                                        <xs:attribute type="xs:string" name="type" use="optional"/>
+                                      </xs:extension>
+                                    </xs:simpleContent>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element type="xs:string" name="default-value"/>
+                                <xs:element type="xs:string" name="length"/>
+                              </xs:all>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute type="xs:string" name="enable" use="optional"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

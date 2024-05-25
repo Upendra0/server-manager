@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database-reprocessing-agent>
+	<initial-delay>60000</initial-delay>
+	<execution-interval>60000</execution-interval>
+	<destination-file-path>D:\MEDIATION_ROOT\reprocessed</destination-file-path>
+	<file-name-field>SOURCEUNITNAME</file-name-field>
+	<required-date-check-attribute>CREATEDATE</required-date-check-attribute>
+	
+	<file-attribute-list>
+		<attribute>
+			<db-field-name>SERIALNUMBER</db-field-name>
+			<unified-field-name>SerialNumber</unified-field-name>
+			<data-type>Integer</data-type>
+			<default-value></default-value>
+			<query-value></query-value>
+		</attribute>
+		<attribute>
+			<db-field-name>RECORDNUMBER</db-field-name>
+			<unified-field-name>RecordNumber</unified-field-name>
+			<data-type>String</data-type>
+			<default-value></default-value>
+			<query-value></query-value>
+		</attribute>
+	</file-attribute-list>
+	
+</database-reprocessing-agent>

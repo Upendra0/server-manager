@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<detail-local-parser-plugin>
+	<instance id="000">
+		<source-charset-name>UTF8</source-charset-name>
+		<source-date-format>E MMM dd HH:mm:ss yyyy</source-date-format>
+		<attribute-seperator>=</attribute-seperator>
+		<vendor-name-seperator present="true">
+			<vendor-name-value>:</vendor-name-value>
+		</vendor-name-seperator>
+		<attribute-list>
+			<attribute>
+				<unified-field>RecordNumber</unified-field>
+				<source-field>Acct-Session-Id</source-field>
+				<default-value />
+				<trim-chars>"</trim-chars>
+				<source-field-format></source-field-format>
+			</attribute>
+			<attribute>
+				<unified-field>EndDate</unified-field>
+				<source-field>CDRDate</source-field>
+				<default-value />
+				<trim-chars>"</trim-chars>
+				<source-field-format></source-field-format>
+			</attribute>
+			<attribute>
+				<unified-field>Duration</unified-field>
+				<source-field>Acct-Session-Time</source-field>
+				<default-value />
+				<trim-chars>"</trim-chars>
+				<source-field-format></source-field-format>
+			</attribute>
+			<attribute>
+				<unified-field>General1</unified-field>
+				<source-field>User-Name</source-field>
+				<default-value />
+				<trim-chars>"</trim-chars>
+				<source-field-format></source-field-format>
+			</attribute>
+			<attribute>
+				<unified-field>General2</unified-field>
+				<source-field>Acct-Status-Type</source-field>
+				<default-value />
+				<trim-chars>"</trim-chars>
+				<source-field-format></source-field-format>
+			</attribute>
+			<attribute>
+				<unified-field>General3</unified-field>
+				<source-field>NAS-Port</source-field>
+				<default-value />
+				<trim-chars>"</trim-chars>
+				<source-field-format></source-field-format>
+			</attribute>
+			<attribute>
+				<unified-field>General4</unified-field>
+				<source-field>NAS-IP-Address</source-field>
+				<default-value />
+				<trim-chars>"</trim-chars>
+				<source-field-format></source-field-format>
+			</attribute>
+			<attribute>
+				<unified-field>General5</unified-field>
+				<source-field>Acct-Input-Octets</source-field>
+				<default-value />
+				<trim-chars>"</trim-chars>
+				<source-field-format></source-field-format>
+			</attribute>
+			<attribute>
+				<unified-field>General6</unified-field>
+				<source-field>Acct-Output-Octets</source-field>
+				<default-value />
+				<source-field-format></source-field-format>
+			</attribute>
+			<attribute>
+				<unified-field>General7</unified-field>
+				<source-field>Acct-Input-Packets</source-field>
+				<default-value />
+				<trim-chars>"</trim-chars>
+				<source-field-format></source-field-format>
+			</attribute>
+			<attribute>
+				<unified-field>General8</unified-field>
+				<source-field>Acct-Output-Packets</source-field>
+				<default-value />
+				<trim-chars>"</trim-chars>
+				<source-field-format></source-field-format>
+			</attribute>
+			<attribute>
+				<unified-field>General9</unified-field>
+				<source-field />
+				<default-value>ACCESS</default-value>
+				<trim-chars>"</trim-chars>
+				<source-field-format></source-field-format>
+			</attribute>
+		</attribute-list>
+	</instance>
+</detail-local-parser-plugin>
+   
+<!-- ========================================================== -->
+<!-- Details of each configuration parameter                    -->
+<!-- ========================================================== -->
+<!-- 
+	<source-date-format>E MMM dd HH:mm:ss yyyy</source-date-format>  
+		This field represent the date format of your cdr file.
+		Example - Tue Jul 22 15:21:33 2008
+		
+	<source-charset-name>UTF8</source-charset-name> 
+		 Specifies the character set name of the file content.
+		 
+	<attribute-list>
+        Specifies the list of attrbute and the mapping of the fields of raw files and unified fields.
+        
+        <attribute>
+           <unified-field>RecordNumber</unified-field>
+                Specifies the unified field name.
+                
+           <source-field>Acct-Session-Id</source-field>                            
+                Specifies the list of source fields.
+                        
+           <default-value></default-value>
+                Specifies the default value. If the source field is specified, 
+                the default value won't be considered.
+
+           <trim-chars>"</trim-chars>
+            <description></description>
+                Specifies the trim characters. All the trim charactes are 
+                neglacted from the start and end of the value.
+                
+                E.g. If the value in the raw file is '"1893487"', 
+                     the value in the unified csv will be 1893487.
+            </attribute>
+            
+    </attribute-list>         	 
+ -->
+<!-- ========================================================== -->
+<!-- End of configuration details                               -->
+<!-- ========================================================== -->
+  
+    

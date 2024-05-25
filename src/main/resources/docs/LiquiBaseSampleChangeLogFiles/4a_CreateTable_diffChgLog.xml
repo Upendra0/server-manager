@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+ 
+<changeSet author="vandana.awatramani (generated)" id="1467700784310-1">
+        <createTable tableName="TBLMPERSONTYPE">
+            <column name="ID" type="NUMBER(10, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATEDBYSTAFFID" type="NUMBER(10, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATEDDATE" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LASTUPDATEDBYSTAFFID" type="NUMBER(10, 0)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LASTUPDATEDDATE" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STATUS" type="VARCHAR(255 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ALIAS" type="VARCHAR(100 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(200 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR(100 CHAR)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+     <changeSet author="vandana.awatramani (generated)" id="1467700784310-5">
+        <addPrimaryKey columnNames="ID" constraintName="TBLMPERSONTYPEPK" tableName="TBLMPERSONTYPE"/>
+    </changeSet>
+    
+    
+</databaseChangeLog>

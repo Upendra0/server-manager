@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packet-statistics-agent>
+	<storage-location>/home/elitecore/stats/</storage-location>
+	<execution-interval>300000</execution-interval> <!--  IN Milliseconds -->
+	
+	<service-list>
+		<!-- <service>
+			<name>GTPPRIME_COLLECTION_SERVICE-000</name>
+			<enable>false</enable>
+		</service>
+		<service>
+			<name>NATFLOWBINARY_COLLECTION_SERVICE-000</name>
+			<enable>false</enable>
+		</service> -->
+		
+	</service-list>
+</packet-statistics-agent>

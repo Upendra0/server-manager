@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog logicalFilePath="./DMLChangeLog.xml" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<changeSet author="elitecore" id="SM2000000001">
+		<addColumn tableName="TBLMSERVICETYPE">
+			<column name="SERVICECATEGORY" type="varchar(100)">
+				<constraints nullable="false" />
+			</column>
+		</addColumn>
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000002">
+		<addColumn tableName="TBLMSERVICETYPE">
+			<column name="TYPEOFSERVICE" type="varchar(100)">
+				<constraints nullable="false" />
+			</column>
+		</addColumn>
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000003">
+		<dropColumn columnName="CATEGORY" tableName="TBLMSERVICETYPE" />
+	</changeSet>
+
+	<changeSet author="elitecore" id="SM2000000004" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLMSERVERTYPE.csv"
+			tableName="TBLMSERVERTYPE" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000005" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLMSERVICETYPE.csv"
+			tableName="TBLMSERVICETYPE" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="SM2000000006" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLMAUDITENTITY.csv"
+			tableName="TBLMAUDITENTITY" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="SM2000000007" runOnChange="true">
+		<loadUpdateData encoding="UTF-8"
+			file="${installation.dir}/export_TBLMAUDITSUBENTITY.csv" tableName="TBLMAUDITSUBENTITY" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000008" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLMAUDITACTIVITY.csv"
+			tableName="TBLMAUDITACTIVITY" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+
+	 <changeSet author="elitecore" id="SM2000000009" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLMREGEX.csv"
+			tableName="TBLMREGEX" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet> 
+
+	 <changeSet author="elitecore" id="SM2000000010" runOnChange="true">
+		<loadUpdateData encoding="UTF-8"
+			file="${installation.dir}/export_TBLMVALIDATIONRANGE.csv" tableName="TBLMVALIDATIONRANGE" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000011" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLMBUSINESSMODEL.csv"
+			tableName="TBLMBUSINESSMODEL" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000012" runOnChange="true">
+		<loadUpdateData encoding="UTF-8"
+			file="${installation.dir}/export_TBLMBUSINESSMODULE.csv" tableName="TBLMBUSINESSMODULE" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="SM2000000013" runOnChange="true">
+		<loadUpdateData encoding="UTF-8"
+			file="${installation.dir}/export_TBLMBUSINESSSUBMODULE.csv" tableName="TBLMBUSINESSSUBMODULE" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000014" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLMACTION.csv"
+			tableName="TBLMACTION" primaryKey="id">
+		</loadUpdateData>
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000015" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLMACCESSGROUP.csv"
+			tableName="TBLMACCESSGROUP" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="SM2000000016" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLMSTAFF.csv"
+			tableName="TBLMSTAFF" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000017">
+		<loadData encoding="UTF-8"
+			file="${installation.dir}/export_TBLTACCESSGROUPACTIONREL.csv" tableName="TBLTACCESSGROUPACTIONREL">
+		</loadData>
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000018" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLMDRIVERTYPE.csv"
+			tableName="TBLMDRIVERTYPE" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000019" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLMPLUGINTYPE.csv"
+			tableName="TBLMPLUGINTYPE" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000020" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLMDEVICETYPE.csv"
+			tableName="TBLMDEVICETYPE" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000021" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLMVENDORTYPE.csv"
+			tableName="TBLMVENDORTYPE" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000022" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLMDEVICE.csv"
+			tableName="TBLMDEVICE" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="SM2000000023" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLTPARSERMAPPING.csv"
+			tableName="TBLTPARSERMAPPING" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="SM2000000024" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLTPARSERATTR.csv"
+			tableName="TBLTPARSERATTR" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="SM2000000025" runOnChange="true">
+		<loadUpdateData encoding="UTF-8"
+			file="${installation.dir}/export_TBLMNETFLOWATTRIBUTEDICTIONARY.csv"
+			tableName="TBLMNETFLOWATTRIBUTEDICTIONARY" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="SM2000000026" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLMSNMPALERTTYPE.csv"
+			tableName="TBLMSNMPALERTTYPE"  primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="SM2000000027" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLTSNMPALERT.csv"
+			tableName="TBLTSNMPALERT" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="SM2000000028" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLTPROFILENTITY.csv"
+			tableName="TBLTPROFILENTITY" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+
+
+	<changeSet author="elitecore" id="SM2000000029" runOnChange="true">
+		<loadUpdateData encoding="UTF-8"
+			file="${installation.dir}/export_TBLTCOMPOSERMAPPING.csv" tableName="TBLTCOMPOSERMAPPING" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="SM2000000030" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLTCOMPOSERATTR.csv"
+			tableName="TBLTCOMPOSERATTR" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000031" runOnChange="true">
+		<loadUpdateData encoding="UTF-8"
+			file="${installation.dir}/export_TBLMSYSTEMPARAMETERGROUP.csv" tableName="TBLMSYSTEMPARAMETERGROUP" primaryKey="PARAMETERGROUPID" >
+		</loadUpdateData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="SM2000000032" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" primaryKey="PARAMETERID"
+			file="${installation.dir}/export_TBLMSYSTEMPARAMETER.csv" tableName="TBLMSYSTEMPARAMETER">
+		</loadUpdateData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="SM2000000033" runOnChange="true">
+		<loadUpdateData encoding="UTF-8"
+			file="${installation.dir}/export_TBLMSYSTEMPARAMETERVALUEPOOL.csv" tableName="TBLMSYSTEMPARAMETERVALUEPOOL" primaryKey="PARAMETERPOOLID">
+		</loadUpdateData>
+	</changeSet>
+
+
+	<changeSet author="elitecore" id="SM2000000034">
+		<loadData encoding="UTF-8"
+			file="${installation.dir}/export_TBLTSTAFFACCESSGROUPREL.csv" tableName="TBLTSTAFFACCESSGROUPREL">
+		</loadData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="SM2000000035">
+		<sql>insert into TBLTPRIMARYKEY(TABLE_NAME, VALUE)
+			values('AuditEntity', 1 + (SELECT MAX(id) FROM TBLMAUDITENTITY) );
+			insert into TBLTPRIMARYKEY(TABLE_NAME, VALUE)
+			values('AuditSubEntity', 1 + (SELECT MAX(id) FROM TBLMAUDITSUBENTITY)
+			);
+			insert into TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('Service',
+			'100');
+			insert into TBLTPRIMARYKEY(TABLE_NAME, VALUE)
+			values('AuditActivity',
+			1 + (SELECT MAX(id) FROM TBLMAUDITACTIVITY) );
+			insert into TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('EntitiesRegex',
+			1 +
+			(SELECT MAX(id) FROM TBLMREGEX) );
+			insert into
+			TBLTPRIMARYKEY(TABLE_NAME, VALUE)
+			values('EntitiesValidationRange', 1
+			+ (SELECT MAX(id) FROM
+			TBLMVALIDATIONRANGE) );
+			insert into
+			TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('BusinessModel', 1 +
+			(SELECT
+			MAX(id) FROM TBLMBUSINESSMODEL) );
+			insert into
+			TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('BusinessModule', 1 +
+			(SELECT MAX(id) FROM TBLMBUSINESSMODULE) );
+			insert into
+			TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('BusinessSubModule', 1
+			+
+			(SELECT MAX(id) FROM TBLMBUSINESSSUBMODULE) );
+			insert into
+			TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('Action', 1 + (SELECT
+			MAX(id) FROM TBLMACTION) );
+			insert into TBLTPRIMARYKEY(TABLE_NAME,
+			VALUE) values('AccessGroup', 1 +
+			(SELECT MAX(id) FROM TBLMACCESSGROUP)
+			);
+			insert into TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('Staff', 1 +
+			(SELECT
+			MAX(id) FROM TBLMSTAFF) );
+			insert into
+			TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('ServerType', 1 +
+			(SELECT
+			MAX(id) FROM TBLMSERVERTYPE) );
+			insert into TBLTPRIMARYKEY(TABLE_NAME,
+			VALUE) values('ServiceType', 1 +
+			(SELECT MAX(id) FROM TBLMSERVICETYPE)
+			);
+			insert into TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('DriverType',
+			1 +
+			(SELECT MAX(id) FROM TBLMDRIVERTYPE) );
+			insert into
+			TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('PluginTypeMaster', 1
+			+
+			(SELECT MAX(id) FROM TBLMPLUGINTYPE) );
+			insert into
+			TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('DeviceType', 1 +
+			(SELECT
+			MAX(id) FROM TBLMDEVICETYPE) );
+
+			insert into TBLTPRIMARYKEY(TABLE_NAME,
+			VALUE) values('VendorType', 1 +
+			(SELECT MAX(id) FROM TBLMVENDORTYPE)
+			);
+			insert into TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('Device', 1 +
+			(SELECT
+			MAX(id) FROM TBLMDEVICE) );
+			insert into
+			TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('ParserMapping', 1 +
+			(SELECT
+			MAX(id) FROM TBLTPARSERMAPPING) );
+			insert into
+			TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('ParserAttribute', 1 +
+			(SELECT MAX(id) FROM TBLTPARSERATTR) );
+			insert into
+			TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('ATTRFIELD', 1 +
+			(SELECT
+			MAX(id) FROM TBLMNETFLOWATTRIBUTEDICTIONARY) );
+			insert into
+			TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('SNMPAlertType', 1 +
+			(SELECT
+			MAX(id) FROM TBLMSNMPALERTTYPE) );
+
+			insert into
+			TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('SNMPAlert', 1 +
+			(SELECT
+			MAX(id) FROM TBLTSNMPALERT) );
+			insert into TBLTPRIMARYKEY(TABLE_NAME,
+			VALUE) values('ComposerMapping', 1 +
+			(SELECT MAX(id) FROM
+			TBLTCOMPOSERMAPPING) );
+			insert into TBLTPRIMARYKEY(TABLE_NAME, VALUE)
+			values('ComposerAttribute', 1
+			+ (SELECT MAX(id) FROM TBLTCOMPOSERATTR)
+			);
+			insert into TBLTPRIMARYKEY(TABLE_NAME, VALUE)
+			values('ProfileEntity', 1 +
+			(SELECT MAX(id) FROM TBLTPROFILENTITY) );
+			insert into TBLTPRIMARYKEY(TABLE_NAME, VALUE) values('AgentType', 1 +
+			(SELECT MAX(id) FROM TBLMAGENTTYPE) );
+
+		</sql>
+
+
+	</changeSet>
+
+
+
+
+	<changeSet author="elitecore" id="SM2000000036">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="AUDITDATE" tableName="TBLTSYSTEMAUDIT" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000037">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMACCESSGROUP" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000038">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMACTION" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000039">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMBUSINESSMODEL" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000040">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMBUSINESSMODULE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000041">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMBUSINESSSUBMODULE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000042">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMDEVICE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000043">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMDEVICETYPE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000044">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMDRIVERTYPE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000045">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMNETFLOWATTRIBUTEDICTIONARY" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000046">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMPLUGINTYPE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000047">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMREGEX" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000048">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMSERVERTYPE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000049">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMSERVICETYPE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000050">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMSNMPALERTTYPE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000051">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMSTAFF" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000052">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMSYSTEMPARAMETER" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000053">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMSYSTEMPARAMETERGROUP" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000054">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMSYSTEMPARAMETERVALUEPOOL" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000055">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMVALIDATIONRANGE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000056">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLMVENDORTYPE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000057">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTAGENT" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000058">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTCHARRENAMEOPERATIONS" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000059">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTCOMPOSER" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000060">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTCOMPOSERATTR" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000061">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTCOMPOSERMAPPING" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000062">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTCONNPARAMETER" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000063">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTDRIVER" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000064">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTDSCONFIG" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000065">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTFILEGRPPARAM" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000066">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTIMAGE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000067">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTLICENSE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000068">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTNETFLOWCLIENT" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000069">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTPARSER" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000070">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTPARSERATTR" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000071">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTPARSERMAPPING" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000072">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTPARTITIONPARAM" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000073">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTPASSWORDHISTORY" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000074">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTPATHLIST" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000075">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTPROFILENTITY" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000076">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTREGEXPATTERN" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000077">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTSERVER" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000078">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTSERVERINSTANCE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000079">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTSERVICE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000080">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTSERVICESCHEDULINGPARAM" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000081">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTSNMPALERT" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000082">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTSNMPALERTWRAPPER" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000083">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTSNMPSERVERCONFIG" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000084">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="CREATEDDATE" tableName="TBLTSNMPSERVICETHRESHOLD" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000085">
+		<dropNotNullConstraint columnDataType="varchar(200)"
+			columnName="DESCRIPTION" tableName="TBLMSERVERTYPE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000086">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="ENDDATE" tableName="TBLTLICENSE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000087">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMACCESSGROUP" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000088">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMACTION" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000089">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMBUSINESSMODEL" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000090">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMBUSINESSMODULE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000091">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMBUSINESSSUBMODULE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000092">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMDEVICE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000093">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMDEVICETYPE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000094">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMDRIVERTYPE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000095">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMNETFLOWATTRIBUTEDICTIONARY" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000096">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMPLUGINTYPE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000097">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMREGEX" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000098">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMSERVERTYPE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000099">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMSERVICETYPE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000100">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMSNMPALERTTYPE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000101">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMSTAFF" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000102">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMSYSTEMPARAMETER" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000103">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMSYSTEMPARAMETERGROUP" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000104">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMSYSTEMPARAMETERVALUEPOOL" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000105">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMVALIDATIONRANGE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000106">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLMVENDORTYPE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000107">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTAGENT" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000108">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTCHARRENAMEOPERATIONS" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000109">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTCOMPOSER" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000110">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTCOMPOSERATTR" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000111">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTCOMPOSERMAPPING" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000112">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTCONNPARAMETER" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000113">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTDRIVER" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000114">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTDSCONFIG" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000115">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTFILEGRPPARAM" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000116">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTIMAGE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000117">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTLICENSE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000118">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTNETFLOWCLIENT" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000119">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTPARSER" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000120">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTPARSERATTR" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000121">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTPARSERMAPPING" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000122">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTPARTITIONPARAM" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000123">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTPASSWORDHISTORY" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000124">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTPATHLIST" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000125">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTPROFILENTITY" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000126">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTREGEXPATTERN" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000127">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTSERVER" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000128">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTSERVERINSTANCE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000129">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTSERVICE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000130">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTSERVICESCHEDULINGPARAM" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000131">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTSNMPALERT" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000132">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTSNMPALERTWRAPPER" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000133">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTSNMPSERVERCONFIG" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000134">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="LASTUPDATEDDATE" tableName="TBLTSNMPSERVICETHRESHOLD" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000135">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="STARTDATE" tableName="TBLTLICENSE" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000136">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="createdate" tableName="TBLMACCESSGROUP" />
+	</changeSet>
+	<changeSet author="elitecore" id="SM2000000137">
+		<dropDefaultValue columnDataType="datetime"
+			columnName="lastupdatedate" tableName="TBLMACCESSGROUP" />
+	</changeSet>
+
+
+	<changeSet author="elitecore" id="JP2000000001" runOnChange="true">
+		<loadUpdateData encoding="UTF-8" file="${installation.dir}/export_TBLMAGENTTYPE.csv"
+			tableName="TBLMAGENTTYPE" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="JP2000000008">
+
+		<loadData encoding="UTF-8"
+			file="${installation.dir}/export_TBLTACCESSGROUPACTIONREL_MED_2759.csv"
+			tableName="TBLTACCESSGROUPACTIONREL">
+		</loadData>
+	</changeSet>
+	<changeSet author="elitecore" id="NK2000000005">
+		<loadData encoding="UTF-8"
+			file="${installation.dir}/export_TBLTACCESSGROUPACTIONREL_MED_3156.csv"
+			tableName="TBLTACCESSGROUPACTIONREL">
+		</loadData>
+	</changeSet>
+	<changeSet author="elitecore" id="JP2000000013">
+		<loadData encoding="UTF-8"
+			file="${installation.dir}/export_TBLTACCESSGROUPACTIONREL_MED-3281.csv"
+			tableName="TBLTACCESSGROUPACTIONREL">
+		</loadData>
+	</changeSet>
+
+
+<changeSet author="elitecore" id="JP2000000014">
+    <delete tableName="TBLTSNMPALERT">
+        <where>NAME in ('gtpPrimeServiceSyncFrom','ipLoggerParsingServiceSyncFrom','natFlowBinaryCollectionServiceSyncFrom','natFlowCollectionServiceSyncFrom','parsingServiceSyncFrom','processingServiceSyncFrom','collectionServiceSyncFrom','syncConfFromServer','dataConsolidationServiceSyncFrom','radiusServiceSyncFrom','sysLogCollectionServiceSyncFrom','distributionServiceSyncFrom')</where>
+    </delete>
+</changeSet>
+
+	<changeSet author="elitecore" id="JP2000000015">
+		<delete tableName="TBLMSYSTEMPARAMETER">
+			<where>ALIAS in ('AUTO_SYNC_TIME')</where>
+		</delete>
+	</changeSet>
+
+<changeSet author="elitecore (generated)" id="JP2000000018" runOnChange="true">
+		<addColumn tableName="TBLMSTAFF">
+			<column name="ISFIRSTTIMELOGIN" type="char(1)" defaultValue="N" />
+		</addColumn>
+	</changeSet>
+	<changeSet author="elitecore" id="JP2000000024">
+		<sql>
+		update TBLMSTAFF set isfirsttimelogin='Y' where passwordexpirydate IS NULL AND id!=2 AND id!=3;
+		</sql>
+
+
+	</changeSet>
+
+	<changeSet author="elitecore" id="CP2000000001">
+		<loadData encoding="UTF-8"
+			file="${installation.dir}/export_TBLTACCESSGROUPACTIONREL_MED_3465.csv"
+			tableName="TBLTACCESSGROUPACTIONREL">
+		</loadData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="JP2000000021">
+		<loadData encoding="UTF-8"
+			file="${installation.dir}/export_TBLTACCESSGROUPACTIONREL_MED-3478  .csv"
+			tableName="TBLTACCESSGROUPACTIONREL">
+		</loadData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="JP2000000022">
+		<delete tableName="TBLTACCESSGROUPACTIONREL">
+			<where>actionid in(122,123)</where>
+		</delete>
+	</changeSet>
+
+	<changeSet author="elitecore" id="JP2000000023">
+		<delete tableName="TBLMACTION">
+	        <where>alias in('VIEW_SERVICE_WISE_DETAIL','VIEW_SERVICE_WISE_SUMMARY')</where>
+		</delete>
+	</changeSet>
+
+	<changeSet author="elitecore (generated)" id="JP2000000025">
+		<addColumn tableName="TBLTCOMPOSERMAPPING">
+			<column name="ISFILEFOOTERENABLE" type="char(1)" defaultValue="N" />
+		</addColumn>
+	</changeSet>
+
+	<changeSet author="elitecore (generated)" id="HP2000000001">
+		<addColumn tableName="TBLTSERVICEFILERENAME">
+			<column name="CHARRENAMEENABLE" type="CHAR(1)" defaultValue="N" />
+		</addColumn>
+	</changeSet>
+
+	<changeSet author="elitecore" id="BS2000000001" runOnChange="true">
+		<loadUpdateData encoding="UTF-8"
+			file="${installation.dir}/export_TBLMMIGRATIONENTITYMAPPING.csv"
+			tableName="TBLMMIGRATIONENTITYMAPPING" primaryKey="ID">
+		</loadUpdateData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="JP2000000026">
+		<loadData encoding="UTF-8"
+			file="${installation.dir}/export_TBLTACCESSGROUPACTIONREL_MED_3608.csv"
+			tableName="TBLTACCESSGROUPACTIONREL">
+		</loadData>
+	</changeSet>
+
+	<changeSet author="elitecore" id="HP2000000002">
+		<dropColumn columnName="FILESPLITINGENABLE" tableName="TBLTPARSINGSERVICE" />
+	</changeSet>
+
+	<changeSet author="elitecore (generated)" id="HP2000000003">
+		<addColumn tableName="TBLTPARSERATTR">
+			<column name="TRIMPOSITION" type="varchar(255)" />
+		</addColumn>
+	</changeSet>
+
+	<changeSet author="elitecore (generated)" id="HP2000000004">
+		<addColumn tableName="TBLTCOMPOSERATTR">
+			<column name="TRIMPOSITION" type="varchar(255)" />
+		</addColumn>
+	</changeSet>
+	<!-- As we edit from profile admin, it removed entries of action id 94,95,97,98,26,101 
+		from TBLTACCESSGROUPACTIONREL. There is no way to edit profile admin and 
+		module admin acceess group. Those who will have fresh db now, will not face 
+		any proble. They will be having these entries in their db. So, deleteing 
+		these entries from db if exists and then inserting again.(MED-3915) -->
+
+	<changeSet author="elitecore" id="JP2000000029">
+		<delete tableName="TBLTACCESSGROUPACTIONREL">
+			<where>ACCESSGROUPID in (2,3)</where>
+		</delete>
+	</changeSet>
+
+	<changeSet author="elitecore" id="JP2000000030">
+		<loadData encoding="UTF-8"
+			file="${installation.dir}/export_TBLTACCESSGROUPACTIONREL_MED-3915.csv"
+			tableName="TBLTACCESSGROUPACTIONREL">
+		</loadData>
+	</changeSet>
+
+	<changeSet author="chintan.patel" id="CP2000000002" dbms="postgresql,mysql">
+		<loadData encoding="UTF-8" file="${installation.dir}/export_DUAL.csv"
+		tableName="DUAL">
+		</loadData>
+	</changeSet>
+
+
+	<changeSet author="elitecore" id="JP2000000031">
+		<update tableName="TBLTIPLOGPARSINGSERVICE">
+			<column name="DESTPORTFILTER" value="General70" />
+		</update>
+	</changeSet>
+
+	<changeSet author="elitecore" id="JP2000000032">
+		<update tableName="TBLTIPLOGPARSINGSERVICE">
+			<column name="DESTPORTFIELD" value="General71" />
+		</update>
+	</changeSet>
+
+<changeSet author="elitecore" id="JP2000000033">
+     <loadData encoding="UTF-8"
+			file="${installation.dir}/export_TBLTACCESSGROUPACTIONREL_MED-3963.csv"
+			tableName="TBLTACCESSGROUPACTIONREL">
+		</loadData>
+    </changeSet>
+
+	<changeSet author="elitecore" id="JP2000000034">
+		<delete tableName="TBLTDSCONFIG">
+			
+		</delete>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="JP2000000035">
+     <loadData encoding="UTF-8"
+			file="${installation.dir}/export_TBLTDSCONFIG.csv"
+			tableName="TBLTDSCONFIG">
+		</loadData>
+    </changeSet>
+   <changeSet author="elitecore" id="RR2000000001">
+		<loadData encoding="UTF-8" file="${installation.dir}/export_TBLTACCESSGROUPACTIONREL_MED-4134.csv" tableName="TBLTACCESSGROUPACTIONREL">
+		</loadData>
+	</changeSet>
+    
+    <changeSet author="vandana.awatramani (generated)" id="1467695062544-3">
+    <modifyDataType 
+            columnName="SRCFIELD"
+            newDataType="VARCHAR(500)"           
+            tableName="TBLTPARSERATTR"/>
+</changeSet>
+
+<changeSet author="elitecore" id="JP2000000036">
+	<sql>
+
+		UPDATE TBLTPRIMARYKEY SET VALUE= 1 + (SELECT MAX(DSID) FROM TBLTDSCONFIG)
+		WHERE TABLE_NAME = 'DataSourceConfig' ;
+
+	</sql>
+</changeSet>
+
+	<changeSet author="elitecore" id="JP2000000037">
+		<dropColumn columnName="SOCKETRECEIVEBUFFSIZE" tableName="TBLTNETFLOWBINARYCOLLSVC" />
+	</changeSet>
+	<changeSet author="elitecore" id="JP2000000038">
+		<dropColumn columnName="SOCKETSENDBUFFSIZE" tableName="TBLTNETFLOWBINARYCOLLSVC" />
+	</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,31 @@
+-- *********************************************************************
+-- Update Database Script
+-- *********************************************************************
+-- Change Log: ./masterChangeLog.xml
+-- Ran at: 23/10/23, 1:59 PM
+-- Against: crestelsmngtdev@jdbc:postgresql://127.0.0.1:5432/crestelsmngtdev
+-- Liquibase version: 3.4.2
+-- *********************************************************************
+
+-- Lock Database
+UPDATE crestelsmngtdev.databasechangeloglock SET LOCKED = TRUE, LOCKEDBY = '44.175.13.175 (44.175.13.175)', LOCKGRANTED = '2023-10-23 13:59:47.316' WHERE ID = 1 AND LOCKED = FALSE;
+
+-- Changeset sqlQueryChangeLog_7.14.0.xml::BM10000000003::sterlite
+-- adding new regex for ParserAttribute.DestDateFormat
+INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((SELECT MAX(ID+1) FROM TBLMREGEX AS P), 1,now(), 1, now(),'ACTIVE','ParserAttribute Destination Date Format','NatFlowParserAttribute','ParserAttribute.destDateFormat','^[\sdMyYhmsHAaCcDdEeNnOoSTtUuWw0-9&/:-]{0,100}');
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('BM10000000003', 'sterlite', 'sqlQueryChangeLog_7.14.0.xml', NOW(), 1785, '7:3e16801af9ae64fc5d72c3e46a9f3eab', 'sql', 'adding new regex for ParserAttribute.DestDateFormat', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset sqlQueryChangeLog_7.14.0.xml::UP20000000003::sterlite
+-- adding Regex for validation of Natflow plugin filter configurations
+INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((SELECT MAX(ID+1) FROM TBLMREGEX AS P), 1,now(), 1, now(),'ACTIVE','NATFlowParserMapping filterProtocol','NATFlowParserMapping','NATFlowParserMapping.filterProtocol','^(DNS|)$');
+
+INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((SELECT MAX(ID+1) FROM TBLMREGEX AS P), 1,now(), 1, now(),'ACTIVE','NATFlowParserMapping filterTransport','NATFlowParserMapping','NATFlowParserMapping.filterTransport','^((UDP|TCP|SCTP)(,(?!.*\b\1\b)(UDP|TCP|SCTP))*|)$');
+
+INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((SELECT MAX(ID+1) FROM TBLMREGEX AS P), 1,now(), 1, now(),'ACTIVE','NATFlowParserMapping filterPort','NATFlowParserMapping','NATFlowParserMapping.filterPort','^([1-9]\d*(,[1-9]\d*)*|)$');
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('UP20000000003', 'sterlite', 'sqlQueryChangeLog_7.14.0.xml', NOW(), 1786, '7:ab9173ba72d4203b09a5553c387b59ec', 'sql', 'adding Regex for validation of Natflow plugin filter configurations', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Release Database Lock
+UPDATE crestelsmngtdev.databasechangeloglock SET LOCKED = FALSE, LOCKEDBY = NULL, LOCKGRANTED = NULL WHERE ID = 1;
+

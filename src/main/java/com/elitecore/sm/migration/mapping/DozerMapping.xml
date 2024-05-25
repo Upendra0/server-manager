@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.CollectionServiceEntity</class-a>
+		<class-b>com.elitecore.sm.services.model.CollectionService</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>startupMode</a>
+			<b>svcExecParams.startupMode</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToBooleanConverter">
+			<a>immediateExecuteOnStartup</a>
+			<b>svcExecParams.executeOnStartup</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.SFTPCollectionDriverEntity
+		</class-a>
+		<class-b>com.elitecore.sm.drivers.model.SFTPCollectionDriver</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>fileTransferMode</a>
+			<b>ftpConnectionParams.fileTransferMode</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>fileGrouping.myGroupingType</a>
+			<b>fileGroupingParameter.groupingType</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.MinFileRangeConverter">
+			<a>fileRange</a>
+			<b>minFileRange</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.MaxFileRangeConverter">
+			<a>fileRange</a>
+			<b>maxFileRange</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.PasswordConverter">
+			<a>password</a>
+			<b>ftpConnectionParams.password</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.LocalCollectionDriverEntity</class-a>
+		<class-b>com.elitecore.sm.drivers.model.LocalCollectionDriver</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.MinFileRangeConverter">
+			<a>fileRange</a>
+			<b>minFileRange</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.MaxFileRangeConverter">
+			<a>fileRange</a>
+			<b>maxFileRange</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>fileGrouping.myGroupingType</a>
+			<b>fileGroupingParameter.groupingType</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.FTPCollectionDriverEntity</class-a>
+		<class-b>com.elitecore.sm.drivers.model.FTPCollectionDriver</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.MinFileRangeConverter">
+			<a>fileRange</a>
+			<b>minFileRange</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.MaxFileRangeConverter">
+			<a>fileRange</a>
+			<b>maxFileRange</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>fileGrouping.myGroupingType</a>
+			<b>fileGroupingParameter.groupingType</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>fileTransferMode</a>
+			<b>ftpConnectionParams.fileTransferMode</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.PasswordConverter">
+			<a>password</a>
+			<b>ftpConnectionParams.password</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.NetflowCollectionServiceEntity</class-a>
+		<class-b>com.elitecore.sm.services.model.NetflowCollectionService</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>startupMode</a>
+			<b>svcExecParams.startupMode</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToIPConverter">
+			<a>serviceAddress</a>
+			<b>serverIp</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToPortConverter">
+			<a>serviceAddress</a>
+			<b>netFlowPort</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.NetflowCollectionServiceEntity.Clients.Client</class-a>
+		<class-b>com.elitecore.sm.netflowclient.model.NetflowClient</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.MinFileRangeConverter">
+			<a>sequenceRange</a>
+			<b>minFileSeqValue</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.MaxFileRangeConverter">
+			<a>sequenceRange</a>
+			<b>maxFileSeqValue</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.ParsingServiceEntity</class-a>
+		<class-b>com.elitecore.sm.services.model.ParsingService</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>jaxbStartupMode</a>
+			<b>svcExecParams.startupMode</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.MinFileRangeConverter">
+			<a>fileRange</a>
+			<b>minFileRange</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.MaxFileRangeConverter">
+			<a>fileRange</a>
+			<b>maxFileRange</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>sortingType</a>
+			<b>svcExecParams.sortingType</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>cdrDateSummary.jaxbOverrideFileDateType</a>
+			<b>overrideFileDateType</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>cdrDateSummary.date</a>
+			<b>dateFieldForSummary</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>cdrDateSummary.type</a>
+			<b>typeForSummary</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>fileGrouping.jaxbGroupingType</a>
+			<b>fileGroupingParameter.groupingType</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToBooleanConverter">
+			<a>fileGrouping.forArchive</a>
+			<b>fileGroupingParameter.fileGroupEnable</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.AsciiParserPluginEntity.Instance</class-a>
+		<class-b>com.elitecore.sm.parser.model.AsciiParserMapping</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>sourceCharsetName</a>
+			<b>srcCharSetName</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>fileHeader.jaxbFileHeaderParser</a>
+			<b>fileHeaderParser</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>fileFooter.jaxbFileFooterParser</a>
+			<b>fileFooterParser</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToFindConverter">
+			<a>findAndReplace</a>
+			<b>find</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToReplaceConverter">
+			<a>findAndReplace</a>
+			<b>replace</b>
+		</field>
+	</mapping>
+	
+	<!-- Mediation Server configuration for all ENUM and boolean fields. -->
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.ServerConfiguration</class-a>
+		<class-b>com.elitecore.sm.serverinstance.model.ServerInstance</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToBooleanConverter">
+			<a>webServiceStatus</a>
+			<b>webservicesEnable</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>logging.logLevel</a>
+			<b>logsDetail.level</b>
+		</field> 
+		
+	</mapping>
+
+
+	<!-- Custom converter for distribution service -->
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.DistributionServiceEntity</class-a>
+		<class-b>com.elitecore.sm.services.model.DistributionService</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a >startupMode</a>
+			<b>svcExecParams.startupMode</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.DozerCustomConvertor" custom-converter-param="SortingTypeEnum">
+			<a>mySortingType</a>
+			<b>svcExecParams.sortingType</b>
+		</field>
+		
+		<field custom-converter="com.elitecore.sm.migration.converter.DozerCustomConvertor" custom-converter-param="SortingCriteriaEnum">
+			<a>sortingCriteria</a>
+			<b>svcExecParams.sortingCriteria</b>
+		</field>
+		
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>fileGrouping.mygroupingType</a>
+			<b>fileGroupingParameter.groupingType</b>
+		</field>
+		
+	</mapping>
+
+	<!-- Custom converter for FTPDistributionDriver  -->
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.FTPDistributionDriverEntity
+		</class-a>
+		<class-b>com.elitecore.sm.drivers.model.FTPDistributionDriver</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>fileTransferMode</a>
+			<b>ftpConnectionParams.fileTransferMode</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.MinFileRangeConverter">
+			<a>fileRange</a>
+			<b>minFileRange</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.MaxFileRangeConverter">
+			<a>fileRange</a>
+			<b>maxFileRange</b>
+		</field>
+	</mapping>
+	
+	<!-- Custom converter for SFTPDistributionDriver  -->
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.SFTPDistributionDriverEntity
+		</class-a>
+		<class-b>com.elitecore.sm.drivers.model.SFTPDistributionDriver</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>fileTransferMode</a>
+			<b>ftpConnectionParams.fileTransferMode</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.MinFileRangeConverter">
+			<a>fileRange</a>
+			<b>minFileRange</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.MaxFileRangeConverter">
+			<a>fileRange</a>
+			<b>maxFileRange</b>
+		</field>
+	</mapping>
+	
+	<!-- Custom converter for LocalDistributionDriverer  -->
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.LocalDistributionDriverEntity
+		</class-a>
+		<class-b>com.elitecore.sm.drivers.model.LocalDistributionDriver</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.MinFileRangeConverter">
+			<a>fileRange</a>
+			<b>minFileRange</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.MaxFileRangeConverter">
+			<a>fileRange</a>
+			<b>maxFileRange</b>
+		</field>
+	</mapping>
+	
+	<!-- Custom converter for Composer plug-in  -->
+	 <mapping>
+		<class-a>com.elitecore.sm.migration.model.AsciiComposerPluginEntity.Instance</class-a>
+		<class-b>com.elitecore.sm.composer.model.ASCIIComposerMapping</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>fileHeader.myfileHeaderParser</a>
+			<b>fileHeaderParser</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>destinationCharsetName</a>
+			<b>destCharset</b>
+		</field>
+	</mapping> 
+	
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.AsciiComposerPluginEntity.Instance.AttributeList.Attribute</class-a>
+		<class-b>com.elitecore.sm.composer.model.ASCIIComposerAttr</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>mydataType</a>
+			<b>dataType</b>
+		</field>
+		
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>padding.paddingType</a>
+			<b>paddingType</b>
+		</field>
+		
+		<field custom-converter="com.elitecore.sm.migration.converter.DozerCustomConvertor" custom-converter-param="TrimPositionEnum">
+			<a>trimPosition</a>
+			<b>trimPosition</b>
+		</field>
+		
+	</mapping>
+
+	<mapping>
+		<!-- jaxb class -a  -->
+		<class-a>com.elitecore.sm.migration.model.NatflowBinaryCollectionServiceEntity</class-a>
+		<!-- SM model class (class-b) -->
+		<class-b>com.elitecore.sm.services.model.NetflowBinaryCollectionService</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>startupMode</a>
+			<b>svcExecParams.startupMode</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToIPConverter">
+			<a>serviceAddress</a>
+			<b>serverIp</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToPortConverter">
+			<a>serviceAddress</a>
+			<b>netFlowPort</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.NatflowBinaryCollectionServiceEntity.Clients.Client</class-a>
+		<class-b>com.elitecore.sm.netflowclient.model.NetflowClient</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.MinFileRangeConverter">
+			<a>sequenceRange</a>
+			<b>minFileSeqValue</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.MaxFileRangeConverter">
+			<a>sequenceRange</a>
+			<b>maxFileSeqValue</b>
+		</field>
+	</mapping>
+	
+		<mapping>
+		<!-- jaxb class -a  -->
+		<class-a>com.elitecore.sm.migration.model.SyslogCollectionServiceEntity</class-a>
+		<!-- SM model class (class-b) -->
+		<class-b>com.elitecore.sm.services.model.SysLogCollectionService</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>startupMode</a>
+			<b>svcExecParams.startupMode</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToIPConverter">
+			<a>serviceAddress</a>
+			<b>serverIp</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToPortConverter">
+			<a>serviceAddress</a>
+			<b>netFlowPort</b>
+		</field>
+	</mapping>
+	
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.SyslogCollectionServiceEntity.Clients.Client</class-a>
+		<class-b>com.elitecore.sm.netflowclient.model.NetflowClient</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.MinFileRangeConverter">
+			<a>sequenceRange</a>
+			<b>minFileSeqValue</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.MaxFileRangeConverter">
+			<a>sequenceRange</a>
+			<b>maxFileSeqValue</b>
+		</field>
+	</mapping>
+	
+	 <mapping map-null="false">
+		<class-a>com.elitecore.sm.migration.model.SnmpServerConfigEntity</class-a>
+		<class-b>com.elitecore.sm.snmp.model.SNMPServerConfig</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>community</a>
+			<b>community</b>
+		</field>
+	</mapping> 
+	
+		  <mapping>
+		<class-a>com.elitecore.sm.migration.model.SnmpListenersEntity.Listener</class-a>
+		<class-b>com.elitecore.sm.snmp.model.SNMPServerConfig</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>community</a>
+			<b>community</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>version</a>
+			<b>version</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.FileRenameAgentEntity.ServiceList.Service.CharacterRenamingOperation.Character</class-a>
+		<class-b>com.elitecore.sm.pathlist.model.CharRenameOperation</class-b>
+
+		<field custom-converter="com.elitecore.sm.migration.converter.DozerCustomConvertor" custom-converter-param="PositionEnum">
+			<a>position</a>
+			<b>position</b>
+		</field>
+	</mapping>
+	
+	
+ 	<mapping>
+		<class-a>com.elitecore.sm.migration.model.IPLogParsingServiceEntity</class-a>
+		<class-b>com.elitecore.sm.services.model.IPLogParsingService</class-b>
+ 		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>startupMode</a>
+			<b>svcExecParams.startupMode</b>
+		</field>
+
+		<field custom-converter="com.elitecore.sm.migration.converter.DozerCustomConvertor" custom-converter-param="SortingTypeEnum">
+			<a>sortingType</a>
+			<b>svcExecParams.sortingType</b>
+		</field>
+		
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>fileGrouping.groupingType</a>	
+			<b>fileGroupingParameter.groupingType</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToBooleanConverter">
+			<a>fileGrouping.forArchive</a>
+			<b>fileGroupingParameter.fileGroupEnable</b>
+		</field> 
+		
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>equalCheckField</a>	
+			<b>equalCheckField</b>
+		</field>
+		
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>preCorrelation.destinationPortField</a>	
+			<b>destPortField</b>
+		</field>
+		
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>preCorrelation.destinationPortsFilter</a>	
+			<b>destPortFilter</b>
+		</field>
+		
+	</mapping> 
+
+
+
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.IPLogParsingServiceEntity.SyslogOutputConfiguration.FilePartition.FieldBasedHashPartition.KeyField</class-a>
+		<class-b>com.elitecore.sm.services.model.PartitionParam</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>unifiedFieldName</a>
+			<b>unifiedField</b>
+		</field>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>type</a>
+			<b>partitionField</b>
+		</field> 
+	</mapping>
+
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.RegexParserPluginEntity.Instance</class-a>
+		<class-b>com.elitecore.sm.parser.model.RegexParserMapping</class-b>
+		<field custom-converter="com.elitecore.sm.migration.converter.StringToEnumConverter">
+			<a>sourceCharsetName</a>
+			<b>srcCharSetName</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>com.elitecore.sm.migration.model.NatflowParserPluginEntity.Instance</class-a>
+		<class-b>com.elitecore.sm.parser.model.NATFlowParserMapping</class-b>
+	</mapping>
+</mappings>

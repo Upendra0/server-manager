@@ -1,0 +1,16 @@
+<policy-rules>
+
+		<policy-rule alias="RULE-001">
+			<policy-rule-name>Duration is zero than filter</policy-rule-name>
+			<global-sequence-rule-id></global-sequence-rule-id>
+			<policy-conditions>CONDITION-001</policy-conditions>
+			<policy-actions>ACTION-001</policy-actions>
+			<logical-operator-for-conditions>OR</logical-operator-for-conditions> <!-- AND/OR -->
+			<application-order>1</application-order>
+			<description>1</description>
+			<alert-id>AT000120</alert-id>
+			<alert-description>RULE-001 is successfully applied.</alert-description>
+			<enable>false</enable>
+		</policy-rule>
+		
+</policy-rules>

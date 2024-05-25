@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hadoop-distribution-driver>
+	// for multiple use multiple URL Tags
+	<hdfs-site>
+		<hdfs-url>hdfs://127.0.0.1:9000</hdfs-url>
+	</hdfs-site>
+	<file-range></file-range><!-- <file-range>15-20</file-range> -->
+	<file-sequence-order>false</file-sequence-order>
+	<no-files-alert-interval /> <!-- Interval in Seconds and apply if interval is greater than Zero and if any files not received since configurable time then send the trap to ME. -->
+	<path-list>
+		<path>
+			<read-file-path>/home/elitecore/MEDIATION_ROOT/SYSLOG/127.0.0.1/</read-file-path>
+			<archive-path></archive-path>
+			<read-filename-prefix />
+			<is-compressed-input-file>false</is-compressed-input-file>
+			<read-filename-suffix></read-filename-suffix>
+			<max-files-count-alert></max-files-count-alert>  <!-- Provide Limit for maximum files to generate alert -->
+			<read-filename-contains />
+			<read-filename-exclude-types />
+			<write-file-path></write-file-path>
+			<plugin-list>
+				<plugin>
+					<plugin-name>ASCII_COMPOSER_PLUGIN</plugin-name>
+					<file-name-prefix />
+					<file-name-postfix />
+					<destination-path>/NEW</destination-path>
+					<distributed-file-backup-path></distributed-file-backup-path>
+					<file-extension-after-rename />
+					<character-renaming-operation />
+					<plugin-instance-id>000</plugin-instance-id>
+				</plugin>
+			</plugin-list>
+		</path>
+	</path-list>
+</hadoop-distribution-driver>

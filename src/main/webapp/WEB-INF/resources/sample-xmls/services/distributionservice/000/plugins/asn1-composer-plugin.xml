@@ -1,0 +1,1163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<asn1-composer-plugin>
+<instance id="000">
+	<record-main-attribute>sample_ber.pgw.GPRSRecord</record-main-attribute>
+	<record-start-format>CHOICE</record-start-format> <!-- CHOICE or SET  -->
+	<destination-date-format>MM/dd/yyyy hh:mm:ss a</destination-date-format>
+	<destination-file-extension>.SASN</destination-file-extension>
+	<header-attribute-list></header-attribute-list>
+	
+	<attribute-list>
+	
+		<attribute>
+			<unified-field>EventType</unified-field>
+			<destination-field></destination-field>
+			<asn1-data-type>sample_ber.pgw.GPRSRecord</asn1-data-type>
+			<argument-data-type>CHOICE</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes>MOCHOICE_NO-85</child-attributes>
+		</attribute>
+		
+		<attribute>
+			<unified-field></unified-field>
+			<destination-field>MOCHOICE_NO-85</destination-field>
+			<asn1-data-type>sample_ber.pgw.PGWRecord</asn1-data-type>
+			<argument-data-type></argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id>1</choice-id>
+			<child-attributes>recordType,servedIMSI,p_GWAddress,chargingID,servingNodeAddress,accessPointNameNI,pdpPDNType,servedPDPPDNAddress,dynamicAddressFlag,recordOpeningTime,duration,causeForRecClosing,diagnostics,recordSequenceNumber,nodeID,localSequenceNumber,apnSelectionMode,servedMSISDN,chargingCharacteristics,chChSelectionMode,servingNodePLMNIdentifier,servedIMEISV,rATType,mSTimeZone,userLocationInformation,listOfServiceData,servingNodeType,servedMNNAI,p_GWPLMNIdentifier,startTime,stopTime,pDNConnectionID</child-attributes>
+		</attribute>
+		
+		<!--recordType-->
+		
+		<attribute>
+			<unified-field>EventType</unified-field>
+			<destination-field>recordType</destination-field>
+			<asn1-data-type>sample_ber.pgw.RecordType</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!-- servedIMSI -->
+		
+		<attribute>
+			<unified-field>APartyMDN</unified-field>
+			<destination-field>servedIMSI</destination-field>
+			<asn1-data-type>sample_ber.pgw.IMSI</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>TBCD</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!-- p_GWAddress -->
+		
+		<attribute>
+			<unified-field>General1</unified-field>
+			<destination-field>p_GWAddress</destination-field>
+			<asn1-data-type>sample_ber.pgw.GSNAddress</asn1-data-type>
+			<argument-data-type>CHOICE</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes>GW_IP_ADD_CHOICE_NO-1</child-attributes>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General2</unified-field>
+			<destination-field>GW_IP_ADD_CHOICE_NO-1</destination-field>
+			<asn1-data-type>sample_ber.pgw.IPBinaryAddress</asn1-data-type>
+			<argument-data-type>CHOICE</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id>1</choice-id>
+			<child-attributes>GW_IP_BIN_CHOICE_NO-1,GW_IP_BIN_CHOICE_NO-2</child-attributes>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General3</unified-field>
+			<destination-field>GW_IP_BIN_CHOICE_NO-1</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1OctetString</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>IPBINARY</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id>1</choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General3</unified-field>
+			<destination-field>GW_IP_BIN_CHOICE_NO-2</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1OctetString</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>IPBINARY</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id>2</choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!-- chargingID -->
+		
+		<attribute>
+			<unified-field>General4</unified-field>
+			<destination-field>chargingID</destination-field>
+			<asn1-data-type>sample_ber.pgw.ChargingID</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--servingNodeAddress-->
+		
+		<attribute>
+			<unified-field></unified-field>
+			<destination-field>servingNodeAddress</destination-field>
+			<asn1-data-type>sample_ber.pgw._SeqOfGSNAddress</asn1-data-type>
+			<argument-data-type>ELEMENTS_ARRAY</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes>SNA_ELEMENTS_ARRAY-1</child-attributes>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General5</unified-field>
+			<destination-field>SNA_ELEMENTS_ARRAY-1</destination-field>
+			<asn1-data-type>sample_ber.pgw.GSNAddress</asn1-data-type>
+			<argument-data-type>CHOICE</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes>IP_ADDR_CHOICE_NO-1</child-attributes>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General6</unified-field>
+			<destination-field>IP_ADDR_CHOICE_NO-1</destination-field>
+			<asn1-data-type>sample_ber.pgw.IPBinaryAddress</asn1-data-type>
+			<argument-data-type>CHOICE</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id>1</choice-id>
+			<child-attributes>IP_BIN_CHOICE_NO-1,IP_BIN_CHOICE_NO-2</child-attributes>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General7</unified-field>
+			<destination-field>IP_BIN_CHOICE_NO-1</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1OctetString</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>IPBinary</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id>1</choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General7</unified-field>
+			<destination-field>IP_BIN_CHOICE_NO-2</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1OctetString</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>IPBinary</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id>2</choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--accessPointNameNI-->
+		
+		<attribute>
+			<unified-field>IngressTrunkGroupName</unified-field>
+			<destination-field>accessPointNameNI</destination-field>
+			<asn1-data-type>sample_ber.pgw.AccessPointNameNI</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--pdpPDNType-->
+		
+		<attribute>
+			<unified-field>EventSubType</unified-field>
+			<destination-field>pdpPDNType</destination-field>
+			<asn1-data-type>sample_ber.pgw.PDPType</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>BCD</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--servedPDPPDNAddress-->
+		
+		<attribute>
+			<unified-field>General8</unified-field>
+			<destination-field>servedPDPPDNAddress</destination-field>
+			<asn1-data-type>sample_ber.pgw.PDPAddress</asn1-data-type>
+			<argument-data-type>CHOICE</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id>1</choice-id>
+			<child-attributes>PDP_ADD_CHOICE_NO-1</child-attributes>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General9</unified-field>
+			<destination-field>PDP_ADD_CHOICE_NO-1</destination-field>
+			<asn1-data-type>sample_ber.pgw.IPAddress</asn1-data-type>
+			<argument-data-type>CHOICE</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id>1</choice-id>
+			<child-attributes>PDP_IP_ADD_CHOICE_NO-1</child-attributes>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General10</unified-field>
+			<destination-field>PDP_IP_ADD_CHOICE_NO-1</destination-field>
+			<asn1-data-type>sample_ber.pgw.IPBinaryAddress</asn1-data-type>
+			<argument-data-type>CHOICE</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id>1</choice-id>
+			<child-attributes>PDP_IP_BIN_CHOICE_NO-1,PDP_IP_BIN_CHOICE_NO-2</child-attributes>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General11</unified-field>
+			<destination-field>PDP_IP_BIN_CHOICE_NO-1</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1OctetString</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>IPBinary</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id>1</choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General11</unified-field>
+			<destination-field>PDP_IP_BIN_CHOICE_NO-2</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1OctetString</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>IPBinary</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id>2</choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!-- Dynamic Address Flag -->
+		
+		<attribute>
+			<unified-field>General12</unified-field>
+			<destination-field>dynamicAddressFlag</destination-field>
+			<asn1-data-type>sample_ber.pgw.DynamicAddressFlag</asn1-data-type>
+			<argument-data-type>boolean</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!-- Record Opening Time -->
+		
+		<attribute>
+			<unified-field>CPartyMIN</unified-field>
+			<destination-field>recordOpeningTime</destination-field>
+			<asn1-data-type>sample_ber.pgw.TimeStamp</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>BCD</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!-- Call Duration -->
+		
+		<attribute>
+			<unified-field>Duration</unified-field>
+			<destination-field>duration</destination-field>
+			<asn1-data-type>sample_ber.pgw.CallDuration</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!-- causeForRecClosing -->
+		
+		<attribute>
+			<unified-field>General13</unified-field>
+			<destination-field>causeForRecClosing</destination-field>
+			<asn1-data-type>sample_ber.pgw.CauseForRecClosing</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!-- diagnostics -->
+		
+		<attribute>
+			<unified-field>General14</unified-field>
+			<destination-field>diagnostics</destination-field>
+			<asn1-data-type>sample_ber.pgw.Diagnostics</asn1-data-type>
+			<argument-data-type>CHOICE</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!-- recordSequenceNumber -->
+		
+		<attribute>
+			<unified-field>General15</unified-field>
+			<destination-field>recordSequenceNumber</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1Integer</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!-- nodeID -->
+		
+		<attribute>
+			<unified-field>General16</unified-field>
+			<destination-field>nodeID</destination-field>
+			<asn1-data-type>sample_ber.pgw.NodeID</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!-- localSequenceNumber -->
+		
+		<attribute>
+			<unified-field>General17</unified-field>
+			<destination-field>localSequenceNumber</destination-field>
+			<asn1-data-type>sample_ber.pgw.LocalSequenceNumber</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--apnSelectionMode-->
+		
+		<attribute>
+			<unified-field>General18</unified-field>
+			<destination-field>apnSelectionMode</destination-field>
+			<asn1-data-type>sample_ber.pgw.APNSelectionMode</asn1-data-type>
+			<argument-data-type>Enum</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--servedMSISDN-->
+		
+		<attribute>
+			<unified-field>General19</unified-field>
+			<destination-field>servedMSISDN</destination-field>
+			<asn1-data-type>sample_ber.pgw.MSISDN</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>TBCD</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--chargingCharacteristics-->
+		
+		<attribute>
+			<unified-field>General20</unified-field>
+			<destination-field>chargingCharacteristics</destination-field>
+			<asn1-data-type>sample_ber.pgw.ChargingCharacteristics</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>BCD</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!-- chChSelectionMode -->
+		
+		<attribute>
+			<unified-field>General21</unified-field>
+			<destination-field>chChSelectionMode</destination-field>
+			<asn1-data-type>sample_ber.pgw.ChChSelectionMode</asn1-data-type>
+			<argument-data-type>Enum</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--servingNodePLMNIdentifier-->
+		
+		<attribute>
+			<unified-field>General22</unified-field>
+			<destination-field>servingNodePLMNIdentifier</destination-field>
+			<asn1-data-type>sample_ber.pgw.PLMN_Id</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>BCD</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--servedIMEISV-->
+		
+		<attribute>
+			<unified-field>APartyMIN</unified-field>
+			<destination-field>servedIMEISV</destination-field>
+			<asn1-data-type>sample_ber.pgw.IMEI</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>TBCD</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--rATType-->
+		
+		<attribute>
+			<unified-field>General23</unified-field>
+			<destination-field>rATType</destination-field>
+			<asn1-data-type>sample_ber.pgw.RATType</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--mSTimeZone-->
+		
+		<attribute>
+			<unified-field>General24</unified-field>
+			<destination-field>mSTimeZone</destination-field>
+			<asn1-data-type>sample_ber.pgw.MSTimeZone</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>BCD</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--userLocationInformation-->
+		
+		<attribute>
+			<unified-field>General25</unified-field>
+			<destination-field>userLocationInformation</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1OctetString</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>BCD</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--listOfServiceData-->
+		
+		<attribute>
+			<unified-field></unified-field>
+			<destination-field>listOfServiceData</destination-field>
+			<asn1-data-type>sample_ber.pgw._SeqOfChangeOfServiceCondition</asn1-data-type>
+			<argument-data-type>ELEMENTS_ARRAY</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes>SC_ELEMENTS_ARRAY-1</child-attributes>
+		</attribute>
+		
+		<attribute>
+			<unified-field></unified-field>
+			<destination-field>SC_ELEMENTS_ARRAY-1</destination-field>
+			<asn1-data-type>sample_ber.pgw.ChangeOfServiceCondition</asn1-data-type>
+			<argument-data-type></argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes>ratingGroup,chargingRuleBaseName,resultCode,cslocalSequenceNumber,timeOfFirstUsage,timeOfLastUsage,timeUsage,serviceConditionChange,qoSInformationNeg,csservingNodeAddress,datavolumeFBCUplink,datavolumeFBCDownlink,timeOfReport,failureHandlingContinue,serviceIdentifier,csuserLocationInformation</child-attributes>
+		</attribute>
+		
+		<!--ratingGroup-->
+		
+		<attribute>
+			<unified-field>General26</unified-field>
+			<destination-field>ratingGroup</destination-field>
+			<asn1-data-type>sample_ber.pgw.RatingGroupId</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!-- chargingRuleBaseName -->
+		
+		<attribute>
+			<unified-field>General27</unified-field>
+			<destination-field>chargingRuleBaseName</destination-field>
+			<asn1-data-type>sample_ber.pgw.ChargingRuleBaseName</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--resultCode-->
+		
+		<attribute>
+			<unified-field>General28</unified-field>
+			<destination-field>resultCode</destination-field>
+			<asn1-data-type>sample_ber.pgw.ResultCode</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+
+		<!-- csLocalSequenceNumber -->
+		
+		<attribute>
+			<unified-field>General29</unified-field>
+			<destination-field>csLocalSequenceNumber</destination-field>
+			<asn1-data-type>sample_ber.pgw.LocalSequenceNumber</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--timeOfFirstUsage-->
+		
+		<attribute>
+			<unified-field>General30</unified-field>
+			<destination-field>timeOfFirstUsage</destination-field>
+			<asn1-data-type>sample_ber.pgw.TimeStamp</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>BCD</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--timeOfLastUsage-->
+		
+		<attribute>
+			<unified-field>General31</unified-field>
+			<destination-field>timeOfLastUsage</destination-field>
+			<asn1-data-type>sample_ber.pgw.TimeStamp</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>BCD</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--timeUsage-->
+		
+		<attribute>
+			<unified-field>General32</unified-field>
+			<destination-field>timeUsage</destination-field>
+			<asn1-data-type>sample_ber.pgw.CallDuration</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!-- serviceConditionChange-->
+		
+		<attribute>
+			<unified-field>General33</unified-field>
+			<destination-field>serviceConditionChange</destination-field>
+			<asn1-data-type>sample_ber.pgw.ServiceConditionChange</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--qoSInformationNeg-->
+		
+		<attribute>
+			<unified-field></unified-field>
+			<destination-field>qoSInformationNeg</destination-field>
+			<asn1-data-type>sample_ber.pgw.EPCQoSInformation</asn1-data-type>
+			<argument-data-type></argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes>qCI,maxRequestedBandwithUL,maxRequestedBandwithDL,guaranteedBitrateUL,guaranteedBitrateDL,aRP</child-attributes>
+		</attribute>
+		
+		<!--qCI-->
+		
+		<attribute>
+			<unified-field>General75</unified-field>
+			<destination-field>qCI</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1Integer</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--maxRequestedBandwithUL-->
+		
+		<attribute>
+			<unified-field>General76</unified-field>
+			<destination-field>maxRequestedBandwithUL</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1Integer</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--maxRequestedBandwithDL-->
+		
+		<attribute>
+			<unified-field>General77</unified-field>
+			<destination-field>maxRequestedBandwithDL</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1Integer</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>	
+			
+		<!--guaranteedBitrateUL-->
+		
+		<attribute>
+			<unified-field>General78</unified-field>
+			<destination-field>guaranteedBitrateUL</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1Integer</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--guaranteedBitrateDL-->
+		
+		<attribute>
+			<unified-field>General79</unified-field>
+			<destination-field>guaranteedBitrateDL</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1Integer</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--aRP-->
+		
+		<attribute>
+			<unified-field>General80</unified-field>
+			<destination-field>aRP</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1Integer</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--csservingNodeAddress-->
+		
+		<attribute>
+			<unified-field>General35</unified-field>
+			<destination-field>csservingNodeAddress</destination-field>
+			<asn1-data-type>sample_ber.pgw.GSNAddress</asn1-data-type>
+			<argument-data-type>CHOICE</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes>CS_SG_IP_ADD_CHOICE_NO-1</child-attributes>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General36</unified-field>
+			<destination-field>CS_SG_IP_ADD_CHOICE_NO-1</destination-field>
+			<asn1-data-type>sample_ber.pgw.IPBinaryAddress</asn1-data-type>
+			<argument-data-type>CHOICE</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes>CS_SG_IP_BIN_CHOICE_NO-1,CS_SG_IP_BIN_CHOICE_NO-2</child-attributes>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General37</unified-field>
+			<destination-field>CS_SG_IP_BIN_CHOICE_NO-1</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1OctetString</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>IPBinary</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id>1</choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General37</unified-field>
+			<destination-field>CS_SG_IP_BIN_CHOICE_NO-2</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1OctetString</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>IPBinary</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id>2</choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--datavolumeFBCUplink-->
+		
+		<attribute>
+			<unified-field>General38</unified-field>
+			<destination-field>datavolumeFBCUplink</destination-field>
+			<asn1-data-type>sample_ber.pgw.DataVolumeGPRS</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--datavolumeFBCDownlink-->
+		
+		<attribute>
+			<unified-field>General39</unified-field>
+			<destination-field>datavolumeFBCDownlink</destination-field>
+			<asn1-data-type>sample_ber.pgw.DataVolumeGPRS</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--timeOfReport-->
+		
+		<attribute>
+			<unified-field>General40</unified-field>
+			<destination-field>timeOfReport</destination-field>
+			<asn1-data-type>sample_ber.pgw.TimeStamp</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>BCD</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--failureHandlingContinue-->
+		
+		<attribute>
+			<unified-field>General41</unified-field>
+			<destination-field>failureHandlingContinue</destination-field>
+			<asn1-data-type>sample_ber.pgw.FailureHandlingContinue</asn1-data-type>
+			<argument-data-type>boolean</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--serviceIdentifier-->
+		
+		<attribute>
+			<unified-field>General42</unified-field>
+			<destination-field>serviceIdentifier</destination-field>
+			<asn1-data-type>sample_ber.pgw.ServiceIdentifier</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--csuserLocationInformation-->
+			
+		<attribute>
+			<unified-field>CPartyLocationCode</unified-field>
+			<destination-field>csuserLocationInformation</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1OctetString</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--servingNodeType-->
+		
+		<attribute>
+			<unified-field></unified-field>
+			<destination-field>servingNodeType</destination-field>
+			<asn1-data-type>sample_ber.pgw._SeqOfServingNodeType</asn1-data-type>
+			<argument-data-type>ELEMENTS_ARRAY</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes>SNT_ELEMENTS_ARRAY-1</child-attributes>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General43</unified-field>
+			<destination-field>SNT_ELEMENTS_ARRAY-1</destination-field>
+			<asn1-data-type>sample_ber.pgw.ServingNodeType</asn1-data-type>
+			<argument-data-type>Enum</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--servedMNNAI-->
+		
+		<attribute>
+			<unified-field></unified-field>
+			<destination-field>servedMNNAI</destination-field>
+			<asn1-data-type>sample_ber.pgw.SubscriptionID</asn1-data-type>
+			<argument-data-type>SET</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes>subscriptionIDType,subscriptionIDData</child-attributes>
+		</attribute>
+		
+		<!--subscriptionIDType-->
+		
+		<attribute>
+			<unified-field>General44</unified-field>
+			<destination-field>subscriptionIDType</destination-field>
+			<asn1-data-type>sample_ber.pgw.SubscriptionIDType</asn1-data-type>
+			<argument-data-type>ENUM</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--subscriptionIDData-->
+		
+		<attribute>
+			<unified-field>General45</unified-field>
+			<destination-field>subscriptionIDData</destination-field>
+			<asn1-data-type>com.objsys.asn1j.runtime.Asn1UTF8String</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--p_GWPLMNIdentifier-->
+		
+		<attribute>
+			<unified-field>General46</unified-field>
+			<destination-field>p_GWPLMNIdentifier</destination-field>
+			<asn1-data-type>sample_ber.pgw.PLMN_Id</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>BCD</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--startTime-->
+		
+		<attribute>
+			<unified-field>General47</unified-field>
+			<destination-field>startTime</destination-field>
+			<asn1-data-type>sample_ber.pgw.TimeStamp</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>BCD</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--stopTime-->
+		
+		<attribute>
+			<unified-field>General48</unified-field>
+			<destination-field>stopTime</destination-field>
+			<asn1-data-type>sample_ber.pgw.TimeStamp</asn1-data-type>
+			<argument-data-type>String</argument-data-type>
+			<destination-field-format>BCD</destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+		
+		<!--pDNConnectionID-->
+		
+		<attribute>
+			<unified-field>General49</unified-field>
+			<destination-field>pDNConnectionID</destination-field>
+			<asn1-data-type>sample_ber.pgw.ChargingID</asn1-data-type>
+			<argument-data-type>long</argument-data-type>
+			<destination-field-format></destination-field-format>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<choice-id></choice-id>
+			<child-attributes></child-attributes>
+		</attribute>
+			
+	</attribute-list>
+   <trailer-attribute-list></trailer-attribute-list>
+   </instance>    
+</asn1-composer-plugin>

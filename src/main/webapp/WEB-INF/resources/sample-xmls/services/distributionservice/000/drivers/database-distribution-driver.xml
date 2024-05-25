@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<database-distibution-driver>
+
+	<table-name>TBLMEDIATIONCDR</table-name>
+	<file-range></file-range><!-- <file-range>16-49</file-range> -->
+	<file-sequence-order>false</file-sequence-order>
+	<no-files-alert-interval /> <!-- Interval in Seconds and apply if interval is greater than Zero and if any files not received since configurable time then send the trap to ME. -->
+	<path-list>
+		<path>
+			<read-file-path>/home/elitecore/MEDIATION_ROOT/PROCESSING_ROOT/SGSN/input/</read-file-path>        <!-- source path from where we have to read file -->
+			<archive-path></archive-path>
+			<read-filename-prefix></read-filename-prefix>     <!-- Read only those file whose prefix is this -->
+			<read-filename-suffix></read-filename-suffix>     <!-- Read only those file whose suffix is this -->
+			<max-files-count-alert></max-files-count-alert>  <!-- Provide Limit for maximum files to generate alert -->
+			<read-filename-contains></read-filename-contains> <!-- Read only those file whose name contains this -->
+			<read-filename-exclude-types></read-filename-exclude-types>	<!-- Read files except this extension list -->
+		</path>
+	</path-list>
+    <attribute-list>
+    		<attribute>
+				<database-field-name>CDRFAILUREID</database-field-name>
+		        <unified-packet-name></unified-packet-name>
+		        <data-type>Integer</data-type>
+        		<default-value>SEQ_TBLCDRFAILURE.nextval</default-value>
+			</attribute>
+			
+            <attribute>
+                <database-field-name>SESSIONID</database-field-name>
+                <unified-packet-name>RecordNumber</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            <padding enable="true">
+	                <length>9</length>
+	                <padding-type>left</padding-type>
+	                <padding-char>0</padding-char>
+	                <prefix>${General64}</prefix>
+	                <suffix></suffix>
+          	</padding>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>MULTISESSIONID</database-field-name>
+                <unified-packet-name>OriginalRecordNumber</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>CALLINGSTATIONID</database-field-name>
+                <unified-packet-name>APartyMDN</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+             <attribute>
+                <database-field-name>CALLEDSTATIONID</database-field-name>
+                <unified-packet-name>BPartyMDN</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>A_PARTY_LOC_CODE</database-field-name>
+                <unified-packet-name>APartyLocationCode</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>A_PARTY_NETWORKID</database-field-name>
+                <unified-packet-name>APartyMIN</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>B_PARTY_LOC_CODE</database-field-name>
+                <unified-packet-name>BPartyLocationCode</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>B_PARTY_NETWORKID</database-field-name>
+                <unified-packet-name>BPartyMIN</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>C_PARTY_ID</database-field-name>
+                <unified-packet-name>CPartyMDN</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>INGRESS_CALL_START</database-field-name>
+                <unified-packet-name>IngressStartDate</unified-packet-name>
+                <data-type>Date</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>INGRESS_CALL_END</database-field-name>
+                <unified-packet-name>IngressEndDate</unified-packet-name>
+                <data-type>Date</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>EGRESS_CALL_START</database-field-name>
+                <unified-packet-name>EgressStartDate</unified-packet-name>
+                <data-type>Date</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>EGRESS_CALL_END</database-field-name>
+                <unified-packet-name>EgressEndDate</unified-packet-name>
+                <data-type>Date</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>INGRESS_CALL_DIRECTION</database-field-name>
+                <unified-packet-name>IngressCallDirection</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value>Incoming</default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>EGRESS_CALL_DIRECTION</database-field-name>
+                <unified-packet-name>EgressCallDirection</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value>Outgoing</default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>RATINGSTREAM</database-field-name>
+                <unified-packet-name>RatingStream</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>CALLSTART</database-field-name>
+                <unified-packet-name>StartDate</unified-packet-name>
+                <data-type>Date</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>CALLEND</database-field-name>
+                <unified-packet-name>EndDate</unified-packet-name>
+                <data-type>Date</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>SESSIONTIME</database-field-name>
+                <unified-packet-name>Duration</unified-packet-name>
+                <data-type>Integer</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>CALLTYPE</database-field-name>
+                <unified-packet-name>EventSubType</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>EVENTALIAS</database-field-name>
+                <unified-packet-name>EventType</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+           
+            <attribute>
+                <database-field-name>PARAM1</database-field-name>
+                <unified-packet-name>General1</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>PARAM2</database-field-name>
+                <unified-packet-name>CallDirection</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>PARAM3</database-field-name>
+                <unified-packet-name>DistanceBand</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>PARAM4</database-field-name>
+                <unified-packet-name>OnNetCode</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>PARAM5</database-field-name>
+                <unified-packet-name>General5</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>PARAM6</database-field-name>
+                <unified-packet-name>General6</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>PARAM7</database-field-name>
+                <unified-packet-name>General7</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>PARAM8</database-field-name>
+                <unified-packet-name>General2</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>PARAM9</database-field-name>
+                <unified-packet-name>General4</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>PARAM10</database-field-name>
+                <unified-packet-name>General3</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>PARAM11</database-field-name>
+                <unified-packet-name>General8</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>PARAM12</database-field-name>
+                <unified-packet-name>General9</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>PARAM13</database-field-name>
+                <unified-packet-name>General10</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>PARAM14</database-field-name>
+                <unified-packet-name>General11</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>            
+            
+            <attribute>
+                <database-field-name>PARAM15</database-field-name>
+                <unified-packet-name>General12</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute> 
+            
+            <attribute>
+                <database-field-name>PARAM16</database-field-name>
+                <unified-packet-name>General13</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute> 
+            
+            <attribute>
+                <database-field-name>PARAM17</database-field-name>
+                <unified-packet-name>General14</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute> 
+            
+            <attribute>
+                <database-field-name>PARAM18</database-field-name>
+                <unified-packet-name>General15</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>  
+            
+            <attribute>
+                <database-field-name>PARAM19</database-field-name>
+                <unified-packet-name>General16</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>  
+            
+            <attribute>
+                <database-field-name>PARAM20</database-field-name>
+                <unified-packet-name>General17</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>  
+            
+            <attribute>
+                <database-field-name>PARAM21</database-field-name>
+                <unified-packet-name>General18</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>  
+            
+            <attribute>
+                <database-field-name>PARAM22</database-field-name>
+                <unified-packet-name>General19</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>  
+            
+            <attribute>
+                <database-field-name>PARAM23</database-field-name>
+                <unified-packet-name>General20</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>  
+            
+            <attribute>
+                <database-field-name>PARAM24</database-field-name>
+                <unified-packet-name>General21</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>  
+
+            <attribute>
+                <database-field-name>PARAM25</database-field-name>
+                <unified-packet-name>General22</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>  
+
+            <attribute>
+                <database-field-name>PARAM26</database-field-name>
+                <unified-packet-name>General23</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>  
+
+            <attribute>
+                <database-field-name>PARAM27</database-field-name>
+                <unified-packet-name>General24</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>  
+
+            <attribute>
+                <database-field-name>PARAM28</database-field-name>
+                <unified-packet-name>General25</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>  
+            
+            <attribute>
+                <database-field-name>PARAM29</database-field-name>
+                <unified-packet-name>General26</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute> 
+            
+            <attribute>
+                <database-field-name>PARAM30</database-field-name>
+                <unified-packet-name>General27</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute> 
+            
+            <attribute>
+                <database-field-name>PARAM31</database-field-name>
+                <unified-packet-name>General28</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute> 
+            
+            <attribute>
+                <database-field-name>PARAM32</database-field-name>
+                <unified-packet-name>General29</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute> 
+            
+            <attribute>
+                <database-field-name>PARAM33</database-field-name>
+                <unified-packet-name>General30</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute> 
+                        
+            <attribute>
+                <database-field-name>ACCT_STATUS_TYPE</database-field-name>
+                <unified-packet-name></unified-packet-name>
+                <data-type>String</data-type>
+                <default-value>stop</default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>CDRSTATUS</database-field-name>
+                <unified-packet-name></unified-packet-name>
+                <data-type>Char</data-type>
+                <default-value>U</default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>USERNAME</database-field-name>
+                <unified-packet-name>EventType</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value>VOICE_USERNAME</default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>SERVERMODULEID</database-field-name>
+                <unified-packet-name></unified-packet-name>
+                <data-type>String</data-type>
+                <default-value>${MEDIATIONSERVERID}</default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>CREATEDATE</database-field-name>
+                <unified-packet-name></unified-packet-name>
+                <data-type>Date</data-type>
+                <default-value>${SYSDATE}</default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>LASTMODIFIEDDATE</database-field-name>
+                <unified-packet-name></unified-packet-name>
+                <data-type>Date</data-type>
+                <default-value>${SYSDATE}</default-value>
+            </attribute>
+            
+            <attribute>
+                <database-field-name>SOURCEUNITNAME</database-field-name>
+                <unified-packet-name>SourceUnitName</unified-packet-name>
+                <data-type>String</data-type>
+                <default-value></default-value>
+            </attribute>
+            
+    </attribute-list>
+    
+</database-distibution-driver>
+
+
+<!-- ========================================================== -->
+<!-- Details of each configuration parameter                    -->
+<!-- ========================================================== -->
+
+<!--
+<database-distibution-driver>
+
+    </attribute-list>
+        <attribute>
+            <database-field-name></database-field-name>
+                Database's Field Name for perticular attribute
+            <unified-packet-name></unified-packet-name>
+                Unified-Packet's Field Name for perticular attribute
+            <data-type></data-type>
+                Data-type for perticular attribute
+            <default-value></default-value>
+                Default-Value for perticular attribute
+        </attribute>
+    </attribute-list>
+</database-distibution-driver>
+ -->
+
+<!-- ========================================================== -->
+<!-- End of configuration details                               -->
+<!-- ========================================================== -->

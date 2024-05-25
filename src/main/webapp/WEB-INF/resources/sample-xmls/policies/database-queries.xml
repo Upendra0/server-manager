@@ -1,0 +1,28 @@
+<database-queries>
+	<database-query alias="QUERY-001">
+		<database-query-name>Default Query</database-query-name>
+		<database-query-value></database-query-value>
+		<cache-enable>false</cache-enable>
+		<logical-opearator>AND</logical-opearator>
+		
+		<condition-expression-enable>true</condition-expression-enable>
+		<condition-expression></condition-expression>
+		
+		<condition-list>
+			<condition>
+				<check-db-field-name>APN</check-db-field-name>
+				<check-operator>EqualsToOperator</check-operator>
+				<chack-unified-field-name>general6</chack-unified-field-name>
+			</condition>
+		</condition-list>
+		<action-list>
+			<action>
+				<db-field-name></db-field-name>
+				<unified-field-name></unified-field-name>
+			</action>
+		</action-list>
+		
+		<output-db-field-name></output-db-field-name>
+		<description>Default Query</description>
+	</database-query>
+</database-queries>

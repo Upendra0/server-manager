@@ -1,0 +1,11 @@
+[liquibase:updateDatabase] Starting Liquibase.
+[liquibase:updateDatabase] Successfully acquired change log lock
+[liquibase:updateDatabase] Reading from SMADMIN.DATABASECHANGELOG
+[liquibase:updateDatabase] diffChgLog.xml: diffChgLog.xml::1467622309807-24::vandana.awatramani (generated): Null constraint has been added to TBLMSERVERTYPE.DESCRIPTION
+[liquibase:updateDatabase] diffChgLog.xml: diffChgLog.xml::1467622309807-24::vandana.awatramani (generated): ChangeSet diffChgLog.xml::1467622309807-24::vandana.awatramani (generated) ran successfully in 438ms
+[liquibase:updateDatabase] diffChgLog.xml: diffChgLog.xml::1467622309807-25::vandana.awatramani (generated): Null constraint dropped from TBLMSERVERTYPE.TestCol
+[liquibase:updateDatabase] diffChgLog.xml: diffChgLog.xml::1467622309807-25::vandana.awatramani (generated): Default value dropped from TBLMSERVERTYPE.TestCol
+[liquibase:updateDatabase] diffChgLog.xml: diffChgLog.xml::1467622309807-25::vandana.awatramani (generated): ChangeSet diffChgLog.xml::1467622309807-25::vandana.awatramani (generated) ran successfully in 130ms
+[liquibase:updateDatabase] Successfully released change log lock
+BUILD SUCCESSFUL
+Total time: 4 seconds

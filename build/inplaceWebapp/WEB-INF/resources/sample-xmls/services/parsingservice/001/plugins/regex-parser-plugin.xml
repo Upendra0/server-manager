@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><regex-parser-plugin>
+<instance id="000">
+<source-charset-name>UTF16</source-charset-name>
+<source-date-format>yyyy-MM-dd HH:mm:ss,Unix Epoch</source-date-format>
+<log-pattern-regex> </log-pattern-regex>
+<log-pattern-regexid> </log-pattern-regexid>
+<pattern-list>
+<pattern>
+<pattern-regexid> </pattern-regexid>
+<pattern-regex> </pattern-regex>
+<attribute-list>
+<attribute>
+<unified-field/>
+<description/>
+<regex/>
+<sequence-no/>
+<default-value/>
+<trim-chars/>
+</attribute>
+</attribute-list>
+</pattern>
+</pattern-list>
+</instance>
+</regex-parser-plugin>

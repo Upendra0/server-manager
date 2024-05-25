@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<radius-collection-service>
+
+	<service-address>127.0.0.1:1645</service-address>
+	<startup-mode>Automatic</startup-mode>
+	<socket-receive-buffer-size>134217728</socket-receive-buffer-size>
+	<socket-send-buffer-size>134217728</socket-send-buffer-size>
+	<queue-size>150000</queue-size>
+	<minimum-thread>100</minimum-thread>
+	<maximum-thread>200</maximum-thread>
+	<max-idle-communication-time-interval>900</max-idle-communication-time-interval>
+	<parallel-file-write-count>1</parallel-file-write-count>
+	<max-packet-size-in-byte>4000</max-packet-size-in-byte>
+	<max-writebuffer-in-mb>10</max-writebuffer-in-mb>
+	
+	<clients>
+		<client>
+			<client-ip>127.0.0.1</client-ip>
+			<client-port>49999</client-port>
+			<request-expiry-time>3000</request-expiry-time>
+			<request-retry>100</request-retry>
+			<file-name>GP{yyyyMMddHHmmssS}.u</file-name>
+			<file-sequence>true</file-sequence>
+			<sequence-range>1-1000</sequence-range>
+			<file-location>D:\MEDIATION_ROOT\SM_ROOT\</file-location>
+			<rolling-time-unit>1</rolling-time-unit>
+			<rolling-volume-unit>1024</rolling-volume-unit>
+			<file-compression>false</file-compression>
+		</client>
+	</clients>
+</radius-collection-service>

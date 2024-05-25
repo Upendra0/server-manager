@@ -1,0 +1,15 @@
+-- *********************************************************************
+-- Update Database Script
+-- *********************************************************************
+-- Change Log: ./masterChangeLog.xml
+-- Ran at: 23/10/23, 1:53 PM
+-- Against: crestelsmngtdev@jdbc:postgresql://127.0.0.1:5432/crestelsmngtdev
+-- Liquibase version: 3.4.2
+-- *********************************************************************
+
+-- Lock Database
+UPDATE crestelsmngtdev.databasechangeloglock SET LOCKED = TRUE, LOCKEDBY = '44.175.13.175 (44.175.13.175)', LOCKGRANTED = '2023-10-23 13:53:39.572' WHERE ID = 1 AND LOCKED = FALSE;
+
+-- Release Database Lock
+UPDATE crestelsmngtdev.databasechangeloglock SET LOCKED = FALSE, LOCKEDBY = NULL, LOCKGRANTED = NULL WHERE ID = 1;
+

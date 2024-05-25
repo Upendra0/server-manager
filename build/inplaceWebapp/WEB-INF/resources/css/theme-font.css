@@ -1,0 +1,43 @@
+@import url(fonts-googleapis.css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
+
+
+@font-face {
+    font-family: 'robotoregular';
+    src: url('../fonts/Roboto-Regular-webfont.eot');
+    src: url('../fonts/Roboto-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Roboto-Regular-webfont.woff') format('woff'),
+         url('../fonts/Roboto-Regular-webfont.ttf') format('truetype'),
+         url('../fonts/Roboto-Regular-webfont.svg#robotoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'source_sans_proregular';
+    src: url('../fonts/sourcesanspro-regular.eot');
+    src: url('../fonts/sourcesanspro-regular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/sourcesanspro-regular.woff2') format('woff2'),
+         url('../fonts/sourcesanspro-regular.woff') format('woff'),
+         url('../fonts/sourcesanspro-regular.ttf') format('truetype'),
+         url('../fonts/sourcesanspro-regular.svg#source_sans_proregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+html {font-family:sans-serif;}
+code,kbd,pre,samp{font-family:monospace,monospace;}
+code,kbd,pre,samp{font-family:Menlo,Monaco,Consolas,"Courier New",monospace;}
+body {font-family:Helvetica,Arial,sans-serif,Roboto;}
+.main-header .logo,
+.tooltip,
+.popover{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;}
+.carousel-control .icon-next,.carousel-control .icon-prev{font-family:serif;}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: Helvetica, Arial, sans-serif;
+}
+.main-header .sidebar-toggle { font-family:fontAwesome;}
+.title2rightfield-icon1-text {font-family:Verdana, Geneva, sans-serif;}

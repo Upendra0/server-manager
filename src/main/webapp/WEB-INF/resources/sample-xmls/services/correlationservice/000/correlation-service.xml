@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE driver-mapping SYSTEM "http://www.elitecore.com">-->
+
+<correlation-service>
+
+	<c-data-source-path>D:\MEDIATION_ROOT1\PARSED_C</c-data-source-path> <!-- Contains full path -->
+	<d-data-source-path>D:\MEDIATION_ROOT1\PARSED_D</d-data-source-path>
+	<correlated-data-path>D:\MEDIATION_ROOT1\CORRELATED_DATA</correlated-data-path>
+	<invalid-data-path>D:\MEDIATION_ROOT1\INVALID_CORRELATED_DATA</invalid-data-path>
+	
+	<sorting-type>ASCENDING</sorting-type> <!-- ASCENDING/DESCENDING/NA -->
+	
+	<sorting-criteria>LAST_MODIFIED_DATE</sorting-criteria> <!-- LAST_MODIFIED_DATE/FILE_NAME -->
+
+	<queue-size>1500</queue-size>
+
+	<startup-mode>Automatic</startup-mode>
+
+	<minimum-thread>5</minimum-thread>
+
+	<maximum-thread>5</maximum-thread>
+
+	<execution-interval>1</execution-interval>
+
+	<immediate-execute-on-startup>true</immediate-execute-on-startup>
+
+    	<file-batch-size>10</file-batch-size>
+
+    	<record-batch-size>5000</record-batch-size>
+
+    	<source-file-types>.gz</source-file-types>
+
+       <file-grouping enabled="true">
+			<for-archive>true</for-archive>
+	   </file-grouping>
+	
+	<output-file-header>StartDate,General1,General2,General3,General4,General5,General6,General7,General8,General9,General10,General11,General12,General13,General14,General15,General16
+	</output-file-header>
+	
+	<attribute-list>
+	<attribute>
+		<criterian-field-name>DESTINATION_IP</criterian-field-name>
+		<unified-field-name>General8</unified-field-name>
+	</attribute>
+	<attribute>
+		<criterian-field-name>PRIVATE_IP</criterian-field-name>
+		<unified-field-name>General6</unified-field-name>
+	</attribute>
+	<attribute>
+		<criterian-field-name>DESTINATION_PORT</criterian-field-name>
+		<unified-field-name>General5</unified-field-name>
+	</attribute>
+	<attribute>
+		<criterian-field-name>PRIVATE_PORT</criterian-field-name>
+		<unified-field-name>General3</unified-field-name>
+	</attribute>
+	</attribute-list>
+
+</correlation-service>
+
+
+<!-- ========================================================== -->
+<!-- Details of each configuration parameter                    -->
+<!-- ========================================================== -->
+
+
+
+<!-- ========================================================== -->
+<!-- End of configuration details                               -->
+<!-- ========================================================== -->
+
+
+
+

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<distribution-service>
+
+    <startup-mode>Automatic</startup-mode> <!-- Manual or Automatic, default will be Manual -->
+    
+    <sorting-type>ASCENDING</sorting-type> <!-- ASCENDING/DESCENDING/NA -->
+    
+    <sorting-criteria>LAST_MODIFIED_DATE</sorting-criteria> <!-- LAST_MODIFIED_DATE/FILE_NAME -->
+
+    <execution-interval>1</execution-interval>
+    
+    <is-compressed-input>false</is-compressed-input>
+    
+    <third-party-transfer>false</third-party-transfer>
+    
+    <immediate-execute-on-startup>true</immediate-execute-on-startup>
+
+    <source-file-types>.csv</source-file-types>
+
+    <select-file-on-prefixes></select-file-on-prefixes>
+    
+    <select-file-on-suffixes></select-file-on-suffixes>
+
+    <minimum-thread>5</minimum-thread>
+    
+    <maximum-thread>5</maximum-thread>
+    
+    <thread-queue-size>15000</thread-queue-size>
+    
+    <file-batch-size>10</file-batch-size>
+    
+    <timesten-datasource-name></timesten-datasource-name>
+    
+    <process-record-limit>5000</process-record-limit>
+    
+    <write-record-limit></write-record-limit>
+	
+    <file-merge>false</file-merge>
+	
+    <driver-list>
+        <driver>
+            <application-order>0</application-order>
+            <driver-name>LOCAL_DISTRIBUTION_DRIVER</driver-name>
+            <enabled>true</enabled>
+        </driver>
+    </driver-list>
+    
+    <file-grouping enabled="true">
+	<grouping-type>day</grouping-type>
+	<for-archive>true</for-archive>
+    </file-grouping>
+    
+    <scheduling enabled="false">
+		<scheduling-type>monthly</scheduling-type> <!-- DAILY,WEEKLY,MONTHLY -->
+		<scheduling-date>0</scheduling-date> <!-- for monthly date should be between 1 to 28 and 0 for last date of month-->
+		<scheduling-day>4</scheduling-day> <!-- for DAILY -> NA and for WEEKLY -> day like SUNDAY = 1,MONDAY = 2,TUESDAY,... -->
+		<scheduling-time>16:40:00</scheduling-time> <!-- 24-HOUR format HH:mm:ss -->
+	</scheduling>
+	
+	<store-cdr-file-summary-in-db>false</store-cdr-file-summary-in-db> <!-- TRUE/FALSE : This will store file details in database -->
+
+</distribution-service>
+
+
+<!-- ========================================================== -->
+<!-- Details of each configuration parameter                    -->
+<!-- ========================================================== -->
+
+<!--
+<distribution-service>
+
+    <startup-mode>Manual</startup-mode>
+        Startup mode of the service, can be either Manual or Automatic. In case
+        of Manual mode, the service will be added to the list but will not be
+        started, but in case of Automatic the service is started automatically
+        when the server is started.
+        Change in value requires service restart.
+        
+    <is-sorting-required>true</is-sorting-required>
+		Is sorting required can be either true or false. If it is true then collection service 
+		will do collection according to the sort order. Sorting is based on last modified date.
+    
+    <execution-interval>1</execution-interval>
+        Service will wait for these much time on next execution
+
+	<is-compressed-input>false</is-compressed-input>
+		We have a support of compressed input file in distribution service. If value of this tag is true then mediation server can
+		able to read the .gz file according to the given extension.
+	
+    <immediate-execute-on-startup>true</immediate-execute-on-startup>
+        If it is true then Service will start when it is called
+
+    <source-path>C:\MEDIATION_ROOT\DISTRIBUTION_ROOT\input</source-path>
+        Source folder from which the files are placed for distribution
+
+    <source-file-types>.csv</source-file-types>
+        Service has to take these types of files for processing only.
+
+     <file-grouping enabled="false"> To enable file grouping
+	<grouping-type>day</grouping-type>
+		Service will insert files into archived folder in form of,
+	        If Day, duplicate/Year/Month/Day/
+    	    If Month, duplicate/Year/Month/
+        	If Year, duplicate/Year/
+	<for-archive>true</for-archive>
+		To move or not file in archive.
+	</file-grouping>
+
+    <minimum-thread>5</minimum-thread>
+        Minimum number of threads that should stay in the pool to handle the
+        request. All the threads will be created during initilization.
+        Change in value requires soft restart of the service after reloading
+        the configuration.
+
+    <maximum-thread>7</maximum-thread>
+        Maximum number of threads that should be created during load.
+        Change in value requires soft restart of the service after reloading
+        the configuration.
+
+    <thread-queue-size>15000</thread-queue-size>
+        Maximum requests that can stay in the queue, any new request recevied
+        when the queue is full will be dropped.
+        Change in value requires soft restart of the service after reloading
+        the configuration.
+
+    <file-batch-size>100</file-batch-size>
+        Service will pick up these much files to process at a time.
+        
+    <timesten-datasource-name></timesten-datasource-name>
+    	Service will initialize data source name specified for this tag. Basically this
+    	tag is useful for database distribution driver to provide timesten database support.
+        
+    <process-record-limit>500</process-record-limit>
+		This much record will process at a time.
+     
+    <select-file-on-prefixes>new</select-file-on-prefixes>
+		Only those file will parse who's prefix is new.
+
+    <driver-list>
+        List of dirvers configured for parlay charging service.
+
+        <driver>
+          Driver details.
+
+            <application-order>1</application-order>
+                The order in which the driver to be assigned the task.
+
+            <driver-name>DATABASE_DRIVER</driver-name>
+                The name of the driver, must match to any of the name available
+                in service mapping file (system-mapping.xml).
+
+            <timeout>2000</timeout>
+                Timeout in milli seconds for driver process, if the driver fails to
+                respond within this specified time, response will be given back
+                without any ip allocation.
+
+            <next-driver>false</next-driver>
+                Can be used to specify whether to give the request that is successfully
+                processed by this driver. If configured to true, on successful completion
+                of process by this driver, the request will be given to next available
+                driver and the response given by the next driver will be returned back
+                to the client. In case next driver is not present, the response of current
+                driver will be returned.
+
+        </driver>
+
+    </driver-list>
+
+</distribution-service>
+ -->
+
+<!-- ========================================================== -->
+<!-- End of configuration details                               -->
+<!-- ========================================================== -->

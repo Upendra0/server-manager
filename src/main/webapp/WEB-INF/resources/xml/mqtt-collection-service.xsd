@@ -1,0 +1,45 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="mqtt-collection-service">
+    <xs:complexType>
+      <xs:all>
+        <xs:element type="xs:string" name="service-address" minOccurs="1"/>
+        <xs:element type="xs:string" name="startup-mode" minOccurs="1"/>
+        <xs:element type="xs:int" name="socket-receive-buffer-size" minOccurs="1"/>
+        <xs:element type="xs:int" name="socket-send-buffer-size" minOccurs="1"/>
+        <xs:element type="xs:int" name="queue-size" minOccurs="1"/>
+        <xs:element type="xs:int" name="minimum-thread" minOccurs="1"/>
+        <xs:element type="xs:int" name="maximum-thread" minOccurs="1"/>
+        <xs:element type="xs:int" name="max-read-rate" minOccurs="1"/>
+        <xs:element type="xs:long" name="receive-buffer-size" minOccurs="1"/>
+        <xs:element type="xs:int" name="connect-attempts-max" minOccurs="1"/>
+        <xs:element type="xs:int" name="reconnect-attempts-max" minOccurs="1"/>
+        <xs:element type="xs:int" name="reconnect-delay" minOccurs="1"/>
+        <xs:element name="clients">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="client">
+                <xs:complexType>
+                  <xs:all>
+                    <client-name><xsl:value-of select="name"/></client-name>
+                    <xs:element type="xs:string" name="topic-name" minOccurs="1"/>
+                    <xs:element type="xs:string" name="file-name" />
+                    <xs:element type="xs:string" name="file-sequence"/>
+                    <xs:element type="xs:string" name="sequence-range"/>
+                    <xs:element type="xs:string" name="file-location" minOccurs="1"/>
+                    <xs:element type="xs:int" name="rolling-time-unit" minOccurs="1"/>
+                    <xs:element type="xs:int" name="rolling-volume-unit" minOccurs="1"/>
+                    <xs:element type="xs:string" name="file-compression" minOccurs="1"/>
+                    <xs:element type="xs:string" name="is-client-enable"/>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:int" name="parallel-file-write-count"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+
+

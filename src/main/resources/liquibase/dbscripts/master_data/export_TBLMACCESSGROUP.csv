@@ -1,0 +1,4 @@
+"ID","CREATEDBYSTAFFID","CREATEDDATE","LASTUPDATEDBYSTAFFID","LASTUPDATEDDATE","STATUS","STATE","CREATEDATE","DESCRIPTION","LASTUPDATEBYSTAFFID","LASTUPDATEDATE","NAME"
+1,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE","ACTIVE",2016-07-12 10:17:13.0000,"Administrator has rights to all actions in the system",1,2016-07-12 10:17:13.0000,"Administrator Access Group"
+2,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE","ACTIVE",2016-07-12 10:17:13.0000,"Module admin has rights for action configuration in the system",1,2016-07-12 10:17:13.0000,"Module Admin Access Group"
+3,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE","ACTIVE",2016-07-12 10:17:13.0000,"Profile admin has rights for profiling activity in the system",1,2016-07-12 10:17:13.0000,"Profile Admin Access Group"

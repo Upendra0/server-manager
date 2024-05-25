@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><fixed-length-ascii-parser-plugin>
+<instance id="000">
+<source-charset-name>UTF8</source-charset-name>
+<source-date-format>yyyy-MM-dd HH:mm:ss,Unix Epoch</source-date-format>
+<file-header present="">
+<contains-field>false</contains-field>
+</file-header>
+<attribute-list>
+<attribute>
+<description/>
+<unified-field/>
+<start-length/>
+<end-length/>
+<prefix/>
+<postfix/>
+<default-value/>
+<trim-chars/>
+<length/>
+<right-delimiter/>
+</attribute>
+</attribute-list>
+</instance>
+</fixed-length-ascii-parser-plugin>

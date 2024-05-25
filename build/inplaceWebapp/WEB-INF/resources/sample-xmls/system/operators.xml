@@ -1,0 +1,144 @@
+<operators>
+		<operator alias="ContainsOperator">
+			<operator-name>ContainsOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.ContainsOperator</operator-class-name>
+			<description>ContainsOperator</description>
+		</operator>
+		<operator alias="DoesNotContainsOperator">
+			<operator-name>DoesNotContainsOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.DoesNotContainsOperator</operator-class-name>
+			<description>DoesNotContainsOperator</description>
+		</operator>
+		<operator alias="EndWithOperator">
+			<operator-name>EndWithOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.EndWithOperator</operator-class-name>
+			<description>EndWithOperator</description>
+		</operator>
+		<operator alias="EqualsToOperator">
+			<operator-name>EqualsToOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.EqualsToOperator</operator-class-name>
+			<description>EqualsToOperator</description>
+		</operator>
+		<operator alias="InOperator">
+			<operator-name>InOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.InOperator</operator-class-name>
+			<description>InOperator</description>
+		</operator>
+		<operator alias="IsBlankOperator">
+			<operator-name>IsBlankOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.IsBlankOperator</operator-class-name>
+			<description>IsBlankOperator</description>
+		</operator>
+		<operator alias="IsNotBlankOperator">
+			<operator-name>IsNotBlankOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.IsNotBlankOperator</operator-class-name>
+			<description>IsNotBlankOperator</description>
+		</operator>
+		<operator alias="IsNullOperator">
+			<operator-name>IsNullOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.IsNullOperator</operator-class-name>
+			<description>IsNullOperator</description>
+		</operator>
+		<operator alias="IsNotNullOperator">
+			<operator-name>IsNotNullOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.IsNotNullOperator</operator-class-name>
+			<description>IsNotNullOperator</description>
+		</operator>
+
+		<operator alias="IsGreatorThenOperator">
+			<operator-name>IsGreatorThenOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.IsGreatorThenOperator</operator-class-name>
+			<description>IsGreatorThenOperator</description>
+		</operator>
+		<operator alias="IsGreatorThenOperatorForNumeric">
+			<operator-name>IsGreatorThenOperatorForNumeric</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.IsGreatorThenOperatorForNumeric</operator-class-name>
+			<description>IsGreatorThenOperatorForNumeric</description>
+		</operator>
+		<operator alias="IsGreatorThenOrEqualsToOperator">
+			<operator-name>IsGreatorThenOrEqualsToOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.IsGreatorThenOrEqualsToOperator</operator-class-name>
+			<description>IsGreatorThenOrEqualsToOperator</description>
+		</operator>
+		<operator alias="IsGreatorThenOrEqualsToOperatorForNumeric">
+			<operator-name>IsGreatorThenOrEqualsToOperatorForNumeric</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.IsGreatorThenOrEqualsToOperatorForNumeric</operator-class-name>
+			<description>IsGreatorThenOrEqualsToOperatorForNumeric</description>
+		</operator>
+		<operator alias="IsLessThenOperator">
+			<operator-name>IsLessThenOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.IsLessThenOperator</operator-class-name>
+			<description>IsLessThenOperator</description>
+		</operator>
+		<operator alias="IsLessThenOperatorForNumeric">
+			<operator-name>IsLessThenOperatorForNumeric</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.IsLessThenOperatorForNumeric</operator-class-name>
+			<description>IsLessThenOperatorForNumeric</description>
+		</operator>
+		<operator alias="IsLessThenOrEqualsToOperator">
+			<operator-name>IsLessThenOrEqualsToOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.IsLessThenOrEqualsToOperator</operator-class-name>
+			<description>IsLessThenOrEqualsToOperator</description>
+		</operator>
+		<operator alias="IsLessThenOrEqualsToOperatorForNumeric">
+			<operator-name>IsLessThenOrEqualsToOperatorForNumeric</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.IsLessThenOrEqualsToOperatorForNumeric</operator-class-name>
+			<description>IsLessThenOrEqualsToOperatorForNumeric</description>
+		</operator>
+		<operator alias="NotEqualsToOperator">
+			<operator-name>NotEqualsToOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.NotEqualsToOperator</operator-class-name>
+			<description>NotEqualsToOperator</description>
+		</operator>
+		<operator alias="NotInOperator">
+			<operator-name>NotInOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.NotInOperator</operator-class-name>
+			<description>NotInOperator</description>
+		</operator>
+		<operator alias="RegularExpression">
+			<operator-name>RegularExpression</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.RegularExpression</operator-class-name>
+			<description>RegularExpression</description>
+		</operator>
+		<operator alias="StartWithOperator">
+			<operator-name>StartWithOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.StartWithOperator</operator-class-name>
+			<description>StartWithOperator</description>
+		</operator>
+		<operator alias="BestMatchOperator">
+			<operator-name>BestMatchOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.BestMatchOperator</operator-class-name>
+			<description>BestMatchOperator</description>
+		</operator>
+		<operator alias="NotStartWithOperator">
+			<operator-name>NotStartWithOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.NotStartWithOperator</operator-class-name>
+			<description>NotStartWithOperator</description>
+		</operator>
+		<operator alias="NotEndWithOperator">
+			<operator-name>NotEndWithOperator</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.NotEndWithOperator</operator-class-name>
+			<description>NotEndWithOperator</description>
+		</operator>
+		
+		<operator alias="IsGreatorThenOperatorForDate">
+			<operator-name>IsGreatorThenOperatorForDate</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.IsGreatorThenOperatorForDate</operator-class-name>
+			<description>IsGreatorThenOperatorForDate</description>
+		</operator>
+		<operator alias="IsGreatorThenOrEqualsToOperatorForDate">
+			<operator-name>IsGreatorThenOrEqualsToOperatorForDate</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.IsGreatorThenOrEqualsToOperatorForDate</operator-class-name>
+			<description>IsGreatorThenOrEqualsToOperatorForDate</description>
+		</operator>
+		<operator alias="IsLessThenOperatorForDate">
+			<operator-name>IsLessThenOperatorForDate</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.IsLessThenOperatorForDate</operator-class-name>
+			<description>IsLessThenOperatorForDate</description>
+		</operator>
+		<operator alias="IsLessThenOrEqualsToOperatorForDate">
+			<operator-name>IsLessThenOrEqualsToOperatorForDate</operator-name>
+			<operator-class-name>com.elitecore.mediation.commons.util.operator.IsLessThenOrEqualsToOperatorForDate</operator-class-name>
+			<description>IsLessThenOrEqualsToOperatorForDate</description>
+		</operator>		
+</operators>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<detail-local-composer-plugin>
+<instance id="000">
+    
+	<source-charset-name>UTF8</source-charset-name>
+	<key-value-seperator>=</key-value-seperator>
+
+    <header-attribute-date-format>E MMM dd HH:mm:ss yyyy</header-attribute-date-format> 
+    <attribute-date-format>E MMM dd HH:mm:ss yyyy</attribute-date-format>
+    
+    <destination-file-extension>.local</destination-file-extension>
+
+	<header-attribute-list>
+		<attribute>
+			<sequence-number>1</sequence-number>
+            <source-field>Acct-Session-Id</source-field>
+            <unified-field>EndDate</unified-field>                            
+            <default-value></default-value>
+            <data-type>date</data-type>
+            <date-format></date-format>
+		</attribute>
+	</header-attribute-list>
+
+    <attribute-list>
+       <attribute>
+			<sequence-number>1</sequence-number>
+            <source-field>Acct-Session-Id</source-field>
+            <unified-field>SerialNumber</unified-field>                            
+            <default-value></default-value>
+            <data-type></data-type>
+            <date-format></date-format>
+            <trim-chars></trim-chars>
+            <description></description>
+			
+       </attribute>
+        <attribute>
+			<sequence-number>2</sequence-number>
+            <source-field>User-Name</source-field>
+            <unified-field>General6</unified-field>                            
+            <default-value></default-value>
+            <data-type></data-type>
+            <date-format></date-format>
+            <trim-chars></trim-chars>
+            <description></description>
+			
+       </attribute> 
+       <attribute>
+			<sequence-number>3</sequence-number>
+            <source-field>IP-Address</source-field>
+            <unified-field></unified-field>                            
+            <default-value>10.105.1.9</default-value>
+            <data-type></data-type>
+            <date-format></date-format>
+            <trim-chars></trim-chars>
+            <description></description>
+			
+       </attribute>   
+    </attribute-list>    
+    </instance>
+</detail-local-composer-plugin>    
+    
+    
+<!-- ========================================================== -->
+<!-- Details of each configuration parameter                    -->
+<!-- ========================================================== -->
+<!-- 
+	<source-date-format>E MMM dd HH:mm:ss yyyy</source-date-format>  
+		This field represent the date format of your cdr file.
+		Example - Tue Jul 22 15:21:33 2008
+		
+	<source-charset-name>UTF8</source-charset-name> 
+		 Specifies the character set name of the file content.
+		 
+	<attribute-list>
+        Specifies the list of attrbute and the mapping of the fields of raw files and unified fields.
+        
+        <attribute>
+           <source-field>RecordNumber</source-field>
+                Specifies the unified field name.
+                
+           <unified-field>Acct-Session-Id</unified-field>                            
+                Specifies the list of source fields.
+                        
+           <default-value></default-value>
+                Specifies the default value. If the source field is specified, 
+                the default value won't be considered.
+
+           <trim-chars>"</trim-chars>
+                Specifies the trim characters. All the trim charactes are 
+                neglacted from the start and end of the value.
+                
+                E.g. If the value in the raw file is '"1893487"', 
+                     the value in the unified csv will be 1893487.
+            </attribute>
+            
+    </attribute-list>         	 
+ -->
+<!-- ========================================================== -->
+<!-- End of configuration details                               -->
+<!-- ========================================================== -->
+  
+    

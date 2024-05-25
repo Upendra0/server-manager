@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<!-- JDBC Driver and Credentials -->
+	<beans:bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<beans:property name="location">
+			<beans:value>classpath:jdbc.properties</beans:value>
+		</beans:property>
+	</beans:bean>
+
+	<!-- Datasource definition using C3P0 -->
+	<beans:bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<beans:property name="driverClass" value="${jdbc.driverClassName}" />
+		<beans:property name="jdbcUrl" value="${jdbc.url}" />
+		<beans:property name="user" value="${jdbc.username}" />
+		<beans:property name="password" value="${jdbc.password}" />
+		<beans:property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
+		<beans:property name="minPoolSize" value="${jdbc.minPoolSize}" />
+		<beans:property name="maxStatements" value="${jdbc.maxStatements}" />
+		<beans:property name="testConnectionOnCheckout" value="${jdbc.testConnection}" />
+		<beans:property name="maxIdleTime" value="${jdbc.maxIdleTime}" />		
+	</beans:bean>
+
+	<!-- Hibernate 4 SessionFactory Bean definition -->
+	<beans:bean id="hibernate5AnnotatedSessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource" />
+		
+		<!-- Package Scan for Searching Model -->
+
+		<beans:property name="packagesToScan">
+			<beans:array>
+				<beans:value>com.elitecore.sm.agent.model</beans:value>
+				<beans:value>com.elitecore.sm.common.model</beans:value>
+			 	<beans:value>com.elitecore.sm.composer.model</beans:value>
+				<beans:value>com.elitecore.sm.config.model</beans:value>
+				<beans:value>com.elitecore.sm.datasource.model</beans:value>
+				<beans:value>com.elitecore.sm.kafka.datasource.model</beans:value>
+				<beans:value>com.elitecore.sm.drivers.model</beans:value>
+				<beans:value>com.elitecore.sm.iam.model</beans:value>
+				<beans:value>com.elitecore.sm.netflowclient</beans:value>				
+				<beans:value>com.elitecore.sm.parser.model</beans:value>
+				<beans:value>com.elitecore.sm.pathlist.model</beans:value>				
+				<beans:value>com.elitecore.sm.policy.model</beans:value>	
+				<beans:value>com.elitecore.sm.server.model</beans:value>
+			 	<beans:value>com.elitecore.sm.serverinstance.model</beans:value> 
+				<beans:value>com.elitecore.sm.services.model</beans:value>
+				<beans:value>com.elitecore.sm.systemparam.model</beans:value>
+				<beans:value>com.elitecore.sm.systemaudit.model</beans:value>
+				<beans:value>com.elitecore.sm.snmp.model</beans:value>
+				<beans:value>com.elitecore.sm.device.model</beans:value>
+				<beans:value>com.elitecore.sm.license.model</beans:value>
+				<beans:value>com.elitecore.sm.productconfig.model</beans:value>
+				<beans:value>com.elitecore.sm.mis.model</beans:value>
+				<beans:value>com.elitecore.sm.consolidationservice.model</beans:value>
+				<beans:value>com.elitecore.sm.migration.model</beans:value>
+				<beans:value>com.elitecore.sm.errorreprocess.model</beans:value>
+				<beans:value>com.elitecore.sm.rulelookup.model</beans:value>
+				<beans:value>com.elitecore.sm.aggregationservice.model</beans:value>
+				<beans:value>com.elitecore.sm.roaming.model</beans:value>
+				<beans:value>com.elitecore.sm.diameterpeer</beans:value>
+				<beans:value>com.elitecore.sm.trigger.model</beans:value>
+				<beans:value>com.elitecore.sm.job.model</beans:value>
+				<beans:value>com.elitecore.sm.configmanager.model</beans:value>
+				<beans:value>com.elitecore.sm.dictionarymanager.model</beans:value>
+			</beans:array>
+		</beans:property>
+
+		<!-- com.elitecore.sm.drivers.model,com.elitecore.sm.parser.model -->
+
+		<beans:property name="hibernateProperties">
+			<beans:props>
+				<beans:prop key="hibernate.dialect">${hibernate.dialect}</beans:prop>
+				<beans:prop key="hibernate.show_sql">${hibernate.show_sql}</beans:prop>
+				<beans:prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</beans:prop>
+				<beans:prop key="hibernate.default_schema">${hibernate.default_schema}</beans:prop>
+				
+				<!-- <beans:prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory
+				</beans:prop> -->
+				<beans:prop key="hibernate.cache.region.factory_class">org.hibernate.cache.jcache.internal.JCacheRegionFactory</beans:prop>
+                <beans:prop key="hibernate.javax.cache.provider">org.ehcache.jsr107.EhcacheCachingProvider</beans:prop>
+                <beans:prop key="hibernate.javax.cache.missing_cache_strategy">create</beans:prop>
+				<!-- For singleton factory -->
+				<!-- <beans:prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</beans:prop> -->
+
+				<!-- enable second level cache and query cache -->
+				<beans:prop key="hibernate.cache.use_second_level_cache">true</beans:prop>
+				<beans:prop key="hibernate.cache.use_query_cache">true</beans:prop>
+			 	<!-- <beans:prop key="net.sf.ehcache.configurationResourceName">ehcache-config.xml</beans:prop> -->
+			 	<beans:prop key="org.ehcache.configurationResourceName">ehcache-config.xml</beans:prop>
+				<!--  this is to tunr property level track changes by envers -->
+			<!-- 	<beans:prop key="org.hibernate.envers.global_with_modified_flag">true</beans:prop>
+				 -->
+				 <!-- Database Settings -->
+        
+        	<beans:prop key="hibernate.connection.CharSet">utf8</beans:prop>
+        	<beans:prop key="hibernate.connection.characterEncoding">utf8</beans:prop>
+        	<beans:prop key="hibernate.connection.useUnicode">true</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+
+	<!-- Hibernate Transaction Management handed over to Spring Transaction  -->
+	<tx:annotation-driven transaction-manager="transactionManager" order="2"  />
+	<beans:bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<beans:property name="sessionFactory"
+			ref="hibernate5AnnotatedSessionFactory" />
+	</beans:bean>
+</beans:beans>

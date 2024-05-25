@@ -1,0 +1,149 @@
+ID,ALIAS,DESCRIPTION,MESSAGE,NAME,STATUS,SUBENTITYID
+1,LOGIN_ACTION,Login Action,Staff $entityName has logged in successfully.,Login Action,ACTIVE,19
+2,LOGOUT_ACTION,logout action,Staff $entityName has logged out successfully.,Logout Action,ACTIVE,19
+3,CREATE_SERVER,create server,New server $entityName created.,create server,ACTIVE,1
+4,UPDATE_SERVER,Update Server Details,Server $entityName updated.,Update Server Details,ACTIVE,1
+5,DELETE_SERVER,delete server,Server $entityName deleted.,Delete Server,ACTIVE,1
+6,CREATE_SERVER_INSTANCE,Create Server Instance,New server instance $entityName created.,Create Server Instance,ACTIVE,2
+7,UPDATE_SERVER_INSTANCE_ADVANCE_CONFIGURATION,Update Server Advance Details,Advance Configuration updated for server instance  $serverInstanceName,Update Server Advance Details,ACTIVE,2
+8,DELETE_SERVER_INSTANCE,Delete Server Instance,Server instance $entityName deleted.,Delete Server Instance ,ACTIVE,2
+9,IMPORT_SERVER_INSTANCE_CONFIGURATION,Import Server Instance Configuration,Server configuration imported for server instance $serverInstanceName.,Import Server Instance Configuration,ACTIVE,2
+10,EXPORT_SERVER_INSTANCE_CONFIGURATION,Export Server Instance Configuration,Server configuration exported for server instance $serverInstanceName.,Export Server Instance Configuration,ACTIVE,2
+11,SYNCHRONIZE_SERVER_INSTANCE_ACTION,Synchronize To Server Instance Action,Synchronize server instance action performed for server instance $serverInstanceName.,Synchronize To Server Action,ACTIVE,2
+12,SOFT_RESTART_SERVER_INSTANCE,Soft Restart ,Soft Restart server instance action performed for server instance $serverInstanceName.,Soft Restart,ACTIVE,2
+13,RELOAD_SERVER_INSTANCE_CONFIGURATION,Reload Configuration,Reload Configuration action performed for server instance $serverInstanceName.,Reload Configuration Instance,ACTIVE,2
+14,RELOAD_SERVER_INSTANCE_CACHE,Reload Cache,Reload Cache action performed for server instance $serverInstanceName.,Reload Cache Instance,ACTIVE,2
+15,START_SERVER_INSTANCE,Start Server,Start server instance action performed for server instance $serverInstanceName.,Start Server Instance,ACTIVE,2
+16,STOP_SERVER_INSTANCE,Stop Server,Stop server instance action performed for server instance $serverInstanceName.,Stop Server Instance,ACTIVE,2
+17,RESTART_SERVER_INSTANCE,Restart Server,Restart server instance action performed for server instance $serverInstanceName.,Restart Server Instance,ACTIVE,2
+18,COPY_CONFIG_SERVER_INSTANCE,Restart Server,Copy Configuration action performed for server instance $serverInstanceName.,Copy Server Instance,ACTIVE,2
+19,CREATE_SERVICE,Create Service,New service $entityName created for server instance $serverInstanceName.,Create Service,ACTIVE,11
+20,DELETE_SERVICE,Delete Service,Service $entityName deleted from server instance $serverInstanceName.,Remove Service,ACTIVE,11
+21,UPDATE_SERVICE_CONFIGURATION,Update Service Configuration,Service Configuration updated for service $entityName in server instance $serverInstanceName.,Update Service Configuration,ACTIVE,11
+22,SYNCHRONIZE_SERVICE,SYNCHRONIZE_SERVICE,Synchronize service action performed for service $entityName of type $serviceType for server instance $serverInstanceName.,Synchronize To Service,ACTIVE,11
+23,IMPORT_SERVICE_CONFIGURATION,Import Service Configuration,Service configuration imported for service $entityName of type $serviceType for server instance $serverInstanceName.,Import Service Configuration,ACTIVE,11
+24,EXPORT_SERVICE_CONFIGURATION,Export Service Configration,Service configuration exported for service $entityName of type $serviceType for server instance $serverInstanceName. ,Export Service Configration,ACTIVE,11
+25,STOP_SERVICE,Stop Service,Stop service action performed for service $entityName in server instance $serverInstanceName ,stop service,ACTIVE,11
+26,START_SERVICE,start Service,Start service action performed for service $entityName in server instance $serverInstanceName.,start Service,ACTIVE,11
+27,CREATE_DRIVER,create driver,Service driver $entityName created for service $serviceName in server instance $serverInstanceName,create driver,ACTIVE,14
+28,UPDATE_DRIVER,update driver,Service driver $entityName updated for service $serviceName in server instance $serverInstanceName,update driver,ACTIVE,14
+29,DELETE_DRIVER,delete driver,Service driver $entityName deleted for service $serviceName in server instance $serverInstanceName.,delete driver,ACTIVE,14
+30,UPDATE_DRIVER_STATUS,update driver status,Service Driver  $entityName status updated for service $serviceName in server instance $serverInstanceName.,change driver status,ACTIVE,14
+31,UPDATE_DRIVER_APLICATION_ORDER,Update driver application order,Service Driver $entityName application order updated in service $serviceName in server instance $serverInstanceName.,update driver application order,ACTIVE,14
+32,CREATE_CLIENT,Create Client,New client $entityName created in service $serviceName in  server instance $serverInstanceName.,Create Client,ACTIVE,15
+33,UPDATE_CLIENT,update Client,Client $entityName updated for service $serviceName in  server instance $serverInstanceName.,update client,ACTIVE,15
+34,DELETE_CLIENT,delete Client,Client $entityName deleted for service $serviceName in  server instance $serverInstanceName.,delete client,ACTIVE,15
+35,UPDATE_CLIENT_STATUS,Update Client status,Client status updated for service $serviceName in  server instance $serverInstanceName.,change client status,ACTIVE,15
+36,CREATE_PATHLIST,Create Pathlist,New pathlist $entityName created in service $serviceName in  server instance $serverInstanceName.,Create Pathlist,ACTIVE,18
+37,UPDATE_PATHLIST,Update Pathlist,Pathlist $entityName updated in service $serviceName in server instance $serverInstanceName.,Update Pathlist,ACTIVE,18
+38,DELETE_PATHLIST,Delete pathlist,Pathlist $entityName deleted from service $serviceName in  server instance $serverInstanceName.,Delete pathlist,ACTIVE,18
+39,CREATE_PARSER,Create Parser,New parser $parserName created in service $serviceName in  server instance $serverInstanceName.,Add parser,ACTIVE,16
+40,UPDATE_PARSER,Update Parser,Parser $parserName updated for service $serviceName in server instance $serverInstanceName.,Update Parser,ACTIVE,16
+41,DELETE_PARSER,Delete Parser,Parser $parserName deleted from service $serviceName in server instance $serverInstanceName.,Delete Parser,ACTIVE,16
+42,CREATE_COMPOSER,create composer,New composer $entityName created in service $serviceName in  server instance $serverInstanceName.,create composer,ACTIVE,17
+43,UPDATE_COMPOSER,update composer,Composer $entityName updated in service $serviceName in server instance $serverInstanceName.,update composer,ACTIVE,17
+44,DELETE_COMPOSER,delete composer,Composer $entityName deleted from service $serviceName in server instance $serverInstanceName.,delete composer,ACTIVE,17
+45,CREATE_STAFF,Create Staff,New Staff $entityName created.,Create staff,ACTIVE,9
+46,DELETE_STAFF,Delete Staff,Staff $entityName deleted.,Delete Staff,ACTIVE,9
+47,UPDATE_STAFF_STATUS,Update Staff status,Staff status updated for $entityName.,Change Staff status,ACTIVE,9
+48,UPDATE_STAFF_DETAILS,update Staff details,Staff details updated for staffName $staffName.,update Staff details,ACTIVE,9
+49,UPDATE_STAFF_ACCESS_GROUP,update Staff access group,$name access group updated by Staff $staffName,update Staff access group,ACTIVE,9
+50,UPDATE_STAFF_USERNAME,Update Staff username,Staff username modified by staff $staffName,Update Staff username,ACTIVE,9
+51,UPDATE_STAFF_PASSWORD,Update Staff Password,Staff password updated for $entityName.,Change Staff Password,ACTIVE,9
+52,CREATE_ACCESS_GROUP,Create access group,New access group $entityName created.,create access group,ACTIVE,10
+53,DELETE_ACCESS_GROUP,delete access group,Access group $entityName deleted.,delete access group,ACTIVE,10
+54,UPDATE_ACCESS_GROUP,update access group,Access group $entityName updated.,update access group,ACTIVE,10
+55,UPDATE_SYSTEM_PARAMETER,update system parameter,System Parameter $entityName updated. ,update system parameter,ACTIVE,6
+56,INVALID_LOGIN,invalid login,Invalid Login Attempt (wrong Password).,invalid login,ACTIVE,19
+57,LOCKED_LOGIN_DENIED,login denied,Login Denied for Locked staff.,login denied,ACTIVE,19
+58,UNAUTHORIZED_IP_LOGIN_DENIED,unauthorized IP Login denied,Login Denied for attempt from non-authorized IP.,unauthorized IP Login denied,ACTIVE,19
+59,CREATE_PARSER_ATTRIBUTE,Create parser attribute,Attribute created for mapping $entityName.,Add parser attribute.,ACTIVE,16
+60,DELETE_PARSER_ATTRIBUTE,Delete parser attribute,Attribute deleted for mapping $entityName,Delete parser attribute,ACTIVE,16
+61,UPDATE_PARSER_ATTRIBUTE,Update parser attribute,Attribute updated for mapping $entityName.,Update Parser attribute,ACTIVE,16
+62,CREATE_COMPOSER_ATTRIBUTE,Create composer attribute,Attribute created for mapping $entityName,Create composer attribute,ACTIVE,17
+63,DELETE_COMPOSER_ATTRIBUTE,Delete composer attribute,Attribute deleted for mapping $entityName,Delete composer attribute,ACTIVE,17
+64,UPDATE_COMPOSER_ATTRIBUTE,Update composer attribute,Attribute updated for mapping $entityName,Update composer attribute,ACTIVE,17
+65,CREATE_DEVICE,Create device,New device $entityName created for device type $deviceType and vendor type $vendorType.,Add device,ACTIVE,20
+66,UPDATE_DEVICE,Update device,Device $entityName updated for device type $deviceType and vendor type $vendorType.,Update device,ACTIVE,20
+67,DELETE_DEVICE,Delete device,Device $entityName deleted from device type $deviceType and vendor type $vendorType.,Delete device,ACTIVE,20
+68,CREATE_DATASOURCE,Create datasource,Datasource $entityName created.,Datasource added,ACTIVE,2
+69,UPDATE_DATASOURCE,Update datasource,Datasource $entityName updated.,Datasource updated,ACTIVE,2
+70,DELETE_DATASOURCE,Delete datasource,Datasource $entityName removed.,Datasource deleted,ACTIVE,2
+71,UPDATE_AGENT_STATUS,Update agent status,Packet statics agent status changed in server instance $serverInstanceName.,Update agent status,ACTIVE,12
+72,UPDATE_AGENT_DETAILS,Update agent details,Packet statics agent details updated in server instance $serverInstanceName.,Update agent details,ACTIVE,12
+73,CREATE_CHAR_RENAME,Create char rename ,Char rename operations created in composer $entityName in service $serviceName and server instance $serverInstanceName.,Char rename operation created,ACTIVE,11
+74,UPDATE_CHAR_RENAME,Update char rename operation,Char rename operations updated in composer $entityName in service $serviceName and server instance $serverInstanceName.,Char rename operation updated,ACTIVE,11
+75,DELETE_CHAR_RENAME,Delete char rename operation,Char rename operations deleted from composer $entityName in service $serviceName and server instance $serverInstanceName.,Char rename operation deleted,ACTIVE,11
+76,UPDATE_AGENT,Agent updated,Agent $entityName updated.,Agent updated,ACTIVE,12
+77,UPDATE_ALERT_CONFIGURATION,Update alert configuration,Alert $entityName configuration updated.,Alert configuration updated,ACTIVE,21
+78,UPDATE_SNMP_CONFIGURATION,Update snmp server,SNMP server $entityName configuration updated in $serverInstanceName.,Snmp server configuration updated,ACTIVE,21
+79,DELETE_SNMP_SERVER,Delete snmp server,SNMP server $entityName deleted from $serverInstanceName.,snmp server deleted,ACTIVE,21
+80,CREATE_SNMP_SERVER,Create snmp server,SNMP server $entityName created in $serverInstanceName.,snmp server created,ACTIVE,21
+81,ADD_SNMP_LISTENER_CONFIGURATION,Create snmp Client,SNMP client $entityName created in $serverInstanceName.,snmp client created.,ACTIVE,21
+82,UPDATE_SNMP_LISTENER_CONFIGURATION,Update snmp client,SNMP client $entityName updated in $serverInstanceName.,snmp client updated.,ACTIVE,21
+83,DELETE_SNMP_LISTENER_CONFIGURATION,Delete snmp client,SNMP client $entityName deleted from $serverInstanceName.,snmp client deleted.,ACTIVE,21
+84,UPDATE_SNMP_LISTENER_STATUS,Update SNMP Client status,SNMP client $entityName status updated.,snmp client status updated,ACTIVE,21
+85,UPDATE_SNMP_STATUS,Update snmp server status,Status updated of SNMP server $entityName of server instance $serverInstanceName.,snmp server status updated,ACTIVE,21
+86,UPDATE_SNMP_ALERTS_TO_CLIENT,update snmp alerts to client,Alert $alertName  bind to client $entityName.,update snmp alerts to client,ACTIVE,21
+87,UPDATE_PRODUCT_CONFIGURATION,update product configuration,Product configuration updated in serverType $entityName .,update prioduct configuration,ACTIVE,22
+88,CREATE_IPLOG_PATHLIST,Create iplog service pathlist,New pathlist $entityName and parser $parserName created in service $serviceName in  server instance $serverInstanceName.,create pathlist in iplog parsing service,ACTIVE,4
+89,UPDATE_IPLOG_PATHLIST,Update iplog service pathlist,Pathlist $entityName updated in service $serviceName in  server instance $serverInstanceName.,Update pathlist in iplog parsing service,ACTIVE,4
+90,CREATE_PARSING_PATHLIST,Create parsing service pathlist,New pathlist $entityName created in service $serviceName in  server instance $serverInstanceName.,create pathlist in parsing service,ACTIVE,4
+91,UPDATE_PARSING_PATHLIST,Update parsing service pathlist,Pathlist $entityName updated in service $serviceName in  server instance $serverInstanceName.,update pathlist in parsing service,ACTIVE,4
+92,DELETE_PARSING_PATHLIST,Delete parsing service pathlist,Pathlist $entityName deleted from service $serviceName in  server instance $serverInstanceName.,Delete pathlist in parsing service,ACTIVE,4
+93,UPDATE_IPLOG_HASH_CONFIGURATION,Update iplog parsing service hash configuration,Iplog parsing service hash configuration updated in service $entityName in server instance $serverInstanceName .,Update iplog parsing service Hash configuration,ACTIVE,4
+94,UPDATE_PARTITION_PARAM,Update partition parameters,Partition parameters updated.,Update partition parameters,ACTIVE,4
+95,UPDATE_SERVER_INSTANCE_SYSTEMLOG,Update server instance system log,System log configuration updated for server instance  $serverInstanceName,Update server instance system log,ACTIVE,2
+96,UPDATE_SERVER_INSTANCE_STATISTICS,Update server instance statistics,Statistics configuration updated for server instance  $serverInstanceName,Update server instance statistics,ACTIVE,2
+97,UPDATE_THRESHOLD_SERVICE,update service threshold for service,update service threshold for service,update service threshold for service,ACTIVE,21
+98,UPDATE_THRESHOLD_GENERIC,update service threshold for generic,update service threshold for generic,update service threshold for generic,ACTIVE,21
+99,UPDATE_THRESHOLD_SERVER_INSTANCE,update service threshold for server instance,update service threshold for server instance,update service threshold for server instance,ACTIVE,21
+100,UPDATE_PROFILE_CONFIGURATION,update profile configuration,Profile configuration updated.,update profile configuration.,ACTIVE,22
+101,UPDATE_PROFILE_ACCESSGROUP_CONFIGURATION,update profile configuration,Profile configuration updated.,update profile configuration.,ACTIVE,22
+102,UPDATE_PROFILE_BUSINESS_CONFIGURATION,update profile configuration,Profile configuration updated.,update profile configuration.,ACTIVE,22
+103,UPDATE_PROFILE_BUSINESS_SUB_CONFIGURATION,update profile configuration,Profile configuration updated.,update profile configuration.,ACTIVE,22
+104,CREATE_POLICY,Create Policy,New policy $entityName created in server instance $serverInstanceName.,Create Policy.,ACTIVE,24
+105,UPDATE_POLICY,Update Policy,Policy $entityName updated in server instance $serverInstanceName.,Update Policy.,ACTIVE,24
+106,DELETE_POLICY,Delete Policy,Policy $entityName deleted from server instance $serverInstanceName.,Delete Policy.,ACTIVE,24
+107,CREATE_POLICY_ACTION,Create Policy Action,New policy action $entityName created in server instance $serverInstanceName.,Create Policy Action.,ACTIVE,24
+108,UPDATE_POLICY_ACTION,Update Policy Action,Policy action $entityName updated in server instance $serverInstanceName.,Update Policy Action.,ACTIVE,24
+109,DELETE_POLICY_ACTION,Delete Policy Action,Policy action $entityName deleted from server instance $serverInstanceName.,Delete Policy Action.,ACTIVE,24
+110,CREATE_SERVICE_TO_FILE_RENAME_AGENT,Create service configuration in file rename agent,Service $serviceName added to file renaming agent in server instance $serverInstanceName.,Create service to file renaming agent,ACTIVE,12
+111,UPDATE_SERVICE_TO_FILE_RENAME_AGENT,Update service configuration in file rename agent,Service $serviceName updated in file renaming agent in server instance $serverInstanceName.,Update service to file renaming agent,ACTIVE,12
+112,UPDATE_FILE_RENAME_AGENT_DETAILS,Update file rename agent details,File rename agent details updated in server instance $serverInstanceName.,Update file rename agent details,ACTIVE,12
+113,DELETE_SERVICE_FROM_FILE_RENAME_AGENT,Delete service configuration from file rename agent,Service $serviceName deleted from file renaming agent in server instance $serverInstanceName.,Delete service from file renaming agent,ACTIVE,12
+114,CREATE_CHAR_RENAME_TO_FILE_RENAME_AGENT,Create char rename operation ,Char rename operations created in service $serviceName and server instance $serverInstanceName.,Create char Rename operation ,ACTIVE,12
+115,UPDATE_CHAR_RENAME_TO_FILE_RENAME_AGENT,Update char rename operation,Char rename operations updated in service $serviceName and server instance $serverInstanceName.,Create char Rename operation ,ACTIVE,12
+116,DELETE_CHAR_RENAME_TO_FILE_RENAME_AGENT,Delete char rename operation,Char rename operations deleted from service $serviceName and server instance $serverInstanceName.,Create char Rename operation ,ACTIVE,12
+117,DELETE_POLICY_ACTION,Delete Policy Action,Policy action $entityName deleted from server instance $serverInstanceName.,Delete Policy Action.,ACTIVE,24
+118,CREATE_POLICY_CONDITION,Create Policy Condition,New policy condition $entityName created in server instance $serverInstanceName.,Create Policy Condition.,ACTIVE,24
+119,UPDATE_POLICY_CONDITION,Update Policy Condition,Policy condition $entityName updated in server instance $serverInstanceName.,Update Policy Condition.,ACTIVE,24
+120,DELETE_POLICY_CONDITION,Delete Policy Condition,Policy condition $entityName deleted from server instance $serverInstanceName.,Delete Policy Condition.,ACTIVE,24
+121,CREATE_POLICY_RULE_GROUP,Create Policy Rule Group,New policy Rule Group $entityName created in server instance $serverInstanceName.,Create Policy Rule Group.,ACTIVE,24
+122,UPDATE_POLICY_RULE_GROUP,Update Policy Rule Group,Policy Rule Group $entityName updated in server instance $serverInstanceName.,Update Policy Rule Group.,ACTIVE,24
+123,DELETE_POLICY_RULE_GROUP,Delete Policy Rule Group,Policy Rule Group $entityName deleted from server instance $serverInstanceName.,Delete Policy Rule Group.,ACTIVE,24
+124,CREATE_POLICY_RULE,Create Policy Rule,New policy Rule $entityName created in server instance $serverInstanceName.,Create Policy Rule.,ACTIVE,24
+125,UPDATE_POLICY_RULE,Update Policy Rule,Policy Rule $entityName updated in server instance $serverInstanceName.,Update Policy Rule.,ACTIVE,24
+126,DELETE_POLICY_RULE,Delete Policy Rule,Policy Rule $entityName deleted from server instance $serverInstanceName.,Delete Policy Rule.,ACTIVE,24
+127,UPDATE_MAPPING,Update Mapping,Mapping updated with mapping name $entityName.,Update Mapping.,ACTIVE,16
+128,CREATE_CONSOL_MAPPING,Create consolidation mapping,Consolidation Mapping $entityName created.,Create Consolidation Mapping.,ACTIVE,4
+129,UPDATE_CONSOL_MAPPING,Update consolidation mapping,Consolidation Mapping $entityName updated.,Update Consolidation Mapping.,ACTIVE,4
+130,DELETE_CONSOL_MAPPING,Delete consolidation mapping,Consolidation Mapping $entityName deleted.,Consolidation Mapping.,ACTIVE,4
+131,CREATE_MAPPING,Create Mapping,Mapping created with mapping name $entityName.,Create Mapping.,ACTIVE,16
+132,CREATE_DATABASE_DISTRIBUTION_DRIVER_ATTTRIBUTE,Create database distribution driver attribute,New Attribute created for driver $entityName in service $serviceName in server instance $serverInstanceName,Create database distribution driver attribute,ACTIVE,14
+133,DELETE_DATABASE_DISTRIBUTION_DRIVER_ATTTRIBUTE,Delete database distribution driver attribute,Attribute deleted from driver $entityName in service $serviceName in server instance $serverInstanceName,Delete database distribution driver attribute,ACTIVE,14
+134,UPDATE_DATABASE_DISTRIBUTION_DRIVER_ATTTRIBUTE,Update database distribution driver attribute,Attribute updated for driver $entityName in service $serviceName in server instance $serverInstanceName,Update database distribution driver attribute,ACTIVE,14
+135,UPDATE_COMPOSER_MAPPING_DETAIL,Update composer Mapping Detail,Details updated for mapping $entityName,Update composer Mapping Details,ACTIVE,17
+136,UPDATE_COMPOSER_MAPPING_DETAIL,Update Composer Mapping,Mapping updated with mapping name $entityName.,Update Composer Mapping.,ACTIVE,16
+137,CREATE_CONSOLIDATION_DEFINATION,Create Consolidation Defination,Consolidation Defination $entityName created in service $serviceName.,Create Consolidation Defination.,ACTIVE,11
+138,UPDATE_CONSOLIDATION_DEFINATION,Update Consolidation Defination,Consolidation Defination $entityName updated in service $serviceName.,Update Consolidation Defination.,ACTIVE,11
+139,DELETE_CONSOLIDATION_DEFINATION,Delete Consolidation Defination,Consolidation Defination $entityName deleted in service $serviceName.,Delete Consolidation Defination.,ACTIVE,11
+140,CREATE_DATABASE_QUERY,Create Database Query,Database query $entityName created in server instance $serverInstanceName,Create Database Query.,ACTIVE,24
+141,DELETE_DATABASE_QUERY,Delete Database Query,Database query $entityName deleted in server instance $serverInstanceName,Delete Database Query.,ACTIVE,24
+142,UPDATE_DATABASE_QUERY,Update Database Query,Database query $entityName updated in server instance $serverInstanceName,Update Database Query.,ACTIVE,24
+143,DELETE_RULE_LOOKUP_TABLE,Delete Rule Lookup Table,Rule lookup table with name $entityName deleted.,Delete Rule Lookup Table,ACTIVE,25
+144,CREATE_RULE_LOOKUP_TABLE,Create Rule Lookup Table,Rule lookup table with name $entityName created.,Create Rule Lookup Table,ACTIVE,25
+145,UPDATE_RULE_LOOKUP_TABLE,Update Rule Lookup Table,Rule lookup table with name $entityName updated.,Update Rule Lookup Table,ACTIVE,25
+146,UPDATE_RULE_LOOKUP_DATA,Update Rule Lookup Table,Data of rule lookup table with name $entityName was updated.,Update Rule Lookup Table,ACTIVE,25
+147,UPDATE_RULE_LOOKUP_FIELD_LIST,Update Rule Lookup Field List, Field list of rule lookup table $entityName updated,Update Rule Lookup Field List,ACTIVE,25
+148,DATA_UPLOADED_FOR_RULE_LOOKUP,Upload Rule Lookup Data,Data uploaded for rule lookup,Upload Rule Lookup,ACTIVE,25

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file-distribution-agent>
+
+	<initial-delay>60000</initial-delay>
+	<execution-interval>60000</execution-interval>
+	<destination-file-path>D:\MEDIATION_ROOT\DISTRIBUTION_ROOT\ZERO\aggregated</destination-file-path>
+	<add-filename-prefix>test</add-filename-prefix>
+	<database-info>
+		<datasource-name>MEDIATION_SERVER_DS</datasource-name>
+		<table-name>TBLMEDIATIONCDR</table-name>
+	</database-info>
+	<file-distribution-attribute-list>
+		<attribute>
+			<db-field-name>SESSIONID</db-field-name>
+			<unified-field-name>RecordNumber</unified-field-name>
+			<data-type>String</data-type>
+			<default-value></default-value>
+			<query-value></query-value>
+		</attribute>
+		<attribute>
+			<db-field-name>CALLEDSTATIONID</db-field-name>
+			<unified-field-name>BPartyMDN</unified-field-name>
+			<data-type>String</data-type>
+			<default-value></default-value>
+			<query-value></query-value>
+		</attribute>
+		<attribute>
+			<db-field-name>CALLINGSTATIONID</db-field-name>
+			<unified-field-name>APartyMDN</unified-field-name>
+			<data-type>String</data-type>
+			<default-value></default-value>
+			<query-value></query-value>
+		</attribute>
+	</file-distribution-attribute-list>
+	<required-date-check-attribute>LASTMODIFIEDDATE</required-date-check-attribute>
+</file-distribution-agent>

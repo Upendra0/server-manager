@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib> 
+<tlibversion>1.0</tlibversion>
+<jspversion>1.1</jspversion>
+<shortname>ShowErrorMessage</shortname>
+<info>Custom taglib for display error message</info>
+ 
+
+<tag>
+    <name>showError</name>
+    <tagclass>com.elitecore.sm.common.util.ErrorMessageTagHandler</tagclass>
+    
+    <attribute>
+      <name>errorMessage</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+  	</attribute>
+  	<attribute>
+      <name>errorId</name>
+      <rtexprvalue>true</rtexprvalue>
+  	</attribute>
+</tag>
+</taglib> 

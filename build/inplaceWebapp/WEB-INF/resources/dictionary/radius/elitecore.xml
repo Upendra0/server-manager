@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<attribute-list vendorid="21067" vendor-name="elitecore">
+	<attribute id="0" name="24Online-AVPair" type="string"/>
+	<attribute id="1" name="Tekelec-AVPair" type="string"/>
+	<attribute id="2" name="Cyberoam-AVPair" type="string"/>
+	<attribute id="3" name="IP-Pool-AVPair" type="string"/>
+	<attribute id="4" name="Rating-AVPair" type="string"/>
+	
+	<!-- 
+		Resource-Manager-AVPair possible values 
+		CustomerType=Prepaid
+		Status=Success 
+		Status=Failure 
+		Default-Sesssion-Timeout=172800
+		PrepaidSessionId=781
+	 -->
+	<attribute id="5" name="Resource-Manager-AVPair" type="string"/>
+	<!--
+		Customer profile AVPs
+	-->
+	<attribute id="111" name="Profile-Account-Status" type="string"/>
+	<attribute id="112" name="Profile-Account-Type" type="string"/>
+	<attribute id="113" name="Profile-Credit-Limit" type="integer"/>
+	<attribute id="114" name="Profile-User-Group" type="string"/>
+	<attribute id="115" name="Profile-Expiry-Date" type="date"/>
+	<attribute id="116" name="Profile-Identity" type="string" />
+	<attribute id="117" name="Profile-AVPair"  type="grouped">
+	  <attribute id="1" name="Param1"  type="string"/>
+	  <attribute id="2" name="Param2"  type="string"/>
+	  <attribute id="3" name="Param3"  type="string"/>
+	</attribute>
+	  
+	<!--
+	Packet Identification VSAs
+	-->
+	<attribute id="118" name="Src-Addr" type="string" />
+	<attribute id="119" name="Dst-Addr" type="string" />
+	<attribute id="120" name="Src-Proxy-Addr" type="string" />
+	<attribute id="121" name="Dst-Proxy-Addr" type="string" />
+	<attribute id="122" name="Vendor-Type" type="string" />
+	<attribute id="123" name="Grace-Type" type="integer" />
+	<attribute id="124" name="Hotline-Reason" type="string" ignore-case="true"/>
+	<attribute id="125" name="Profile-User-Name" type="string"/>
+	<attribute id="126" name="Authenticated-User-Identity" type="string"/>
+	<attribute id="127" name="Packet-Type" type="integer" />
+	<attribute id="128" name="Response-Time" type="integer" />
+	<attribute id="129" name="Satisfied-Policies" type="string" />
+	<attribute id="130" name="Group-Bandwidth" type="integer" />
+	<attribute id="141" name="Satisfied-Service-Policy" type="string" />
+		
+		
+	<!-- 
+		Prepaid Communication Attributes
+	 -->
+	<attribute id="131" name="PPAC-AVPair" type="string"/>	
+	<attribute id="132" name="PPAQ-AVPair" type="string"/>	
+	<attribute id="133" name="PTS-AVPair" type="string"/>
+	<attribute id="142" name="Satisfied-hotline-Policies" type="string" />
+	<attribute id="144" name="Concurrent-Login-Policy-Name" type="string" />
+</attribute-list>

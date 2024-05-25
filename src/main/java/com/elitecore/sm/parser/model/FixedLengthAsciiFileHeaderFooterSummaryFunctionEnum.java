@@ -1,0 +1,48 @@
+package com.elitecore.sm.parser.model;
+
+public enum FixedLengthAsciiFileHeaderFooterSummaryFunctionEnum {
+	
+	FILE_CREATION_DATETIME("FILE_CREATION_DATETIME","{FILE_CREATION_DATETIME,LENGTH,YYYYMMDDHHMMSS}"),
+    FILE_AVAILABLE_TIMESTAMP("FILE_AVAILABLE_TIMESTAMP","{FILE_AVAILABLE_TIMESTAMP,LENGTH,YYYYMMDDHHMMSS}"),
+    ORIGINAL_FILE_NAME("ORIGINAL_FILE_NAME","{ORIGINAL_FILE_NAME,LENGTH}"),
+    TOTAL_SUCCESS_RECORDS("TOTAL_SUCCESS_RECORDS","{TOTAL_SUCCESS_RECORDS,LENGTH}"),
+    TOTAL_ERROR_RECORDS("TOTAL_ERROR_RECORDS","{TOTAL_ERROR_RECORDS,LENGTH}"),
+    TOTAL_DISCARDED_RECORDS("TOTAL_DISCARDED_RECORDS","{TOTAL_DISCARDED_RECORDS,LENGTH}"),
+    TOTAL_RECORDS("TOTAL_RECORDS","{TOTAL_RECORDS,LENGTH}"),
+    BLANK_SPACES("BLANK_SPACES","{BLANK_SPACES,LENGTH}"),
+    MIN("MIN","{MIN(GENERAL_FIELD_NAME),LENGTH}"),
+    MINDATE("MINDATE","{MINDATE(GENERAL_FIELD_NAME),LENGTH,YYYYMMDDHHMMSS}"),
+    MAX("MAX","{MAX(GENERAL_FIELD_NAME),LENGTH}"),
+    MAXDATE("MAXDATE","{MAXDATE(GENERAL_FIELD_NAME),LENGTH,YYYYMMDDHHMMSS}"),
+    GETVALUEOF("GETVALUEOF","{GETVALUEOF(GENERAL_FIELD_NAME),LENGTH}"),
+    FIRSTVALUEOF("FIRSTVALUEOF","{FIRSTVALUEOF(GENERAL_FIELD_NAME),LENGTH}"),
+    LASTVALUEOF("LASTVALUEOF","{LASTVALUEOF(GENERAL_FIELD_NAME),LENGTH}");
+	
+	private FixedLengthAsciiFileHeaderFooterSummaryFunctionEnum() {
+
+	}
+
+	private String name;
+	private String value;
+
+	private FixedLengthAsciiFileHeaderFooterSummaryFunctionEnum(String name, String value) {
+		this.name = name;
+		this.value = value;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+}

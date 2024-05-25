@@ -1,0 +1,82 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="parsing-service">
+    <xs:complexType>
+      <xs:all>
+        <xs:element type="xs:int" name="minimum-thread"/>
+        <xs:element type="xs:string" name="sorting-criteria"/>
+        <xs:element type="xs:int" name="maximum-thread"/>
+        <xs:element type="xs:int" name="file-batch-size"/>
+        <xs:element type="xs:int" name="queue-size"/>
+        <xs:element type="xs:string" name="file-sequence-order"/>
+        <xs:element type="xs:int" name="no-files-alert-interval"/>
+        <xs:element type="xs:string" name="startup-mode"/>
+        <xs:element type="xs:string" name="file-range"/>
+        <xs:element type="xs:int" name="execution-interval"/>
+        <xs:element type="xs:string" name="immediate-execute-on-startup"/>
+        <xs:element type="xs:string" name="store-cdr-file-summary-in-db"/>
+        <xs:element type="xs:string" name="equal-check-field"/>
+        <xs:element type="xs:string" name="equal-check-value"/>
+        <xs:element type="xs:string" name="sorting-type"/>
+        <xs:element name="cdr-date-summary">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:string" name="date"/>
+              <xs:element type="xs:string" name="type"/>
+              <xs:element type="xs:string" name="override-file-date"/>
+              <xs:element type="xs:string" name="override-file-date-type"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="file-grouping">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:string" name="grouping-type"/>
+            </xs:all>
+            <xs:attribute type="xs:string" name="enabled"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:int" name="record-batch-size"/>
+        <xs:element name="path-list">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="path">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element type="xs:string" name="archive-path"/>
+                    <xs:element type="xs:string" name="read-file-path"/>
+                    <xs:element name="plugin-list">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="plugin" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:all>
+                                <xs:element type="xs:string" name="plugin-name"/>
+                                <xs:element type="xs:string" name="is-compressed-input-file"/>
+                                <xs:element type="xs:string" name="is-compressed-output-file"/>
+                                <xs:element type="xs:string" name="read-filename-prefix"/>
+                                <xs:element type="xs:string" name="read-filename-suffix"/>
+                                <xs:element type="xs:string" name="read-filename-contains"/>
+                                <xs:element type="xs:string" name="read-filename-exclude-types"/>
+                                <xs:element type="xs:string" name="write-file-path"/>
+                                <xs:element type="xs:string" name="write-filename-prefix" minOccurs="0"/>
+                                <xs:element type="xs:string" name="write-file-splitting"/>
+                                <xs:element type="xs:int" name="max-files-count-alert"/>
+                                <xs:element type="xs:int" name="plugin-instance-id"/>
+                                <xs:element type="xs:string" name="write-cdr-header-footer"/>
+                                <xs:element type="xs:string" name="write-cdr-default-attributes"/>
+                              </xs:all>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

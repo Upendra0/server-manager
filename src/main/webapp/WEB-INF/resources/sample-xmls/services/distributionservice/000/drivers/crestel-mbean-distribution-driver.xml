@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE driver-mapping SYSTEM "http://www.elitecore.com">-->
+
+<crestel-mbean-distribution-driver>
+
+
+	<jndi-property-name>MEDIATION_SERVER_JNDI_1</jndi-property-name>
+    <is-batch-process-rating>false</is-batch-process-rating>
+   <path-list>
+		<path>
+			<read-file-path>/home/elitecore/MEDIATION_ROOT/PROCESSING_ROOT/SGSN/input/</read-file-path>        <!-- source path from where we have to read file -->
+			<read-filename-prefix></read-filename-prefix>     <!-- Read only those file whose prefix is this -->
+			<read-filename-suffix></read-filename-suffix>     <!-- Read only those file whose suffix is this -->
+			<read-filename-contains></read-filename-contains> <!-- Read only those file whose name contains this -->
+			<read-filename-exclude-types></read-filename-exclude-types>	<!-- Read files except this extension list -->
+		</path>
+	</path-list>
+    <attribute-list>
+	    <attribute>
+			    <rating-field-name>CALLING-STATION-ID</rating-field-name>
+	            <unified-field-name>APartyMDN</unified-field-name>
+				<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	     
+	    <attribute>
+	            <rating-field-name>CALLED-STATION-ID</rating-field-name>
+	            <unified-field-name>BPartyMDN</unified-field-name>
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	     
+	    <attribute>
+	            <rating-field-name>SESSION-CONNECT-TIME</rating-field-name>
+	            <unified-field-name>StartDate</unified-field-name>
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+		
+	    <attribute>
+	            <rating-field-name>SESSION-DISCONNECT-TIME</rating-field-name>
+	            <unified-field-name>EndDate</unified-field-name>
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+
+		<attribute>
+	            <rating-field-name>CALL-DIRECTION</rating-field-name>
+	            <unified-field-name>CallDirection</unified-field-name>
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute> 
+	     
+	     <attribute>
+	            <rating-field-name>SESSION-TIME</rating-field-name>
+	            <unified-field-name>Duration</unified-field-name>
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute> 
+	     
+	     <attribute>
+	            <rating-field-name>ACCT-SESSION-ID</rating-field-name>
+	            <unified-field-name>RecordNumber</unified-field-name>
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute>   
+	     
+	     <attribute>
+				<rating-field-name>RATINGSTREAM</rating-field-name>
+	            <unified-field-name>RatingStream</unified-field-name>				
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute>   
+	     
+	     <attribute>
+				<rating-field-name>SOURCE-UNIT-NAME</rating-field-name>
+	            <unified-field-name>SourceUnitName</unified-field-name>				
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute>   
+	     
+	     <attribute>
+				<rating-field-name>SERVICE-NAME</rating-field-name>
+	            <unified-field-name>EventType</unified-field-name>				
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute>   
+	     
+	     <attribute>
+				<rating-field-name>CLIENT-IP-ADDRESS</rating-field-name>
+	            <unified-field-name></unified-field-name>				
+	            <data-type>String</data-type>
+	            <default-value>192.168.5.53</default-value>
+	     </attribute>   
+	     
+	     <attribute>
+				<rating-field-name>SIGNALLING-STANDARD</rating-field-name>
+	            <unified-field-name>General14</unified-field-name>				
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute>
+	     
+	     <attribute>
+				<rating-field-name>LINKID</rating-field-name>
+	            <unified-field-name>General4</unified-field-name>				
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute>
+	     
+	     <attribute>
+				<rating-field-name>STPNAME</rating-field-name>
+	            <unified-field-name>General1</unified-field-name>				
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute>
+	     
+	     <attribute>
+				<rating-field-name>SI</rating-field-name>
+	            <unified-field-name>General15</unified-field-name>				
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute>
+	     
+	     <attribute>
+				<rating-field-name>OPC</rating-field-name>
+	            <unified-field-name>General7</unified-field-name>				
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute>
+	     
+	     <attribute>
+				<rating-field-name>DPC</rating-field-name>
+	            <unified-field-name>General8</unified-field-name>				
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute>
+	     
+	     <attribute>
+				<rating-field-name>MSU-COUNT</rating-field-name>
+	            <unified-field-name>General5</unified-field-name>				
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute>
+	     
+	     <attribute>
+				<rating-field-name>OCT-COUNT</rating-field-name>
+	            <unified-field-name>General6</unified-field-name>				
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute>
+	     
+	     <attribute>
+				<rating-field-name>COLLECTOR</rating-field-name>
+	            <unified-field-name>General13</unified-field-name>				
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute>
+	     
+	     <attribute>
+				<rating-field-name>CGPAPC</rating-field-name>
+	            <unified-field-name>General11</unified-field-name>				
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute>
+	     
+	     <attribute>
+				<rating-field-name>CDPAPC</rating-field-name>
+	            <unified-field-name>General12</unified-field-name>				
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute>
+	     
+	     <attribute>
+				<rating-field-name>MAP</rating-field-name>
+	            <unified-field-name>General10</unified-field-name>				
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute>
+	     
+	     <attribute>
+				<rating-field-name>OPCODE</rating-field-name>
+	            <unified-field-name>General9</unified-field-name>				
+	            <data-type>String</data-type>
+	            <default-value></default-value>
+	     </attribute>
+    </attribute-list>
+    <method-type>
+    	<method-identifier-filed>General7</method-identifier-filed> <!-- Unified field name -->
+    	<method-identifier-filed-value>ALIVE</method-identifier-filed-value><!-- matching value with Unified field name -->
+    </method-type>
+</crestel-mbean-distribution-driver>
+
+<!-- ========================================================== -->
+<!-- Details of each configuration parameter                    -->
+<!-- ========================================================== -->
+
+<!--
+<crestel-api-distribution-driver>
+
+    <jndi-property-name>MEDIATION_SERVER_JNDI_1</jndi-property-name>
+        This value must be uniquely specified in jndi.properties.xml
+        
+	<is-batch-process-rating>true</is-batch-process-rating>
+		If this parameter is true then batch of records will be processed by rating api
+		othere wise it will process a single record at a time.
+		
+    </attribute-list>
+        <attribute>
+            <rating-field-name></rating-field-name>
+                Rating's Field Name for perticular attribute
+            <unified-field-name></unified-field-name>
+                Unified Field Name for perticular attribute
+            <data-type></data-type>
+                Data-type for perticular attribute
+            <default-value></default-value>
+                Default-Value for perticular attribute
+        </attribute>
+    </attribute-list>
+    
+    <method-type>
+    	<method-identifier-filed>General7</method-identifier-filed>
+    	<method-identifier-filed-value>ALIVE</method-identifier-filed-value>
+    
+    	if this parameter is set then mbean driver compare 
+    	<method-identifier-filed> value with <method-identifier-filed-value>, 
+    	if returns true then mbean driver call authorization request otherwise call accounting request of rating. 
+    	
+    </method-type>
+    
+</crestel-api-distribution-driver>
+
+ -->
+
+<!-- ========================================================== -->
+<!-- End of configuration details                               -->
+<!-- ========================================================== -->

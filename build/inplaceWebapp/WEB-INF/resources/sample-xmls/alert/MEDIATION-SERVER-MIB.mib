@@ -1,0 +1,3901 @@
+--Mediation Server MIB Version 6.0
+
+MEDIATION-SERVER-MIB DEFINITIONS ::= BEGIN
+
+IMPORTS
+       	MODULE-IDENTITY, OBJECT-TYPE, OBJECT-IDENTITY,
+       	Counter64, Integer32,
+       	IpAddress, TimeTicks, mib-2      FROM SNMPv2-SMI
+       	SnmpAdminString                  FROM SNMP-FRAMEWORK-MIB
+       	MODULE-COMPLIANCE, OBJECT-GROUP  FROM SNMPv2-CONF;
+
+	internet      OBJECT IDENTIFIER ::= { iso org(3) dod(6) 1 }
+	directory     OBJECT IDENTIFIER ::= { internet 1 }
+	mgmt          OBJECT IDENTIFIER ::= { internet 2 }
+	experimental  OBJECT IDENTIFIER ::= { internet 3 }
+	private       OBJECT IDENTIFIER ::= { internet 4 }
+	enterprises   OBJECT IDENTIFIER ::= { private 1 }
+	elitecore     OBJECT IDENTIFIER ::= { enterprises 21067 }
+
+crestelMediationServer MODULE-IDENTITY
+	
+--Below Details need manual change every time when changing MIB Defination
+
+	LAST-UPDATED 
+		"201301050000Z"
+	ORGANIZATION 
+		"Elitecore Technology Pvt. Ltd"
+	CONTACT-INFO 
+		"Elitecore 904, Silicon Tower, Behind Pariseema Building, Off C.G.Road, Nr. Lal Bungalow, Ahmedabad 380-006, INDIA. EMail: mediation@sterlite.com "
+	DESCRIPTION 
+		"The MIB module for entities implementing the mediation server side"
+	REVISION 
+		"201301050000Z"
+	DESCRIPTION 
+		"Initial version"
+
+	::= { elitecore 7 }
+
+mediationServerGeneric NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Mediation Server Generic Alert"
+	::= { crestelMediationServer 1 }
+
+
+-- Server group , this Group contains details about Server level Alerts and MibObjects
+
+server OBJECT IDENTIFIER ::= { crestelMediationServer 2 }
+
+serverGeneric NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Server Generic Alert"
+	::= { server 1 }
+
+alertSeverity NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Mediation Server Alert Severity"
+	::= { server 2 }
+
+instanceName NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Mediation Server Instance Name"
+	::= { server 3 }
+	
+moduleName NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Mediation Server Module Name"
+	::= { server 4 }
+
+serverUp NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of server is up"
+	::= { server 11 }
+
+serverDown NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated when server goes down"
+	::= { server 12 }
+
+failedToStart NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of failure in start up process of server"
+	::= { server 13 }
+
+outOfMemory NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated when server is goes out of memory"
+	::= { server 14 }
+
+highCPU NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of CPU Utilization will reach up to certain limit"
+	::= { server 15 }
+
+reloadCache NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of reload cache operation"
+	::= { server 16 }
+
+softRestart NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of soft restart operation"
+	::= { server 17 }
+
+reloadConfig NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of reload config operation"
+	::= { server 18 }
+
+syncConfToServer NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of synchronization to operation"
+	::= { server 19 }
+
+syncConfFromServer NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of synchronization from operation"
+	::= { server 20 }
+
+licenseNotification NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated as reminder for License Date expiry"
+	::= { server 21 }
+
+resetCounter NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of reset counter"
+	::= { server 22 }
+
+highMemoryUtilization NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Memory Utilization Exceeds."
+	::= { server 23 }
+
+highLoadAverage NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of High Load Average."
+	::= { server 24 }
+
+-- OID from 11 to 100 will be reserved for future use at server Level
+
+mediationServerMIBObject  OBJECT IDENTIFIER ::= { server 101 }
+
+serverUpTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+    DESCRIPTION
+             "Server StartUp Time"
+    ::= { mediationServerMIBObject 1 }
+
+serverReloadConfigTime OBJECT-TYPE
+    SYNTAX      TimeTicks
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+             "Last Server configuration reload time"
+    ::= { mediationServerMIBObject 2 }
+
+serviceTable OBJECT-TYPE
+    SYNTAX  SEQUENCE OF ServiceTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+             "A Table represents services"
+    ::= { mediationServerMIBObject 3 }
+
+serviceTableEntry OBJECT-TYPE
+    SYNTAX  ServiceTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+             "An entry represents a single service"
+    INDEX      { serviceEntryIndex }
+    ::= { serviceTable 1 }
+
+
+ServiceTableEntry ::= SEQUENCE {
+      	serviceEntryIndex		Integer32,
+		serviceId				SnmpAdminString,
+		serviceStatus			INTEGER
+}
+
+serviceEntryIndex OBJECT-TYPE
+    SYNTAX		Integer32 (1..2147483647)
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+             "A number uniquely identify service in server"
+    ::= { serviceTableEntry 1 }
+
+serviceId OBJECT-TYPE
+    SYNTAX   	SnmpAdminString
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+             "Identity of service"
+    ::= { serviceTableEntry 2 }
+
+serviceStatus OBJECT-TYPE
+    SYNTAX INTEGER {
+			notStarted(1), 
+			startupInProgress(2),
+            running(3),
+	     	other(4),
+			shutDownInProgress(5),
+			stopped(6)}
+    MAX-ACCESS	read-only
+    STATUS     current
+    DESCRIPTION
+              "Service status of service"
+    ::= { serviceTableEntry 3 }
+		
+agentTable OBJECT-TYPE
+    SYNTAX  	SEQUENCE OF AgentTableEntry
+    MAX-ACCESS 	not-accessible
+    STATUS     	current
+    DESCRIPTION
+             "A Table represents agents in server"
+    ::= { mediationServerMIBObject 4 }
+	   
+agentTableEntry OBJECT-TYPE
+    SYNTAX     	AgentTableEntry
+    MAX-ACCESS 	not-accessible
+    STATUS     	current
+    DESCRIPTION
+             "An entry representing a single agent in server"
+    INDEX      { agentEntryIndex }
+    ::= { agentTable 1 }
+
+
+AgentTableEntry ::= SEQUENCE {
+      	agentEntryIndex		Integer32,
+		agentId				SnmpAdminString,
+		agentStatus			INTEGER
+}
+
+agentEntryIndex OBJECT-TYPE
+    SYNTAX		Integer32 (1..2147483647)
+    MAX-ACCESS 	not-accessible
+    STATUS    	current
+    DESCRIPTION
+             "A number uniquely identifying agent entry"
+    ::= { agentTableEntry 1 }
+
+agentId OBJECT-TYPE
+    SYNTAX   	SnmpAdminString
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+             "Identity of agent"
+    ::= { agentTableEntry 2 }
+
+agentStatus OBJECT-TYPE
+    SYNTAX INTEGER {other(1),
+                    initializing(2),
+                    running(3),
+					stopped(4)}
+    MAX-ACCESS  read-only
+    STATUS     	current
+    DESCRIPTION
+              "Status of agent"
+    ::= { agentTableEntry 3 }
+
+cpuUsageTable OBJECT-TYPE
+    SYNTAX  SEQUENCE OF CPUUsageTableEntry
+    MAX-ACCESS not-accessible
+    STATUS     current
+    DESCRIPTION
+             "A Table representing Average CPU Usage"
+    ::= { mediationServerMIBObject 5 }
+
+cpuUsageTableEntry OBJECT-TYPE
+    SYNTAX     	CPUUsageTableEntry
+    MAX-ACCESS 	not-accessible
+    STATUS     	current
+    DESCRIPTION
+             "An entry representing Average CPU usage"
+    INDEX      { cpuUsageEntryIndex }
+    ::= { cpuUsageTable 1 }
+
+CPUUsageTableEntry ::= SEQUENCE {
+      	cpuUsageEntryIndex		Integer32,
+		avgCPUUsage				Counter64
+}
+
+cpuUsageEntryIndex OBJECT-TYPE
+    SYNTAX		Integer32 (1..2147483647)
+    MAX-ACCESS 	not-accessible
+    STATUS     	current
+    DESCRIPTION
+             "A number uniquely identifying Average CPU Usage entry"
+    ::= { cpuUsageTableEntry 1 }
+
+avgCPUUsage OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+             "request for getting Average CPU Usage"
+    ::= { cpuUsageTableEntry 2 }
+
+memoryUsageTable OBJECT-TYPE
+    SYNTAX  	SEQUENCE OF MEMORYUsageTableEntry
+    MAX-ACCESS 	not-accessible
+    STATUS     	current
+    DESCRIPTION
+             "The table representing Average Memory usage"
+    ::= { mediationServerMIBObject 6 }
+
+memoryUsageTableEntry OBJECT-TYPE
+    SYNTAX  	MEMORYUsageTableEntry
+    MAX-ACCESS 	not-accessible
+    STATUS     	current
+    DESCRIPTION
+             "The row representing Average Memory usage"
+    INDEX      { memoryUsageEntryIndex }
+    ::= { memoryUsageTable 1 }
+
+
+MEMORYUsageTableEntry ::= SEQUENCE {
+      	memoryUsageEntryIndex	Integer32,
+		avgMemoryUsage			Counter64
+}
+
+memoryUsageEntryIndex OBJECT-TYPE
+    SYNTAX     	Integer32 (1..2147483647)
+    MAX-ACCESS 	not-accessible
+    STATUS     	current
+    DESCRIPTION
+             "A number uniquely identifying Average Memory usage entry"
+    ::= { memoryUsageTableEntry 1 }
+
+avgMemoryUsage OBJECT-TYPE
+    SYNTAX      Counter64
+    MAX-ACCESS  read-only
+    STATUS      current
+    DESCRIPTION
+             "Average Memory Usage"
+    ::= { memoryUsageTableEntry 2 }
+
+database  OBJECT IDENTIFIER ::= { crestelMediationServer 3 }
+
+databaseGeneric NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Database generic alert"
+	::= { database 1 }
+
+databaseUp NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated whin database goes up"
+	::= { database 2 }
+
+databaseDown NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated when database goes down"
+	::= { database 3 }
+
+databaseError NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated when any database error occured"
+	::= { database 4 }
+
+-- Service group this node contains information about all services
+
+service  OBJECT IDENTIFIER ::= { crestelMediationServer 4 }
+
+serviceGeneric NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Service generic alert"
+	::= { service 1 }
+
+
+
+collectionService  OBJECT IDENTIFIER ::= { service 2 }
+
+collectionServiceUp NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of collection service instance goes up"
+	::= { collectionService 1 }
+
+collectionServiceDown NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of collection service instance goes down"
+	::= { collectionService 2 }
+
+collectionServiceFailedToStart NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of failure in start up process of collection service"
+	::= { collectionService 3 }
+
+collectionServiceOutOfMemory NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of collection service instance goes out of memory"
+	::= { collectionService 4 }
+
+collectionServiceReloadConfig NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of reload config operation for collection service instance"
+	::= { collectionService 5 }
+
+collectionServiceSyncTo NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of synchronization to operation for collection service instance"
+	::= { collectionService 6 }
+
+collectionServiceSyncFrom NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of synchronization from operation for collection service instance"
+	::= { collectionService 7 }
+
+collectionServiceNoCDRReceived NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated if no CDR has been received from specific time period or interval"
+	::= { collectionService 8 }
+
+collectionServiceFileOutOfSequence NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of unexpected file sequence or missmach in sequence"
+	::= { collectionService 9 }
+
+collectionServiceFileTransferFailed NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of some abnormal condition like no access to destination folder or no space left on the device"
+	::= { collectionService 10 }
+
+collectionServiceRejectedFileAboveSpecifiedThresold NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of regection counter reach up to certain limit"
+	::= { collectionService 11 }
+
+collectionServiceReceivedFileSizeZero NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of receiving file of zero size"
+	::= { collectionService 12 }
+
+
+	
+collectionServiceConnectionLost NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of connection lost to database or ftp server"
+	::= { collectionService 13 }
+
+collectionServiceNoSpaceLeft NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"geneated at the time of no space left on the device"
+	::= { collectionService 14 }
+
+collectionServiceFileLimitReached NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of reaching specific limit for file"
+	::= { collectionService 15 }
+
+collectionServiceDuplicateFileReceived NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of receiving duplicate file"
+	::= { collectionService 16 }
+
+collectionServiceError NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Error In Collection Service"
+	::= { collectionService 17 }
+
+collectionServiceConnectionEstablished NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Connection Established In Collection Service"
+	::= { collectionService 18 }
+
+collectionServiceMoveRenameFileAlert NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Move or Rename Operation on File In Collection Service"
+	::= { collectionService 19 }
+
+collectionServiceMaxFilesAlert NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Maximum Files Threshold Reached In Collection Service"
+	::= { collectionService 20 }
+
+collectionServiceMaxRetryReached NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Maximum Retry Reached In Collection Service"
+	::= { collectionService 21 }
+
+collectionServiceDiskSpaceResolved NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Disk space is Resolved In Collection Service"
+	::= { collectionService 22 }
+	
+collectionServiceFileSizeNotInRange NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of receiving file of size not in range within configured range"
+	::= { collectionService 25 }
+	
+collectionServiceMIBObjects  OBJECT IDENTIFIER ::=  { collectionService 101 }
+
+collectionServiceTable OBJECT-TYPE
+    SYNTAX  	SEQUENCE OF CollectionServiceEntry
+    MAX-ACCESS 	not-accessible
+    STATUS     	current
+    DESCRIPTION
+             "The table listing the colelction service instance"
+    ::= { collectionServiceMIBObjects 1 }
+
+
+collectionServiceEntry OBJECT-TYPE
+    SYNTAX     	CollectionServiceEntry
+    MAX-ACCESS	not-accessible
+    STATUS     	current
+    DESCRIPTION
+             "An entry representing a collection service instance"
+    INDEX      { collectionServiceIndex }
+    ::= { collectionServiceTable 1 }
+
+CollectionServiceEntry ::= SEQUENCE {
+      	collectionServiceIndex								Integer32,
+		collectionServiceID 								SnmpAdminString,
+		collectionServiceStatus 							INTEGER,
+		collectionServiceResetCounters						Counter64,
+		collectionServiceUpTime								TimeTicks,
+		collectionServiceDownTime							TimeTicks,
+		collectionServiceConfigReloadTime					TimeTicks,
+		collectionServiceCounterResetTime					TimeTicks,
+		collectionServiceAvgTPS								Counter64,
+
+		collectionServiceTotalCollectedFile					Counter64,
+		collectionServiceTotalSuccessfullyCollectedFile		Counter64,
+		collectionServiceTotalFailedToCollectFile			Counter64,
+		collectionServiceTotalPendingFile					Counter64,
+		collectionServiceTotalInProcessFile					Counter64
+}
+
+collectionServiceIndex OBJECT-TYPE
+    SYNTAX		Integer32 (1..2147483647)
+    MAX-ACCESS	not-accessible
+    STATUS		current
+    DESCRIPTION
+             "A number uniquely identifying each collection service instance"
+    ::= { collectionServiceEntry 1 }
+
+collectionServiceID OBJECT-TYPE
+    SYNTAX  	SnmpAdminString
+    MAX-ACCESS 	read-only
+    STATUS		current
+    DESCRIPTION
+             "Collection service id"
+    ::= { collectionServiceEntry 2 }
+
+collectionServiceStatus OBJECT-TYPE
+    SYNTAX INTEGER {
+			notStarted(1), 
+			startupInProgress(2),
+            running(3),
+	     	other(4),
+			shutDownInProgress(5),
+			stopped(6)}
+    MAX-ACCESS  read-only
+    STATUS		current
+    DESCRIPTION
+              "Status of collection service"
+    ::= { collectionServiceEntry 3 }
+
+collectionServiceResetCounters OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS  read-write
+    STATUS		current
+    DESCRIPTION
+             "Reset all counters for this collection service instance"
+    ::= { collectionServiceEntry 4 }
+
+collectionServiceUpTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Service up time of collection service instance"
+    ::= { collectionServiceEntry 5 }
+
+collectionServiceDownTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Collection service down time of collection service instance"
+    ::= { collectionServiceEntry 6 }
+
+collectionServiceConfigReloadTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Configuration reload time of collection service instance"
+    ::= { collectionServiceEntry 7 }
+
+collectionServiceCounterResetTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Counter reset time of collection service instance"
+    ::= { collectionServiceEntry 8 }
+
+collectionServiceAvgTPS OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Average TPS of collection service instance"
+    ::= { collectionServiceEntry 9 }
+
+collectionServiceTotalCollectedFile OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total collected files by collection service instance"
+    ::= { collectionServiceEntry 10}
+
+collectionServiceTotalSuccessfullyCollectedFile OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total successfully collected files by collection service instace"
+    ::= { collectionServiceEntry 11 }
+
+collectionServiceTotalFailedToCollectFile OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total failures while collectiong file by collection service instance"
+    ::= { collectionServiceEntry 12 }
+
+collectionServiceTotalPendingFile OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total pendig files by collection service instance"
+    ::= { collectionServiceEntry 13 }
+
+collectionServiceTotalInProcessFile OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total in progress files at collection service instance"
+    ::= { collectionServiceEntry 14 }
+
+gtpPrimeCollectionService  OBJECT IDENTIFIER ::= { service 3 }
+
+gtpPrimeServiceUp NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of GTP Prime service instance goes up"
+	::= { gtpPrimeCollectionService 1 }
+
+gtpPrimeServiceDown NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of GTP Prime service instance goes down"
+	::= { gtpPrimeCollectionService 2 }
+
+gtpPrimeServiceFailedToStart NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of GTP Prime service instance failed to start"
+	::= { gtpPrimeCollectionService 3 }
+
+gtpPrimeServiceOutOfMemory NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of GTP Prime service instance goes out of menory"
+	::= { gtpPrimeCollectionService 4 }
+
+gtpPrimeServiceReloadConfig NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated when configuration reloaded for GTP Prime service instance"
+	::= { gtpPrimeCollectionService 5 }
+
+gtpPrimeServiceSyncTo NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of synchronozed to configuration operation to GTP Prime Service instance"
+	::= { gtpPrimeCollectionService 6 }
+
+gtpPrimeServiceSyncFrom NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of synchronozed from configuration operation to GTP Prime Service instance"
+	::= { gtpPrimeCollectionService 7 }
+
+gtpPrimeServiceNoRequestReceived NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of no request receive for specific interval in GTP Prime Service instance"
+	::= { gtpPrimeCollectionService 8 }
+
+gtpPrimeServiceTotalRejectedRequestAboveSpecifiedThresold NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of total rejected request reach up to certain limit for GTP Prime Service instance"
+	::= { gtpPrimeCollectionService 9 }
+
+gtpPrimeServiceNoSpaceLeftOnDevice NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time when no space left on device for GTP Prime Service instance"
+	::= { gtpPrimeCollectionService 10 }
+
+gtpPrimeServiceError NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time Error in GTP Prime Collection Service"
+	::= { gtpPrimeCollectionService 11 }
+	
+gtpPrimeCollectionServiceRedirectionRequest NOTIFICATION-TYPE
+STATUS current
+DESCRIPTION 
+	"Generated at the time When sending Redirection Request in GTP Prime Collection Service"
+::= { gtpPrimeCollectionService 12 }
+
+gtpPrimeServiceEchoRequestDropped NOTIFICATION-TYPE
+STATUS current
+DESCRIPTION 
+	"Generated at the time When Echo Request Dropped in GTP Prime Collection Service"
+::= { gtpPrimeCollectionService 13 }
+
+gtpPrimeServiceNodeAliveRequestDropped NOTIFICATION-TYPE
+STATUS current
+DESCRIPTION 
+	"Generated at the time When Node Alive Request Dropped in GTP Prime Collection Service"
+::= { gtpPrimeCollectionService 14 }
+
+gtpPrimeServiceRedirectionRequestDropped NOTIFICATION-TYPE
+STATUS current
+DESCRIPTION 
+	"Generated at the time When Redirection Request Dropped in GTP Prime Collection Service"
+::= { gtpPrimeCollectionService 15 }
+
+gtpPrimeServiceDataRecordRequestDropped NOTIFICATION-TYPE
+STATUS current
+DESCRIPTION 
+	"Generated at the time When Data Request Dropped in GTP Prime Collection Service"
+::= { gtpPrimeCollectionService 16 }
+
+gtpPrimeServiceRequestDropped NOTIFICATION-TYPE
+STATUS current
+DESCRIPTION 
+	"Generated at the time When Request Dropped in GTP Prime Collection Service"
+::= { gtpPrimeCollectionService 17 }
+
+gtpPrimeServiceRequestMalformed NOTIFICATION-TYPE
+STATUS current
+DESCRIPTION 
+	"Generated at the time When Request Malformed in GTP Prime Collection Service"
+::= { gtpPrimeCollectionService 18 }
+
+gtpPrimeServiceRequestInvalid NOTIFICATION-TYPE
+STATUS current
+DESCRIPTION 
+	"Generated at the time When Request Invalidated in GTP Prime Collection Service"
+::= { gtpPrimeCollectionService 19 }
+
+gtpPrimeServiceDiskSpaceResolved NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Disk space is Resolved In GTP Collection Service"
+	::= { gtpPrimeCollectionService 20 }
+
+gtpPrimeCollectionServiceMIBObjects  OBJECT IDENTIFIER ::=  { gtpPrimeCollectionService 101 }
+
+gtpPrimeCollectionServiceTable OBJECT-TYPE
+	SYNTAX		SEQUENCE OF GtpPrimeServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "The table listing the GTP Prime service instances"
+    ::= { gtpPrimeCollectionServiceMIBObjects 1 }
+
+gtpPrimeServiceEntry OBJECT-TYPE
+	SYNTAX     	GtpPrimeServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "An entry representing a GTP Prime Service instance"
+    INDEX      { gtpPrimeServiceIndex }
+    ::= { gtpPrimeCollectionServiceTable 1 }
+
+
+GtpPrimeServiceEntry ::= SEQUENCE {
+		gtpPrimeServiceIndex 											Integer32, 
+		gtpPrimeServiceID      											SnmpAdminString, 
+		gtpPrimeServiceStatus											INTEGER,	
+		gtpPrimeServiceResetCounter									Counter64,
+		gtpPrimeServiceServiceUpTime        	   	              		TimeTicks,
+		gtpPrimeServiceServiceDownTime      	                   		TimeTicks, 
+		gtpPrimeServiceConfigReloadTime									TimeTicks,
+		gtpPrimeServiceCounterResetTime									TimeTicks,
+		gtpPrimeServiceAvgTPS											Counter64,
+	
+		gtpPrimeServiceTotalDroppedRequest								Counter64, 
+		gtpPrimeServiceTotalInvalidClientRequest                	  	Counter64, 
+		gtpPrimeServiceTotalRequestReceived          					Counter64, 
+		gtpPrimeServiceTotalEchoRequestReceived                         Counter64, 
+		gtpPrimeServiceTotalNodeAliveRequestReceived                    Counter64,  
+		gtpPrimeServiceTotalRedirectionRequestReceived                  Counter64,         
+		gtpPrimeServiceTotalDataRecordTransferRequestReceived			Counter64, 
+		gtpPrimeServiceTotalRedirectionResponseSend                     Counter64, 
+		gtpPrimeServiceTotalEchoResponseSend                            Counter64, 
+		gtpPrimeServiceTotalNodeAliveResponseSend                       Counter64,      
+		gtpPrimeServiceTotalDataRecordTransferResponseSend              Counter64,       
+		gtpPrimeServiceTotalVersionNotSupportedResponseSend             Counter64,      
+		gtpPrimeServiceTotalMalformedRequestPacketReceived             	Counter64, 
+		gtpPrimeServiceTotalEchoRequestDropped                          Counter64, 
+		gtpPrimeServiceTotalNodeAliveDropped                            Counter64, 
+		gtpPrimeServiceTotalRedirectionDropped                          Counter64,        
+		gtpPrimeServiceTotalDataRecordTransferRequestDropped            Counter64,         
+		gtpPrimeServiceTotalDataRecordTransferFailureResponse           Counter64,  
+		gtpPrimeServiceTotalRedirectionFailureResponse                 	Counter64, 
+		gtpPrimeServiceTotalEchoRequestSend                             Counter64, 
+		gtpPrimeServiceTotalEchoResponseReceived                        Counter64, 
+		gtpPrimeServiceTotalNodeAliveRequestSend                        Counter64, 
+		gtpPrimeServiceTotalEchoRequestRetry                            Counter64, 
+		gtpPrimeServiceTotalNodeAliveRequestRetry                       Counter64, 
+		gtpPrimeServiceTotalMalformedRequestRetry                       Counter64,     
+		gtpPrimeServiceTotalMalformedEchoResponseReceived               Counter64,          
+		gtpPrimeServiceTotalMalformedNodeAliveResponseReceived			Counter64
+}
+
+gtpPrimeServiceIndex OBJECT-TYPE
+	SYNTAX		Integer32 (1..2147483647)
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "A number uniquely identifying each GTP Prime Service instance"
+    ::= { gtpPrimeServiceEntry 1 }
+
+gtpPrimeServiceID OBJECT-TYPE
+	SYNTAX		SnmpAdminString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Represent GTP Prime Service instance ID"
+    ::= { gtpPrimeServiceEntry 2 }
+
+gtpPrimeServiceStatus OBJECT-TYPE
+	SYNTAX INTEGER {
+			notStarted(1), 
+			startupInProgress(2),
+            running(3),
+	     	other(4),
+			shutDownInProgress(5),
+			stopped(6)}
+	MAX-ACCESS  read-only
+	STATUS		current
+	DESCRIPTION
+              "Staus of GTP Prime Service instance"
+    ::= { gtpPrimeServiceEntry 3 }
+		
+gtpPrimeServiceResetCounter OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-write
+	STATUS		current
+	DESCRIPTION
+             "Reset all counters for GTP Prime Service instance"
+    ::= { gtpPrimeServiceEntry 4 }
+	   
+gtpPrimeServiceServiceUPTime OBJECT-TYPE
+	SYNTAX		TimeTicks
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "GTP Prime Service start up time"
+	::= { gtpPrimeServiceEntry 5 }
+	   
+gtpPrimeServiceServiceDownTime OBJECT-TYPE
+	SYNTAX		TimeTicks
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "GTP Prime Service down Time"
+	::= { gtpPrimeServiceEntry 6 }
+	   
+gtpPrimeServiceConfigReloadTime OBJECT-TYPE
+	SYNTAX		TimeTicks
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Reload configuration time of GTP Prime Service instance"
+	::= { gtpPrimeServiceEntry 7 }
+	   
+gtpPrimeServiceCounterResetTime OBJECT-TYPE
+	SYNTAX		TimeTicks
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "GTP Prime service counter reset Time"
+	::= { gtpPrimeServiceEntry 8 }
+	   
+gtpPrimeServiceAvgTPS OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Average TPS for collection service instance"
+    ::= { gtpPrimeServiceEntry 9 }
+
+gtpPrimeServiceTotalDroppedRequest OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total request dropped by GTP Prime Collecition Service instance"
+    ::= { gtpPrimeServiceEntry 10 }
+
+gtpPrimeServiceTotalInvalidClientRequest OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total request received from unkown ip address at GTP Prime Service instance"
+    ::= { gtpPrimeServiceEntry 11 }
+
+gtpPrimeServiceTotalRequestReceived OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total request received by GTP Prime Service instance"
+    ::= { gtpPrimeServiceEntry 12 }
+
+gtpPrimeServiceTotalEchoRequestReceived OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Echo request received by GTP Prime service instance"
+    ::= { gtpPrimeServiceEntry 13 }
+
+gtpPrimeServiceTotalNodeAliveRequestReceived OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Node Alive request received by GTP Prime service instance"
+    ::= { gtpPrimeServiceEntry 14 }
+
+gtpPrimeServiceTotalRedirectionRequestReceived OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Redirecr request received by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 15 }
+
+gtpPrimeServiceTotalDataRecordTransferRequestReceived OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Data Record transfer request received by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 16 }
+
+gtpPrimeServiceTotalRedirectionResponseSend OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Redirecr response send by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 17 }
+
+gtpPrimeServiceTotalEchoResponseSend OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Echo Response send by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 18 }
+
+gtpPrimeServiceTotalNodeAliveResponseSend OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Node Alive response send by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 19 }
+
+gtpPrimeServiceTotalDataRecordTransferResponseSend OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Data Record Transfer response send by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 20 }
+
+gtpPrimeServiceTotalVersionNotSupportedResponseSend OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Version Not Supported response send by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 21 }
+
+gtpPrimeServiceTotalMalformedRequestPacketReceived OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Malform request received by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 22 }
+
+gtpPrimeServiceTotalEchoRequestDropped OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Echo request dropped by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 23 }
+
+gtpPrimeServiceTotalNodeAliveDropped OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Node Alive request dropped by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 24 }
+
+gtpPrimeServiceTotalRedirectionDropped OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Redirection request dropped by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 25 }
+
+gtpPrimeServiceTotalDataRecordTransferRequestDropped OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Data Transfer request dropped by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 26 }
+
+gtpPrimeServiceTotalDataRecordTransferFailureResponse OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Data Record Transfer response failure at GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 27 }
+
+gtpPrimeServiceTotalRedirectionFailureResponse OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Redirection response failure at GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 28 }
+
+gtpPrimeServiceTotalEchoRequestSend OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Echo request sent by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 29 }
+
+gtpPrimeServiceTotalEchoResponseReceived OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Echo response received by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 30 }
+
+gtpPrimeServiceTotalNodeAliveRequestSend OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Node Alive request send by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 31 }
+
+gtpPrimeServiceTotalEchoRequestRetry OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Echo request retry by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 32 }
+
+gtpPrimeServiceTotalNodeAliveRequestRetry OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Node Alive request retry by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 33 }
+
+gtpPrimeServiceTotalMalformedRequestRetry OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Malformed Request retry by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 34 }
+
+gtpPrimeServiceTotalMalformedEchoResponseReceived OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Malformed Echo response received by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 35 }
+
+gtpPrimeServiceTotalMalformedNodeAliveResponseReceived OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Node Alive response received by GTP Prime service instance"
+	::= { gtpPrimeServiceEntry 36 }
+
+natFlowCollectionService  OBJECT IDENTIFIER ::= { service 4 }
+
+natFlowCollectionServiceUp NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Nat Flow Collection service goes up"
+	::= { natFlowCollectionService 1 }
+
+natFlowCollectionServiceDown NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Nat Flow Collection service goes down"
+	::= { natFlowCollectionService 2 }
+
+natFlowCollectionServiceFailedToStart NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Nat Flow Collection service failed to start"
+	::= { natFlowCollectionService 3 }
+
+natFlowCollectionServiceOutOfMemory NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Nat Flow Collection service goes out of menory"
+	::= { natFlowCollectionService 4 }
+
+natFlowCollectionServiceReloadConfig NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Nat Flow Collection service configuration reloaded"
+	::= { natFlowCollectionService 5 }
+
+natFlowCollectionServiceSyncTo NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of synchronization to operation for Nat Flow Collection Service instance"
+	::= { natFlowCollectionService 6 }
+
+natFlowCollectionServiceSyncFrom NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of synchronization from operation for Nat Flow Collection Service instance"
+	::= { natFlowCollectionService 7 }
+
+natFlowCollectionServiceNoRequestReceived NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated when No request received for specific interval by Nat Flow Collection service instance"
+	::= { natFlowCollectionService 8 }
+
+natFlowCollectionServiceRejectedRequestAboveSpecifiedThresold NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of rejected request reach up to certain limit for Nat Flow Collection service insatnce"
+	::= { natFlowCollectionService 9 }
+
+natFlowCollectionServiceNoSpaceLeftOnDevice NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of no space left on device for Nat Flow Collection service instance"
+	::= { natFlowCollectionService 10 }
+
+natFlowCollectionServiceError NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Netflow Collection Service Error"
+	::= { natFlowCollectionService 11 }
+
+natFlowCollectionServicehasNotRecievedPacketYet NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Netflow Collection Service has not recieved packet yet"
+	::= { natFlowCollectionService 12 }
+
+natFlowCollectionServicehasPacketRecieved NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Netflow Collection Service has recieved packet after delay of packets"
+	::= { natFlowCollectionService 13 }
+
+natFlowCollectionServicePacketDrop NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Packet Dropped in Natflow Collection Service"
+	::= { natFlowCollectionService 14 }
+
+natFlowCollectionServicePacketMalformInvalid NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Packet Malformed or Invalidated in Natflow Collection Service"
+	::= { natFlowCollectionService 15 }
+
+natFlowCollectionServiceDiskSpaceResolved NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Disk space is Resolved In Natflow Collection Service"
+	::= { natFlowCollectionService 16 }
+
+natFlowCollectionServiceMIBObjects  OBJECT IDENTIFIER ::=  { natFlowCollectionService 101 }
+
+natFlowCollectionServiceTable OBJECT-TYPE
+	SYNTAX		SEQUENCE OF NatFlowCollectionServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "The table listing the  Nat Flow Collection Service instances"
+	::= { natFlowCollectionServiceMIBObjects 1 }
+
+natFlowCollectionServiceEntry OBJECT-TYPE
+	SYNTAX     	NatFlowCollectionServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "An entry representing a  Nat Flow Collection Service instance"
+       INDEX      { natFlowCollectionServiceIndex }
+	::= { natFlowCollectionServiceTable 1 }
+
+
+NatFlowCollectionServiceEntry ::= SEQUENCE {
+        natFlowCollectionServiceIndex 												Integer32,
+		natFlowCollectionServiceID 												 SnmpAdminString,
+		natFlowCollectionServiceStatus												INTEGER,
+		natFlowCollectionServiceResetCounter 									    Counter64,
+		natFlowCollectionServiceUpTime												TimeTicks,
+		natFlowCollectionServiceDownTime											TimeTicks,
+		natFlowCollectionServiceConfigReloadTime									TimeTicks,
+		natFlowCollectionServiceCounterResetTime									TimeTicks,
+		natFlowCollectionServiceAvgTPS												TimeTicks,
+	
+		natFlowCollectionServiceTotalRequestReceived 	             		   	    Counter64,
+		natFlowCollectionServiceTotalTemplateRequestReceived 					    Counter64,
+		natFlowCollectionServiceTotalMalformedRequestReceived 					    Counter64,
+		natFlowCollectionServiceTotalOptionalTemplateRequestReceived 		   	    Counter64,
+		natFlowCollectionServiceTotalFlowDataRequestReceived 					    Counter64,
+		natFlowCollectionServiceTotalBufferedRequest 				   		        Counter64,
+		natFlowCollectionServiceTotalDroppedBufferedRequest 					    Counter64,
+		natFlowCollectionServiceTotalBufferedRequestForWritingAndParsing			Counter64,
+		natFlowCollectionServiceTotalPacketReceived 								Counter64
+}
+
+natFlowCollectionServiceIndex OBJECT-TYPE
+	SYNTAX		Integer32 (1..2147483647)
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "A number uniquely identifying each  Nat Flow Collection Service instance"
+	::= { natFlowCollectionServiceEntry 1 }
+
+natFlowCollectionServiceID OBJECT-TYPE
+	SYNTAX		SnmpAdminString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Nat Flow Collection Service instance id"
+	::= { natFlowCollectionServiceEntry 2 }
+
+natFlowCollectionServiceStatus OBJECT-TYPE
+  	 SYNTAX INTEGER {
+			notStarted(1), 
+			startupInProgress(2),
+            running(3),
+	     	other(4),
+			shutDownInProgress(5),
+			stopped(6)}
+ 	MAX-ACCESS  read-only
+ 	STATUS		current
+ 	DESCRIPTION
+              "Status of Nat Flow Collection service"
+ 	::= { natFlowCollectionServiceEntry 3 }
+
+natFlowCollectionServiceResetCounter OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS  read-write
+	STATUS		current
+	DESCRIPTION
+             "Reset all counters of Nat Flow Collection Service instance"
+	::= { natFlowCollectionServiceEntry 4 }
+
+natFlowCollectionServiceUpTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Service up time for Nat Flow Collection service instance"
+	::= { natFlowCollectionServiceEntry 5 }
+
+natFlowCollectionServiceDownTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Service down time for Nat Flow Collection Service instance"
+	::= { natFlowCollectionServiceEntry 6 }
+
+natFlowCollectionServiceConfigReloadTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Config Reload time for Nat Flow Collection Service instance"
+	::= { natFlowCollectionServiceEntry 7 }
+
+natFlowCollectionServiceCounterResetTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Reset all counters of Nat Flow Collection Service instance"
+	::= { natFlowCollectionServiceEntry 8 }
+
+natFlowCollectionServiceAvgTPS OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Average TPS for Nat Flow Collection Service instance"
+	::= { natFlowCollectionServiceEntry 9 }
+
+natFlowCollectionServiceTotalRequestReceived OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total request recieved by Nat Flow Collection Service instance"
+	::= { natFlowCollectionServiceEntry 10 }
+
+natFlowCollectionServiceTotalTemplateRequestReceived OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Tamplate request received by Nat Flow Collection Service instance"
+	::= { natFlowCollectionServiceEntry 11 }
+
+natFlowCollectionServiceTotalMalformedRequestReceived OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Malform request received by Nat Flow COllection Service instance"
+	::= { natFlowCollectionServiceEntry 12 }
+
+natFlowCollectionServiceTotalOptionalTemplateRequestReceived OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Optional Template request request received by Nat Flow collection service instance"
+	::= { natFlowCollectionServiceEntry 13 }
+
+natFlowCollectionServiceTotalFlowDataRequestReceived OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Flow Data Record request received by Nat Flow Collection Service instance"
+	::= { natFlowCollectionServiceEntry 14 }
+
+natFlowCollectionServiceTotalBufferedRequest OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Buffer request by Nat Flow collection service instance"
+	::= { natFlowCollectionServiceEntry 15 }
+
+natFlowCollectionServiceTotalDroppedBufferedRequest OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Buffer request dropped in  Nat Flow collection service instance"
+	::= { natFlowCollectionServiceEntry 17 }
+
+natFlowCollectionServiceTotalBufferedRequestForWritingAndParsing OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Bufferd request pending in parsing in Nat Flow collection service instance"
+	::= { natFlowCollectionServiceEntry 18 }
+
+natFlowCollectionServiceTotalPacketReceived OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total packate received in Nat Flow Collection Service instance"
+	::= { natFlowCollectionServiceEntry 19 }
+
+natFlowBinaryCollectionService  OBJECT IDENTIFIER ::= { service 5 }
+
+natFlowBinaryCollectionServiceUp NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated when Nat Flow Collection service goes up"
+	::= { natFlowBinaryCollectionService 1 }
+
+natFlowBinaryCollectionServiceDown NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Nat Flow Collection service goes down"
+	::= { natFlowBinaryCollectionService 2 }
+
+natFlowBinaryCollectionServiceFailedToStart NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Nat Flow Collection service failed to start"
+	::= { natFlowBinaryCollectionService 3 }
+
+natFlowBinaryCollectionServiceOutOfMemory NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Nat Flow Collection service goes out of menory"
+	::= { natFlowBinaryCollectionService 4 }
+
+natFlowBinaryCollectionServiceReloadConfig NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated when Nat Flow Collection service configuration reloaded"
+	::= { natFlowBinaryCollectionService 5 }
+
+natFlowBinaryCollectionServiceSyncTo NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of syncronization to operation for Nat Flow Collection Service"
+	::= { natFlowBinaryCollectionService 6 }
+
+natFlowBinaryCollectionServiceSyncFrom NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of syncronization from operation for Nat Flow Collection Service"
+	::= { natFlowBinaryCollectionService 7 }
+	
+
+natFlowBinaryCollectionServiceNoRequestReceived NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of no request received from specific interval for  Nat Flow collection service instance"
+	::= { natFlowBinaryCollectionService 8 }
+
+natFlowBinaryCollectionServiceRejectedRequestAboveSpecifiedThresold NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of rejected request reach up to certain limit for  Nat Flow collection service insatnce"
+	::= { natFlowBinaryCollectionService 9 }
+
+natFlowBinaryCollectionServiceNoSpaceLeftOnDevice NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time when no space left on device for GTP Prime Service instance"
+	::= { natFlowBinaryCollectionService 10 }
+
+natFlowBinaryCollectionServiceError NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time Net Flow Binary Collection Service Error"
+	::= { natFlowBinaryCollectionService 11 }
+	
+natFlowBinaryCollectionServicehasNotRecievedPacketYet NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Netflow Binary Collection Service has not recieved packet yet"
+	::= { natFlowBinaryCollectionService 12 }
+
+natFlowBinaryCollectionServicehasPacketRecieved NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Netflow Binary Collection Service has recieved packet after delay of packets"
+	::= { natFlowBinaryCollectionService 13 }
+
+natFlowBinaryCollectionServicePacketDrop NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Natflow Binary Collection Service has dropped packets"
+	::= { natFlowBinaryCollectionService 14 }
+
+natFlowBinaryCollectionServicePacketMalformInvalid NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Natflow Binary Collection Service has Malform or Invalid packets"
+	::= { natFlowBinaryCollectionService 15 }
+
+natFlowBinaryCollectionServiceDiskSpaceResolved NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Disk space is Resolved In Natflow Binary Collection Service"
+	::= { natFlowBinaryCollectionService 16 }
+
+natFlowBinaryCollectionServiceMIBObjects  OBJECT IDENTIFIER ::=  { natFlowBinaryCollectionService 101 }
+
+natFlowBinaryCollectionServiceTable OBJECT-TYPE
+	SYNTAX		SEQUENCE OF NatFlowBinaryCollectionServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "The  table listing the Nat Flow Binary Collection service table"
+	::= { natFlowBinaryCollectionServiceMIBObjects 1 }
+
+natFlowBinaryCollectionServiceEntry OBJECT-TYPE
+	SYNTAX     	NatFlowBinaryCollectionServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "An entry representing a Nat Flow Binary Collection service entry"
+       INDEX      { natFlowBinaryCollectionServiceIndex }
+	::= { natFlowBinaryCollectionServiceTable 1 }
+
+
+NatFlowBinaryCollectionServiceEntry ::= SEQUENCE {
+      	natFlowBinaryCollectionServiceIndex												Integer32,
+		natFlowBinaryCollectionServiceID 												SnmpAdminString,
+		natFlowBinaryCollectionServiceStatus 											INTEGER,
+		natFlowBinaryCollectionServiceResetCounters										Counter64,
+		natFlowBinaryCollectionServiceUpTime											TimeTicks,
+		natFlowBinaryCollectionServiceDownTime											TimeTicks,
+		natFlowBinaryCollectionServiceConfigReloadTime									TimeTicks,
+		natFlowBinaryCollectionServiceCounterResetTime									TimeTicks,
+		natFlowBinaryCollectionServiceAvgTPS											Counter64,
+
+		natFlowBinaryCollectionServiceTotalBufferedRequest								Counter64,
+		natFlowBinaryCollectionServiceTotalDroppedBufferedRequest						Counter64,
+		natFlowBinaryCollectionServiceTotalProcessedPackets							  	Counter64,
+		natFlowBinaryCollectionServiceTotalReceivedPackets								Counter64,
+		natFlowBinaryCollectionServiceTotalProcessedRecords								Counter64,
+		natFlowBinaryCollectionServiceTotalRecordsReceived								Counter64
+}
+
+natFlowBinaryCollectionServiceIndex OBJECT-TYPE
+	SYNTAX		Integer32 (1..2147483647)
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "A number uniquely identifying each Nat Flow Binary Collection service entry"
+	::= { natFlowBinaryCollectionServiceEntry 1 }
+
+natFlowBinaryCollectionServiceID OBJECT-TYPE
+	SYNTAX		SnmpAdminString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Nat Flow Binary Collection service Id"
+	::= { natFlowBinaryCollectionServiceEntry 2 }
+natFlowBinaryCollectionServiceStatus OBJECT-TYPE
+  	SYNTAX INTEGER {
+			notStarted(1), 
+			startupInProgress(2),
+            running(3),
+	     	other(4),
+			shutDownInProgress(5),
+			stopped(6)}
+ 	MAX-ACCESS  read-only
+ 	STATUS		current
+ 	DESCRIPTION
+              "Status of Nat Flow Binary Collection service"
+ 	::= { natFlowBinaryCollectionServiceEntry 3 }
+
+natFlowBinaryCollectionServiceResetCounters OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS  read-write
+	STATUS		current
+	DESCRIPTION
+             "Reset all counters of collection service instance"
+	::= { natFlowBinaryCollectionServiceEntry 4 }
+
+natFlowBinaryCollectionServiceUpTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Service up time for Nat Flow Binary Collection service instance"
+	::= { natFlowBinaryCollectionServiceEntry 5 } 
+
+natFlowBinaryCollectionServiceDownTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Service down time for Nat Flow Binary Collection service instance"
+	::= { natFlowBinaryCollectionServiceEntry 6 }
+
+natFlowBinaryCollectionServiceConfigReloadTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Confiuration reload time for Nat Flow Binary Collection service instance"
+	::= { natFlowBinaryCollectionServiceEntry 7 }
+
+natFlowBinaryCollectionServiceCounterResetTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Counter Reset time for Nat Flow Binary Collection service instance"
+	::= { natFlowBinaryCollectionServiceEntry 8 }
+
+natFlowBinaryCollectionServiceAvgTPS OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Average TPS for Nat Flow Binary Collection service instance"
+	::= { natFlowBinaryCollectionServiceEntry 9 }
+natFlowBinaryCollectionServiceTotalBufferedRequest OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Buffered request at Nat Flow Binary Collection service instance"
+	::= { natFlowBinaryCollectionServiceEntry 10 }
+
+
+natFlowBinaryCollectionServiceTotalDroppedBufferedRequest OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Buffered request dropped at Nat Flow Binary Collection service instance"
+	::= { natFlowBinaryCollectionServiceEntry 11 }
+
+natFlowBinaryCollectionServiceTotalProcessedPackets OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total processed packets by Nat Flow Binary Collection service instance"
+	::= { natFlowBinaryCollectionServiceEntry 12 }
+	
+natFlowBinaryCollectionServiceTotalReceivedPackets OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total received packets by Nat Flow Binary Collection service instance"
+	::= { natFlowBinaryCollectionServiceEntry 13 }
+	
+natFlowBinaryCollectionServiceTotalProcessedRecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total records processed by Nat Flow Binary Collection service instance"
+	::= { natFlowBinaryCollectionServiceEntry 14 }
+	
+natFlowBinaryCollectionServiceTotalRecordsReceived OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total records received by Nat Flow Binary Collection service instance"
+	::= { natFlowBinaryCollectionServiceEntry 15 }
+
+
+sysLogCollectionService  OBJECT IDENTIFIER ::= { service 6 }
+
+sysLogCollectionServiceUp NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated when Syslog Collection service goes up"
+	::= { sysLogCollectionService 1 }
+
+sysLogCollectionServiceDown NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated Syslog Collection service goes down"
+	::= { sysLogCollectionService 2 }
+
+sysLogCollectionServiceFailedToStart NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated when Syslog Collection service failed to start"
+	::= { sysLogCollectionService 3 }
+
+sysLogCollectionServiceOutOfMemory NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated when Syslog Collection service goes out of menory"
+	::= { sysLogCollectionService 4 }
+
+sysLogCollectionServiceReloadConfig NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time when Syslog Collection service configuration reloaded"
+	::= { sysLogCollectionService 5 }
+
+sysLogCollectionServiceSyncTo NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of synchronization to operation for Syslog Collection service instance"
+	::= { sysLogCollectionService 6 }
+
+sysLogCollectionServiceSyncFrom NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of synchronization from operation for Syslog Collection service instance"
+	::= { sysLogCollectionService 7 }
+
+sysLogCollectionServiceNoRequestReceived NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of no request received from specific interval for Syslog Collection service instance"
+	::= { sysLogCollectionService 8 }
+
+sysLogCollectionServiceRejectedRequestAboveSpecifiedThresold NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of rejected request reach up to certain limit for Syslog Collection service insatnce"
+	::= { sysLogCollectionService 9 }
+
+sysLogCollectionServiceNoSpaceLeftOnDevice NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time when no space left on device for Syslog Collection service instance"
+	::= { sysLogCollectionService 10 }
+
+sysLogCollectionServiceError NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Syslog Collection Service Error"
+	::= { sysLogCollectionService 11 }
+
+sysLogCollectionServiceDiskSpaceResolved NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Disk space is Resolved In Syslog Collection Service"
+	::= { sysLogCollectionService 12 }
+
+sysLogCollectionServicehasNotRecievedPacketYet NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of SysLog Collection Service has not recieved packet yet"
+	::= { sysLogCollectionService 13 }
+
+sysLogCollectionServicehasPacketRecieved NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of SysLog Collection Service has recieved packet after delay of packets"
+	::= { sysLogCollectionService 14 }
+
+sysLogCollectionServicePacketDrop NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Packet Dropped in Syslog Collection Service"
+	::= { sysLogCollectionService 15 }
+	
+sysLogCollectionServiceMIBObjects  OBJECT IDENTIFIER ::=  { sysLogCollectionService 101 }
+
+sysLogCollectionServiceTable OBJECT-TYPE
+	SYNTAX		SEQUENCE OF SysLogCollectionServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "The table listing the Syslog Collection service instance"
+	::= { sysLogCollectionServiceMIBObjects 1 }
+
+sysLogCollectionServiceEntry OBJECT-TYPE
+	SYNTAX  	SysLogCollectionServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "An entry representing Syslog Collection service entry"
+       INDEX      { sysLogCollectionServiceIndex }
+	::= { sysLogCollectionServiceTable 1 }
+
+
+SysLogCollectionServiceEntry ::= SEQUENCE {
+		sysLogCollectionServiceIndex												Integer32,
+		sysLogCollectionServiceID 													SnmpAdminString,
+		sysLogCollectionServiceStatus 												INTEGER,
+		sysLogCollectionServiceResetCounters										Counter64,
+		sysLogCollectionServiceUpTime												TimeTicks,
+		sysLogCollectionServiceDownTime												TimeTicks,
+		sysLogCollectionServiceConfigReloadTime										TimeTicks,
+		sysLogCollectionServiceCounterResetTime										TimeTicks,
+		sysLogCollectionServiceAvgTPS												Counter64,	
+
+		sysLogCollectionServiceTotalBufferedRequest									Counter64,
+		sysLogCollectionServiceTotalDroppedBufferedRequest							Counter64,
+		sysLogCollectionServiceTotalDroppedBufferedRequestForWritingAndParsing  	Counter64   
+}
+
+sysLogCollectionServiceIndex OBJECT-TYPE
+	SYNTAX		Integer32 (1..2147483647)
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "A number uniquely identifying each Syslog Collection service instance"
+	::= { sysLogCollectionServiceEntry 1 }
+
+sysLogCollectionServiceID OBJECT-TYPE
+	SYNTAX		SnmpAdminString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Syslog Collection service Id"
+	::= { sysLogCollectionServiceEntry 2 }
+
+sysLogCollectionServiceStatus OBJECT-TYPE
+  	SYNTAX INTEGER {
+			notStarted(1), 
+			startupInProgress(2),
+            running(3),
+	     	other(4),
+			shutDownInProgress(5),
+			stopped(6)}
+ 	MAX-ACCESS  read-only
+ 	STATUS		current
+ 	DESCRIPTION
+              "Status of Syslog Collection service"
+ 	::= { sysLogCollectionServiceEntry 3 }
+
+sysLogCollectionServiceResetCounters OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS  read-write
+	STATUS		current
+	DESCRIPTION
+             "Reset all counters of Syslog Collection service instance"
+	::= { sysLogCollectionServiceEntry 4 }
+
+sysLogCollectionServiceUpTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Service up time for Syslog Collection service instance"
+	::= { sysLogCollectionServiceEntry 5 }
+
+sysLogCollectionServiceDownTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Service down time for Syslog Collection service instance"
+	::= { sysLogCollectionServiceEntry 6 }
+
+sysLogCollectionServiceConfigReloadTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Service up time for Syslog Collection service instance"
+	::= { sysLogCollectionServiceEntry 7 }
+
+sysLogCollectionServiceCounterResetTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+            "Counter reset time for Syslog Collection service instance"
+	::= { sysLogCollectionServiceEntry 8 }
+
+sysLogCollectionServiceAvgTPS OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Average TPS for collection service instance"
+	::= { sysLogCollectionServiceEntry 9 }
+	   
+sysLogCollectionServiceTotalBufferedRequest OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Buffered request received Syslog Collection service instance"
+	::= { sysLogCollectionServiceEntry 10 }
+
+
+sysLogCollectionServiceTotalDroppedBufferedRequest OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total buffered request dropped by Syslog Collection service instance"
+	::= { sysLogCollectionServiceEntry 11 }
+
+sysLogCollectionServiceTotalDroppedBufferedRequestForWritingAndParsing OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Buffered request dropped for Writing and Parsinf by Syslog Collection service instance"
+	::= { sysLogCollectionServiceEntry 12 }
+
+	   
+parsingService  OBJECT IDENTIFIER ::= { service 7 }
+
+parsingServiceUp NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated when Parsing service goes up"
+	::= { parsingService 1 }
+
+parsingServiceDown NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated when parsing service goes down"
+	::= { parsingService 2 }
+
+parsingServiceFailedToStart NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated when Parsing service failed to start"
+	::= { parsingService 3 }
+
+parsingServiceOutOfMemory NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated when Parsing service goes out of menory"
+	::= { parsingService 4 }
+
+parsingServiceReloadConfig NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated when Parsing service configuration reloaded"
+	::= { parsingService 5 }
+
+parsingServiceSyncTo NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated at the time of synchronization to operation for Parsing service instance"
+	::= { parsingService 6 }
+
+parsingServiceSyncFrom NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated at the time of synchronization from operation for Parsing service instance"
+	::= { parsingService 7 }
+
+parsingServiceNoSpaceLeftOnDevice NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time when no space left on device for GTP Prime Service instance"
+	::= { parsingService 10 }
+
+parsingServiceError NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Parsing Service Error"
+	::= { parsingService 11 }
+
+parsingServiceMaxFilesAlert NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Maximum Files Threshold Reached In Parsing Service"
+	::= { parsingService 12 }
+
+parsingServiceNoFileReceived NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of No Files Received In Parsing Service"
+	::= { parsingService 13 }
+
+parsingServiceDiskSpaceResolved NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Disk space is Resolved In Parsing Service"
+	::= { parsingService 14 }
+
+
+parsingServiceMIBObjects  OBJECT IDENTIFIER ::=  { parsingService 101 }
+
+	parsingServiceTable OBJECT-TYPE
+	SYNTAX		SEQUENCE OF ParsingServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "The table listing the Parsing service instance"
+
+	::= { parsingServiceMIBObjects 1 }
+
+parsingServiceEntry OBJECT-TYPE
+	SYNTAX     ParsingServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "An row representing a Parsing service entry"
+       INDEX      { parsingServiceIndex }
+	::= { parsingServiceTable 1 }
+
+
+ParsingServiceEntry ::= SEQUENCE {
+		parsingServiceIndex                    		Integer32,
+		parsingServiceID                     		SnmpAdminString,
+		parsingServiceStatus 						INTEGER,
+		parsingServiceResetCounter 					Counter64,
+		parsingServiceUpTime 						TimeTicks,
+		parsingServiceDownTime						TimeTicks,
+		parsingServiceConfigReloadTime				TimeTicks,
+		parsingServiceCounterResetTime				TimeTicks,
+		parsingServiceAvgTPS						Counter64,
+
+		parsingServiceTotalSuccessfulParsedFile 	Counter64,
+		parsingServiceTotalFailedParsedFile			Counter64,
+		parsingServiceTotalRecords					Counter64,
+		parsingServiceTotalSuccessfulParsedRecords 	Counter64,
+		parsingServiceTotalFailedParsedRecords 		Counter64,
+		parsingServiceTotalNoOfFiles 				Counter64,
+		parsingServiceAvgTPS 						Counter64,
+		parsingServicePendingFiles 					Counter64,
+		parsingServiceInProcessFiles 				Counter64
+}
+
+parsingServiceIndex OBJECT-TYPE
+	SYNTAX		Integer32 (1..2147483647)
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "A number uniquely identifying each Parsing service instance"
+	::= { parsingServiceEntry 1 }
+
+parsingServiceID OBJECT-TYPE
+	SYNTAX		SnmpAdminString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Parsing service Id"
+	::= { parsingServiceEntry 2 }
+
+parsingServiceStatus OBJECT-TYPE
+  	SYNTAX INTEGER {
+			notStarted(1), 
+			startupInProgress(2),
+            running(3),
+	     	other(4),
+			shutDownInProgress(5),
+			stopped(6)}
+ 	MAX-ACCESS  read-only
+ 	STATUS		current
+ 	DESCRIPTION
+              "Status of Parsing service"
+ 	::= { parsingServiceEntry 3 }
+		
+parsingServiceResetCounter OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-write
+	STATUS		current
+	DESCRIPTION
+             "Reset all counters of Parsing service instance"
+	::= { parsingServiceEntry 4 }
+
+parsingServiceUpTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Service up time of Parsing service instance"
+	::= { parsingServiceEntry 5 }
+
+parsingServiceDownTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Service down time of Parsing service instance"
+	::= { parsingServiceEntry 6 }
+
+	  
+parsingServiceConfigReloadTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Config reload time of Parsing service instance"
+	::= { parsingServiceEntry 7 }
+	   
+parsingServiceCounterResetTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Counter Reset time of Parsing service instance"
+	::= { parsingServiceEntry 8 }
+	   
+parsingServiceAvgTPS OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Average TPS of Parsing service instance"
+	::= { parsingServiceEntry 9 }
+
+parsingServiceTotalSuccessfulParsedFile OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Successful Parsed File of Parsing service instance"
+	::= { parsingServiceEntry 10 }
+
+parsingServiceTotalFailedParsedFile OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total failure while parsing at Parsing service instance"
+	::= { parsingServiceEntry 11 }
+
+parsingServiceTotalRecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total recored parsed by Parsing service instance"
+	::= { parsingServiceEntry 12 }
+
+parsingServiceTotalSuccessfulParsedRecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total successful parsed record by Parsing service instance"
+	::= { parsingServiceEntry 13 }
+
+parsingServiceTotalFailedParsedRecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total failure while parsing records at Parsing service instance"
+	::= { parsingServiceEntry 14 }
+
+parsingServiceTotalNoOfFiles OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total no of file parsed by Parsing service instance"
+	::= { parsingServiceEntry 15 }
+
+parsingServicePendingFiles OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Totla pending files at Parsing service instance"
+	::= { parsingServiceEntry 16 }
+
+parsingServiceInProcessFiles OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total In process files at Parsing service instance"
+	::= { parsingServiceEntry 17 }
+
+ipLoggerParsingService  OBJECT IDENTIFIER ::= { service 8 }
+
+ipLoggerParsingServiceUp NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated when ipLogger Parsing service goes up"
+	::= { ipLoggerParsingService 1 }
+
+ipLoggerParsingServiceDown NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated ipLogger Parsing service goes sotpped"
+	::= { ipLoggerParsingService 2 }
+
+ipLoggerParsingServiceFailedToStart NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated when ipLogger Parsing service failed to start"
+	::= { ipLoggerParsingService 3 }
+
+ipLoggerParsingServiceOutOfMemory NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated ipLogger Parsing service goes out of memory"
+	::= { ipLoggerParsingService 4 }
+
+ipLoggerParsingServiceReloadConfig NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated ipLogger Parsing service configuration reloaded"
+	::= { ipLoggerParsingService 5 }
+
+ipLoggerParsingServiceSyncTo NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated at the time of synchronization to operation for ipLogger Parsing service instance"
+	::= { ipLoggerParsingService 6 }
+
+ipLoggerParsingServiceSyncFrom NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated at the time of synchronization from operation for ipLogger Parsing service instance"
+	::= { ipLoggerParsingService 7 }
+
+ipLoggerParsingServiceNoSpaceLeftOnDevice NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time when no space left on device for ipLogger Parsing service instance"
+	::= { ipLoggerParsingService 8 }
+
+ipLoggerParsingServiceError NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time Iplog Parsing Service Error"
+	::= { ipLoggerParsingService 9 }
+
+ipLoggerParsingServiceDiskSpaceResolved NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Disk space is Resolved In IPLog Parsing Service"
+	::= { ipLoggerParsingService 10 }
+	
+ipLoggerParsingServiceMIBObjects  OBJECT IDENTIFIER ::=  { ipLoggerParsingService 101 }
+
+ipLoggerParsingServiceTable OBJECT-TYPE
+	SYNTAX		SEQUENCE OF IpLoggerParsingServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "The table listing the Parsing service instances"
+	::= { ipLoggerParsingServiceMIBObjects 1 }
+
+ipLoggerParsingServiceEntry OBJECT-TYPE
+	SYNTAX     IpLoggerParsingServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "An entry representing Parsing service instance"
+       INDEX      { ipLoggerParsingServiceIndex }
+	::= { ipLoggerParsingServiceTable 1 }
+
+
+IpLoggerParsingServiceEntry ::= SEQUENCE {
+		ipLoggerParsingServiceIndex                 	    Integer32,
+		ipLoggerParsingServiceID                   	  		SnmpAdminString,
+		ipLoggerParsingServiceStatus						INTEGER,
+		ipLoggerParsingServiceResetCounter 					Counter64,
+		ipLoggerParsingServiceUpTime 						TimeTicks,
+		ipLoggerParsingServiceDownTime						TimeTicks,
+		ipLoggerParsingServiceConfigReloadTime				TimeTicks,
+		ipLoggerParsingServiceCounterResetTime				TimeTicks,
+		ipLoggerParsingServiceAvgTPS						Counter64,
+
+		ipLoggerParsingServiceTotalSuccessfulParsedFile 	Counter64,
+		ipLoggerParsingServiceTotalFailedParsedFile			Counter64,
+		ipLoggerParsingServiceTotalRecords					Counter64,
+		ipLoggerParsingServiceTotalSuccessfulParsedRecords 	Counter64,
+		ipLoggerParsingServiceTotalFailedParsedRecords 		Counter64,
+		ipLoggerParsingServiceTotalNoOfFiles 				Counter64,
+		ipLoggerParsingServicePendingFiles 					Counter64,
+		ipLoggerParsingServiceInProcessFiles 				Counter64
+}
+
+ipLoggerParsingServiceIndex OBJECT-TYPE
+	SYNTAX		Integer32 (1..2147483647)
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "A number uniquely identifying each Parsing service entry"
+	::= { ipLoggerParsingServiceEntry 1 }
+
+ipLoggerParsingServiceID OBJECT-TYPE
+	SYNTAX		SnmpAdminString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Parsing service Id"
+	::= { ipLoggerParsingServiceEntry 2 }
+	      	
+ipLoggerParsingServiceStatus OBJECT-TYPE
+ 	SYNTAX INTEGER {
+			notStarted(1), 
+			startupInProgress(2),
+            running(3),
+	     	other(4),
+			shutDownInProgress(5),
+			stopped(6)}
+ 	MAX-ACCESS  read-only
+ 	STATUS		current
+ 	DESCRIPTION
+              ""
+ 	::= { ipLoggerParsingServiceEntry 3 }
+		
+ipLoggerParsingServiceResetCounter OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-write
+	STATUS		current
+	DESCRIPTION
+             "Reset All counters of Parsing service instance"
+	::= { ipLoggerParsingServiceEntry 4 }
+
+ipLoggerParsingServiceUpTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Service up time of Parsing service instance"
+	::= { ipLoggerParsingServiceEntry 5 }
+
+ipLoggerParsingServiceDownTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Service down time of Parsing service instance"
+	::= { ipLoggerParsingServiceEntry 6 }
+
+	  
+ipLoggerParsingServiceConfigReloadTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+            "Configuration reload time of Parsing service instance"
+	::= { ipLoggerParsingServiceEntry 7 }
+	   
+ipLoggerParsingServiceCounterResetTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+			"Counter reset time of Parsing service instance"
+	::= { ipLoggerParsingServiceEntry 8 }
+	   
+ipLoggerParsingServiceAvgTPS OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Average TPS of Parsing service instance"
+	::= { ipLoggerParsingServiceEntry 9 }
+	   
+ipLoggerParsingServiceTotalSuccessfulParsedFile OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Successful parsed files by Parsing service instance"
+	::= { ipLoggerParsingServiceEntry 10 }
+
+ipLoggerParsingServiceTotalFailedParsedFile OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total failure while parsing file at Parsing service instance"
+	::= { ipLoggerParsingServiceEntry 11 }
+
+ipLoggerParsingServiceTotalRecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Rcords parsed by Parsing service instance"
+	::= { ipLoggerParsingServiceEntry 12 }
+
+ipLoggerParsingServiceTotalSuccessfulParsedRecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total successful parsed records by Parsing service instance"
+	::= { ipLoggerParsingServiceEntry 13 }
+
+ipLoggerParsingServiceTotalFailedParsedRecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total failure while parsing records at Parsing service instance"
+	::= { ipLoggerParsingServiceEntry 14 }
+
+ipLoggerParsingServiceTotalNoOfFiles OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total no of files parsed by Parsing service instance"
+	::= { ipLoggerParsingServiceEntry 15 }
+
+ipLoggerParsingServicePendingFiles OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total pending files at Parsing service instance"
+	::= { ipLoggerParsingServiceEntry 16 }
+
+ipLoggerParsingServiceInProcessFiles OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total In Process files at Parsing service instance"
+	::= { ipLoggerParsingServiceEntry 17 }
+
+	   
+processingService  OBJECT IDENTIFIER ::= { service 9 }
+
+processingServiceUp NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated when Processing service goes up"
+	::= { processingService 1 }
+
+processingServiceDown NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated when Processing service goes down"
+	::= { processingService 2 }
+
+processingServiceFailedToStart NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated when Processing service failed to start"
+	::= { processingService 3 }
+
+processingServiceOutOfMemory NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated when Processing service goes out of memory"
+	::= { processingService 4 }
+
+processingServiceReloadConfig NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated when Processing service configuration reloaded"
+	::= { processingService 5 }
+
+processingServiceSyncTo NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated at the time of synchronization to operation for Processing service instance"
+	::= { processingService 6 }
+
+processingServiceSyncFrom NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated at the time of synchronization from operation for Processing service instance"
+	::= { processingService 7 }
+
+processingServiceNoSpaceLeftOnDevice NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time when no space left on device for Processing service instance"
+	::= { processingService 8 }
+
+processingServiceError NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Processing Service Error"
+	::= { processingService 9 }
+
+processingServiceMaxFilesAlert NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Maximum Files Threshold Reached In Processing Service"
+	::= { processingService 10 }
+
+processingServiceNoFileReceived NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of No Files Received In Processing Service"
+	::= { processingService 11 }
+
+processingServiceDiskSpaceResolved NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Disk space is Resolved In Processing Service"
+	::= { processingService 12 }
+	
+processingServiceMIBObjects  OBJECT IDENTIFIER ::=  { processingService 101 }
+
+processingServiceTable OBJECT-TYPE
+	SYNTAX  	SEQUENCE OF ProcessingServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "The table listing Processing service instances"
+	::= { processingServiceMIBObjects 1 }
+
+processingServiceEntry OBJECT-TYPE
+	SYNTAX     	ProcessingServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "An entry representing a Processing service entry"
+       INDEX      { processingServiceIndex }
+	::= { processingServiceTable 1 }
+
+
+ProcessingServiceEntry ::= SEQUENCE {
+		processingServiceIndex                     	Integer32,
+		processingServiceID                     	SnmpAdminString,
+		processingServiceStatus						INTEGER,
+		processingServiceResetCounter 				Counter64,
+		processingServiceUpTime 					TimeTicks,
+		processingServiceDownTime					TimeTicks,
+		processingServiceConfigReloadTime			TimeTicks,
+		processingServiceCounterResetTime			TimeTicks,
+		processingServiceAvgTPS						Counter64,
+	
+		processingServiceTotalNoOfsuccessfulFiles 	Counter64,
+		processingServiceTotalNoOfFailediles 		Counter64,
+		processingServiceTotalProcessedRecords 		Counter64,
+		processingServiceTotalSuccessfuleecords 	Counter64,
+		processingServiceTotalFailedRecords 		Counter64,
+		processingServiceTotalFiles 				Counter64,
+		processingServiceTotalInvalidRecords 		Counter64,
+		processingServiceTotalDuplicateRecords 		Counter64,
+		processingServiceTotalFilterRecords 		Counter64,
+		processingServiceTotalPendingFiles 			Counter64,
+		processingServiceTotalInProcessFiles 		Counter64
+}
+
+processingServiceIndex OBJECT-TYPE
+	SYNTAX		Integer32 (1..2147483647)
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "A number uniquely identifying each Processing service entry"
+	::= { processingServiceEntry 1 }
+
+processingServiceID OBJECT-TYPE
+	SYNTAX		SnmpAdminString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Processing service Id"
+	::= { processingServiceEntry 2 }
+	   
+	   	
+processingServiceStatus OBJECT-TYPE
+  	SYNTAX INTEGER {
+			notStarted(1), 
+			startupInProgress(2),
+            running(3),
+	     	other(4),
+			shutDownInProgress(5),
+			stopped(6)}
+ 	MAX-ACCESS  read-only
+ 	STATUS		current
+ 	DESCRIPTION
+              ""
+ 	::= { processingServiceEntry 3 }
+		
+processingServiceResetCounter OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-write
+	STATUS		current
+	DESCRIPTION
+             "Reset All counters of Processing service instance"
+	::= { processingServiceEntry 4 }
+
+processingServiceUpTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Service up time of Processing service instance"
+	::= { processingServiceEntry 5 }
+
+processingServiceDownTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+           "Service down time of Processing service instance"
+	::= { processingServiceEntry 6 }
+
+processingServiceConfigReloadTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Config reload time of Processing service instance"
+	::= { processingServiceEntry 7 }
+	   
+processingServiceCounterResetTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Counter reset time of Processing service instance"
+	::= { processingServiceEntry 8 }
+	   
+processingServiceAvgTPS OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Average TPS of Processing service instance"
+	::= { processingServiceEntry 9 }
+	   
+	   
+
+processingServiceTotalNoOfsuccessfulFiles OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Successful processed files by Processing service instance"
+	::= { processingServiceEntry 10 }
+
+	   processingServiceTotalNoOfFailediles OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total No of failure while processing files at Processing service instance"
+	::= { processingServiceEntry 11 }
+	   
+
+processingServiceTotalProcessedRecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total processed records by Processing service instance"
+	::= { processingServiceEntry 12 }
+
+processingServiceTotalSuccessfuleecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total successfully processed records by Processing service instance"
+	::= { processingServiceEntry 13 }
+	   
+processingServiceTotalFailedRecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total failure while processing records at Processing service instance"
+	::= { processingServiceEntry 14 }
+	   
+processingServiceTotalFiles OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total files processed by Processing service instance"
+	::= { processingServiceEntry 15 }
+	   
+processingServiceTotalInvalidRecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total invalid records found by Processing service instance"
+	::= { processingServiceEntry 16 }
+	   
+processingServiceTotalDuplicateRecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total duplicate records found by Processing service instance"
+	::= { processingServiceEntry 17 }
+	   
+processingServiceTotalFilterRecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total records filtered by Processing service instance"
+	::= { processingServiceEntry 18 }
+	   
+processingServiceTotalPendingFiles OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total pending files at Processing service instance"
+	::= { processingServiceEntry 19 }
+	   
+processingServiceTotalInProcessFiles OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total In Process files at Processing service instance"
+	::= { processingServiceEntry 20 }
+
+processingServiceTotalCloneRecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total records cloned by Processing service instance"
+	::= { processingServiceEntry 21 }
+
+distributionService  OBJECT IDENTIFIER ::= { service 10 }
+
+distributionServiceUp NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated when Distribution service goes up"
+	::= { distributionService 1 }
+
+distributionServiceDown NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated when Distribution service goes down"
+	::= { distributionService 2 }
+
+distributionServiceFailedToStart NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated when Distribution service failed to start"
+	::= { distributionService 3 }
+
+distributionServiceOutOfMemory NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated when Distribution service goes out of menory"
+	::= { distributionService 4 }
+
+distributionServiceReloadConfig NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated when Distribution service configuration reloaded"
+	::= { distributionService 5 }
+
+distributionServiceSyncTo NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated at the time of synchronization to operation for Distribution service instance"
+	::= { distributionService 6 }
+
+distributionServiceSyncFrom NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION
+		"Generated at the time of synchronization from operation for Distribution service instance"
+	::= { distributionService 7 }
+
+distributionServiceFileTransferFailed NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of some abnormal condition like no access to destination folder or no space left on the device at Distribution service instance"
+	::= { distributionService 8 }
+
+distributionServiceDownStreamConnectionLost NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Down Stream Connection Lost at Distribution service instance"
+	::= { distributionService 9 }
+
+distributionServiceNoSpaceLeftOnDevice NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time when no space left on device for Distribution service instance"
+	::= { distributionService 10 }
+
+distributionServiceError NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Distribution Service Error"
+	::= { distributionService 11 }
+
+distributionServiceConnectionEstablished NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Connection Established In Distribution Service"
+	::= { distributionService 12 }
+
+distributionServiceMaxFilesAlert NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Maximum Files Threshold Reached In Distribution Service"
+	::= { distributionService 13 }
+
+distributionServiceNoFileReceived NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of No Files Received In Distribution Service"
+	::= { distributionService 14 }
+
+distributionServiceDiskSpaceResolved NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Disk space is Resolved In Distribution Service"
+	::= { distributionService 15 }
+
+distributionServiceMIBObjects  OBJECT IDENTIFIER ::=  { distributionService 101 }
+
+distributionServiceTable OBJECT-TYPE
+	SYNTAX		SEQUENCE OF DistributionServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "The table listing the Distribution service instance"
+	::= { distributionServiceMIBObjects 1 }
+
+distributionServiceEntry OBJECT-TYPE
+	SYNTAX  	DistributionServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "An entry representing Distribution service instance"
+       INDEX      { distributionServiceIndex }
+	::= { distributionServiceTable 1 }
+
+
+DistributionServiceEntry ::= SEQUENCE {
+		distributionServiceIndex            		        Integer32,
+		distributionServiceID               		      	SnmpAdminString,
+		distributionServiceStatus 							INTEGER,
+		distributionServiceResetCounter 					Counter64,
+		distributionServiceUpTime 							TimeTicks,
+		distributionServiceDownTime							TimeTicks,
+		distributionServiceConfigReloadTime					TimeTicks,
+		distributionServiceCounterResetTime					TimeTicks,
+		distributionServiceAvgTPS							Counter64,
+
+		distributionServiceTotalDistributedFiles			Counter64,
+		distributionServiceTotalSuccessFiles				Counter64,
+		distributionServiceTotalDistributionFailure			Counter64,
+		distributionServiceTotalDistributedRecords			Counter64,
+		distributionServiceTotalSuccessDistributedRecords	Counter64,
+		distributionServiceTotalFailedDistributedRecords	Counter64,
+		distributionServiceTotalPendingDistributionFile		Counter64,
+		distributionServiceTotalInprocessDistributionFile	Counter64
+}
+
+distributionServiceIndex OBJECT-TYPE
+	SYNTAX		Integer32 (1..2147483647)
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "A number uniquely identifying each Distribution service instance"
+	::= { distributionServiceEntry 1 } 
+
+distributionServiceID OBJECT-TYPE
+	SYNTAX		SnmpAdminString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Distribution service Id"
+	::= { distributionServiceEntry 2 }
+	   
+	   	
+distributionServiceStatus OBJECT-TYPE
+  	SYNTAX INTEGER {
+			notStarted(1), 
+			startupInProgress(2),
+            running(3),
+	     	other(4),
+			shutDownInProgress(5),
+			stopped(6)}
+ 	MAX-ACCESS  read-only
+ 	STATUS		current
+ 	DESCRIPTION
+              "Status of Distribution service"
+ 	::= { distributionServiceEntry 3 }
+		
+distributionServiceResetCounter OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-write
+	STATUS		current
+	DESCRIPTION
+             "Reset all counters of Distribution service instance"
+	::= { distributionServiceEntry 4 }
+
+distributionServiceUpTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Service up time of Distribution service instance"
+	::= { distributionServiceEntry 5 }
+
+distributionServiceDownTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Service down time of Distribution service instance"
+	::= { distributionServiceEntry 6 }
+
+distributionServiceConfigReloadTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Configuration reload time of Distribution service instance"
+	::= { distributionServiceEntry 7 }
+	   
+distributionServiceCounterResetTime OBJECT-TYPE
+	SYNTAX      TimeTicks
+	MAX-ACCESS  read-only
+	STATUS      current
+	DESCRIPTION
+             "Counter reset time of Distribution service instance"
+	::= { distributionServiceEntry 8 }
+	   
+distributionServiceAvgTPS OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Average TPS of Distribution service instance"
+	::= { distributionServiceEntry 9 }
+	  
+distributionServiceTotalDistributedFiles OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total distributed files by Distribution service instance"
+	::= { distributionServiceEntry 10 }
+	   
+distributionServiceTotalSuccessFiles OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total succefully distributed files by Distribution service instance"
+	::= { distributionServiceEntry 11 }
+	   
+distributionServiceTotalDistributionFailure OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total failure while distributing file at Distribution service instance"
+	::= { distributionServiceEntry 12 }
+	   
+distributionServiceTotalDistributedRecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total distributed records by Distribution service instance"
+	::= { distributionServiceEntry 13 }
+	   
+distributionServiceTotalSuccessDistributedRecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total successfully distributed records by Distribution service instance"
+	::= { distributionServiceEntry 14 }
+	   
+distributionServiceTotalFailedDistributedRecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total failue while distributing record at Distribution service instance"
+	::= { distributionServiceEntry 15 }
+	   
+distributionServiceTotalPendingDistributionFile OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total files pending for distribution at Distribution service instance"
+	::= { distributionServiceEntry 16 }
+	   
+distributionServiceTotalInprocessDistributionFile OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total in process files at Distribution service instance"
+	::= { distributionServiceEntry 17 }
+
+radiusCollectionService  OBJECT IDENTIFIER ::= { service 11 }
+
+radiusServiceUp NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Radius Collection service instance goes up"
+	::= { radiusCollectionService 1 }
+
+radiusServiceDown NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Radius Collection service instance goes down"
+	::= { radiusCollectionService 2 }
+
+radiusServiceFailedToStart NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Radius Collection service instance failed to start"
+	::= { radiusCollectionService 3 }
+
+radiusServiceOutOfMemory NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Radius Collection service instance goes out of menory"
+	::= { radiusCollectionService 4 }
+
+radiusServiceReloadConfig NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated when configuration reloaded for Radius Collection service instance"
+	::= { radiusCollectionService 5 }
+
+radiusServiceSyncTo NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of synchronozed to configuration operation to Radius Collection Service instance"
+	::= { radiusCollectionService 6 }
+
+radiusServiceSyncFrom NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of synchronozed from configuration operation to Radius Collection Service instance"
+	::= { radiusCollectionService 7 }
+
+radiusServiceNoRequestReceived NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of no request receive for specific interval in Radius Collection Service instance"
+	::= { radiusCollectionService 8 }
+
+radiusServiceTotalRejectedRequestAboveSpecifiedThresold NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of total rejected request reach up to certain limit for Radius Collection Service instance"
+	::= { radiusCollectionService 9 }
+
+radiusServiceNoSpaceLeftOnDevice NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time when no space left on device for Radius Collection Service instance"
+	::= { radiusCollectionService 10 }
+
+radiusServiceError NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time Error in Radius Collection Collection Service"
+	::= { radiusCollectionService 11 }
+
+radiusCollectionServicePacketDrop NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Packet Dropped in Radius Collection Service"
+	::= { radiusCollectionService 12 }
+
+radiusCollectionServicehasNotRecievedPacketYet NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of SysLog Collection Service has not recieved packet yet"
+	::= { radiusCollectionService 13 }
+
+radiusCollectionServicehasPacketRecieved NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Radius Collection Service has recieved packet after delay of packets"
+	::= { radiusCollectionService 14 }
+
+radiusCollectionServiceMalformPacketRecieved NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Radius Collection Service has recieved malform or invalid packet"
+	::= { radiusCollectionService 15 }
+
+
+radiusCollectionServiceMIBObjects  OBJECT IDENTIFIER ::=  { radiusCollectionService 101 }
+
+radiusCollectionServiceTable OBJECT-TYPE
+	SYNTAX  	SEQUENCE OF RadiusServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "The table listing the Radius Collection service instances"
+    ::= { radiusCollectionServiceMIBObjects 1 }
+
+radiusServiceEntry OBJECT-TYPE
+	SYNTAX		RadiusServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "An entry representing a Radius Collection Service instance"
+    INDEX      { radiusServiceIndex }
+    ::= { radiusCollectionServiceTable 1 }
+	
+RadiusServiceEntry ::= SEQUENCE {
+		radiusServiceIndex 											Integer32, 
+		radiusServiceID      										SnmpAdminString, 
+		radiusServiceStatus											INTEGER,	
+		radiusServiceResetCounter									Counter64,
+		radiusServiceServiceUpTime        	   	              		TimeTicks,
+		radiusServiceServiceDownTime      	                   		TimeTicks, 
+		radiusServiceConfigReloadTime								TimeTicks,
+		radiusServiceCounterResetTime								TimeTicks,
+		radiusServiceAvgTPS											Counter64,
+		radiusServiceTotalDroppedRequest							Counter64, 
+		radiusServiceTotalInvalidClientRequest                	  	Counter64, 
+		radiusServiceTotalRequestReceived          					Counter64, 
+		radiusServiceTotalReceivedAuthenticationRequests           	Counter64, 
+		radiusServiceTotalReceivedAccountingStartRequests          	Counter64,  
+		radiusServiceTotalReceivedAccountingStopRequests           	Counter64,         
+		radiusServiceTotalReceivedAccountingUpdateRequests			Counter64, 
+		radiusServiceTotalReceivedAccountingOnRequests              Counter64, 
+		radiusServiceTotalReceivedAccountingOffRequests             Counter64, 
+		radiusServiceTotalResponseSent                      		Counter64,      
+		radiusServiceTotalAuthenticationResponse              		Counter64,       
+		radiusServiceTotalAccountingStartResponse             		Counter64,      
+		radiusServiceTotalAccountingStopResponse            		Counter64, 
+		radiusServiceTotalAccountingUpdateResponse                  Counter64, 
+		radiusServiceTotalAccountingOnResponse                      Counter64, 
+		radiusServiceTotalAccountingOffResponse                     Counter64	
+}
+
+radiusServiceIndex OBJECT-TYPE
+	SYNTAX		Integer32 (1..2147483647)
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "A number uniquely identifying each Radius Collection Service instance"
+    ::= { radiusServiceEntry 1 }
+
+radiusServiceID OBJECT-TYPE
+	SYNTAX		SnmpAdminString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Represent Radius Collection Service instance ID"
+    ::= { radiusServiceEntry 2 }
+
+radiusServiceStatus OBJECT-TYPE
+	SYNTAX INTEGER {
+			notStarted(1), 
+			startupInProgress(2),
+            running(3),
+	     	other(4),
+			shutDownInProgress(5),
+			stopped(6)}
+	MAX-ACCESS  read-only
+	STATUS		current
+	DESCRIPTION
+              "Staus of Radius Collection Service instance"
+    ::= { radiusServiceEntry 3 }
+		
+radiusServiceResetCounter OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-write
+	STATUS		current
+	DESCRIPTION
+             "Reset all counters for Radius Collection Service instance"
+    ::= { radiusServiceEntry 4 }
+	   
+radiusServiceServiceUPTime OBJECT-TYPE
+	SYNTAX		TimeTicks
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Radius Collection Service start up time"
+	::= { radiusServiceEntry 5 }
+	   
+radiusServiceServiceDownTime OBJECT-TYPE
+	SYNTAX		TimeTicks
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Radius Collection Service down Time"
+	::= { radiusServiceEntry 6 }
+	   
+radiusServiceConfigReloadTime OBJECT-TYPE
+	SYNTAX		TimeTicks
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Reload configuration time of Radius Collection Service instance"
+	::= { radiusServiceEntry 7 }
+	   
+radiusServiceCounterResetTime OBJECT-TYPE
+	SYNTAX		TimeTicks
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Radius Collection service counter reset Time"
+	::= { radiusServiceEntry 8 }
+	   
+radiusServiceAvgTPS OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Average TPS for collection service instance"
+    ::= { radiusServiceEntry 9 }
+
+radiusServiceTotalDroppedRequest OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total request dropped by Radius Collection Collecition Service instance"
+    ::= { radiusServiceEntry 10 }
+
+radiusServiceTotalInvalidClientRequest OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total request received from unkown ip address at Radius Collection Service instance"
+    ::= { radiusServiceEntry 11 }
+
+radiusServiceTotalRequestReceived OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total request received by Radius Collection Service instance"
+    ::= { radiusServiceEntry 12 }
+	
+radiusServiceTotalReceivedAuthenticationRequests OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Authentication request received by Radius Collection service instance"
+    ::= { radiusServiceEntry 13 }
+
+radiusServiceTotalReceivedAccountingStartRequests OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Accounting Start request received by Radius Collection service instance"
+    ::= { radiusServiceEntry 14 }
+
+radiusServiceTotalReceivedAccountingStopRequests OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Accounting Stop request received by Radius Collection service instance"
+	::= { radiusServiceEntry 15 }
+
+radiusServiceTotalReceivedAccountingUpdateRequests OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Accounting Update request received by Radius Collection service instance"
+	::= { radiusServiceEntry 16 }
+
+radiusServiceTotalReceivedAccountingOnRequests OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Accounting On Requests received by Radius Collection service instance"
+	::= { radiusServiceEntry 17 }
+
+radiusServiceTotalReceivedAccountingOffRequests OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Accounting Off Requests received by Radius Collection service instance"
+	::= { radiusServiceEntry 18 }
+
+radiusServiceTotalResponseSent OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total response send by Radius Collection service instance"
+	::= { radiusServiceEntry 19 }
+
+radiusServiceTotalAuthenticationResponse OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Authentication Response response sent by Radius Collection service instance"
+	::= { radiusServiceEntry 20 }
+
+radiusServiceTotalAccountingStartResponse OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Accounting Start response sent by Radius Collection service instance"
+	::= { radiusServiceEntry 21 }
+
+radiusServiceTotalAccountingStopResponse OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Accounting Stop Response sent by Radius Collection service instance"
+	::= { radiusServiceEntry 22 }
+
+radiusServiceTotalAccountingUpdateResponse OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Accounting Update Response sent by Radius Collection service instance"
+	::= { radiusServiceEntry 23 }
+
+radiusServiceTotalAccountingOnResponse OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Accounting On Response sent by Radius Collection service instance"
+	::= { radiusServiceEntry 24 }
+
+radiusServiceTotalAccountingOffResponse OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total Accounting Off Response sent by Radius Collection service instance"
+	::= { radiusServiceEntry 25 }
+
+
+
+dataConsolidationService  OBJECT IDENTIFIER ::= { service 12 }
+
+dataConsolidationServiceUp NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Data Consolidation service instance goes up"
+	::= { dataConsolidationService 1 }
+
+dataConsolidationServiceDown NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Data Consolidation service instance goes down"
+	::= { dataConsolidationService 2 }
+
+dataConsolidationServiceFailedToStart NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Data Consolidation service instance failed to start"
+	::= { dataConsolidationService 3 }
+
+dataConsolidationServiceOutOfMemory NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Data Consolidation service instance goes out of menory"
+	::= { dataConsolidationService 4 }
+
+dataConsolidationServiceReloadConfig NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated when configuration reloaded for Data Consolidation service instance"
+	::= { dataConsolidationService 5 }
+
+dataConsolidationServiceSyncTo NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of synchronozed to configuration operation to Data Consolidation Service instance"
+	::= { dataConsolidationService 6 }
+
+dataConsolidationServiceSyncFrom NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of synchronozed from configuration operation to Data Consolidation Service instance"
+	::= { dataConsolidationService 7 }
+
+dataConsolidationServiceNoSpaceLeftOnDevice NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time when no space left on device for Data Consolidation Service instance"
+	::= { dataConsolidationService 8 }
+
+dataConsolidationServiceError NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time Error in Data Consolidation Service"
+	::= { dataConsolidationService 9 }
+
+dataConsolidationServiceMaxFilesAlert NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Maximum Files Threshold Reached In Data Consolidation Service"
+	::= { dataConsolidationService 10 }
+
+dataConsolidationServiceNoFileReceived NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of No Files Received In Data Consolidation Service"
+	::= { dataConsolidationService 11 }
+
+dataConsolidationServiceDiskSpaceResolved NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generated at the time of Disk space is Resolved In Data Consolidation Service"
+	::= { dataConsolidationService 12 }
+
+dataConsolidationServiceMIBObjects  OBJECT IDENTIFIER ::=  { dataConsolidationService 101 }
+
+dataConsolidationServiceTable OBJECT-TYPE
+	SYNTAX  	SEQUENCE OF DataConsolidationServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "The table listing the Data Consolidation service instances"
+    ::= { dataConsolidationServiceMIBObjects 1 }
+
+dataConsolidationServiceEntry OBJECT-TYPE
+	SYNTAX		DataConsolidationServiceEntry
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "An entry representing a Data Consolidation Service instance"
+    INDEX      { dataConsolidationServiceIndex }
+    ::= { dataConsolidationServiceTable 1 }
+	
+DataConsolidationServiceEntry ::= SEQUENCE {
+
+		dataConsolidationServiceIndex 											Integer32, 
+		dataConsolidationServiceID      										SnmpAdminString, 
+		dataConsolidationServiceStatus											INTEGER,	
+		dataConsolidationServiceResetCounter									Counter64,
+		dataConsolidationServiceServiceUpTime        	   	              		TimeTicks,
+		dataConsolidationServiceServiceDownTime      	                   		TimeTicks, 
+		dataConsolidationServiceConfigReloadTime								TimeTicks,
+		dataConsolidationServiceCounterResetTime								TimeTicks,
+
+		dataConsolidationServiceAvgTPS											Counter64,
+		dataConsolidationServiceTotalRecords					Counter64,
+		dataConsolidationServiceTotalFiles 				Counter64,
+		dataConsolidationServiceInProcessFiles 				Counter64
+
+}
+
+dataConsolidationServiceIndex OBJECT-TYPE
+	SYNTAX		Integer32 (1..2147483647)
+	MAX-ACCESS	not-accessible
+	STATUS		current
+	DESCRIPTION
+             "A number uniquely identifying each Data Consolidation Service instance"
+    ::= { dataConsolidationServiceEntry 1 }
+
+dataConsolidationServiceID OBJECT-TYPE
+	SYNTAX		SnmpAdminString
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Represent Data Consolidation Service instance ID"
+    ::= { dataConsolidationServiceEntry 2 }
+
+dataConsolidationServiceStatus OBJECT-TYPE
+	SYNTAX INTEGER {
+			notStarted(1), 
+			startupInProgress(2),
+            running(3),
+	     	other(4),
+			shutDownInProgress(5),
+			stopped(6)}
+	MAX-ACCESS  read-only
+	STATUS		current
+	DESCRIPTION
+              "Staus of Data Consolidation Service instance"
+    ::= { dataConsolidationServiceEntry 3 }
+		
+dataConsolidationServiceResetCounter OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-write
+	STATUS		current
+	DESCRIPTION
+             "Reset all counters for Data Consolidation Service instance"
+    ::= { dataConsolidationServiceEntry 4 }
+	   
+dataConsolidationServiceServiceUpTime OBJECT-TYPE
+	SYNTAX		TimeTicks
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Data Consolidation Service start up time"
+	::= { dataConsolidationServiceEntry 5 }
+	   
+dataConsolidationServiceServiceDownTime OBJECT-TYPE
+	SYNTAX		TimeTicks
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Data Consolidation Service down Time"
+	::= { dataConsolidationServiceEntry 6 }
+	   
+dataConsolidationServiceConfigReloadTime OBJECT-TYPE
+	SYNTAX		TimeTicks
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Reload configuration time of Data Consolidation Service instance"
+	::= { dataConsolidationServiceEntry 7 }
+	   
+dataConsolidationServiceCounterResetTime OBJECT-TYPE
+	SYNTAX		TimeTicks
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Data Consolidation service counter reset Time"
+	::= { dataConsolidationServiceEntry 8 }
+	   
+dataConsolidationServiceAvgTPS OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Average TPS for Data Consolidation service instance"
+    ::= { dataConsolidationServiceEntry 9 }
+
+dataConsolidationServiceTotalRecords OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total records processed by Data Consolidation Service instance"
+    ::= { dataConsolidationServiceEntry 10 }
+
+dataConsolidationServiceTotalFiles OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total file processed by Data Consolidation Service instance"
+    ::= { dataConsolidationServiceEntry 11 }
+
+dataConsolidationServiceInProcessFiles OBJECT-TYPE
+	SYNTAX		Counter64
+	MAX-ACCESS	read-only
+	STATUS		current
+	DESCRIPTION
+             "Total in process files for Data Consolidation Service instance"
+    ::= { dataConsolidationServiceEntry 12 }
+    
+    
+generic  OBJECT IDENTIFIER ::= { crestelMediationServer 5 }
+
+generic1 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 1"
+	::= { generic 1 }
+
+generic2 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 2"
+	::= { generic 2 }
+
+generic3 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 3"
+	::= { generic 3 }
+
+generic4 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 4"
+	::= { generic 4 }
+
+generic5 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 5"
+	::= { generic 5 }
+
+generic6 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 6"
+	::= { generic 6 }
+
+generic7 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 7"
+	::= { generic 7 }
+
+generic8 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 8"
+	::= { generic 8 }
+
+generic9 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 9"
+	::= { generic 9 }
+
+generic10 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 10"
+	::= { generic 10 }
+
+generic11 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 11"
+	::= { generic 11 }
+
+generic12 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 12"
+	::= { generic 12 }
+
+generic13 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 13"
+	::= { generic 13 }
+
+generic14 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 14"
+	::= { generic 14 }
+
+generic15 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 15"
+	::= { generic 15 }
+
+generic16 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 16"
+	::= { generic 16 }
+
+generic17 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 17"
+	::= { generic 17 }
+
+generic18 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 18"
+	::= { generic 18 }
+
+generic19 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 19"
+	::= { generic 19 }
+
+generic20 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 20"
+	::= { generic 20 }
+
+generic21 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 21"
+	::= { generic 21 }
+
+generic22 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 22"
+	::= { generic 22 }
+
+generic23 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 23"
+	::= { generic 23 }
+
+generic24 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 24"
+	::= { generic 24 }
+
+generic25 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 25"
+	::= { generic 25 }
+
+generic26 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 26"
+	::= { generic 26 }
+
+generic27 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 27"
+	::= { generic 27 }
+
+generic28 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 28"
+	::= { generic 28 }
+
+generic29 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 29"
+	::= { generic 29 }
+
+generic30 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 30"
+	::= { generic 30 }
+
+generic31 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 31"
+	::= { generic 31 }
+
+generic32 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 32"
+	::= { generic 32 }
+
+generic33 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 33"
+	::= { generic 33 }
+
+generic34 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 34"
+	::= { generic 34 }
+
+generic35 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 35"
+	::= { generic 35 }
+
+generic36 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 36"
+	::= { generic 36 }
+
+generic37 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 37"
+	::= { generic 37 }
+
+generic38 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 38"
+	::= { generic 38 }
+
+generic39 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 39"
+	::= { generic 39 }
+
+generic40 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 40"
+	::= { generic 40 }
+
+generic41 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 41"
+	::= { generic 41 }
+
+generic42 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 42"
+	::= { generic 42 }
+
+generic43 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 43"
+	::= { generic 43 }
+
+generic44 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 44"
+	::= { generic 44 }
+
+generic45 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 45"
+	::= { generic 45 }
+
+generic46 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 46"
+	::= { generic 46 }
+
+generic47 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 47"
+	::= { generic 47 }
+
+generic48 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 48"
+	::= { generic 48 }
+
+generic49 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 49"
+	::= { generic 49 }
+
+generic50 NOTIFICATION-TYPE
+	STATUS current
+	DESCRIPTION 
+		"Generic 50"
+	::= { generic 50 }
+END

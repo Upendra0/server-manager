@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="ehcache.xsd" updateCheck="true"
+	monitoring="autodetect" dynamicConfig="true">
+
+	<!-- Reference URL: http://www.journaldev.com/2980/hibernate-ehcache-second-level-caching-example-tutorial -->
+
+	<diskStore path="java.io.tmpdir/ehcache" />
+
+	<defaultCache maxEntriesLocalHeap="10000" eternal="false"
+		timeToIdleSeconds="120" timeToLiveSeconds="120" diskSpoolBufferSizeMB="30"
+		maxEntriesLocalDisk="10000000" diskExpiryThreadIntervalSeconds="120"
+		memoryStoreEvictionPolicy="LRU" statistics="true">
+		<persistence strategy="localTempSwap" />
+	</defaultCache>
+
+	<cache name="serverTypeCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	<cache name="serverCache" maxEntriesLocalHeap="10000" eternal="false"
+		timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+
+	<cache name="serverInstanceCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+
+	<cache name="datasourceConfigCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+
+	<cache name="serviceTypeCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+
+	<cache name="serviceCache" maxEntriesLocalHeap="10000" eternal="false"
+		timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+
+	<cache name="schedulingParameterCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	
+	<cache name="driverTypeCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+
+	<cache name="driverCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+
+	<cache name="pathListCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+
+	<cache name="staffCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	
+	<cache name="accessGroupCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	
+	<cache name="systemParameterCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	
+	<cache name="agentCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	
+	<cache name="partitionParamCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	
+	<cache name="IPLogParsingServiceCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>	
+	
+	<cache name="systemParameterGroupData" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	<cache name="systemParameterData" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	<cache name="systemParameterValuePoolData" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	
+	<cache name="dictionaryAttributeCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	
+	<cache name="parserMappingCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	
+	<cache name="actionCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	
+	<cache name="profileEntityCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	
+	<cache name="serviceFileRenameConfigCache" maxEntriesLocalHeap="10000"
+		eternal="false" timeToIdleSeconds="0" timeToLiveSeconds="0">
+		<persistence strategy="localTempSwap" />
+	</cache>
+	
+	<cache name="org.hibernate.cache.internal.StandardQueryCache"
+		maxEntriesLocalHeap="5" eternal="false" timeToLiveSeconds="120">
+		<persistence strategy="localTempSwap" />
+	</cache>
+
+	<cache name="org.hibernate.cache.spi.UpdateTimestampsCache"
+		maxEntriesLocalHeap="5000" eternal="true">
+		<persistence strategy="localTempSwap" />
+	</cache>
+</ehcache>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<datasources>
+ 
+    <datasource>
+        <datasource-name>MEDIATION_SERVER_DS</datasource-name>
+        <datasource-type>1</datasource-type>
+        <connection-url>@database.url@</connection-url>
+        <user-name>@database.user@</user-name>
+        <password>@database.password@</password>
+        <minimum-pool-size>10</minimum-pool-size>
+        <maximum-pool-size>15</maximum-pool-size>
+    </datasource>
+
+    
+<!-- 
+    <datasource>
+        <datasource-name>CRESTEL_API_RATING_DS</datasource-name>
+        <datasource-type>1</datasource-type>
+        <connection-url>jdbc:oracle:thin:@192.168.1.171:1521:orcl92</connection-url>
+        <user-name>jispratcorbillingngt510</user-name>
+        <password>jispratcorbillingngt510</password>
+        <minimum-pool-size>10</minimum-pool-size>
+        <maximum-pool-size>15</maximum-pool-size>
+    </datasource>
+-->      
+    
+</datasources>
+
+
+<!-- ========================================================== -->
+<!-- Details of each configuration parameter                    -->
+<!-- ========================================================== -->
+
+<!--
+<datasources>
+	<datasource>
+		<datasource-name>first datasource name</datasource-name>
+			Any valid identifier for this datasource. Identifier to be used
+			wherever the datasource need to be referenced.
+
+		<datasource-type></datasource-type>
+			Represents the data source type. Use value 1 for oracle data source type 
+			and 2 for timesten data source type.
+			
+        <connection-url>jdbc:oracle:thin:@192.168.14.103:1521:jispsqa</connection-url>
+        	Represents the connection string used to connect by the database driver.
+        	Format of this url is shown below.
+        		jdbc:oracle:thin:@(IP Address):(Port):(SID)
+
+		<user-name>username</user-name>
+			User name to be used to establish connection with database.
+
+		<password>password</password>
+			The password to be used while creating connection.
+
+		<minimum-pool-size></minimum-pool-size>
+			Minimum number of connections to be maintained in the pool.
+
+		<maximum-pool-size></maximum-pool-size>
+			Maximum connection to be maintained in the pool.
+
+	</datasource>
+</datasources>
+-->
+
+
+<!-- ========================================================== -->
+<!-- End of configuration details                               -->
+<!-- ========================================================== -->

@@ -1,0 +1,105 @@
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="iplog-parsing-service">
+		<xs:complexType>
+			<xs:all>
+				<xs:element type="xs:string" name="source-path" />
+				<xs:element type="xs:string" name="sorting-type">
+				</xs:element>
+				<xs:element type="xs:string" name="sorting-criteria">
+				</xs:element>
+				<xs:element type="xs:string" name="is-compressed" />
+				<xs:element type="xs:int" name="minimum-thread" />
+				<xs:element type="xs:int" name="maximum-thread" />
+				<xs:element type="xs:int" name="file-batch-size" />
+				<xs:element type="xs:int" name="queue-size" />
+				<xs:element type="xs:int" name="record-batch-size" />
+				<xs:element type="xs:string" name="startup-mode" />
+				<xs:element type="xs:int" name="execution-interval" />
+				<xs:element type="xs:string" name="immediate-execute-on-startup" />
+				<xs:element type="xs:string" name="source-file-types" />
+				<xs:element type="xs:string" name="select-file-on-prefixes" />
+				<xs:element type="xs:string" name="select-file-on-suffixes" />
+				<xs:element type="xs:string" name="file-compression" />
+				<xs:element type="xs:string" name="plugin-name" />
+				<xs:element name="file-grouping">
+					<xs:complexType>
+						<xs:all>
+							<xs:element type="xs:string" name="grouping-type" />
+							<xs:element type="xs:string" name="for-archive" />
+							<xs:element type="xs:string" name="archive-path" />
+						</xs:all>
+						<xs:attribute type="xs:string" name="enabled" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element type="xs:string" name="exclude-file-types" />
+				<xs:element name="syslog-output-configuration">
+					<xs:complexType>
+						<xs:all>
+							<xs:element type="xs:string" name="destination-directory-path" />
+							<xs:element name="file-partition">
+								<xs:complexType>
+									<xs:all>
+										<xs:element type="xs:string" name="field-seperator" />
+										<xs:element type="xs:string" name="partition-type" />
+										<xs:element name="field-based-hash-partition">
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="key-field" minOccurs="0">
+														<xs:complexType>
+															<xs:all>
+																<xs:element type="xs:string" name="unified-field-name" />
+																<xs:element type="xs:string" name="range" />
+															</xs:all>
+															<xs:attribute type="xs:string" name="type" use="optional" />
+														</xs:complexType>
+													</xs:element>
+												</xs:all>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="inprocess-file-purge">
+								<xs:complexType>
+									<xs:all>
+										<xs:element type="xs:int" name="purge-interval" />
+										<xs:element type="xs:int" name="max-rename-interval" />
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element type="xs:string" name="equal-check-field" />
+				<xs:element type="xs:string" name="equal-check-value" />
+				<xs:element type="xs:string" name="output-file-header" />
+				<xs:element name="file-statistics">
+					<xs:complexType>
+						<xs:all>
+							<xs:element type="xs:string" name="file-statistics-path" />
+						</xs:all>
+						<xs:attribute type="xs:string" name="enabled" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="pre-correlation">
+					<xs:complexType>
+						<xs:all>
+							<xs:element type="xs:string" name="cdr-type-field">
+							</xs:element>
+							<xs:element type="xs:string" name="destination-port-field">
+							</xs:element>
+							<xs:element type="xs:string" name="destination-ports-filter">
+							</xs:element>
+							<xs:element type="xs:string" name="c-data-destination-path">
+							</xs:element>
+							<xs:element type="xs:string" name="d-data-destination-path" />
+						</xs:all>
+						<xs:attribute type="xs:string" name="enabled" />
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+

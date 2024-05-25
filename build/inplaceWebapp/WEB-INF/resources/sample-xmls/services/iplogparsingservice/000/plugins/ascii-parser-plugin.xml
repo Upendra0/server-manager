@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ascii-parser-plugin>
+ <instance id="000">
+    <file-header present="false">
+        <file-header-parser>BAF</file-header-parser>
+        <contains-fields>false</contains-fields>
+    </file-header>
+
+    <file-footer present="false">
+        <file-footer-parser>BAF</file-footer-parser>
+		<file-footer-contains>TRL</file-footer-contains>
+    </file-footer>
+        
+    <source-charset-name>UTF8</source-charset-name> 
+    
+    <source-date-format>yyyy|MMM|dd|HH:mm:ss</source-date-format>  
+            <!-- Specifies the date format of the date field present into the file.
+                It will be comma separated value.Parsing will try to parse the date from the list specified here.
+                The first match will be considered as a date format.
+        
+                The date format into the raw file can also either Long value or Unix Epoch format. 
+                In the list, these two formats(Long and Unix Epoch) cannot reside at a time. -->
+    
+    <key-value-record>false</key-value-record>
+            <!-- Specifies Key-Value pair is present or not in the raw files. -->
+    
+    <key-value-separator>=</key-value-separator>
+            <!-- Specifies key value separator. -->
+    
+    <field-separator> </field-separator>
+	
+	<find-and-replace></find-and-replace>
+    
+    <record-header present="false"> <!-- can be length or separator-->
+        <record-header-separator>::</record-header-separator>
+        <record-header-length>30</record-header-length>
+    </record-header>
+    
+    <attribute-list>
+    <!--  Attribute List with header-->
+        <attribute>
+            <unified-field>StartDate</unified-field>
+            <source-field>1,2,3</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+		 	<source-field-format></source-field-format>
+        </attribute>        
+        <attribute>
+            <unified-field>General6</unified-field>
+            <source-field>6</source-field>
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+			<source-field-format></source-field-format>
+            <split-ip-port seperator=":">General60</split-ip-port>
+        </attribute>
+        <attribute>
+            <unified-field>General7</unified-field>
+            <source-field>8</source-field>
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+			<source-field-format></source-field-format>
+            <split-ip-port seperator=":">General61</split-ip-port>
+        </attribute>
+        <attribute>
+            <unified-field>General8</unified-field>
+            <source-field>10</source-field>
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+		    <source-field-format></source-field-format>
+            <split-ip-port seperator=":">General62</split-ip-port>
+        </attribute>
+        </attribute-list>
+   </instance>  
+</ascii-parser-plugin>

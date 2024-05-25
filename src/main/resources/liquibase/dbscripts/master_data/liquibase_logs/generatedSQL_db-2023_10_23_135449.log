@@ -1,0 +1,400 @@
+-- *********************************************************************
+-- Update Database Script
+-- *********************************************************************
+-- Change Log: ./masterChangeLog.xml
+-- Ran at: 23/10/23, 1:54 PM
+-- Against: crestelsmngtdev@jdbc:postgresql://127.0.0.1:5432/crestelsmngtdev
+-- Liquibase version: 3.4.2
+-- *********************************************************************
+
+-- Lock Database
+UPDATE crestelsmngtdev.databasechangeloglock SET LOCKED = TRUE, LOCKEDBY = '44.175.13.175 (44.175.13.175)', LOCKGRANTED = '2023-10-23 13:54:50.484' WHERE ID = 1 AND LOCKED = FALSE;
+
+-- Changeset ./sqlQueryChangeLog.xml::RR4000000001::elitecore
+-- Updating regex for data consolidation service cons name value.
+UPDATE TBLMREGEX  SET VALUE='^[\w-._,/''][\w\s-._,/'']{1,200}+$' WHERE ID=253;
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('RR4000000001', 'elitecore', './sqlQueryChangeLog.xml', NOW(), 1729, '7:cdb6cc153447ec08e0aa71f3dce03a4c', 'sql', 'Updating regex for data consolidation service cons name value.', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog.xml::RR4000000003::elitecore
+-- Updating regex for data consolidation service cons name value.
+UPDATE TBLMREGEX  SET VALUE='^(\S)[^<>:\"/\|?*]{1,100}$' WHERE ID=73;
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('RR4000000003', 'elitecore', './sqlQueryChangeLog.xml', NOW(), 1730, '7:822ca86194dde36392f6176898c4e132', 'sql', 'Updating regex for data consolidation service cons name value.', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog.xml::RR4000000017::elitecore
+-- Updating re-gex value for start length
+UPDATE TBLMREGEX  SET VALUE='^[0-9-]{0,10000}+$' WHERE ID=271;
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('RR4000000017', 'elitecore', './sqlQueryChangeLog.xml', NOW(), 1731, '7:1ad319890b49d153332e3ab407f296a2', 'sql', 'Updating re-gex value for start length', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog.xml::RR4000000018::elitecore
+-- Updating re-gex value for end length
+UPDATE TBLMREGEX  SET VALUE='^[0-9-]{0,10000}+$' WHERE ID=272;
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('RR4000000018', 'elitecore', './sqlQueryChangeLog.xml', NOW(), 1732, '7:d01e7eba5f1e4d735e658c48fb0f3105', 'sql', 'Updating re-gex value for end length', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog.xml::RR4000000019::elitecore
+-- Updating re-gex value for length
+UPDATE TBLMREGEX  SET VALUE='^[0-9-]{0,10000}+$' WHERE ID=273;
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('RR4000000019', 'elitecore', './sqlQueryChangeLog.xml', NOW(), 1733, '7:fcbdecc17c61d355ab80952bad1c7c9b', 'sql', 'Updating re-gex value for length', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::NP50000000012::elitecore (generated)
+-- Updating Regular Expression to allow hyphens for Storage
+-- 			Location validation of packet statistic agent ^[\_$\s.\w:/\-]{1,500}$
+update TBLMREGEX set value='^[\_$\s.\w:/\-]{1,500}$' where
+			regexkey='PacketStatisticsAgent.storageLocation';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('NP50000000012', 'elitecore (generated)', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1734, '7:2f6736ca70a11694eef03f10a0b99749', 'sql', 'Updating Regular Expression to allow hyphens for Storage
+			Location validation of packet statistic agent ^[\_$\s.\w:/\-]{1,500}$', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::RR50000000001::elitecore
+-- Change set for updating value of default char rename
+-- 			parameter as per live requirement.
+UPDATE TBLMREGEX SET VALUE =
+			'^[\w\s~@!#\$\^%*()+=\-\[\]\\\'';,\.\/\{\}\\|\":<>\? ]{0,500}'
+			WHERE ID = '172';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('RR50000000001', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1735, '7:d218e9a27db67641901c513bfa1c9f66', 'sql', 'Change set for updating value of default char rename
+			parameter as per live requirement.', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::RR50000000003::elitecore
+-- Change set for updating value of default char rename parameter as per live requirement.
+UPDATE TBLMREGEX SET  VALUE = '^[\w\s~@!#\$\^%*()+=\-\[\]\\\'';,\.\/\{\}\\|\":<>\? ]{0,500}$' WHERE ID = '172';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('RR50000000003', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1736, '7:74c71e6c63c52b8a88d79b3fd8da7c78', 'sql', 'Change set for updating value of default char rename parameter as per live requirement.', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::RR50000000005::elitecore
+-- Changing server instance file storage .
+UPDATE TBLMREGEX SET  VALUE = '^[\_$\s\w-:./\\]{0,200}$' WHERE REGEXKEY='ServerInstance.logsDetail.logPathLocation';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('RR50000000005', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1737, '7:0ade68d35ae578976aa045f91c91d2b2', 'sql', 'Changing server instance file storage .', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::RR50000000007::elitecore
+-- Updating collection driver archive path.
+UPDATE TBLMREGEX SET  VALUE = '^[\_$\s\w-:./\\]{1,500}$' WHERE REGEXKEY='CollectionDriver.fileGroupingParameter.archivePath';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('RR50000000007', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1738, '7:e1ffc17bfee5302fe9fbbd8ac42a1151', 'sql', 'Updating collection driver archive path.', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::RR50000000009::elitecore
+UPDATE TBLMREGEX SET  VALUE = '^[\_$\s\w-:./\\]{1,500}$' WHERE REGEXKEY='PathList.readFilePath';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('RR50000000009', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1739, '7:ac56491e119705584e5b8de86cd682bc', 'sql', '', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::RR50000000013::elitecore
+UPDATE TBLMREGEX SET  VALUE = '^[\_$\s\w-:./\\]{0,500}$' WHERE REGEXKEY='NetflowClient.bkpBinaryfileLocation';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('RR50000000013', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1740, '7:cb0422f68e875f57946035d370ebd7b7', 'sql', '', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::RR50000000015::elitecore
+UPDATE TBLMREGEX SET  VALUE = '^[\_$\s\w-:./\\]{0,600}$' WHERE REGEXKEY='Service.fileGroupParam.archivePath';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('RR50000000015', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1741, '7:9d0bd89df98f0329c1a2d1cb15801909', 'sql', '', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::RR50000000017::elitecore
+UPDATE TBLMREGEX SET  VALUE = '^[\_$\s\w-:./\\]{0,600}$' WHERE REGEXKEY='Service.createRecDestPath';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('RR50000000017', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1742, '7:809534b0eddf1112a58849b06b178971', 'sql', '', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::RR50000000019::elitecore
+UPDATE TBLMREGEX SET  VALUE = '^[\_$\s\w-:./\\]{0,600}$' WHERE REGEXKEY='Service.deleteRecDestPath';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('RR50000000019', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1743, '7:8942e195c0df9a57cead5553853849f5', 'sql', '', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::RR50000000021::elitecore
+UPDATE TBLMREGEX SET  VALUE = '^[\_$\s\w-:./\\]{1,500}$' WHERE REGEXKEY='Parser.parsingPathList.readFilePath';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('RR50000000021', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1744, '7:ef69142b03b82a663c6225c2d8dad367', 'sql', '', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::RR50000000025::elitecore
+UPDATE TBLMREGEX SET  VALUE = '^[\_$\s\w-:./\\]{1,500}$' WHERE REGEXKEY='PathList.archivePath';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('RR50000000025', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1745, '7:4b4ebd51625eb8689d909b3cbe8ae3a1', 'sql', '', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::RR50000000027::elitecore
+UPDATE TBLMREGEX SET  VALUE = '^[\_$\s\w-:./\\]{0,600}$' WHERE REGEXKEY='Service.errorPath';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('RR50000000027', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1746, '7:74b015f4ba98b82d886e21641096f16c', 'sql', '', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::BB50000000001::elitecore
+-- hyphen support added in path regex
+UPDATE TBLMREGEX SET VALUE = '^[\_$\s\w-:./\\]{1,500}$' WHERE 	REGEXKEY = 'Composer.destPath';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('BB50000000001', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1747, '7:0ce4d1d1acf73099a23534369bc78828', 'sql', 'hyphen support added in path regex', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::BB50000000003::elitecore
+-- hyphen support added in path regex
+UPDATE TBLMREGEX SET VALUE = '^[\_$\s\w-:./\\]{1,500}$' WHERE 	REGEXKEY = 'Composer.fileBackupPath';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('BB50000000003', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1748, '7:9598575db191fe1b5e88cc1c5e71dcf4', 'sql', 'hyphen support added in path regex', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::BB50000000005::elitecore
+-- hyphen support added in path regex
+UPDATE TBLMREGEX SET VALUE = '^[\_$\s\w-:./\\]{1,500}$' WHERE 	REGEXKEY = 'DistributionDriverPathList.writeFilePath';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('BB50000000005', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1749, '7:b53ef3069b5c4896adfa3c1bdc05e109', 'sql', 'hyphen support added in path regex', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::BB50000000007::elitecore
+-- hyphen support added in path regex
+UPDATE TBLMREGEX SET VALUE = '^[\_$\s\w-:./\\]{1,500}$' WHERE 	REGEXKEY = 'PacketStatisticsAgent.storageLocation';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('BB50000000007', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1750, '7:0b9f975c1bc65b5dfd93becf734fdd18', 'sql', 'hyphen support added in path regex', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::BB50000000009::elitecore
+-- hyphen support added in path regex
+UPDATE TBLMREGEX SET VALUE = '^[\_$\s\w-:./\\]{1,500}$' WHERE REGEXKEY = 'ServiceFileRenameConfig.destinationPath';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('BB50000000009', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1751, '7:03f69b53534f5345aa34da905054bd29', 'sql', 'hyphen support added in path regex', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::BB50000000011::elitecore
+-- hyphen support added in path regex
+UPDATE TBLMREGEX SET VALUE = '^[\_$\s\w-:./\\]{1,500}$' WHERE 	REGEXKEY = 'ServerInstance.fileStorageLocation';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('BB50000000011', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1752, '7:108982af06f793c20f8595f22eab5b90', 'sql', 'hyphen support added in path regex', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::BB50000000013::elitecore
+-- hyphen support added in path regex
+UPDATE TBLMREGEX SET VALUE = '^[\_$\s\w-:./\\]{0,200}$' WHERE REGEXKEY = 'ServerInstance.logsDetail.logPathLocation';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('BB50000000013', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1753, '7:d6ee8e84aa5e367061373aeec5f43823', 'sql', 'hyphen support added in path regex', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::BB50000000015::elitecore
+-- hyphen support added in path regex
+UPDATE TBLMREGEX SET VALUE = '^[\_$\s\w-:./\\]{1,200}$' WHERE REGEXKEY = 'Service.binaryfileLocation';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('BB50000000015', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1754, '7:25eb39ec9bded896f542c712de8bdb99', 'sql', 'hyphen support added in path regex', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::BB50000000017::elitecore
+-- hyphen support added in path regex
+UPDATE TBLMREGEX SET VALUE = '^[\_$\s\w-:./\\]{1,500}$' WHERE 	REGEXKEY = 'NetflowClient.outFileLocation';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('BB50000000017', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1755, '7:97ddd0e2db43d61e33fe3cc70b74871d', 'sql', 'hyphen support added in path regex', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::BB50000000019::elitecore
+-- hyphen support added in path regex
+UPDATE TBLMREGEX SET VALUE = '^[\_$\s\w-:./\\]{0,500}$' WHERE 	REGEXKEY = 'NetflowClient.bkpBinaryfileLocation';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('BB50000000019', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1756, '7:78933e3575bce5965563d07907a1c9c4', 'sql', 'hyphen support added in path regex', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::BB50000000021::elitecore
+-- hyphen support added in path regex
+UPDATE TBLMREGEX SET VALUE = '^[\_$\s\w-:./\\]{0,600}$' WHERE 	REGEXKEY = 'Service.fileStatsLoc';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('BB50000000021', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1757, '7:54737ec5888332d0fa78239cde9db808', 'sql', 'hyphen support added in path regex', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::BB50000000023::elitecore
+-- hyphen support added in path regex
+UPDATE TBLMREGEX SET VALUE = '^[\_$\s\w-:./\\]{1,500}$' WHERE 	REGEXKEY = 'PacketStatisticsAgent.storageLocation';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('BB50000000023', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1758, '7:0b9f975c1bc65b5dfd93becf734fdd18', 'sql', 'hyphen support added in path regex', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::NP50000000021::elitecore (generated)
+-- Updating Regular Expression to allow everything accept
+-- 			blank/null value validation of password description ^(?!\s*$).+
+update TBLMREGEX set value='^(?!\s*$).+' where
+			regexkey='SystemParameter.PasswordDescription';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('NP50000000021', 'elitecore (generated)', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1759, '7:cdbee8f748d053894f5c261ac6b8a8be', 'sql', 'Updating Regular Expression to allow everything accept
+			blank/null value validation of password description ^(?!\s*$).+', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::BB50000000025::elitecore
+-- hyphen support added in path regex
+UPDATE TBLMREGEX SET VALUE = '^[\_$\s\w-:./\\]{0,500}$' WHERE 	REGEXKEY = 'Composer.fileBackupPath';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('BB50000000025', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1760, '7:22cac31d0e02e68e7c67b77f2d3ca519', 'sql', 'hyphen support added in path regex', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::KT50000000001::elitecore
+UPDATE TBLMREGEX SET  VALUE = '^[\_$\s\w-:./\\](,*[\_$\s\w-:./\\])*{1,500}$' WHERE REGEXKEY='PathList.readFilePath';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('KT50000000001', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1761, '7:18301edf0f6690dc0ce606897d152375', 'sql', '', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::KT50000000003::elitecore
+UPDATE TBLMREGEX SET VALUE = '^(?!\s*$).+' WHERE REGEXKEY = 'DataConsolidationGroupAttribute.regExExpression';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('KT50000000003', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1762, '7:6e4de79a559f46e3cbfa26f7a5ee2691', 'sql', '', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::KK50000000005::elitecore (generated)
+-- Updating Regular Expression to allow AccessGroup for validation of description field ^.{0,250}$
+UPDATE TBLMREGEX SET VALUE='^.{0,250}$' WHERE REGEXKEY='AccessGroup.description';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('KK50000000005', 'elitecore (generated)', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1763, '7:c04ae52cb8165a7957bd697692241046', 'sql', 'Updating Regular Expression to allow AccessGroup for validation of description field ^.{0,250}$', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::CP50000000003::elitecore
+-- Updating Regular Expression to allow hyphens for Netflow Collection Client File Format 
+-- 			validation of packet statistic agent ^[\w-{}._\s]{1,65}$
+update TBLMREGEX set value='^[\w-{}._\s]{1,65}$' where
+			regexkey='NetflowClient.fileNameFormat';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('CP50000000003', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1764, '7:abd7d18b3434ecba9f647cdac92d2303', 'sql', 'Updating Regular Expression to allow hyphens for Netflow Collection Client File Format 
+			validation of packet statistic agent ^[\w-{}._\s]{1,65}$', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::CP50000000004::elitecore
+-- Updating Regular Expression to allow 0 to 65535 value for Server Utility Port 
+-- 			^0*(?:6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5][0-9]{4}|[1-9][0-9]{1,3}|[0-9])$
+update TBLMREGEX set value='^0*(?:6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5][0-9]{4}|[1-9][0-9]{1,3}|[0-9])$' 
+			where regexkey='Server.utilityPort';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('CP50000000004', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1765, '7:280ea7c5ad2f0b5f1ac610f8a0c68288', 'sql', 'Updating Regular Expression to allow 0 to 65535 value for Server Utility Port 
+			^0*(?:6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5][0-9]{4}|[1-9][0-9]{1,3}|[0-9])$', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::CP50000000005::elitecore
+-- Updating Regular Expression to allow 0 to 65535 value for Server Instance port 
+-- 			^0*(?:6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5][0-9]{4}|[1-9][0-9]{1,3}|[0-9])$
+update TBLMREGEX set value='^0*(?:6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5][0-9]{4}|[1-9][0-9]{1,3}|[0-9])$' 
+			where regexkey='ServerInstance.port';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('CP50000000005', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1766, '7:223084e049be84693e463284d0dbf060', 'sql', 'Updating Regular Expression to allow 0 to 65535 value for Server Instance port 
+			^0*(?:6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5][0-9]{4}|[1-9][0-9]{1,3}|[0-9])$', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::CP50000000006::elitecore
+-- Updating Regular Expression to allow 0 to 65535 value for SNMP Server Port 
+-- 			^0*(?:6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5][0-9]{4}|[1-9][0-9]{1,3}|[0-9])$
+update TBLMREGEX set value='^0*(?:6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5][0-9]{4}|[1-9][0-9]{1,3}|[0-9])$' 
+			where regexkey='SNMPServerConfig.port';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('CP50000000006', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1767, '7:a6d7f2bfba739d0559039d30340459f5', 'sql', 'Updating Regular Expression to allow 0 to 65535 value for SNMP Server Port 
+			^0*(?:6553[0-5]|655[0-2][0-9]|65[0-4][0-9]{2}|6[0-4][0-9]{3}|[1-5][0-9]{4}|[1-9][0-9]{1,3}|[0-9])$', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::KS50000000047::elitecore (generated)
+-- Updating Regular Expression for First Leg
+UPDATE TBLMREGEX set value='^[(\w+,{0,1}\w+)+]{1,30}$' where regexkey='AggregationDefinition.fLegVal';
+
+UPDATE TBLMREGEX set value='^[(\w+,{0,1}\w+)+]{1,30}$' where regexkey='AggregationDefinition.lLegVal';
+
+UPDATE TBLMREGEX set value='^[1-9]{1}[0-9]{0,5}$' where regexkey ='Aggregation.path.oFileMinRange';
+
+UPDATE TBLMREGEX set value='^[1-9]{1}[0-9]{0,5}$' where regexkey ='Aggregation.path.oFileMaxRange';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('KS50000000047', 'elitecore (generated)', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1768, '7:16edc8a8c988d028ac9b2f6b1d5110c2', 'sql', 'Updating Regular Expression for First Leg', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::KT50000000041::elitecore (generated)
+UPDATE TBLMREGEX SET VALUE = '^[\w-._/]{0,255}+$' WHERE REGEXKEY = 'Policyrule.errorcode';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('KT50000000041', 'elitecore (generated)', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1769, '7:7f68a9fb19d48f2310249170b72a7989', 'sql', '', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::KS50000000059::elitecore (generated)
+-- Updating Regular Expression to allow no of partition till 72 hours only
+update TBLMREGEX set value='^([1-9]|[1-6][0-9]|7[0-2])$' where regexkey='AggregationDefinition.noOfPartition';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('KS50000000059', 'elitecore (generated)', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1770, '7:562a724b85a0f89c290286c5f45018d0', 'sql', 'Updating Regular Expression to allow no of partition till 72 hours only', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::GJ50000000028::elitecore
+-- updating validation for RoamingConfiguration
+UPDATE TBLMREGEX SET REGEXKEY= 'TestSimManagementData.msisdn' WHERE REGEXKEY = 'TestSimManagementData.inBoundmsisdn';
+
+UPDATE TBLMREGEX SET REGEXKEY= 'TestSimManagementData.pmnCode' WHERE REGEXKEY = 'TestSimManagementData.inBoundPmnCode';
+
+UPDATE TBLMREGEX SET REGEXKEY= 'TestSimManagementData.imsi' WHERE REGEXKEY = 'TestSimManagementData.inBoundImsi';
+
+UPDATE TBLMREGEX SET VALUE = '^([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|1[0-3][0-9]{1,2}|14[0-3][0-9]|1440)$' WHERE REGEXKEY ='RoamingParameter.tapinFrequency';
+
+UPDATE TBLMREGEX SET VALUE = '^([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|1[0-3][0-9]{1,2}|14[0-3][0-9]|1440)$' WHERE REGEXKEY = 'RoamingParameter.nrtrdeInFrequency';
+
+UPDATE TBLMREGEX SET VALUE = '^([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|1[0-3][0-9]{1,2}|14[0-3][0-9]|1440)$' WHERE REGEXKEY = 'RoamingParameter.nrtrdeOutFrequency';
+
+UPDATE TBLMREGEX SET VALUE = '^[1-9]|[1-9][0-9]{1,9}' WHERE REGEXKEY = 'FileManagement.maxrecordsTapOut';
+
+UPDATE TBLMREGEX SET VALUE = '^[1-9]|[1-9][0-9]' WHERE REGEXKEY = 'FileManagement.maxFileSizeTapOut';
+
+UPDATE TBLMREGEX SET VALUE = '^[1-9]|[1-9][0-9]{1,9}' WHERE REGEXKEY = 'FileManagement.maxRecordsNrtrdeOut';
+
+UPDATE TBLMREGEX SET VALUE = '^[1-9]|[1-9][0-9]' WHERE REGEXKEY = 'FileManagement.maxFileSizeNrtrdeOut';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('GJ50000000028', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1771, '7:6a8c577e850356ffa015e8cf03272479', 'sql', 'updating validation for RoamingConfiguration', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::NP50000000065::elitecore
+-- Updating validation range for DatabaseQuery in Policy management
+UPDATE TBLMREGEX SET VALUE='^[\w\d\s.\''-_,:()|\*;]{1,4000}+$' WHERE REGEXKEY='DatabaseQuery.value';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('NP50000000065', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1772, '7:5d297fa49b7cbad37435d97adbdaafdd', 'sql', 'Updating validation range for DatabaseQuery in Policy management', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::AM50000000021::elitecore (generated)
+-- Adding new regex for Collection driver pathlists Missing file sequence MIN and MAX value
+UPDATE TBLMREGEX SET VALUE='[0-9]|[1-9][0-9]{1,4}[0-8]|[1-9][0-9]{1,3}[0-8][0-9]|[1-9][0-9]{1,2}[0-8][0-9]{1,2}|[1-9][0-9][0-8][0-9]{1,3}|[1-9][0-8][0-9]{1,4}|[1-8][0-9]{1,5}' WHERE REGEXKEY='CollectionDriverPathList.minValue';
+
+UPDATE TBLMREGEX SET VALUE='[1-9]|[1-9][0-9]{1,5}' WHERE REGEXKEY='CollectionDriverPathList.maxValue';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('AM50000000021', 'elitecore (generated)', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1773, '7:4c0a4b4a011e38efb5e897fdede8b7cd', 'sql', 'Adding new regex for Collection driver pathlists Missing file sequence MIN and MAX value', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::KS50000000064::elitecore (generated)
+-- Updating regex for Aggregation Definition First Leg and Last Leg
+UPDATE TBLMREGEX SET VALUE='^([a-zA-Z0-9]+(,[a-zA-Z0-9]+)*)?$' WHERE REGEXKEY in ('AggregationDefinition.fLegVal','AggregationDefinition.lLegVal');
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('KS50000000064', 'elitecore (generated)', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1774, '7:bcc34a3d2b9f143e874ff1fdff6cffdd', 'sql', 'Updating regex for Aggregation Definition First Leg and Last Leg', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::NJ50000000011::elitecore (generated)
+-- Updating regex for regexkey CollectionDriverPathList.referenceDevice
+UPDATE TBLMREGEX SET value = '^[\w-.\s]{1,255}$' WHERE entity = 'CollectionDriverPathList' AND regexkey = 'CollectionDriverPathList.referenceDevice';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('NJ50000000011', 'elitecore (generated)', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1775, '7:1dd3fecbbf7fedba602eabea64cf97d3', 'sql', 'Updating regex for regexkey CollectionDriverPathList.referenceDevice', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::CV50000000001::elitecore
+-- Validate table name of RuleLookupTableData
+UPDATE TBLMREGEX SET  VALUE = '(?=^.{1,20}$)^([A-Za-z]+[A-Za-z0-9]*(_[A-Za-z0-9]+)*)$' WHERE REGEXKEY='RuleLookupTableData.viewName';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('CV50000000001', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1776, '7:c25ded1adbd550b1800afc0ed76d15a2', 'sql', 'Validate table name of RuleLookupTableData', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::CV50000000002::elitecore
+-- Validate table name of RuleLookupTableData
+UPDATE TBLMREGEX SET  VALUE = '(?=^.{1,20}$)^([A-Za-z]+[A-Za-z0-9]*(_[A-Za-z0-9]+)*)$' WHERE REGEXKEY='LookupFieldDetailData.fieldName';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('CV50000000002', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1777, '7:1c3443a81437c630470ed95573f3d4aa', 'sql', 'Validate table name of RuleLookupTableData', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::GJ50000000056::elitecore
+-- Updating regex value for Ascii parser Mapping
+UPDATE TBLMREGEX SET VALUE = '^.{0,100}$' WHERE REGEXKEY  =  'AsciiParserMapping.excludeLinesStart';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('GJ50000000056', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1778, '7:632ce6e172b924902969ee7355e39f1d', 'sql', 'Updating regex value for Ascii parser Mapping', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::VS50000000018::elitecore (generated)
+-- Updating regex for Service Delimiter
+UPDATE TBLMREGEX SET VALUE = '^[^\w,]{0,1}$' WHERE REGEXKEY = 'Service.delimiter';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('VS50000000018', 'elitecore (generated)', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1779, '7:9c14158160d6982faa3a6f290dcbc64b', 'sql', 'Updating regex for Service Delimiter', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::CV50000000006::elitecore
+-- Update regex for ASN1ParserMapping recMainAttribute
+UPDATE TBLMREGEX SET  VALUE = '^([a-zA-Z_$][a-zA-Z\d_$]*\.)*[a-zA-Z_$][a-zA-Z\d_$]*$' WHERE REGEXKEY='ASN1ParserMapping.recMainAttribute';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('CV50000000006', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1780, '7:96514718fab308280e05e686e4ab8c01', 'sql', 'Update regex for ASN1ParserMapping recMainAttribute', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::VS50000000020::elitecore
+-- Updating regex for Policyrule description
+UPDATE TBLMREGEX SET VALUE = '^[^,\n]{0,4000}$' WHERE REGEXKEY = 'Policyrule.description';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('VS50000000020', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1781, '7:e912c970becf93936cf02e8ee116c630', 'sql', 'Updating regex for Policyrule description', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::VS50000000022::elitecore
+-- Updating regex for DatabaseQuery description
+UPDATE TBLMREGEX SET VALUE='^[\w\s\d\-_./,()/'']{0,4000}$' WHERE REGEXKEY = 'DatabaseQuery.description';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('VS50000000022', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1782, '7:e6a920dea5762c65b081e73c1f9446d4', 'sql', 'Updating regex for DatabaseQuery description', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::VS50000000025::elitecore
+UPDATE crestelsmngtdev.TBLMVALIDATIONRANGE SET ENTITYTYPE = 'com.elitecore.sm.pathlist.model.ProcessingPathList' WHERE ENTITYREGEXID IN (SELECT ID FROM TBLMREGEX 
+            		WHERE REGEXKEY = 'ProcessingService.acrossFileDuplicateCDRCacheLimit' 
+                    OR REGEXKEY = 'ProcessingService.acrossFileDuplicateDateInterval');
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('VS50000000025', 'elitecore', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1783, '7:3ca5b023f0dcffc6da50f0fdff01a4a2', 'update', '', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset ./sqlQueryChangeLog_7.1.0.xml::VS50000000033::elitecore (generated)
+-- Updating Regular Expression to make unified Fields mandatory in Processing Service Pathlist
+update TBLMREGEX set value='^[\w\s-./,/'']{1,100}$' where
+			regexkey='ProcessingService.unifiedFields';
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('VS50000000033', 'elitecore (generated)', './sqlQueryChangeLog_7.1.0.xml', NOW(), 1784, '7:7e35b82181959ee43634d83406ec9538', 'sql', 'Updating Regular Expression to make unified Fields mandatory in Processing Service Pathlist', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Changeset sqlQueryChangeLog_7.14.0.xml::UP20000000003::sterlite
+-- adding Regex for validation of Natflow plugin filter configurations
+INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((SELECT MAX(ID+1) FROM TBLMREGEX AS P), 1,now(), 1, now(),'ACTIVE','NATFlowParserMapping filterProtocol','NATFlowParserMapping','NATFlowParserMapping.filterProtocol','^(DNS|)$');
+
+INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((SELECT MAX(ID+1) FROM TBLMREGEX AS P), 1,now(), 1, now(),'ACTIVE','NATFlowParserMapping filterTransport','NATFlowParserMapping','NATFlowParserMapping.filterTransport','^((UDP|TCP|SCTP)(,(?!.*\b\1\b)(UDP|TCP|SCTP))*|)$');
+
+INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((SELECT MAX(ID+1) FROM TBLMREGEX AS P), 1,now(), 1, now(),'ACTIVE','NATFlowParserMapping filterPort','NATFlowParserMapping','NATFlowParserMapping.filterPort','^([1-9]\d*(,[1-9]\d*)*|)$');
+
+INSERT INTO crestelsmngtdev.databasechangelog (ID, AUTHOR, FILENAME, DATEEXECUTED, ORDEREXECUTED, MD5SUM, DESCRIPTION, COMMENTS, EXECTYPE, CONTEXTS, LABELS, LIQUIBASE) VALUES ('UP20000000003', 'sterlite', 'sqlQueryChangeLog_7.14.0.xml', NOW(), 1785, '7:ab9173ba72d4203b09a5553c387b59ec', 'sql', 'adding Regex for validation of Natflow plugin filter configurations', 'EXECUTED', NULL, NULL, '3.4.2');
+
+-- Release Database Lock
+UPDATE crestelsmngtdev.databasechangeloglock SET LOCKED = FALSE, LOCKEDBY = NULL, LOCKGRANTED = NULL WHERE ID = 1;
+

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid Technologies Online Tools 1.0 (https://www.liquid-technologies.com) -->
+<!-- // saumil.vachheta // Boobalan M // Mar 17, 2022  -->
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="detail-local-parser-plugin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="instance" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="source-charset-name" type="xs:string" />
+              <xs:element name="attribute-seperator" type="xs:string" />
+              <xs:element name="source-date-format" type="xs:string" />
+              <xs:element name="vendor-name-seperator">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="vendor-name-value" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="present" type="xs:boolean" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="attribute-list">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="attribute" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="unified-field" type="xs:string" />
+                          <xs:element name="trim-position" type="xs:string" />
+                          <xs:element name="description" />
+                          <xs:element name="source-field" type="xs:string" />
+                          <xs:element name="default-value" type="xs:string" />
+                          <xs:element name="trim-chars" />
+                          <xs:element name="source-field-format" />
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:int" name="id"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

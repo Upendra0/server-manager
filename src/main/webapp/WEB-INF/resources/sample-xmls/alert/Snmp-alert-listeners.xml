@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<snmp-listeners>
+	<listener>
+		<id>1</id>
+		<name>Test</name>
+		<ipAddress>127.0.0.1</ipAddress>
+		<port>1165</port>
+		<version>1</version>
+		<advance>true</advance>
+		<community>public</community>
+		<alerts>
+			<id>AT0001</id>
+			<id>AT0002</id>
+		</alerts>
+	</listener>
+</snmp-listeners>

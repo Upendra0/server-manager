@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog logicalFilePath="./createPostgreSqlSchema.xml" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+	<changeSet author="elitecore" id="NP40000000001" runOnChange="true"
+		dbms="postgresql">
+		<comment>create schema.</comment>
+		<sql>
+			CREATE SCHEMA ${SCHEMAUNAME} AUTHORIZATION ${SCHEMAUNAME};
+		</sql>
+	</changeSet>
+
+	<changeSet author="elitecore" id="NP40000000002"
+		runOnChange="true" dbms="postgresql">
+		<comment>give ownership to user</comment>
+		<sql>
+			ALTER SCHEMA ${SCHEMAUNAME} OWNER TO ${SCHEMAUNAME};
+		</sql>
+	</changeSet>
+		
+	<changeSet author="elitecore" id="NP40000000003" dbms="postgresql">
+		<comment>Migrate Public tables to Private Schema</comment>
+		<sqlFile endDelimiter="//" path="migration_public_private_schema_postgresql_7.2.0.sql" relativeToChangelogFile="true" stripComments="true" />
+	</changeSet>
+
+</databaseChangeLog> 

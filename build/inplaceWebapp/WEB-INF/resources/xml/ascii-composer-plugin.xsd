@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+  <xs:element name="ascii-composer-plugin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="instance" nillable="true" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="file-header">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="file-header-parser" type="xs:string"/>
+                    <xs:element name="contains-fields" type="xs:string"/>
+                  </xs:all>
+                  <xs:attribute name="present" type="xs:string"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="destination-charset-name" type="xs:string"/>
+              <xs:element name="destination-date-format" type="xs:string"/>
+              <xs:element name="field-separator" type="xs:string"/>
+              <xs:element name="destination-file-extension" type="xs:string"/>
+              <xs:element name="attribute-list">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="attribute" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element name="description" type="xs:string"/>
+                          <xs:element name="sequence-number" type="xs:int"/>
+                          <xs:element name="destination-field" type="xs:string"/>
+                          <xs:element name="unified-field" type="xs:string"/>
+                          <xs:element name="replace-condition-list" type="xs:string"/>
+                          <xs:element name="default-value" type="xs:string"/>
+                          <xs:element name="date-format" type="xs:string"/>
+                          <xs:element name="data-type" type="xs:string"/>
+                          <xs:element name="trim-chars" type="xs:string"/>
+                          <xs:element name="trim-position" type="xs:string" minOccurs="0"/>
+                          <xs:element name="padding" minOccurs="0">
+                            <xs:complexType>
+                              <xs:all>
+                                <xs:element name="length" type="xs:int" default="0"/>
+                                <xs:element name="padding-type" type="xs:string" default="LEFT"/>
+                                <xs:element name="padding-char" type="xs:string"/>
+                                <xs:element name="prefix" type="xs:string"/>
+                                <xs:element name="suffix" type="xs:string"/>
+                              </xs:all>
+                              <xs:attribute name="enable" type="xs:string"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:all>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+            <xs:attribute name="id" type="xs:int"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+
+ 
+

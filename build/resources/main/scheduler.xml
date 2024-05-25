@@ -1,0 +1,25 @@
+<?xml  version="1.0" encoding="UTF-8"?>
+<beans:beans 
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:task="http://www.springframework.org/schema/task"
+ 	xmlns:util="http://www.springframework.org/schema/util"
+ 	xmlns:context="http://www.springframework.org/schema/context"
+ 	xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd 
+ 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+ 
+ 	<!-- Deprecated. Staff lock status will be checked at time of login.  -->
+	<!-- <beans:bean id="staffAgent" class="com.elitecore.sm.iam.scheduler.StaffAgent" />
+	
+	<task:scheduled-tasks>
+    	<task:scheduled ref="staffAgent" method="releaseLock" fixed-rate="20000000"/>
+	</task:scheduled-tasks> -->
+	 
+	<task:scheduled-tasks>
+        <task:scheduled ref="misReportService" method="run" cron="${misreport.cron.value}"></task:scheduled>
+    </task:scheduled-tasks>
+    
+</beans:beans>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog logicalFilePath="./createUserChangeLog.xml" xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+
+
+	<changeSet author="vandana.awatramani (generated)" id="SM30000000000" runOnChange="true"
+		dbms="oracle">
+		<comment>This is to create role</comment>
+		<sql>
+			CREATE ROLE ${ROLENAME};
+		</sql>
+	</changeSet>
+
+
+	<changeSet author="vandana.awatramani (generated)" id="SM30000000001" runOnChange="true"
+		dbms="oracle">
+		<comment>This is to give permissions to the created role.</comment>
+		<sql>
+			GRANT CONNECT, RESOURCE, SELECT_CATALOG_ROLE,EXECUTE_CATALOG_ROLE,
+			 CREATE ANY MATERIALIZED VIEW,QUERY REWRITE,
+			CREATE DATABASE LINK, CREATE ANY SYNONYM, DROP ANY SYNONYM,CREATE ANY
+			TABLE, ALTER ANY TABLE,
+			DROP ANY TABLE, INSERT ANY TABLE, UPDATE ANY
+			TABLE, DELETE ANY TABLE,
+			CREATE ANY INDEX,CREATE VIEW,
+			SELECT ANY TABLE,CREATE ANY
+			DIRECTORY TO ${ROLENAME};
+
+		</sql>
+	</changeSet>
+	<changeSet author="vandana.awatramani (generated)" id="SM30000000002" runOnChange="true"
+		dbms="oracle">
+		<comment>This is to create profile. </comment>
+		<sql>
+			CREATE PROFILE ${PROFILENAME} LIMIT 
+			FAILED_LOGIN_ATTEMPTS ${FAILED_LOGIN_ATTEMPTS} 
+			PASSWORD_LIFE_TIME ${PASSWORD_LIFE_TIME}
+			PASSWORD_LOCK_TIME ${PASSWORD_LOCK_TIME} 
+			PASSWORD_GRACE_TIME	${PASSWORD_GRACE_TIME} 
+			PASSWORD_REUSE_TIME ${PASSWORD_REUSE_TIME}
+			PASSWORD_REUSE_MAX ${PASSWORD_REUSE_MAX} 
+			PASSWORD_VERIFY_FUNCTION ${PASSWORD_VERIFY_FUNCTION}
+		</sql>
+	</changeSet>
+
+	<changeSet author="vandana.awatramani (generated)" id="SM30000000003" runOnChange="true"
+		dbms="oracle">
+		<comment>This is to create tablespace. add boolean for autoextend</comment>
+		<sql>
+			CREATE TABLESPACE ${SCHEMAUNAME} DATAFILE
+			'${DATAFILEPATHNAME}/${SCHEMAUNAME}..dbf' SIZE ${DBFSIZE} M
+			AUTOEXTEND ON NEXT ${DBFAUTOEXTENDSIZE}K MAXSIZE ${DBFMAXSIZE}G;
+
+		</sql>
+	</changeSet>
+
+	<changeSet author="vandana.awatramani (generated)" id="SM30000000004" runOnChange="true"
+		dbms="oracle">
+		<comment>This is to create schema.keep pwd separate. quota parameter instead of unlimited </comment>
+		<sql>
+			CREATE USER ${SCHEMAUNAME} IDENTIFIED BY ${SCHEMAPWD}
+			DEFAULT TABLESPACE ${SCHEMAUNAME} TEMPORARY TABLESPACE TEMP
+			QUOTA ${USER_TABLESPACE_QUOTA}M ON ${SCHEMAUNAME} ;
+		</sql>
+	</changeSet>
+	<changeSet author="vandana.awatramani (generated)" id="SM30000000005" runOnChange="true"
+		dbms="oracle">
+		<comment>This is to give grants</comment>
+		<sql>
+			ALTER USER ${SCHEMAUNAME} PROFILE ${PROFILENAME};
+
+			GRANT
+			${ROLENAME} TO ${SCHEMAUNAME};
+		</sql>
+	</changeSet>
+
+	<changeSet author="vandana.awatramani (generated)" id="SM30000000006" runOnChange="true"
+		dbms="postgresql">
+		<comment>This is to create Role in postgresql </comment>
+		<sql>
+			CREATE ROLE ${SCHEMAUNAME}
+			WITH LOGIN PASSWORD '${SCHEMAPWD}';
+		</sql>
+	</changeSet>
+
+	<changeSet author="vandana.awatramani (generated)" id="SM30000000007" runOnChange="true"
+		runInTransaction="false" dbms="postgresql">
+		<comment>This is to create tablespace in postgresql. dataFilePathName is mandatory parameter, its value is the directory that will be used for the tablespace.
+		 The directory should be empty and must be owned by the PostgreSQL system user. The directory must be specified by an absolute path name.</comment>
+		<sql>
+			CREATE TABLESPACE ${SCHEMAUNAME}
+			OWNER ${SCHEMAUNAME}
+			LOCATION
+			'${DATAFILEPATHNAME}';
+		</sql>
+	</changeSet>
+	<changeSet author="vandana.awatramani (generated)" id="SM30000000008" runOnChange="true"
+		runInTransaction="false" dbms="postgresql">
+		<comment>This is to create database in postgresql. Post gres does not allow Create tablespace and create database in transaction context so need to keep
+		runInTransaction="false" as Liquibase internally exeutes every changelog in a transactional context.</comment>
+		<sql>
+			CREATE DATABASE ${SCHEMAUNAME}
+			OWNER ${SCHEMAUNAME}
+			TABLESPACE =
+			${SCHEMAUNAME}
+			ENCODING='UTF8';
+
+		</sql>
+	</changeSet>
+
+	<changeSet author="vandana.awatramani (generated)" id="SM30000000009" runOnChange="true"
+		dbms="mysql">
+		<comment>This is to create schema in mySql </comment>
+		<sql>
+			create database ${SCHEMAUNAME};
+		</sql>
+	</changeSet>
+
+	 <changeSet author="vandana.awatramani (generated)" id="SM30000000010" runOnChange="true"
+		dbms="mysql">
+		<comment>This is to create grant permissions in mysql.</comment>
+		<sql>
+			grant all privileges on ${SCHEMAUNAME}.* TO ${SCHEMAUNAME}@ALL
+			IDENTIFIED BY
+			'${SCHEMAPWD}';
+
+			grant all privileges on ${SCHEMAUNAME}.*
+			TO ${SCHEMAUNAME}@localhost
+			IDENTIFIED BY
+			'${SCHEMAPWD}';
+		</sql>
+	</changeSet> 
+	
+	<changeSet author="jui.purohit (generated)" id="JP30000000010" runOnChange="true"
+                dbms="mysql">
+                <comment>This is to create grant permissions in mysql.</comment>
+                <sql>
+                        grant all privileges on ${SCHEMAUNAME}.* TO ${SCHEMAUNAME}@'%'
+                        IDENTIFIED BY
+                        '${SCHEMAPWD}';
+
+                        grant all privileges on ${SCHEMAUNAME}.*
+                        TO ${SCHEMAUNAME}@'%'
+                        IDENTIFIED BY
+                        '${SCHEMAPWD}';
+                </sql>
+        </changeSet>
+		
+			
+		<changeSet author="vandana.awatramani (generated)" id="SM30000000011" runOnChange="true" dbms="postgresql">
+			<comment>Grant all privileges on database schema for created user </comment>
+			<sql>
+				ALTER DEFAULT PRIVILEGES FOR ROLE ${SCHEMAUNAME}  IN SCHEMA public  GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO ${SCHEMAUNAME};
+			</sql>
+		</changeSet>
+		
+		<changeSet author="vandana.awatramani (generated)" id="SM30000000012" runOnChange="true" dbms="postgresql">
+			<comment>Grant all privileges on database schema for created user </comment>
+			<sql>
+				GRANT ALL PRIVILEGES ON DATABASE ${SCHEMAUNAME} TO ${SCHEMAUNAME};
+				GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ${SCHEMAUNAME};
+				GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO ${SCHEMAUNAME};
+			</sql>
+		</changeSet>
+
+
+
+</databaseChangeLog> 

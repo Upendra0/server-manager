@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<natflow-binary-collection-service>
+	<service-address>127.0.0.1:5140</service-address>
+	<startup-mode>Automatic</startup-mode>
+	<socket-receive-buffer-size>134217728</socket-receive-buffer-size>
+	<socket-send-buffer-size>134217728</socket-send-buffer-size>
+	<queue-size>1000000</queue-size>
+	<minimum-thread>100</minimum-thread>
+	<maximum-thread>200</maximum-thread>
+	<max-idle-communication-time-interval>60</max-idle-communication-time-interval>
+	<newline-character-availability>false</newline-character-availability><!-- true/false -->
+	<bulk-write-limit>1000</bulk-write-limit>
+	<max-packet-size-in-byte>1000</max-packet-size-in-byte>
+	<max-writebuffer-in-mb>4000</max-writebuffer-in-mb>
+	<parallel-file-write-count>1</parallel-file-write-count>
+	<abnormal-time-alert enable="false">
+		<time-interval>5</time-interval>
+	</abnormal-time-alert>
+	<proxy enable="true">
+		<proxy-list>
+			<proxy-info>
+				<proxy-ip>127.0.0.1</proxy-ip>
+				<proxy-port>5141</proxy-port>
+			</proxy-info>
+			<proxy-info>
+				<proxy-ip>127.0.0.1</proxy-ip>
+				<proxy-port>5143</proxy-port>
+			</proxy-info>
+		</proxy-list>
+		<proxy-service-port>5142</proxy-service-port>
+	</proxy>
+	<clients>
+		<client>
+			<client-ip>127.0.0.1</client-ip>
+			<client-port>49999</client-port>
+			<request-expiry-time>3000</request-expiry-time>
+			<request-retry>100</request-retry>
+			<redirection-ip>10.174.31.188</redirection-ip>
+			<file-name>NATFLOW_BIN_{yyyyMMddHHmmssS}.u</file-name>
+			<file-sequence>true</file-sequence>
+			<sequence-range>1-1000</sequence-range>
+			<file-location>D:\SM_ROOT</file-location>
+			<rolling-time-unit>1</rolling-time-unit>
+			<rolling-volume-unit>5120</rolling-volume-unit>
+			<file-compression>true</file-compression>
+		</client>		
+	</clients>
+	
+	
+</natflow-binary-collection-service>

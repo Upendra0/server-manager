@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pluggable-aggregation>
+	<aggregation-list>
+		<aggregation alias="standard-report">
+			<operation-list>
+				<operation>
+					<field-title>SUM-General45</field-title>
+					<unified-field>general45</unified-field>
+					<operation-type>1</operation-type> <!-- MAX/MIN/SUM -->
+					<data-type>INTEGER</data-type> <!-- Integer/Double/Date -->
+				</operation>
+				<operation>
+					<field-title>Max-general8</field-title>
+					<unified-field>general8</unified-field>
+					<operation-type>2</operation-type> <!-- SUM/MAX/MIN/ -->
+					<data-type>INTEGER</data-type> <!-- Integer/Double/Date -->
+				</operation>
+				<operation>
+					<field-title>StartDate-MAX</field-title>
+					<unified-field>StartDate</unified-field>
+					<operation-type>2</operation-type> <!-- SUM/MAX/MIN/ -->
+					<data-type>DATE</data-type> <!-- Integer/Double/Date -->
+				</operation>
+				<operation>
+					<field-title>EndDate-MAX</field-title>
+					<unified-field>EndDate</unified-field>
+					<operation-type>2</operation-type> <!-- SUM/MAX/MIN/ -->
+					<data-type>DATE</data-type> <!-- Integer/Double/Date -->
+				</operation>
+			</operation-list>
+		</aggregation>
+	</aggregation-list>
+	<aggregation-mapping-list>
+		<aggregation-mapping>
+			<service-instance-id>PARSING_SERVICE-001</service-instance-id>
+			<aggregation-alias-list>standard-report</aggregation-alias-list>
+			<aggregation-enable>false</aggregation-enable>
+		</aggregation-mapping>
+	</aggregation-mapping-list>
+</pluggable-aggregation>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<natflow-parser-plugin>
+
+	<read-template-initialy>true</read-template-initialy>
+	
+	<option-template-lookup enable="false">
+		<option-template>
+			<option-template-id>262</option-template-id>
+			<key-field>234</key-field>
+			<value-field>236</value-field>
+		</option-template>
+	
+		<template>
+			<template-id>271,272</template-id>
+			<field>234,235</field>
+		</template>
+	</option-template-lookup>
+	
+	<attribute-list>
+        <attribute>
+            <unified-field>General1</unified-field>
+            <source-field>version</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	 <attribute>
+            <unified-field>General2</unified-field>
+            <source-field>OBJid</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	 <attribute>
+            <unified-field>StartDate</unified-field>
+            <source-field>152</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	 <attribute>
+            <unified-field>General3</unified-field>
+            <source-field>TmpID</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	 <attribute>
+            <unified-field>General4</unified-field>
+            <source-field>4</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	 <attribute>
+	    <!-- this is ipv4 private IP-->
+            <unified-field>General5</unified-field>
+            <source-field>8</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+ 		<!-- this is ipv4 destination IP-->
+            <unified-field>General6</unified-field>
+            <source-field>12</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General7</unified-field>
+            <source-field>7</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General8</unified-field>
+            <source-field>11</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General9</unified-field>
+            <source-field>61</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+ 		<!-- this is public IP-->
+            <unified-field>General10</unified-field>
+            <source-field>225</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+		 <!-- this is destination IP-->
+            <unified-field>General11</unified-field>
+            <source-field>226</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General12</unified-field>
+            <source-field>227</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>	
+	<attribute>
+            <unified-field>General13</unified-field>
+            <source-field>228</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General14</unified-field>
+            <source-field>10</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General15</unified-field>
+            <source-field>14</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General16</unified-field>
+            <source-field>1</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General17</unified-field>
+            <source-field>2</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General18</unified-field>
+            <source-field>161</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General19</unified-field>
+            <source-field>161</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General20</unified-field>
+            <source-field>27</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General21</unified-field>
+            <source-field>28</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General22</unified-field>
+            <source-field>33024</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>	
+
+	<attribute>
+            <unified-field>General23</unified-field>
+            <source-field>33025</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General24</unified-field>
+            <source-field>33026</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General25</unified-field>
+            <source-field>33027</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General26</unified-field>
+            <source-field>32769</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General27</unified-field>
+            <source-field>32770</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General28</unified-field>
+            <source-field>281</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	<attribute>
+            <unified-field>General29</unified-field>
+            <source-field>282</source-field>                            
+            <default-value></default-value>
+            <trim-chars></trim-chars>
+        </attribute>
+
+	</attribute-list>    
+</natflow-parser-plugin>

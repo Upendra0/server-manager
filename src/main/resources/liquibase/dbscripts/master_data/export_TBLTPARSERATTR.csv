@@ -1,0 +1,119 @@
+"TYPE","ID","CREATEDBYSTAFFID","CREATEDDATE","LASTUPDATEDBYSTAFFID","LASTUPDATEDDATE","STATUS","APPLICATIONORDER","DEFAULTVAL","DESCRIPTION","SRCFIELD","SOURCEFIELDFORMAT","TRIMCHARS","UNIFIEDFIELD","ASN1DATATYPE","ATTRTYPE","CHILDATTR","RECINITIALIZER","SRCDATAFORMAT","ENDLENGTH","LENGTH","POSTFIX","PREFIX","RIGHTDELIMITER","STARTLENGTH","REGEX","SAMPLEDATA","SEQNUMBER","PARSERMAPPINGID","PATTERNID"
+"ParserAttribute",1,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","Netflow Protocol Version No","version","","","General1","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",2,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","CDR Create Time","expTime","","","StartDate","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",3,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","CDR Sequence No","SeqNo","","","General2","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",4,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","CGNAT ID","OBJid","","","General3","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",5,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","Netflow Template ID","TmpID","","","General4","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",6,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","sourceIPv4Address","8","","","General7","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",7,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","PostNATsourceIPv4Address","225","","","General6","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",8,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","destinationIPv4Address","12","","","General8","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",9,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","sourceTransportPort","7","","","General9","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",10,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","postNAPTSourceTransportPort","227","","","General10","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",11,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","destinationTransportPort","11","","","General11","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",12,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","protocolIdentifier","4","","","General5","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",13,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","postNATDestinationIPv4Address","226","","","General12","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",14,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","ingressVRFID","234","","","General13","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",15,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","sourceIPv6Address","27","","","General14","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",16,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","Post NAT Destination transport Port","228","","","General15","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",17,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","flowStartMilliseconds","152","","","General16","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",18,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","flowDirection","61","","","General17","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",19,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","230","","","General18","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",20,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","fwdVNPID","33026","","","General19","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",21,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","revVNPID","33027","","","General20","","","","",,null,null,"","","",null,"","",null,1,null
+"ParserAttribute",22,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","Netflow Protocol Version No","version","","","General1","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",23,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","CDR Create Time","expTime","","","StartDate","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",24,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","CDR Sequence No","SeqNo","","","General2","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",25,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","CGNAT ID","OBJid","","","General3","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",26,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","Netflow Template ID","TmpID","","","General4","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",27,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","sourceIPv4Address","8","","","General7","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",28,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","PostNATsourceIPv4Address","225","","","General6","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",29,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","destinationIPv4Address","12","","","General8","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",30,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","sourceTransportPort","7","","","General9","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",31,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","postNAPTSourceTransportPort","227","","","General10","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",32,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","destinationTransportPort","11","","","General11","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",33,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","protocolIdentifier","4","","","General5","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",34,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","postNATDestinationIPv4Address","226","","","General12","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",35,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","ingressVRFID","234","","","General13","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",36,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","sourceIPv6Address","27","","","General14","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",37,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","Post NAT Destination transport Port","228","","","General15","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",38,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","flowStartMilliseconds","152","","","General16","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",39,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","flowDirection","61","","","General17","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",40,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","230","","","General18","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",41,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","fwdVNPID","33026","","","General19","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",42,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","revVNPID","33027","","","General20","","","","",,null,null,"","","",null,"","",null,2,null
+"ParserAttribute",43,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","Netflow Protocol Version No","version","","","General1","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",44,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","CDR Create Time","expTime","","","StartDate","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",45,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","CDR Sequence No","SeqNo","","","General2","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",46,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","CGNAT ID","OBJid","","","General3","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",47,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","Netflow Template ID","TmpID","","","General4","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",48,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","protocolIdentifier","4","","","General7","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",49,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","sourceIPv4Address","8","","","General6","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",50,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","destinationIPv4Address","12","","","General8","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",51,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","sourceTransportPort","7","","","General9","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",52,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","destinationTransportPort","11","","","General10","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",53,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","flowDirection","61","","","General11","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",54,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","PostNATsourceIPv4Address","225","","","General5","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",55,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","postNATDestinationIPv4Address","226","","","General12","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",56,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","postNATSourceTransportPort","227","","","General13","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",57,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","Post NAT Destination transport Port","228","","","General14","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",58,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","IngressInterface","10","","","General15","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",59,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","EgressInterface","14","","","General16","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",60,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","OctetDeltaCount","1","","","General17","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",61,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","PacketDeltaCount","2","","","General18","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",62,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","FlowStartMiliSeconds","152","","","General21","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",63,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","FlowDurationMiliSeconds","161","","","General22","","","","",,null,null,"","","",null,"","",null,3,null
+"ParserAttribute",64,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","Netflow Protocol Version No","version","","","General1","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",65,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","CDR Create Time","expTime","","","StartDate","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",66,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","CDR Sequence No","SeqNo","","","General2","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",67,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","CGNAT ID","OBJid","","","General3","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",68,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","Netflow Template ID","TmpID","","","General4","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",69,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","protocolIdentifier","4","","","General7","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",70,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","sourceIPv4Address","8","","","General6","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",71,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","destinationIPv4Address","12","","","General8","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",72,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","sourceTransportPort","7","","","General9","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",73,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","destinationTransportPort","11","","","General10","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",74,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","flowDirection","61","","","General11","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",75,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","PostNATsourceIPv4Address","225","","","General5","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",76,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","postNATDestinationIPv4Address","226","","","General12","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",77,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","postNATSourceTransportPort","227","","","General13","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",78,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","Post NAT Destination transport Port","228","","","General14","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",79,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","IngressInterface","10","","","General15","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",80,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","EgressInterface","14","","","General16","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",81,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","OctetDeltaCount","1","","","General17","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",82,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","PacketDeltaCount","2","","","General18","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",83,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","FlowStartMiliSeconds","152","","","General21","","","","",,null,null,"","","",null,"","",null,4,null
+"ParserAttribute",84,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","FlowDurationMiliSeconds","161","","","General22","","","","",,null,null,"","","",null,"","",null,4,null
+"AsciiParserAttribute",85,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","22","","","StartDate","","","","",,null,null,"","","",null,"","",null,5,null
+"AsciiParserAttribute",86,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","23","","","EndDate","","","","",,null,null,"","","",null,"","",null,5,null
+"AsciiParserAttribute",87,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","30","","","General1","","","","",,null,null,"","","",null,"","",null,5,null
+"AsciiParserAttribute",88,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","31","","","General2","","","","",,null,null,"","","",null,"","",null,5,null
+"AsciiParserAttribute",89,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","38","","","General3","","","","",,null,null,"","","",null,"","",null,5,null
+"AsciiParserAttribute",90,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","33","","","General4","","","","",,null,null,"","","",null,"","",null,5,null
+"AsciiParserAttribute",91,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","34","","","General5","","","","",,null,null,"","","",null,"","",null,5,null
+"AsciiParserAttribute",92,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","35","","","General6","","","","",,null,null,"","","",null,"","",null,5,null
+"AsciiParserAttribute",93,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","36","","","General7","","","","",,null,null,"","","",null,"","",null,5,null
+"AsciiParserAttribute",94,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","46","","","General8","","","","",,null,null,"","","",null,"","",null,5,null
+"AsciiParserAttribute",95,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","39","","","General11","","","","",,null,null,"","","",null,"","",null,5,null
+"AsciiParserAttribute",96,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","45","","","General12","","","","",,null,null,"","","",null,"","",null,5,null
+"AsciiParserAttribute",97,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","42","","","General13","","","","",,null,null,"","","",null,"","",null,5,null
+"AsciiParserAttribute",98,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","43","","","General14","","","","",,null,null,"","","",null,"","",null,5,null
+"AsciiParserAttribute",99,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","44","","","General15","","","","",,null,null,"","","",null,"","",null,5,null
+"AsciiParserAttribute",100,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","45","","","General16","","","","",,null,null,"","","",null,"","",null,5,null
+"AsciiParserAttribute",101,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"1","","","","","General20","","","","",,null,null,"","","",null,"","",null,5,null
+"AsciiParserAttribute",102,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","22","","","StartDate","","","","",,null,null,"","","",null,"","",null,6,null
+"AsciiParserAttribute",103,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","23","","","EndDate","","","","",,null,null,"","","",null,"","",null,6,null
+"AsciiParserAttribute",104,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","30","","","General1","","","","",,null,null,"","","",null,"","",null,6,null
+"AsciiParserAttribute",105,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","31","","","General2","","","","",,null,null,"","","",null,"","",null,6,null
+"AsciiParserAttribute",106,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","38","","","General3","","","","",,null,null,"","","",null,"","",null,6,null
+"AsciiParserAttribute",107,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","33","","","General4","","","","",,null,null,"","","",null,"","",null,6,null
+"AsciiParserAttribute",108,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","34","","","General5","","","","",,null,null,"","","",null,"","",null,6,null
+"AsciiParserAttribute",109,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","35","","","General6","","","","",,null,null,"","","",null,"","",null,6,null
+"AsciiParserAttribute",110,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","36","","","General7","","","","",,null,null,"","","",null,"","",null,6,null
+"AsciiParserAttribute",111,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","46","","","General8","","","","",,null,null,"","","",null,"","",null,6,null
+"AsciiParserAttribute",112,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","39","","","General11","","","","",,null,null,"","","",null,"","",null,6,null
+"AsciiParserAttribute",113,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","45","","","General12","","","","",,null,null,"","","",null,"","",null,6,null
+"AsciiParserAttribute",114,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","42","","","General13","","","","",,null,null,"","","",null,"","",null,6,null
+"AsciiParserAttribute",115,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","43","","","General14","","","","",,null,null,"","","",null,"","",null,6,null
+"AsciiParserAttribute",116,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","44","","","General15","","","","",,null,null,"","","",null,"","",null,6,null
+"AsciiParserAttribute",117,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"","","45","","","General16","","","","",,null,null,"","","",null,"","",null,6,null
+"AsciiParserAttribute",118,1,2016-07-12 10:17:13.0000,1,2016-07-12 10:17:13.0000,"ACTIVE",0,"1","","","","","General20","","","","",,null,null,"","","",null,"","",null,6,null

@@ -1,0 +1,208 @@
+<beans:beans  xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:ldap="http://www.springframework.org/schema/ldap"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.5.xsd
+		http://www.springframework.org/schema/ldap http://www.springframework.org/schema/ldap/spring-ldap.xsd">
+		
+	<!--
+	Applies to root appContext beans only, for MVC Controllers is this declaration repeated in MVC config.
+	Actually, we currently don't need this as we have on annotation outside of MVC.
+	There is more here that can go wrong. If you use interface-based proxy (our demo uses CGLib), you may
+	need to add proxy-target-class="true" as well. Book "Spring Security 3.1", Chapter 10, Fine-grained
+	Access Control, from header "Method security on Spring MVC controllers" on discusses these topics.
+	-->
+	<!-- <global-method-security secured-annotations="enabled"/> -->
+	<!-- need to enable pre-post annotations -->
+	<global-method-security pre-post-annotations="enabled" />	
+	
+	<!-- Web App security for REST API -->	
+	 <security:http realm="Protected API"
+		use-expressions="true"
+		create-session="stateless"
+		entry-point-ref="unauthorizedEntryPoint"
+		authentication-manager-ref="authenticationManagerREST" pattern="/api/*">
+		 <custom-filter ref="restAuthenticationFilter" position="FORM_LOGIN_FILTER" /> 
+		 <intercept-url pattern="/api/login" access="permitAll()"/>
+		 <intercept-url pattern="/api/nfv/**" access="permitAll()"/> 
+		 
+		 <!-- <intercept-url pattern="/api//getSummaryServiceList" access="isFullyAuthenticated()"/> -->
+		 <!-- this works to do url level security -->
+		 <!--  <intercept-url pattern="/api/getSummaryServiceList" access="hasAuthority('VIEW_SERVER_AND_SERVER_INSTANCES')"/> --> 
+		 <!-- <intercept-url pattern="/api/**" access="isFullyAuthenticated()"/> --> 
+		  
+		 <!-- <intercept-url pattern="/**" access="permitAll"/>  -->
+	 
+	</security:http>
+
+	
+	<!-- Keycloak Security for UI  -->
+	 <security:http  pattern="/sso/**" auto-config="false" use-expressions="true" entry-point-ref="keycloakAuthenticationEntryPoint" authentication-manager-ref="authenticationManagerKeycloak">
+		<security:custom-filter ref="keycloakAuthenticationProcessingFilter" before="FORM_LOGIN_FILTER" />        
+        <security:intercept-url pattern="/sso/**" access="hasAuthority('ROLE_ADMIN')" />
+        <security:custom-filter   ref="logoutFilter" position="LOGOUT_FILTER" />
+        <csrf disabled="true" />
+    </security:http> 
+
+	<!-- WEB App Security for UI  -->
+     <security:http auto-config="true" use-expressions="true"
+		create-session="ifRequired" authentication-manager-ref="authenticationManager" >
+	
+		<security:form-login login-page="/login-fail?error"
+			default-target-url="/home" authentication-failure-url="/login-fail?error"
+			username-parameter="username" password-parameter="password" login-processing-url="/j_spring_security_check" />
+
+		 <security:logout invalidate-session="false"
+			logout-success-url="/logout?logout" logout-url="/j_spring_security_logout"
+			delete-cookies="JSESSIONID" />
+		
+		<!-- <security:session-management
+			invalid-session-url="/login-fail?error-timeout">
+			<security:concurrency-control
+				max-sessions="50" error-if-maximum-exceeded="true" />
+		</security:session-management> -->
+
+		<security:session-management invalid-session-url="/login-fail?error-timeout"
+			session-fixation-protection="migrateSession">
+			<security:concurrency-control
+				max-sessions="50" error-if-maximum-exceeded="false"
+				expired-url="/login-fail?error-timeout" />
+		</security:session-management>	
+		
+		
+        <security:remember-me
+                token-validity-seconds="3600"
+                remember-me-parameter="remember"
+                data-source-ref="dataSource"
+                />
+
+	<security:headers>
+		<security:frame-options policy="SAMEORIGIN" />
+	</security:headers>
+			
+		  <csrf disabled="true" />		 
+	</security:http> 
+	
+
+	<authentication-manager alias="authenticationManager" id="authenticationManager">
+ 		<security:authentication-provider ref="databaseAuthenticationProvider" />						
+	    <security:authentication-provider ref="ldapAuthenticationProvider" />	 
+	</authentication-manager>
+
+	<!-- Configuration of Keycloak Server Starts-->
+	<context:component-scan base-package="org.keycloak.adapters.springsecurity" />
+	
+	<!-- Authentication manager configuration for Keycloak login -->
+	<authentication-manager id="authenticationManagerKeycloak" alias="authenticationManagerKeycloak">
+		<authentication-provider ref="keycloakAuthenticationProvider" />
+	</authentication-manager>
+
+    <beans:bean id="adapterDeploymentContext" class="org.keycloak.adapters.springsecurity.AdapterDeploymentContextFactoryBean">
+        <beans:constructor-arg value="/WEB-INF/keycloak.json" />
+    </beans:bean>
+
+   <beans:bean id="keycloakAuthenticationProvider" class="com.elitecore.sm.iam.service.KeycloakAuthenticationProviderImpl"/>
+
+   <beans:bean id="keycloakAuthenticationProcessingFilter" class="org.keycloak.adapters.springsecurity.filter.KeycloakAuthenticationProcessingFilter">
+       <beans:constructor-arg name="authenticationManager" ref="authenticationManagerKeycloak" />    	
+   </beans:bean> 
+   
+   <beans:bean id="keycloakAuthenticationEntryPoint" class="org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationEntryPoint" >
+    	<beans:constructor-arg ref="adapterDeploymentContext" />
+    </beans:bean>	 
+   
+    <beans:bean id="keycloakLogoutHandler" class="org.keycloak.adapters.springsecurity.authentication.KeycloakLogoutHandler">
+        <beans:constructor-arg ref="adapterDeploymentContext" />
+    </beans:bean>
+	
+	<beans:bean id="logoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+        <beans:constructor-arg name="logoutSuccessUrl" value="/sso" />
+        <beans:constructor-arg name="handlers" >
+            <beans:list>
+                <beans:ref bean="keycloakLogoutHandler" />
+                <beans:bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+            </beans:list>
+        </beans:constructor-arg>
+        <beans:property name="logoutRequestMatcher">
+            <beans:bean class="org.springframework.security.web.util.matcher.AntPathRequestMatcher">
+                <beans:constructor-arg name="pattern" value="/sso/j_spring_security_logout" />
+                <beans:constructor-arg name="httpMethod" value="POST" />
+            </beans:bean>
+        </beans:property>
+    </beans:bean>
+   	<!-- Configuration to Keycloak Server Ends-->
+
+	<!-- User Detail service to load user from database -->	
+	<beans:bean id="userDetailService" class="com.elitecore.sm.iam.service.SpringLoginServiceImpl"/>
+	
+	<!--  Customer Password Encoder -->
+	<beans:bean id="passwordEncoder" class="com.elitecore.sm.util.PasswordEncoderConfiguration"/>
+
+	<!-- REST Entry Point Bean configuration -->
+	<beans:bean id="unauthorizedEntryPoint" class="com.elitecore.sm.iam.service.RestAuthenticationEntryPoint"/>
+	
+	<!-- token Configuration start here -->
+	<beans:bean id="tokenManager" class="com.elitecore.sm.iam.service.TokenManagerSingle"/>
+	<beans:bean id="authenticationService" class="com.elitecore.sm.iam.service.AuthenticationServiceDefault"
+		c:authenticationManager-ref="authenticationManagerREST" c:tokenManager-ref="tokenManager"/>
+	<beans:bean id="restAuthenticationFilter" class="com.elitecore.sm.iam.service.TokenAuthenticationFilter"
+		c:authenticationService-ref="authenticationService" c:logoutLink="/logout"/>
+	
+	
+	<!-- Authentication manager configuration for REST login -->	
+	<authentication-manager id="authenticationManagerREST" alias="authenticationManagerREST">
+		<security:authentication-provider user-service-ref="userDetailService" /> 		
+	</authentication-manager>
+
+
+	<!-- authenticationProviders for web login -->
+	
+	<beans:bean id="databaseAuthenticationProvider" class="com.elitecore.sm.iam.service.LimitLoginAuthenticationServiceImpl">
+		<beans:property name="userDetailsService" ref="userDetailService" />
+		<beans:property name="passwordEncoder" ref="passwordEncoder" />
+	</beans:bean>
+
+	<!-- Configuration of LDAP Server Starts-->
+	
+    <beans:bean id="customUserDetailsContextMapper" class="com.elitecore.sm.iam.service.LDAPUserDetailsContextMapper" />
+        	
+	<beans:bean id="ldapAuthenticationProvider" class="com.elitecore.sm.iam.service.ActiveDirectoryLdapAuthenticationProviderImpl">
+		<beans:constructor-arg value="ldap://127.0.0.1:389/" />
+		<beans:constructor-arg value="sterlite.com" />
+		<beans:property name="userDetailsContextMapper" ref="customUserDetailsContextMapper" />		
+		<beans:property name="convertSubErrorCodesToExceptions" value="true" />
+	</beans:bean>
+		
+	<!-- Configuration to LDAP Server Ends-->
+	
+	<!-- Package Scan for Searching Repository in iam, audit package -->
+	<context:component-scan base-package="com.elitecore.sm.iam.dao" />
+	<context:component-scan base-package="com.elitecore.sm.systemparam.dao" />
+	<context:component-scan base-package="com.elitecore.sm.systemaudit.dao" />
+	
+	
+	<!-- Package Scan for Searching Service in iam, audit package -->
+	<context:component-scan base-package="com.elitecore.sm.systemaudit.service" />
+	<context:component-scan base-package="com.elitecore.sm.systemparam.service" />
+	<context:component-scan base-package="com.elitecore.sm.iam.service" />
+	<context:component-scan base-package="com.elitecore.sm.util" >
+    	<context:include-filter type="assignable" expression="com.elitecore.sm.util.PasswordEncoderConfiguration"/>
+        <context:exclude-filter type="assignable" expression="com.elitecore.sm.util.LanguageUtilProperties"/>
+    </context:component-scan>
+	
+	<!-- package to prototype object  bean added for use in identity module class SpringLoginserviceImpl-->
+	<beans:bean id="eliteUtils" class="com.elitecore.sm.util.EliteUtils" scope="prototype" >
+		<beans:qualifier value="eliteUtilsQualifier"></beans:qualifier>
+	</beans:bean>
+	<!-- Bean Created   -->	 
+	
+</beans:beans>

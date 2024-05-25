@@ -1,0 +1,78 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="collection-service">
+		<xs:annotation>
+			<xs:documentation>TRUE/FALSE : This will store file details in
+				database
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element type="xs:string" name="startup-mode" />
+				<xs:element type="xs:string" name="sorting-type" />
+				<xs:element type="xs:string" name="sorting-criteria">
+					<xs:annotation>
+						<xs:documentation>ASCENDING/DESCENDING/NA</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element type="xs:int" name="execution-interval">
+					<xs:annotation>
+						<xs:documentation>LAST_MODIFIED_DATE/FILE_NAME</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element type="xs:string" name="immediate-execute-on-startup" />
+				<xs:element type="xs:int" name="queue-size" />
+				<xs:element type="xs:int" name="minimum-thread" />
+				<xs:element type="xs:int" name="maximum-thread" />
+				<xs:element type="xs:int" name="file-batch-size" />
+				<xs:element type="xs:int" name="minimum-disk-space-required" />
+				<!-- <xs:element type="xs:string" name="file-copy-folders" /> -->
+				<xs:element name="driver-list">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="driver" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element type="xs:int" name="application-order" />
+										<xs:element type="xs:string" name="driver-name" />
+										<xs:element type="xs:string" name="enabled" />
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="scheduling">
+					<xs:annotation>
+						<xs:documentation>24-HOUR format HH:mm:ss</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:all>
+							<xs:element type="xs:string" name="scheduling-type" />
+							<xs:element type="xs:int" name="scheduling-date">
+								<xs:annotation>
+									<xs:documentation>DAILY,WEEKLY,MONTHLY</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element type="xs:int" name="scheduling-day">
+								<xs:annotation>
+									<xs:documentation>for monthly date should be between 1 to 28
+										and 0 for last date of month
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element type="xs:time" name="scheduling-time">
+								<xs:annotation>
+									<xs:documentation>for DAILY -> NA and for WEEKLY -> day like
+										SUNDAY = 1,MONDAY = 2,TUESDAY,...
+									</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:all>
+						<xs:attribute type="xs:string" name="enabled" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element type="xs:string" name="store-cdr-file-summary-in-db" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

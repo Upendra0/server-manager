@@ -1,0 +1,84 @@
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="server-configuration">
+		<xs:complexType>
+			<xs:all>
+				<xs:element type="xs:integer" name="server-id" />
+				<xs:element name="service-list">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="service" nillable="true" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element type="xs:string" name="service-name" />
+										<xs:element type="xs:integer" name="service-instance-id" />
+										<xs:element type="xs:string" name="service-instance-name" />
+										<xs:element type="xs:string" name="enabled" />
+										<xs:element type="xs:string" name="file-statistics" />
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="database-ds">
+					<xs:complexType>
+						<xs:all>
+							<xs:element type="xs:string" name="datasource-name" minOccurs="1"/>
+							<xs:element type="xs:string" name="datasource-type" minOccurs="1"/>
+						</xs:all>
+						<xs:attribute type="xs:string" name="init" />
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="logging">
+					<xs:complexType>
+						<xs:all>
+							<xs:element type="xs:string" name="log-level" />
+							<xs:element name="rolling">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute type="xs:string" name="type" />
+											<xs:attribute type="xs:integer" name="value" />
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element type="xs:string" name="location" />
+							<xs:element type="xs:integer" name="max-file-units" />
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+				<xs:element type="xs:integer" name="minimum-disk-space-required" minOccurs="1"/>
+				<xs:element name="alerts" nillable="true">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element type="xs:string" name="snmp-alert" maxOccurs="unbounded" />
+							<xs:element name="threshold-system-alert" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element type="xs:integer" name="time-interval" />
+										<xs:element type="xs:integer" name="memory">
+										</xs:element>
+										<xs:element type="xs:integer" name="load-average">
+										</xs:element>
+									</xs:all>
+									<xs:attribute type="xs:string" name="enable" />
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element type="xs:string" name="mediation-root" />
+				<xs:element type="xs:string" name="file-statistics-path" />
+				<xs:element type="xs:string" name="store-cdr-file-summary-in-db" />
+				<xs:element type="xs:string" name="file-rename-agent"	minOccurs="0"  maxOccurs="1"/>
+				<xs:element type="xs:string" name="file-distribution-agent"	minOccurs="0"  maxOccurs="1"/>
+				<xs:element type="xs:string" name="database-reprocessing-agent"	minOccurs="0"  maxOccurs="1"/>
+
+				<xs:element type="xs:string" name="web-service-status" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+

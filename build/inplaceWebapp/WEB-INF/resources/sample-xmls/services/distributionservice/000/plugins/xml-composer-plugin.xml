@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE driver-mapping SYSTEM "http://www.elitecore.com"> -->
+
+<xml-composer-plugin>
+
+	<instance id="000">
+
+		<destination-charset-name>UTF8</destination-charset-name>
+
+		<destination-date-format>yyyy-MM-dd+HH:mm:ss</destination-date-format>
+
+		<destination-file-extension>.0</destination-file-extension>
+
+		<attribute-list>
+			<attribute>
+				<destination-field>SerialNumber</destination-field>
+				<unified-field>SerialNumber</unified-field>
+				<description></description>
+				<data-type>String</data-type>
+			</attribute>
+		</attribute-list>
+	</instance>
+
+</xml-composer-plugin>

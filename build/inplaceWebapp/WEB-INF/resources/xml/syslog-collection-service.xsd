@@ -1,0 +1,44 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="syslog-collection-service">
+    <xs:complexType>
+      <xs:all>
+        <xs:element type="xs:string" name="service-address" minOccurs="1"/>
+        <xs:element type="xs:string" name="startup-mode" minOccurs="1"/>
+        <xs:element type="xs:int" name="socket-receive-buffer-size" minOccurs="1"/>
+        <xs:element type="xs:int" name="socket-send-buffer-size" minOccurs="1"/>
+        <xs:element type="xs:int" name="queue-size" minOccurs="1"/>
+        <xs:element type="xs:int" name="minimum-thread" minOccurs="1"/>
+        <xs:element type="xs:int" name="maximum-thread" minOccurs="1"/>
+        <xs:element type="xs:int" name="max-idle-communication-time-interval" minOccurs="1"/>
+        <xs:element type="xs:string" name="newline-character-availability" />
+        <xs:element type="xs:int" name="bulk-write-limit" minOccurs="1"/>
+        <xs:element type="xs:int" name="max-writebuffer-in-mb" minOccurs="1"/>
+        <xs:element type="xs:int" name="max-packet-size-in-byte" minOccurs="1"/>
+        <xs:element name="clients">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="client">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element type="xs:string" name="client-ip" minOccurs="1"/>
+                    <xs:element type="xs:int" name="client-port" minOccurs="1"/>
+                    <xs:element type="xs:string" name="file-name" />
+                    <xs:element type="xs:string" name="file-sequence"/>
+                    <xs:element type="xs:string" name="sequence-range"/>
+                    <xs:element type="xs:string" name="file-location" minOccurs="1"/>
+                    <xs:element type="xs:int" name="rolling-time-unit" minOccurs="1"/>
+                    <xs:element type="xs:int" name="rolling-volume-unit" minOccurs="1"/>
+                    <xs:element type="xs:string" name="file-compression" minOccurs="1"/>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:int" name="parallel-file-write-count"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+
+

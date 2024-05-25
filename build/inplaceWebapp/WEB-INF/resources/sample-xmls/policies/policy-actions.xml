@@ -1,0 +1,10 @@
+<policy-actions>
+	<policy-action alias="ACTION-001">
+		<policy-action-name>Filter CDR</policy-action-name>
+		<action>Filter</action>
+		<type>static</type> <!-- function/dynamic/static/expression -->
+		<expression></expression>
+		<description>Filter CDR</description>
+	</policy-action>
+
+</policy-actions>

@@ -1,0 +1,6 @@
+<operation-types>
+		<operation-type alias="STATIC">
+			<operation-name>Static Operation</operation-name>
+			<description>Static Operation</description>
+		</operation-type>
+</operation-types>

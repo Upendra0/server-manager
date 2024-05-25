@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ======================================================= -->
+<!-- Mediation server configuration.                         -->
+<!-- ======================================================= -->
+
+<server-configuration>
+    <server-id>000</server-id>
+    
+    <service-list>
+<!--             
+        <service>
+            <service-name>COLLECTION_SERVICE</service-name>
+            <service-instance-id>000</service-instance-id>
+            <service-instance-name>COLLECTION_SERVICE</service-instance-name>
+            <enabled>true</enabled>
+            <file-statistics>false</file-statistics>
+        </service>
+-->
+     
+<!-- 
+        <service>
+            <service-name>PARSING_SERVICE</service-name>
+            <service-instance-id>000</service-instance-id>
+            <service-instance-name>PARSING_SERVICE</service-instance-name>
+            <enabled>true</enabled>
+            <file-statistics>false</file-statistics>
+        </service>
+-->
+    
+<!-- 
+        <service>
+            <service-name>PROCESSING_SERVICE</service-name>
+            <service-instance-id>000</service-instance-id>
+            <service-instance-name>PROCESSING_SERVICE</service-instance-name>
+            <enabled>true</enabled>
+            <file-statistics>false</file-statistics>
+        </service>
+-->
+    
+<!-- 
+        <service>
+            <service-name>DISTRIBUTION_SERVICE</service-name>
+            <service-instance-id>000</service-instance-id>
+            <service-instance-name>DISTRIBUTION_SERVICE</service-instance-name>
+            <enabled>true</enabled>
+            <file-statistics>false</file-statistics>
+        </service>
+-->
+    
+<!--
+        <service>
+            <service-name>AGGREGATION_SERVICE</service-name>
+            <service-instance-id>000</service-instance-id>
+            <service-instance-name>AGGREGATION_SERVICE</service-instance-name>
+            <enabled>true</enabled>
+            <file-statistics>false</file-statistics>
+        </service>     
+-->
+
+<!--
+        <service>
+            <service-name>DATA_CONSOLIDATION_SERVICE</service-name>
+            <service-instance-id>000</service-instance-id>
+            <service-instance-name>DATA_CONSOLIDATION_SERVICE</service-instance-name>
+            <enabled>true</enabled>
+            <file-statistics>false</file-statistics>
+        </service>     
+-->
+
+<!--
+        <service>
+            <service-name>GTPPRIME_COLLECTION_SERVICE</service-name>
+            <service-instance-id>000</service-instance-id>
+            <service-instance-name>GTPPRIME_COLLECTION_SERVICE</service-instance-name>
+            <enabled>true</enabled>
+            <file-statistics>false</file-statistics>
+        </service>     
+-->
+
+<!--
+        <service>
+            <service-name>SYSLOG_COLLECTION_SERVICE</service-name>
+            <service-instance-id>000</service-instance-id>
+            <service-instance-name>SYSLOG_COLLECTION_SERVICE</service-instance-name>
+            <enabled>true</enabled>
+            <file-statistics>false</file-statistics>
+        </service>     
+-->
+
+<!--
+        <service>
+            <service-name>IPLOG_PARSING_SERVICE</service-name>
+            <service-instance-id>000</service-instance-id>
+            <service-instance-name>IPLOG_PARSING_SERVICE</service-instance-name>
+            <enabled>true</enabled>
+            <file-statistics>false</file-statistics>
+        </service>     
+-->
+
+<!--
+        <service>
+            <service-name>NATFLOW_COLLECTION_SERVICE</service-name>
+            <service-instance-id>000</service-instance-id>
+            <service-instance-name>NATFLOW_COLLECTION_SERVICE</service-instance-name>
+            <enabled>true</enabled>
+            <file-statistics>false</file-statistics>
+        </service>     
+-->
+
+<!--
+        <service>
+            <service-name>NATFLOWBINARY_COLLECTION_SERVICE</service-name>
+            <service-instance-id>000</service-instance-id>
+            <service-instance-name>NATFLOWBINARY_COLLECTION_SERVICE</service-instance-name>
+            <enabled>true</enabled>
+            <file-statistics>false</file-statistics>
+        </service>     
+-->
+
+<!--
+        <service>
+            <service-name>RADIUS_COLLECTION_SERVICE</service-name>
+            <service-instance-id>000</service-instance-id>
+            <service-instance-name>RADIUS_COLLECTION_SERVICE</service-instance-name>
+            <enabled>true</enabled>
+            <file-statistics>false</file-statistics>
+        </service>     
+-->
+
+    </service-list>    
+    
+    <database-ds init="true">
+        <datasource-name>MEDIATION_SERVER_DS</datasource-name>
+        <datasource-type>oracle</datasource-type> <!-- allowed value oracle -->
+    </database-ds>
+        
+    <logging>
+        <log-level>INFO</log-level> <!-- ALL/INFO/DEBUG/WARN/ERROR/OFF -->   
+        <rolling type="TIME-BASED" value="5"></rolling>
+		<max-file-units>10</max-file-units>
+		<location></location> <!-- Customize path to store the logs -->
+    </logging>
+
+	<minimum-disk-space-required>-1</minimum-disk-space-required>
+	
+	<alerts>
+		<snmp-alert>ON</snmp-alert> <!-- ON/OFF -->
+		<threshold-system-alert enable="false">
+			<time-interval>10</time-interval> <!-- Value in Minutes -->
+			<memory>5</memory> <!-- Value in Remaining Percentage -->
+			<load-average>10</load-average> <!-- Value of Load Average -->
+		</threshold-system-alert>
+	</alerts>
+	
+	<mediation-root>C:\MEDIATION_ROOT</mediation-root>
+	
+	<file-statistics-path></file-statistics-path>
+
+    <store-cdr-file-summary-in-db>false</store-cdr-file-summary-in-db>
+    
+    <file-rename-agent>false</file-rename-agent>
+    
+    <file-distribution-agent>false</file-distribution-agent>
+    
+    <database-reprocessing-agent>false</database-reprocessing-agent>
+    
+    <web-service-status>OFF</web-service-status> <!-- ON/OFF -->
+    
+</server-configuration>
+
+
+
+
+<!-- ========================================================== -->
+<!-- Details of each configuration parameter.                   -->
+<!-- ========================================================== -->
+
+<!--
+<server-configuration>
+	<server-id>000</server-id>
+		Server ID of Mediation Server.
+		If there are more than two instance of server pointing to one DB then this field must be different from each other.
+			
+    <service-list>
+        <service>
+            <service-name>DISTRIBUTION_SERVICE</service-name>
+                The name of the service. This must be an exact match of the
+                service name mentioned in the system-mapping.xml configuration
+                file. This must also be unique among all the services listed.
+                
+            <service-instance-id>000</service-instance-id>
+                Instance id of the service.
+                
+            <service-instance-name></service-instance-name>
+                Instance name of the service.
+                
+            <enabled>true</enabled>
+                Whether the service should be enabled or not on statting server.
+        </service>
+
+            Similarly multiple services can be configured.
+            
+        <service>
+         	.....
+        </service>
+
+    </service-list>
+    
+    <logging>
+        <log-level>
+        	This parameter is used to display different kind of log level in mediation server logs files. There are different log level like - INFO,DEBUG,WARN and ERROR.
+        </log-level>
+        <rolling type="TIME-BASED" value="5">
+        Rolling type is of both type TIME-BASED and SIZE-BASED.
+        
+        For TIME-BASED,
+        value=3 - Rolling will be done at every minute.
+        value=4 - Rolling will be done at every hour.
+        value=5 - Rolling will be done at every day.
+        
+        For SIZE-BASED,
+        value=5 - Rolling will be done after log will be of 5 MB.
+        Here, value will be taken in the MB perspective.
+        </rolling>
+        
+				<max-file-units>10
+				This will take care that max. how many log units will be generated by the system. This value should not be
+				more then 13.
+				</max-file-units>
+    </logging>
+
+    <database-ds>
+        <datasource-name>MEDIATION_SERVER_DS</datasource-name>
+              This parameter is used to map the database information given in oracle-database-conf.xml
+        <datasource-type>oracle</datasource-type>
+              This parameter indicates the type of the database.
+    </database-ds>
+    
+    <mediation-root>C:\MEDIATION_ROOT</mediation-root>
+            Base directory name where the files are placed under appropriate directory configured in the service.
+    
+    <store-cdr-status-in-db>true</store-cdr-status-in-db>
+        To store raw cdr information in DB(TBLTMEDRAWINPUTCDR).
+        
+    <store-cdr-file-summary-in-db>true</store-cdr-file-summary-in-db>
+        To store filewise raw cdr information in DB(TBLMEDCDRFILESTATISTICS & TBLMMEDCDRFILESTATISTICSDETAIL).
+        
+    <store-cdr-summary-in-db>true</store-cdr-summary-in-db>
+        To store summary of raw cdr information in DB(TBLSTATISTICS).
+    
+    <write-report-in-file>false</write-report-in-file>
+    	write report in text file.
+    	    
+</server-configuration>
+-->
+
+<!-- ========================================================== -->
+<!-- End of details of configuration parameter.                 -->
+<!-- ========================================================== -->
+
+
+
+

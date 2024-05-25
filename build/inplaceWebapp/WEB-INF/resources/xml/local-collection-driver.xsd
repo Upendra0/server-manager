@@ -1,0 +1,106 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="local-collection-driver">
+    <xs:complexType>
+      <xs:all>
+        <xs:element type="xs:string" name="file-range"/>
+        <xs:element type="xs:string" name="file-sequence-order"/>
+        <xs:element name="path-list">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="path" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element type="xs:string" name="read-file-path"/>
+                    <xs:element type="xs:string" name="read-filename-prefix"/>
+                    <xs:element type="xs:string" name="read-filename-suffix"/>
+                    <xs:element type="xs:short" name="max-files-count-alert"/>
+                    <xs:element type="xs:string" name="read-filename-contains"/>
+                    <xs:element type="xs:string" name="write-file-path"/>
+                    <xs:element type="xs:string" name="write-filename-prefix"/>
+                    
+                    <xs:element type="xs:string" name="reference-device-name">
+                      <xs:annotation>
+                        <xs:documentation>Unique reference name</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    
+                    <xs:element type="xs:string" name="duplicate-check-params">
+                      <xs:annotation>
+                        <xs:documentation>comma separated parameters</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    
+                    <xs:element type="xs:int" name="time-interval">
+                      <xs:annotation>
+                        <xs:documentation>time interval in days</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    
+                    
+                    <xs:element name="filter-pattern">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element type="xs:string" name="action"/>
+                          <xs:element name="param">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:string" name="key"/>
+                                  <xs:attribute type="xs:string" name="value"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:all>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="file-date">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element type="xs:string" name="date-format"/>
+                          <xs:element type="xs:string" name="position"/>
+                          <xs:element type="xs:byte" name="start-index"/>
+                          <xs:element type="xs:byte" name="end-index"/>
+                        </xs:all>
+                        <xs:attribute type="xs:string" name="enabled"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="file-sequence-alert">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element type="xs:int" name="start-index"/>
+                          <xs:element type="xs:int" name="end-index"/>
+                          <!-- <xs:element type="xs:int" name="max-counter-limit"/> -->
+                          
+                          <xs:element type="xs:string" name="missing-sequence-frequency">
+                          <xs:annotation>
+                        	<xs:documentation>default/Daily</xs:documentation>
+                      	  </xs:annotation>
+                      	  </xs:element>
+                          <xs:element type="xs:int" name="missing-sequence-min-range"/>
+                          <xs:element type="xs:int" name="missing-sequence-max-range"/>
+                        </xs:all>
+                        <xs:attribute type="xs:string" name="enabled"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:byte" name="max-retry-count"/>
+        <xs:element type="xs:byte" name="no-files-alert-interval"/>
+        <xs:element name="file-grouping">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:string" name="grouping-type"/>
+              <xs:element type="xs:string" name="for-duplicate"/>
+            </xs:all>
+            <xs:attribute type="xs:string" name="enabled"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

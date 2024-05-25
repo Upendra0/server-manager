@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE driver-mapping SYSTEM "http://www.elitecore.com">-->
+
+<iplog-correlation-service>
+
+        <source-path>D:\MEDIATION_ROOT\IPLOG_PARSED_ROOT\input</source-path> <!-- Comma separated path -->
+        
+        <sorting-type>ASCENDING</sorting-type> <!-- ASCENDING/DESCENDING/NA -->
+        
+		<sorting-criteria></sorting-criteria>
+
+        <is-compressed>true</is-compressed>
+
+       	<minimum-thread>5</minimum-thread>
+
+        <maximum-thread>5</maximum-thread>
+
+        <file-batch-size>10</file-batch-size>
+
+        <queue-size>150000</queue-size>
+
+        <file-splitting-enabled>false</file-splitting-enabled>
+
+        <record-batch-size>5000</record-batch-size>
+
+        <startup-mode>Automatic</startup-mode>
+
+        <execution-interval>40</execution-interval>
+
+        <immediate-execute-on-startup>true</immediate-execute-on-startup>
+
+        <source-file-types>.gz</source-file-types>
+    
+        <select-file-on-prefixes></select-file-on-prefixes>
+    
+        <select-file-on-suffixes></select-file-on-suffixes>
+   
+        <file-compression>true</file-compression>
+    
+        <file-copy-folders></file-copy-folders>
+
+        <plugin-name>ASCII_PARSING_PLUGIN</plugin-name>
+
+        <file-grouping enabled="true">
+                <grouping-type>year</grouping-type>
+                <for-archive>true</for-archive>
+                <archive-path></archive-path>
+        </file-grouping>
+
+        <exclude-file-types></exclude-file-types>
+        
+        <iplog-correlation-configuration>
+        	<private-ip-field>General6</private-ip-field>
+        	<private-port-field>General3</private-port-field>
+        	<destination-ip-field>General8</destination-ip-field>
+        	<destination-port-field>General5</destination-port-field>
+        	<cdr-type-field>General1</cdr-type-field>
+        	<unique-domain-id-field>General2</unique-domain-id-field>
+        </iplog-correlation-configuration>
+    
+	    <syslog-output-configuration>
+	        <destination-directory-path>D:\MEDIATION_ROOT\IPLOG_REPARSED_ROOT\input</destination-directory-path>
+    	    <file-partition>
+                <field-seperator>_</field-seperator>
+                <field-based-hash-partition>
+	                <key-field type="Date">
+    	                <unified-field-name>StartDate</unified-field-name>
+                    	<range>HOUR</range>   <!-- DATE/HOUR/MINUTE -->
+        	        </key-field>
+					<key-field type="PUBLIC_IP">
+						<unified-field-name>General8</unified-field-name>
+						<range>50</range>       <!-- Number of IP Address approx. e.g. 10000 -->
+					</key-field>
+					<key-field type="PRIVATE_IP">
+						<unified-field-name>General6</unified-field-name>
+						<range>50</range>       <!-- Number of IP Address approx. e.g. 10000 -->
+					</key-field>
+                </field-based-hash-partition>
+        	</file-partition>
+    
+        	<inprocess-file-purge>
+            	<purge-interval>1</purge-interval>
+                <max-rename-interval>1</max-rename-interval>
+        	</inprocess-file-purge>
+    		
+		</syslog-output-configuration>
+	
+		<output-file-header>StartDate,EndDate,General1,General2,General3,General4,General5,General6,General7,General8,General9</output-file-header>
+		
+</iplog-correlation-service>

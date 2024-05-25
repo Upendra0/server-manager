@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- FOR FILE-BASED CONFIGURATION -->
+
+<aggregation-service>
+	<startup-mode>Automatic</startup-mode>
+	<processing-type>FILE-BASED</processing-type> 
+	<device-name>Device-1</device-name>
+	<source-file-types>.csv</source-file-types>
+	<sorting-type>ASCENDING</sorting-type> <!-- ASCENDING/DESCENDING/NA -->
+	<sorting-criteria>LAST_MODIFIED_DATE</sorting-criteria> <!-- LAST_MODIFIED_DATE/FILE_NAME -->
+	<is-sorting-required>true</is-sorting-required>
+	<execution-interval>3</execution-interval>   in minutes 
+    <immediate-execute-on-startup>true</immediate-execute-on-startup>
+	<minimum-thread>10</minimum-thread>  
+    <maximum-thread>10</maximum-thread>
+    <thread-queue-size>15000</thread-queue-size>
+    <entity-batch-size>100</entity-batch-size>
+	<process-record-limit>50000</process-record-limit> 
+	<select-file-on-prefixes></select-file-on-prefixes>
+	<store-cdr-file-summary-in-db>false</store-cdr-file-summary-in-db> <!-- TRUE/FALSE : This will store file details in database -->
+	<file-grouping enabled="true">
+	<grouping-type>day</grouping-type>
+	<for-archive>true</for-archive>
+	<for-error>true</for-error>
+	</file-grouping>
+	
+	<source-path>D:\MEDIATION_ROOT\AGGREGATION_ROOT\Device-1\input</source-path>
+	<input-database-info>
+		<input-datasource-name>MEDIATION_SERVER_DS</input-datasource-name>
+		<input-table-name>TBLMEDIATIONCDR</input-table-name>
+	</input-database-info>
+    	
+	<aggregation-list>
+		<aggregation name="Type-1">
+			<destination-path>D:\MEDIATION_ROOT\AGGREGATION_ROOT\Device-1\input1</destination-path>
+    		<output-database-info>
+				<output-datasource-name>MEDIATION_SERVER_DS</output-datasource-name>
+				<output-table-name>TBLMAGGREGATEDCDR</output-table-name>
+    		</output-database-info>
+    			
+			<match-attribute-list></match-attribute-list>
+    	
+    		<group-attribute-list>
+    			<field-names>General1,General4,General10,General10,General15</field-names>
+    		</group-attribute-list>
+    	
+    		<aggregation-attribute-list>
+    			<attribute>
+    				<field-name>General5</field-name>
+    				<data-type>String</data-type>
+    				<operation>1</operation>
+    			</attribute>
+    			<attribute>
+    				<field-name>General6</field-name>
+    				<data-type>String</data-type>
+    				<operation>1</operation>
+    			</attribute>
+    		</aggregation-attribute-list>
+    
+			<required-datecheck-input-field>LASTMODIFIEDDATE</required-datecheck-input-field>
+    
+    		<required-datecheck-output-field>LASTMODIFIEDDATE</required-datecheck-output-field>
+    
+   			<input-check-attribute-list></input-check-attribute-list>
+    		<output-check-attribute-list></output-check-attribute-list>
+    		
+			<procedure-name></procedure-name>
+   			<procedure-parameters></procedure-parameters> 
+		</aggregation>
+	</aggregation-list>
+	
+</aggregation-service>
+
+
+
+
+<!-- FOR DB-BASED CONFIGURATION -->
+
+<!-- 
+<aggregation-service>
+	<startup-mode>Automatic</startup-mode>
+	<processing-type>DB-BASED</processing-type>
+	<device-name>Device-1</device-name>
+	<source-file-types>.csv</source-file-types>
+	<is-sorting-required>true</is-sorting-required>
+	<execution-interval>3</execution-interval>
+    <immediate-execute-on-startup>true</immediate-execute-on-startup>
+	<minimum-thread>10</minimum-thread>  
+    <maximum-thread>10</maximum-thread>
+    <thread-queue-size>15000</thread-queue-size>
+    <entity-batch-size>100</entity-batch-size>
+	<process-record-limit>50000</process-record-limit> 
+	<in-process-file-extension>.inp</in-process-file-extension>
+	<select-file-on-prefixes></select-file-on-prefixes>
+	<file-grouping enabled="true">
+		<grouping-type>day</grouping-type>
+		<for-archive>true</for-archive>
+		<for-error>true</for-error>
+	</file-grouping>
+	
+	<source-path>D:\MEDIATION_ROOT\AGGREGATION_ROOT\Device-1\input</source-path>
+	<input-database-info>
+		<input-datasource-name>MEDIATION_SERVER_DS</input-datasource-name>
+		<input-table-name>TBLMEDIATIONCDR</input-table-name>
+	</input-database-info>
+    	
+	<aggregation-list>
+		<aggregation name="Type-1">
+			<destination-path>D:\MEDIATION_ROOT\AGGREGATION_ROOT\Device-1\input1</destination-path>
+    		<output-database-info>
+				<output-datasource-name>MEDIATION_SERVER_DS</output-datasource-name>
+				<output-table-name>TBLMAGGREGATEDCDR</output-table-name>
+    		</output-database-info>
+    			
+			<match-attribute-list>
+    				<attribute>
+    					<input-field-name>CALLSTART</input-field-name>
+    					<output-field-name>CALLSTART</output-field-name>
+    					<data-type>Date</data-type>
+			    		<default-value></default-value>
+			    		<query-for-default-value></query-for-default-value>
+			    	</attribute>
+			    	<attribute>
+			    		<input-field-name>CALLEND</input-field-name>
+			    		<output-field-name>CALLEND</output-field-name>
+			    		<data-type>Date</data-type>
+			    		<default-value></default-value>
+			    		<query-for-default-value></query-for-default-value>
+			    	</attribute>
+			    	<attribute>
+			    		<input-field-name>CLASS</input-field-name>
+			    		<output-field-name>CLASS</output-field-name>
+			    		<data-type>String</data-type>
+			    		<default-value>SSTP</default-value>
+			    		<query-for-default-value></query-for-default-value>
+			    	</attribute>
+			    	<attribute>
+			    		<input-field-name>CDRSTATUS</input-field-name>
+			    		<output-field-name>CDRSTATUS</output-field-name>
+			    		<data-type>String</data-type>
+			    		<default-value>R</default-value>
+			    		<query-for-default-value></query-for-default-value>
+			    	</attribute>
+			    	
+			    	<attribute>
+			    		<input-field-name>PARAM1</input-field-name>
+			    		<output-field-name>PARAM1</output-field-name>
+			    		<data-type>String</data-type>
+			    		<default-value></default-value>
+			    		<query-for-default-value></query-for-default-value>
+			    	</attribute>
+			    	<attribute>
+			    		<input-field-name>PARAM9</input-field-name>
+			    		<output-field-name>PARAM9</output-field-name>
+			    		<data-type>String</data-type>
+			    		<default-value></default-value>
+			    		<query-for-default-value></query-for-default-value>
+			    	</attribute>
+			    	<attribute>
+			    		<input-field-name>PARAM13</input-field-name>
+			    		<output-field-name>PARAM13</output-field-name>
+			    		<data-type>String</data-type>
+			    		<default-value></default-value>
+			    		<query-for-default-value></query-for-default-value>
+			    	</attribute>
+			    	<attribute>
+			    		<input-field-name>PARAM18</input-field-name>
+			    		<output-field-name>PARAM18</output-field-name>
+			    		<data-type>String</data-type>
+			    		<default-value></default-value>
+			    		<query-for-default-value></query-for-default-value>
+			    	</attribute>
+			    	<attribute>
+			    		<input-field-name>PARAM17</input-field-name>
+			    		<output-field-name>PARAM17</output-field-name>
+			    		<data-type>String</data-type>
+			    		<default-value></default-value>
+			    		<query-for-default-value></query-for-default-value>
+			    	</attribute>
+			    	<attribute>
+			    		<input-field-name>PARAM5</input-field-name>
+			    		<output-field-name>PARAM5</output-field-name>
+			    		<data-type>String</data-type>
+			    		<default-value></default-value>
+			    		<query-for-default-value></query-for-default-value>
+			    	</attribute>
+			    	<attribute>
+			    		<input-field-name>PARAM6</input-field-name>
+			    		<output-field-name>PARAM6</output-field-name>
+			    		<data-type>String</data-type>
+			    		<default-value></default-value>
+			    		<query-for-default-value></query-for-default-value>
+			    	</attribute>
+			    	<attribute>
+			    		<input-field-name>SESSIONID</input-field-name>
+			    		<output-field-name>SESSIONID</output-field-name>
+			    		<data-type>String</data-type>
+			    		<default-value>AAAAAAA</default-value>
+			    		<query-for-default-value></query-for-default-value>
+			    	</attribute>
+			    	<attribute>
+			    		<input-field-name>PARAM12</input-field-name>
+			    		<output-field-name>PARAM12</output-field-name>
+			    		<data-type>String</data-type>
+			    		<default-value></default-value>
+			    		<query-for-default-value>(CASE WHEN PARAM13 IS NOT NULL THEN 'TRUE' ELSE 'FALSE' END)</query-for-default-value>
+			    	</attribute>
+			    	<attribute>
+			    		<input-field-name>RATINGSTREAM</input-field-name>
+			    		<output-field-name>RATINGSTREAM</output-field-name>
+			    		<data-type>String</data-type>
+			    		<default-value>RETAIL</default-value>
+			    		<query-for-default-value></query-for-default-value>
+			    	</attribute>
+			    	<attribute>
+			    		<input-field-name>ACCT_STATUS_TYPE</input-field-name>
+			    		<output-field-name>ACCT_STATUS_TYPE</output-field-name>
+			    		<data-type>String</data-type>
+			    		<default-value>Stop</default-value>
+			    		<query-for-default-value></query-for-default-value>
+			    	</attribute>
+			    	
+			</match-attribute-list>
+    	
+    		<group-attribute-list>
+    			<field-names>PARAM1,PARAM9,PARAM13,PARAM18,PARAM17</field-names>
+    		</group-attribute-list>
+    	
+    		<aggregation-attribute-list>
+    			<attribute>
+    				<field-name>PARAM5</field-name>
+    				<data-type>String</data-type>
+    				<operation>1</operation>
+    			</attribute>
+    			<attribute>
+    				<field-name>PARAM6</field-name>
+    				<data-type>String</data-type>
+    				<operation>1</operation>
+    			</attribute>
+    			<attribute>
+    				<field-name>CALLSTART</field-name>
+    				<data-type>Date</data-type>
+    				<operation>2</operation>
+    			</attribute>
+    			<attribute>
+    				<field-name>CALLEND</field-name>
+    				<data-type>Date</data-type>
+    				<operation>2</operation>
+    			</attribute>
+    		</aggregation-attribute-list>
+    
+			<required-datecheck-input-field>LASTMODIFIEDDATE</required-datecheck-input-field>
+    
+    		<required-datecheck-output-field>LASTMODIFIEDDATE</required-datecheck-output-field>
+    
+   			<input-check-attribute-list></input-check-attribute-list>
+    
+   			<output-check-attribute-list></output-check-attribute-list>
+   	
+    		<procedure-name></procedure-name>
+   			<procedure-parameters></procedure-parameters>  
+		</aggregation>
+	</aggregation-list>
+	
+</aggregation-service>
+-->
+
+
+
+
+
+<!-- FOR QUERY-BASED CONFIGURATION -->
+
+<!-- 
+<aggregation-service>
+	<startup-mode>Automatic</startup-mode>
+	<processing-type>QUERY-BASED</processing-type>
+	<device-name>Device-1</device-name>
+	<source-file-types>.csv</source-file-types>
+	<is-sorting-required>true</is-sorting-required>
+	<execution-interval>3</execution-interval>
+    <immediate-execute-on-startup>true</immediate-execute-on-startup>
+	<minimum-thread>10</minimum-thread>  
+    <maximum-thread>10</maximum-thread>
+    <thread-queue-size>15000</thread-queue-size>
+    <entity-batch-size>100</entity-batch-size>
+	<process-record-limit>50000</process-record-limit> 
+	<in-process-file-extension>.inp</in-process-file-extension>
+	<select-file-on-prefixes></select-file-on-prefixes>
+	<file-grouping enabled="true">
+		<grouping-type>day</grouping-type>
+		<for-archive>true</for-archive>
+		<for-error>true</for-error>
+	</file-grouping>
+	
+	<source-path>D:\MEDIATION_ROOT\AGGREGATION_ROOT\Device-1\input</source-path>
+	<input-database-info>
+		<input-datasource-name>MEDIATION_SERVER_DS</input-datasource-name>
+		<input-table-name>TBLMEDIATIONCDR</input-table-name>
+	</input-database-info>
+    	
+	<aggregation-list>
+		<aggregation name="Type-1">
+			<destination-path>D:\MEDIATION_ROOT\AGGREGATION_ROOT\Device-1\input1</destination-path>
+    		<output-database-info>
+				<output-datasource-name>MEDIATION_SERVER_DS</output-datasource-name>
+				<output-table-name>TBLMAGGREGATEDCDR</output-table-name>
+    		</output-database-info>
+    			
+			<match-attribute-list></match-attribute-list>
+    	
+    		<group-attribute-list></group-attribute-list>
+    	
+    		<aggregation-attribute-list></aggregation-attribute-list>
+    
+			<required-datecheck-input-field></required-datecheck-input-field>
+    
+    		<required-datecheck-output-field></required-datecheck-output-field>
+    
+   			<input-check-attribute-list></input-check-attribute-list>
+    
+   			<output-check-attribute-list></output-check-attribute-list>
+   	
+    		<procedure-name>SP_MEDCDR_INTRIMDET_INTRIMROAM</procedure-name>
+   			<procedure-parameters>
+   					<parameter>
+   						<parameter-name></parameter-name>
+   						<data-type>Date</data-type>
+   						<default-value>05/06/2008 00:00:00</default-value>
+   						<query-value></query-value>
+   					</parameter>
+   			</procedure-parameters> 
+		</aggregation>
+	</aggregation-list>
+	
+</aggregation-service>
+-->

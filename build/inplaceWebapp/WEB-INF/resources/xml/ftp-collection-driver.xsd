@@ -1,0 +1,171 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ftp-collection-driver">
+    <xs:annotation>
+      <xs:documentation>Interval in Seconds and apply if interval is greater than Zero and if any files not received since configurable time then send the trap to ME.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:all>
+        <xs:element type="xs:string" name="file-transfer-mode"/>
+        <xs:element type="xs:string" name="file-range"/>
+        <xs:element type="xs:string" name="file-sequence-order"/>
+        <xs:element name="host-list">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:string" name="host"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:int" name="port"/>
+        <xs:element type="xs:int" name="ftp-timeout"/>
+        <xs:element name="path-list">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="path" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element type="xs:string" name="read-file-path"/>
+                    <xs:element type="xs:string" name="read-filename-prefix">
+                      <xs:annotation>
+                        <xs:documentation>source path from where we have to read file</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element type="xs:string" name="read-filename-suffix">
+                      <xs:annotation>
+                        <xs:documentation>Read only those file whose prefix is this</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element type="xs:string" name="max-files-count-alert">
+                      <xs:annotation>
+                        <xs:documentation>Read only those file whose suffix is this</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element type="xs:string" name="read-filename-contains">
+                      <xs:annotation>
+                        <xs:documentation>Provide Limit for maximum files to generate alert</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element type="xs:string" name="write-file-path">
+                      <xs:annotation>
+                        <xs:documentation>Read only those file whose name contains this</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    <xs:element type="xs:string" name="write-filename-prefix">
+                      <xs:annotation>
+                        <xs:documentation>Comma separated destination path</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    
+                    <xs:element type="xs:string" name="reference-device-name">
+                      <xs:annotation>
+                        <xs:documentation>Unique reference name</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    
+                    <xs:element type="xs:string" name="duplicate-check-params">
+                      <xs:annotation>
+                        <xs:documentation>comma separated parameters</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    
+                    <xs:element type="xs:int" name="time-interval">
+                      <xs:annotation>
+                        <xs:documentation>time interval in days</xs:documentation>
+                      </xs:annotation>
+                    </xs:element>
+                    
+                    <xs:element name="filter-pattern">
+                      <xs:annotation>
+                        <xs:documentation>This parameter will add the given value to file name as a prefix</xs:documentation>
+                      </xs:annotation>
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element type="xs:string" name="action"/>
+                          <xs:element name="param">
+                            <xs:annotation>
+                              <xs:documentation>move/rename/na</xs:documentation>
+                            </xs:annotation>
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute type="xs:string" name="key"/>
+                                  <xs:attribute type="xs:string" name="value"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:all>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="file-date">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element type="xs:string" name="date-format"/>
+                          <xs:element type="xs:string" name="position"/>
+                          <xs:element type="xs:int" name="start-index">
+                            <xs:annotation>
+                              <xs:documentation>left/right</xs:documentation>
+                            </xs:annotation>
+                          </xs:element>
+                          <xs:element type="xs:int" name="end-index"/>
+                        </xs:all>
+                        <xs:attribute type="xs:string" name="enabled"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="file-sequence-alert">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element type="xs:int" name="start-index"/>
+                          <xs:element type="xs:int" name="end-index"/>
+                          
+                          <!-- <xs:element type="xs:int" name="max-counter-limit"/> -->
+                          
+                          <xs:element type="xs:string" name="missing-sequence-frequency">
+                          <xs:annotation>
+                        	<xs:documentation>default/Daily</xs:documentation>
+                      	  </xs:annotation>
+                      	  </xs:element>
+                          <xs:element type="xs:int" name="missing-sequence-min-range"/>
+                          <xs:element type="xs:int" name="missing-sequence-max-range"/>
+                          <xs:element type="xs:string" name="missing-sequence-reset-time"/>
+                        </xs:all>
+                        <xs:attribute type="xs:string" name="enabled"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:string" name="user-name"/>
+        <xs:element type="xs:string" name="password"/>
+        <xs:element type="xs:int" name="max-retry-count">
+          <xs:annotation>
+            <xs:documentation>&lt;duplicate-file-grouping>day&lt;/duplicate-file-grouping></xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element type="xs:string" name="remote-system-file-seperator"/>
+        <xs:element name="file-grouping">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:string" name="grouping-type"/>
+              <xs:element type="xs:string" name="for-duplicate"/>
+            </xs:all>
+            <xs:attribute type="xs:string" name="enabled"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="file-fetch-rule">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:string" name="file-fetch-type"/>
+              <xs:element type="xs:int" name="file-fetch-interval"/>
+              <xs:element type="xs:string" name="time-zone"/>
+            </xs:all>
+            <xs:attribute type="xs:string" name="enabled"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:int" name="no-files-alert-interval"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

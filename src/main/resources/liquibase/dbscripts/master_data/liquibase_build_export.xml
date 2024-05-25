@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<project name="Example" xmlns:liquibase="antlib:liquibase.integration.ant" default="all">
+
+	<property file="liquibase_export.properties" />
+
+	<path id="lib.path">
+		<fileset dir="../.././lib">
+
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<taskdef resource="liquibase/integration/ant/antlib.xml" uri="antlib:liquibase.integration.ant">
+		<classpath refid="lib.path" />
+	</taskdef>
+
+
+	<target name="all" depends="init,genSql_user,updateDatabase_user,genSql_PostGreUser,updateDatabase_PostGreUser,genSql_db,updateDatabase_db" />
+
+	<target name="upgrade" depends="init,genSql_db,updateDatabase_db" />
+
+	<target name="init">
+
+		<tstamp>
+			<format property="tstamp" pattern="yyyy_MM_dd_HHmmss" />
+		</tstamp>
+
+	</target>
+
+	<!-- Arguments {User} {Password} {Size} {AutoextendSize} {DataFilePathName} 
+		schemaUname=crestelsmtest schemaPwd=crestelsmtest dbfSize=10 dbfAutoExtendSize=2 
+		dataFilePathName= -->
+	<target name="genSql_user" description="Create Database User with all required access">
+		<liquibase:updateDatabase changeLogFile="${userliquiChangeLogFile}" outputFile="${userliquiGeneratedSQL}-${tstamp}.log" logLevel="debug">
+			<liquibase:database driver="${userdriver}" url="${userurl}" user="${userusername}" password="${userpassword}" />
+			<liquibase:changeLogParameters>
+				<liquibase:changeLogParameter name="ROLENAME" value="${ROLENAME}" />
+				<liquibase:changeLogParameter name="PROFILENAME" value="${PROFILENAME}" />
+				<liquibase:changeLogParameter name="FAILED_LOGIN_ATTEMPTS" value="${FAILED_LOGIN_ATTEMPTS}" />
+				<liquibase:changeLogParameter name="PASSWORD_LIFE_TIME" value="${PASSWORD_LIFE_TIME}" />
+				<liquibase:changeLogParameter name="PASSWORD_LOCK_TIME" value="${PASSWORD_LOCK_TIME}" />
+				<liquibase:changeLogParameter name="PASSWORD_GRACE_TIME" value="${PASSWORD_GRACE_TIME}" />
+				<liquibase:changeLogParameter name="SCHEMAUNAME" value="crestelsm${STAGENAME}" />
+				<liquibase:changeLogParameter name="SCHEMAPWD" value="${password}" />
+				<liquibase:changeLogParameter name="DBFSIZE" value="${DBFSIZE}" />
+				<liquibase:changeLogParameter name="DBFMAXSIZE" value="${DBFMAXSIZE}" />
+				<liquibase:changeLogParameter name="DBFAUTOEXTENDSIZE" value="${DBFAUTOEXTENDSIZE}" />
+				<liquibase:changeLogParameter name="DATAFILEPATHNAME" value="${DATAFILEPATHNAME}" />
+				<liquibase:changeLogParameter name="USER_TABLESPACE_QUOTA" value="${USER_TABLESPACE_QUOTA}" />
+				<liquibase:changeLogParameter name="PASSWORD_REUSE_TIME" value="${PASSWORD_REUSE_TIME}" />
+				<liquibase:changeLogParameter name="PASSWORD_REUSE_MAX" value="${PASSWORD_REUSE_MAX}" />
+				<liquibase:changeLogParameter name="PASSWORD_VERIFY_FUNCTION" value="${PASSWORD_VERIFY_FUNCTION}" />
+				<liquibase:changeLogParameter name="IP" value="${IP}" />
+			</liquibase:changeLogParameters>
+		</liquibase:updateDatabase>
+	</target>
+
+	<target name="updateDatabase_user" description="Create Database User with all required access">
+		<liquibase:updateDatabase changeLogFile="${userliquiChangeLogFile}" logLevel="debug">
+			<liquibase:database driver="${driver}" url="${userurl}" user="${userusername}" password="${userpassword}" />
+			<liquibase:changeLogParameters>
+				<liquibase:changeLogParameter name="ROLENAME" value="${ROLENAME}" />
+				<liquibase:changeLogParameter name="PROFILENAME" value="${PROFILENAME}" />
+				<liquibase:changeLogParameter name="FAILED_LOGIN_ATTEMPTS" value="${FAILED_LOGIN_ATTEMPTS}" />
+				<liquibase:changeLogParameter name="PASSWORD_LIFE_TIME" value="${PASSWORD_LIFE_TIME}" />
+				<liquibase:changeLogParameter name="PASSWORD_LOCK_TIME" value="${PASSWORD_LOCK_TIME}" />
+				<liquibase:changeLogParameter name="PASSWORD_GRACE_TIME" value="${PASSWORD_GRACE_TIME}" />
+				<liquibase:changeLogParameter name="SCHEMAUNAME" value="crestelsm${STAGENAME}" />
+				<liquibase:changeLogParameter name="SCHEMAPWD" value="${password}" />
+				<liquibase:changeLogParameter name="DBFSIZE" value="${DBFSIZE}" />
+				<liquibase:changeLogParameter name="DBFMAXSIZE" value="${DBFMAXSIZE}" />
+				<liquibase:changeLogParameter name="DBFAUTOEXTENDSIZE" value="${DBFAUTOEXTENDSIZE}" />
+				<liquibase:changeLogParameter name="DATAFILEPATHNAME" value="${DATAFILEPATHNAME}" />
+				<liquibase:changeLogParameter name="USER_TABLESPACE_QUOTA" value="${USER_TABLESPACE_QUOTA}" />
+				<liquibase:changeLogParameter name="PASSWORD_REUSE_TIME" value="${PASSWORD_REUSE_TIME}" />
+				<liquibase:changeLogParameter name="PASSWORD_REUSE_MAX" value="${PASSWORD_REUSE_MAX}" />
+				<liquibase:changeLogParameter name="PASSWORD_VERIFY_FUNCTION" value="${PASSWORD_VERIFY_FUNCTION}" />
+				<liquibase:changeLogParameter name="IP" value="${IP}" />
+			</liquibase:changeLogParameters>
+		</liquibase:updateDatabase>
+	</target>
+
+	<!-- login to new DB url as master user -->
+	<target name="genSql_PostGreUser" description="Create Postgres specific schema creation steps, logs generated SQL to file.">
+		<liquibase:updateDatabase contexts="${context}" changeLogFile="${postgresLiquibaseChangeLogFile}" outputFile="${postgresLiquibaseChangeLogFile}-${tstamp}.log" logLevel="debug">
+			<liquibase:database driver="${userdriver}" url="${url}" user="${userusername}" password="${userpassword}" />
+			<liquibase:changeLogParameters>
+				<liquibase:changeLogParameter name="SCHEMAUNAME" value="crestelsm${STAGENAME}" />
+			</liquibase:changeLogParameters>
+		</liquibase:updateDatabase>
+	</target>
+
+	<target name="updateDatabase_PostGreUser" description="Create Postgres specific schema creation steps, connects and applies on DB">
+		<liquibase:updateDatabase contexts="${context}" changeLogFile="${postgresLiquibaseChangeLogFile}" logLevel="debug">
+			<liquibase:database driver="${userdriver}" url="${url}" user="${userusername}" password="${userpassword}" />
+			<liquibase:changeLogParameters>
+				<liquibase:changeLogParameter name="SCHEMAUNAME" value="crestelsm${STAGENAME}" />
+			</liquibase:changeLogParameters>
+		</liquibase:updateDatabase>
+	</target>
+
+	<target name="genSql_db" description="generated with new changes using Liquibase">
+		<liquibase:updateDatabase changeLogFile="${dbliquiChangeLogFile}" outputFile="${dbliquiGeneratedSQL}-${tstamp}.log" logLevel="debug">
+			<liquibase:database driver="${driver}" url="${url}" user="crestelsm${STAGENAME}" password="${password}" />
+			<liquibase:changeLogParameters>
+				<liquibase:changeLogParameter name="installation.dir" value="${INSTALLATION_DIR}" />
+			</liquibase:changeLogParameters>
+		</liquibase:updateDatabase>
+	</target>
+
+	<target name="updateDatabase_db" description="Updates database with new changes using Liquibase">
+		<liquibase:updateDatabase changeLogFile="${dbliquiChangeLogFile}" logLevel="debug">
+			<liquibase:database driver="${driver}" url="${url}" user="crestelsm${STAGENAME}" password="${password}" />
+			<liquibase:changeLogParameters>
+				<liquibase:changeLogParameter name="installation.dir" value="${INSTALLATION_DIR}" />
+			</liquibase:changeLogParameters>
+		</liquibase:updateDatabase>
+	</target>
+	
+</project>

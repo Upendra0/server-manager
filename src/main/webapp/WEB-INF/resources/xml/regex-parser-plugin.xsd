@@ -1,0 +1,56 @@
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="regex-parser-plugin">
+	<xs:complexType>
+      <xs:sequence>
+        <xs:element name="instance" maxOccurs="unbounded">
+		<xs:complexType>
+			<xs:all>
+				<xs:element type="xs:string" name="source-charset-name" />
+				<xs:element type="xs:string" name="source-date-format" />
+				<xs:element type="xs:string" name="log-pattern-regex" />
+				<xs:element type="xs:string" name="log-pattern-regexid" />
+				<xs:element name="pattern-list">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="pattern" maxOccurs="unbounded"
+								minOccurs="0">
+								<xs:complexType>
+									<xs:choice maxOccurs="unbounded" minOccurs="0">
+										<xs:sequence>
+											<xs:element type="xs:string" name="pattern-regexid" />
+											<xs:element type="xs:string" name="pattern-regex" />
+											<xs:element name="attribute-list">
+												<xs:complexType>
+													<xs:sequence>
+														<xs:element name="attribute" maxOccurs="unbounded" minOccurs="0">
+															<xs:complexType>
+																<xs:choice maxOccurs="unbounded" minOccurs="0">
+																	<xs:element type="xs:string" name="unified-field" />
+																	<xs:element type="xs:int" name="sequence-no" />
+																	<xs:element type="xs:string" name="regex" />
+																	<xs:element type="xs:string" name="default-value" />
+																	<xs:element type="xs:string" name="trim-chars" />
+																	<xs:element type="xs:string" name="description" />
+																</xs:choice>
+															</xs:complexType>
+														</xs:element>
+													</xs:sequence>
+												</xs:complexType>
+											</xs:element>
+										</xs:sequence>
+									</xs:choice>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:all>
+			<xs:attribute type="xs:int" name="id" />
+		</xs:complexType>
+	</xs:element>
+	</xs:sequence>
+    </xs:complexType>
+  </xs:element>	
+</xs:schema>
+

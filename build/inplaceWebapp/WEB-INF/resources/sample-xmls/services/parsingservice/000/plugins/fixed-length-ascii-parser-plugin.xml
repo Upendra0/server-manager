@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE driver-mapping SYSTEM "http://www.elitecore.com">-->
+
+<fixed-length-ascii-parser-plugin>
+	<instance id="000">
+	    <file-header present="false">
+	        <file-header-parser>STANDARD</file-header-parser>
+	        <contains-fields>true</contains-fields>
+	    </file-header>
+	
+	    <source-charset-name>UTF8</source-charset-name> 
+	    
+	    <source-date-format>yyyy-MM-dd+HH:mm:ss</source-date-format>  
+	
+	    <attribute-list>
+	    	<attribute>
+	    		<unified-field>RecordNumber</unified-field>
+				<start-length>0</start-length>
+				<end-length>25</end-length>
+				<prefix>Jigish</prefix>
+				<postfix>Shah</postfix>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+				<length></length>
+				<right-delimiter></right-delimiter>
+				<source-field-format></source-field-format>
+	    	</attribute>
+	<!-- 
+	    	<attribute>
+	    		<unified-field>OriginalRecordNumber</unified-field>
+				<start-length>6</start-length>
+				<end-length>10</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>APartyMDN</unified-field>
+				<start-length>11</start-length>
+				<end-length>15</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>APartyMIN</unified-field>
+				<start-length>16</start-length>
+				<end-length>20</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>APartyLocationCode</unified-field>
+				<start-length>21</start-length>
+				<end-length>25</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>BPartyMDN</unified-field>
+				<start-length>26</start-length>
+				<end-length>30</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>BPartyMIN</unified-field>
+				<start-length>31</start-length>
+				<end-length>35</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>BPartyLocationCode</unified-field>
+				<start-length>36</start-length>
+				<end-length>40</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>CPartyMDN</unified-field>
+				<start-length>41</start-length>
+				<end-length>45</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>CPartyMIN</unified-field>
+				<start-length>46</start-length>
+				<end-length>50</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>CPartyLocationCode</unified-field>
+				<start-length>51</start-length>
+				<end-length>55</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>IngressStartDate</unified-field>
+				<start-length>56</start-length>
+				<end-length>60</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>IngressEndDate</unified-field>
+				<start-length>61</start-length>
+				<end-length>65</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>EgressStartDate</unified-field>
+				<start-length>66</start-length>
+				<end-length>70</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>EgressEndDate</unified-field>
+				<start-length>71</start-length>
+				<end-length>75</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>IngressCallDirection</unified-field>
+				<start-length>76</start-length>
+				<end-length>80</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>EgressCallDirection</unified-field>
+				<start-length>81</start-length>
+				<end-length>85</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>RatingStream</unified-field>
+				<start-length>86</start-length>
+				<end-length>90</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>StartDate</unified-field>
+				<start-length>91</start-length>
+				<end-length>95</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>EndDate</unified-field>
+				<start-length>96</start-length>
+				<end-length>100</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	
+	    	<attribute>
+	    		<unified-field>Duration</unified-field>
+				<start-length>10</start-length>
+				<end-length>15</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>EventType</unified-field>
+				<start-length>10</start-length>
+				<end-length>15</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>EventSubType</unified-field>
+				<start-length>10</start-length>
+				<end-length>15</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>OnNetCode</unified-field>
+				<start-length>10</start-length>
+				<end-length>15</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute>
+	    	<attribute>
+	    		<unified-field>DistanceBand</unified-field>
+				<start-length>10</start-length>
+				<end-length>15</end-length>
+				<default-value></default-value>
+				<trim-chars>"</trim-chars>
+	            <description></description>
+	    	</attribute> -->
+	    </attribute-list>
+   </instance>
+</fixed-length-ascii-parser-plugin>
+
+<!-- ========================================================== -->
+<!-- Details of each configuration parameter                    -->
+<!-- ========================================================== -->
+
+<!--
+<fixed-length-ascii-parser-plugin>
+
+    <file-header present="true"> Specifies whether the file header is present or not into the raw files.
+        <file-header-parser>BAF</file-header-parser>
+			BAF - This is Bellcore Format cdr in which header comes in format of xml.
+			STANDARD - This is standard header which comes with any seperator.
+        <contains-fields>false</contains-fields>
+        	For standard format, it contains value or not.
+    </file-header>     
+        
+    <source-charset-name>UTF16</source-charset-name> 
+        Specifies the character set name of the file.
+    
+    <source-date-format>yyyy-MM-dd HH:mm:ss,Unix Epoch</source-date-format> 
+        Specifies the date format of the date field present into the file.
+        It will be comma separated value.Parsing will try to parse the date from the list specified here.
+        The first match will be considered as a date format.
+        
+        The date format into the raw file can also either Long value or Unix Epoch format. 
+        In the list, these two formats(Long and Unix Epoch) cannot reside at a time.
+        
+    <attribute-list>
+        Specifies the list of attrbute and the mapping of the fields of raw files and unified fields.
+        
+        <attribute>
+           <unified-field>RecordNumber</unified-field>
+                Specifies the unified field name.
+           <start-length>0</start-length>
+           		Specifies the starting length of the field.
+			<end-length>25</end-length>
+				Specifies the ending length of the field.
+			
+				e.g. RecordNumber will be the string ranging from 0-25
+			<prefix>Jigish</prefix>
+				Specifies the prefix value which will be starting of the string.
+			<postfix>Shah</postfix>
+				Specifies the postfix value which will be ending of the string.
+			
+			Above prefix and postfix values will be set like below on recordnumber
+ 				e.g.	Jigish|012345678|Shah
+                        
+           <default-value></default-value>
+                Specifies the default value. If the source field is specified, 
+                the default value won't be considered.
+
+           <trim-chars>"</trim-chars>
+            <description></description>
+                Specifies the trim characters. All the trim charactes are 
+                neglacted from the start and end of the value.
+                
+                E.g. If the value in the raw file is '"1893487"', 
+                     the value in the unified csv will be 1893487.
+                     
+                
+        </attribute>
+    </attribute-list>         
+    
+</fixed-length-ascii-parser-plugin>
+ -->
+
+<!-- ========================================================== -->
+<!-- End of configuration details                               -->
+<!-- ========================================================== -->
+
+
+
+
+
+

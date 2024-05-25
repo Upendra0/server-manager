@@ -1,0 +1,1324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+ 
+	<!-- Change set id should start with <Your Initials>130000000001 like. HL130000000001 -->
+	
+	<changeSet author="elitecore" id="HL130000000001" dbms="postgresql,mysql">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">SELECT COUNT(*) FROM TBLMSERVICETYPE WHERE TYPE = 'Http2 Collection Service';</sqlCheck>
+		</preConditions>
+		<comment>Adding Http2 Collection Service in TBLMSERVICETYPE</comment>
+		<sql>
+			INSERT INTO TBLMSERVICETYPE(ID,CREATEDBYSTAFFID,CREATEDDATE,LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,
+			STATUS,ALIAS,TYPEOFSERVICE,DESCRIPTION,SERVICEFULLCLASSNAME,TYPE,SERVICECATEGORY)
+			VALUES((SELECT MAX(ID)+1 FROM TBLMSERVICETYPE as id),1,now(),1,now(),
+			'ACTIVE','HTTP2_COLLECTION_SERVICE','MAIN','Http2 Collection
+			 Service','com.elitecore.sm.services.model.Http2CollectionService',
+			'Http2 Collection Service','ONLINE');
+		</sql>
+	</changeSet>
+
+	<changeSet author="elitecore" id="HL130000000002" dbms="oracle">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">SELECT COUNT(*) FROM TBLMSERVICETYPE WHERE TYPE = 'Http2 Collection Service'; </sqlCheck>
+		</preConditions>
+		<comment>Adding Http2 Collection Service in TBLMSERVICETYPE</comment>
+		<sql>
+			INSERT INTO TBLMSERVICETYPE(ID,CREATEDBYSTAFFID,CREATEDDATE,LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,
+			STATUS,ALIAS,TYPEOFSERVICE,DESCRIPTION,SERVICEFULLCLASSNAME,TYPE,SERVICECATEGORY)
+			VALUES((SELECT MAX(ID)+1 FROM TBLMSERVICETYPE),1,SYSDATE,1,SYSDATE,
+			'ACTIVE','HTTP2_COLLECTION_SERVICE','MAIN','Http2 Collection
+			 Service','com.elitecore.sm.services.model.Http2CollectionService',
+			'Http2 Collection Service','ONLINE');
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="HL130000000003">
+		<createTable tableName="TBLTHTTP2COLLSVC">
+			<column name="SERVICEID" type="INT">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	<changeSet author="elitecore" id="HL130000000004">
+		<addPrimaryKey columnNames="SERVICEID" constraintName="TBLTHTTP2COLLSVCPK"
+			tableName="TBLTHTTP2COLLSVC" />
+	</changeSet>
+	<changeSet author="elitecore" id="HL130000000005">
+		<addForeignKeyConstraint baseColumnNames="SERVICEID"
+			baseTableName="TBLTHTTP2COLLSVC" constraintName="FK_TBLTHTTP2COLLSVC"
+			deferrable="false" initiallyDeferred="false" referencedColumnNames="SERVICEID"
+			referencedTableName="TBLTNETFLOWBINARYCOLLSVC" />
+	</changeSet>
+	
+	<changeSet author="elitecore" id="HL130000000006" dbms="oracle">
+		<comment>Inserting new data required for HTTP2_COLLECTION_SERVICE in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY),1, SYSDATE, 1,SYSDATE, 'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE', 'Y', 1);
+		   UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY) WHERE TABLE_NAME='ProfileEntity';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="HL130000000007" dbms="postgresql,mysql">
+		<comment>Inserting new data required for HTTP2_COLLECTION_SERVICE in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY AS T),1, now(), 1,now(), 'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE', 'Y', 1);
+	       UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY ) WHERE TABLE_NAME='ProfileEntity';
+	    </sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="HL130000000008" dbms="oracle">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">SELECT COUNT(*) FROM TBLTPROFILENTITY WHERE ISDEFAULT='N' and ENTITYALIAS='HTTP2_COLLECTION_SERVICE';</sqlCheck>
+		</preConditions>
+		<comment>Adding HTTP2_COLLECTION_SERVICE into list where license already exists</comment>
+		<sql>
+		INSERT INTO TBLTPROFILENTITY( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, 
+		ENTITYALIAS, ENTITYTYPE,ISDEFAULT,SERVERTYPEID,LICENSEID)
+		select (select max(id+1) from TBLTPROFILENTITY), 0,SYSDATE, 0, SYSDATE,'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE','N',1,
+		(select max(id) from tbltlicense where componenttype = 'SERVER_MANAGER') from dual
+		where EXISTS (select 1 from tbltlicense where componenttype = 'SERVER_MANAGER' having max(id) > 0)
+		</sql>
+	</changeSet>
+	
+	 <changeSet author="elitecore" id="HL130000000009" dbms="postgresql,mysql">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">SELECT COUNT(*) FROM TBLTPROFILENTITY WHERE ISDEFAULT='N' and ENTITYALIAS='HTTP2_COLLECTION_SERVICE';</sqlCheck>
+		</preConditions>
+		<comment>Adding HTTP2_COLLECTION_SERVICE into list where license already exists</comment>
+		<sql>
+		INSERT INTO TBLTPROFILENTITY( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, 
+		ENTITYALIAS, ENTITYTYPE,ISDEFAULT,SERVERTYPEID,LICENSEID)
+		select (select max(id+1) from TBLTPROFILENTITY as t), 0,now(), 0, now(),'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE','N',1,
+		(select max(id) from TBLTLICENSE as l where componenttype = 'SERVER_MANAGER') from dual 
+		where EXISTS (select 1 from TBLTLICENSE as t1 where componenttype = 'SERVER_MANAGER' having max(id) > 0)
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="HL130000000010" dbms="oracle">
+		<comment>Inserting new data required for HTTP2_COLLECTION_SERVICE in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY),1, SYSDATE, 1,SYSDATE, 'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE','Y', 2);
+		   UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY) WHERE TABLE_NAME='ProfileEntity';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="HL130000000011" dbms="postgresql,mysql">
+		<comment>Inserting new data required for HTTP2_COLLECTION_SERVICE in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY AS T),1, now(), 1,now(), 'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE', 'Y', 2);
+	       UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY ) WHERE TABLE_NAME='ProfileEntity';
+	    </sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="HL130000000012" dbms="oracle">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">SELECT COUNT(*) FROM TBLTPROFILENTITY WHERE ISDEFAULT='N' and ENTITYALIAS='HTTP2_COLLECTION_SERVICE'and SERVERTYPEID = 2;</sqlCheck>
+		</preConditions>
+		<comment>Adding HTTP2_COLLECTION_SERVICE into list where license already exists</comment>
+		<sql>
+		INSERT INTO TBLTPROFILENTITY( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, 
+		ENTITYALIAS, ENTITYTYPE,ISDEFAULT,SERVERTYPEID,LICENSEID)
+		select (select max(id+1) from TBLTPROFILENTITY), 0,SYSDATE, 0, SYSDATE,'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE','N',2,
+		(select max(id) from tbltlicense where componenttype = 'SERVER_MANAGER') from dual
+		where EXISTS (select 1 from tbltlicense where componenttype = 'SERVER_MANAGER' having max(id) > 0)
+		</sql>
+	</changeSet>
+	
+	 <changeSet author="elitecore" id="HL130000000013" dbms="postgresql,mysql">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">SELECT COUNT(*) FROM TBLTPROFILENTITY WHERE ISDEFAULT='N' and ENTITYALIAS='HTTP2_COLLECTION_SERVICE' and SERVERTYPEID = 2;</sqlCheck>
+		</preConditions>
+		<comment>Adding HTTP2_COLLECTION_SERVICE into list where license already exists</comment>
+		<sql>
+		INSERT INTO TBLTPROFILENTITY( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, 
+		ENTITYALIAS, ENTITYTYPE,ISDEFAULT,SERVERTYPEID,LICENSEID)
+		select (select max(id+1) from TBLTPROFILENTITY as t), 0,now(), 0, now(),'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE','N',2,
+		(select max(id) from TBLTLICENSE as l where componenttype = 'SERVER_MANAGER') from dual 
+		where EXISTS (select 1 from TBLTLICENSE as t1 where componenttype = 'SERVER_MANAGER' having max(id) > 0)
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="HL130000000014" dbms="oracle">
+		<comment>Inserting new data required for HTTP2_COLLECTION_SERVICE in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY),1, SYSDATE, 1,SYSDATE, 'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE', 'Y', 3);
+		   UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY) WHERE TABLE_NAME='ProfileEntity';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="HL130000000015" dbms="postgresql,mysql">
+		<comment>Inserting new data required for HTTP2_COLLECTION_SERVICE in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY AS T),1, now(), 1,now(), 'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE', 'Y', 3);
+	       UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY ) WHERE TABLE_NAME='ProfileEntity';
+	    </sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="HL130000000016" dbms="oracle">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">SELECT COUNT(*) FROM TBLTPROFILENTITY WHERE ISDEFAULT='N' and ENTITYALIAS='HTTP2_COLLECTION_SERVICE'and SERVERTYPEID = 3;</sqlCheck>
+		</preConditions>
+		<comment>Adding HTTP2_COLLECTION_SERVICE into list where license already exists</comment>
+		<sql>
+		INSERT INTO TBLTPROFILENTITY( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, 
+		ENTITYALIAS, ENTITYTYPE,ISDEFAULT,SERVERTYPEID,LICENSEID)
+		select (select max(id+1) from TBLTPROFILENTITY), 0,SYSDATE, 0, SYSDATE,'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE','N',3,
+		(select max(id) from tbltlicense where componenttype = 'SERVER_MANAGER') from dual
+		where EXISTS (select 1 from tbltlicense where componenttype = 'SERVER_MANAGER' having max(id) > 0)
+		</sql>
+	</changeSet>
+	
+	 <changeSet author="elitecore" id="HL130000000017" dbms="postgresql,mysql">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">SELECT COUNT(*) FROM TBLTPROFILENTITY WHERE ISDEFAULT='N' and ENTITYALIAS='HTTP2_COLLECTION_SERVICE' and SERVERTYPEID = 3;</sqlCheck>
+		</preConditions>
+		<comment>Adding HTTP2_COLLECTION_SERVICE into list where license already exists</comment>
+		<sql>
+		INSERT INTO TBLTPROFILENTITY( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, 
+		ENTITYALIAS, ENTITYTYPE,ISDEFAULT,SERVERTYPEID,LICENSEID)
+		select (select max(id+1) from TBLTPROFILENTITY as t), 0,now(), 0, now(),'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE','N',3,
+		(select max(id) from TBLTLICENSE as l where componenttype = 'SERVER_MANAGER') from dual 
+		where EXISTS (select 1 from TBLTLICENSE as t1 where componenttype = 'SERVER_MANAGER' having max(id) > 0)
+		</sql>
+	</changeSet>	
+	
+	<changeSet author="elitecore" id="HL130000000018">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="TBLTHTTP2COLLSVC" columnName="SECURESCHEME" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTHTTP2COLLSVC">
+			<column name="SECURESCHEME" type="VARCHAR(50)">
+				<constraints nullable="true" />
+			</column>
+		</addColumn>
+	</changeSet>
+	<changeSet author="elitecore" id="HL130000000019">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="TBLTHTTP2COLLSVC" columnName="ENCRYPTION" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTHTTP2COLLSVC">
+			<column name="ENCRYPTION" type="CHAR(1)" defaultValue="N">
+				<constraints nullable="true" />
+			</column>
+		</addColumn>
+	</changeSet>
+	<changeSet author="elitecore" id="HL130000000020">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="TBLTHTTP2COLLSVC" columnName="KEYSTOREFILENAME" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTHTTP2COLLSVC">
+			<column name="KEYSTOREFILENAME" type="VARCHAR(255)">
+				<constraints nullable="true" />
+			</column>
+		</addColumn>
+	</changeSet>
+	<changeSet author="elitecore" id="HL130000000021">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="TBLTHTTP2COLLSVC" columnName="KEYSTOREPASSWORD" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTHTTP2COLLSVC">
+			<column name="KEYSTOREPASSWORD" type="VARCHAR(255)">
+				<constraints nullable="true" />
+			</column>
+		</addColumn>
+	</changeSet>
+	<changeSet author="elitecore" id="HL130000000022">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="TBLTHTTP2COLLSVC" columnName="KEYMANAGERPASSWORD" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTHTTP2COLLSVC">
+			<column name="KEYMANAGERPASSWORD" type="VARCHAR(255)">
+				<constraints nullable="true" />
+			</column>
+		</addColumn>
+	</changeSet>
+	<changeSet author="elitecore" id="HL130000000023" dbms="oracle,mysql">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="TBLTHTTP2COLLSVC" columnName="KEYSTOREFILE" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTHTTP2COLLSVC">
+			<column name="KEYSTOREFILE" type="LONGBLOB">
+				<constraints nullable="true" />
+			</column>
+		</addColumn>
+	</changeSet>
+	<changeSet author="elitecore" id="HL130000000024" dbms="postgresql">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="TBLTHTTP2COLLSVC" columnName="KEYSTOREFILE" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTHTTP2COLLSVC">
+			<column name="KEYSTOREFILE" type="OID">
+				<constraints nullable="true" />
+			</column>
+		</addColumn>
+	</changeSet>
+	<changeSet author="elitecore" id="HL130000000025">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="TBLTHTTP2COLLSVC" columnName="KEYSTOREFILEPATH" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTHTTP2COLLSVC">
+			<column name="KEYSTOREFILEPATH" type="VARCHAR(255)">
+				<constraints nullable="true" />
+			</column>
+		</addColumn>
+	</changeSet>	
+	<changeSet author="elitecore" id="HL130000000026">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="TBLTNETFLOWCLIENT" columnName="JSONVALIDATE" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTNETFLOWCLIENT">
+			<column name="JSONVALIDATE" type="CHAR(1)" defaultValue="N">
+				<constraints nullable="true" />
+			</column>
+		</addColumn>
+	</changeSet>
+	<changeSet author="elitecore" id="HL130000000027">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="TBLTNETFLOWCLIENT" columnName="CONTENTTYPE" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTNETFLOWCLIENT">
+			<column name="CONTENTTYPE" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+		</addColumn>
+	</changeSet>																	
+			
+	<changeSet author="elitecore" id="HL130000000028">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="TBLTNETFLOWCLIENT" columnName="URI" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTNETFLOWCLIENT">
+			<column name="URI" type="VARCHAR(255)">
+				<constraints nullable="true" />
+			</column>
+		</addColumn>
+	</changeSet>	
+	
+ 	<changeSet author="sterlite" id="NP790000000001">
+		<createTable tableName="TBLTHOURLYCDRCOUNT">
+			<column name="ID" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="CREATEDBYSTAFFID" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="CREATEDDATE" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="LASTUPDATEDBYSTAFFID" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="LASTUPDATEDDATE" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="STATUS" type="VARCHAR(20)" defaultValue="ACTIVE">
+				<constraints nullable="false" />
+			</column>			
+			<column name="SERVERIP" type="VARCHAR(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="SERVERPORT" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="SERVICEINSTANCEID" type="VARCHAR(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="PROCESSSTARTDATE" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="PROCESSENDDATE" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="CDRDATE" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="TOTALCDRCOUNT" type="BIGINT" defaultValue="0"/>
+		</createTable>
+	</changeSet> 
+	
+	<changeSet author="sterlite" id="NP790000000002">
+		<addPrimaryKey columnNames="ID" constraintName="TBLTHOURLYCDRCOUNT_PK"
+			tableName="TBLTHOURLYCDRCOUNT" />
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000003" dbms="oracle,postgresql">
+		<createSequence cycle="false" incrementBy="1" maxValue="9999999999999999" minValue="1" ordered="false" sequenceName="SEQ_TBLTHOURLYCDRCOUNT" startValue="1"/>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000004" dbms="mysql">
+		<addAutoIncrement columnDataType="BIGINT"  columnName="ID" incrementBy="1" startWith="1" tableName="TBLTHOURLYCDRCOUNT"></addAutoIncrement>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="BG790000000001">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="TBLTHOURLYCDRCOUNT" columnName="UTILITYPORT" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTHOURLYCDRCOUNT">
+			<column name="UTILITYPORT" type="INT"  defaultValue="0">
+				<constraints nullable="false" />
+			</column>
+		</addColumn>
+	</changeSet>		
+	
+	<changeSet author="elitecore" id="BG790000000002">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="TBLTHOURLYCDRCOUNT" columnName="GROUPSERVERID" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTHOURLYCDRCOUNT">
+			<column name="GROUPSERVERID" type="VARCHAR(100)" defaultValue="000">
+				<constraints nullable="false" />
+			</column>
+		</addColumn>
+	</changeSet>	
+							
+	<changeSet author="elitecore" id="HL130000000029" dbms="oracle">
+		<sql splitStatements="true">
+			INSERT INTO TBLMSNMPALERTTYPE (ID,CREATEDBYSTAFFID,CREATEDDATE,LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS,ALIAS,CATEGORY,DESCRIPTION,NAME) 
+			VALUES ((select (max(id)+1) from TBLMSNMPALERTTYPE),1,sysdate,1,sysdate, 'ACTIVE','HTTP2_COLLECTION_SERVICE','HTTP2_COLLECTION_SERVICE','HTTP2_COLLECTION_SERVICE','http2 collection Service');
+	
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000308',
+			'http2CollectionServiceFailedToStart','http2CollectionServiceFailedToStart',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+			
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000309',
+			'http2CollectionServiceNoRequestReceived','http2CollectionServiceNoRequestReceived',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000310',
+			'http2CollectionServiceSyncTo','http2CollectionServiceSyncTo',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000311',
+			'http2CollectionServiceRejectedRequestAboveSpecifiedThresold','http2CollectionServiceRejectedRequestAboveSpecifiedThresold',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));			
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000312',
+			'http2CollectionServiceNoSpaceLeftOnDevice','http2CollectionServiceNoSpaceLeftOnDevice',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));	
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000313',
+			'http2CollectionServiceReloadConfig','http2CollectionServiceReloadConfig',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));	
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000314',
+			'http2CollectionServiceSyncFrom','http2CollectionServiceSyncFrom',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));	
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000315',
+			'http2CollectionServiceUp','http2CollectionServiceUp',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));	
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000316',
+			'http2CollectionServiceDown','http2CollectionServiceDown',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));	
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000317',
+			'http2CollectionServiceOutOfMemory','http2CollectionServiceOutOfMemory',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));	
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000318',
+			'http2CollectionServiceDiskSpaceResolved','http2CollectionServiceDiskSpaceResolved',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000319',
+			'http2CollectionServicePacketDrop','http2CollectionServicePacketDrop',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000320',
+			'http2CollectionServicehasNotRecievedPacketYet','http2CollectionServicehasNotRecievedPacketYet',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000321',
+			'http2CollectionServicehasPacketRecieved','http2CollectionServicehasPacketRecieved',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000322',
+			'http2CollectionServicePacketMalformInvalid','http2CollectionServicePacketMalformInvalid',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000323',
+			'http2CollectionServiceError','http2CollectionServiceError',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+		</sql>
+	</changeSet>
+
+
+
+	<changeSet author="elitecore" id="HL130000000030" dbms="postgresql">
+		<sql splitStatements="true">
+			INSERT INTO TBLMSNMPALERTTYPE(ID,CREATEDBYSTAFFID,CREATEDDATE,LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS,ALIAS,CATEGORY,DESCRIPTION,NAME) 
+			VALUES ((select (max(id)+1) from TBLMSNMPALERTTYPE),1,now(),1,now(),
+			'ACTIVE','HTTP2_COLLECTION_SERVICE','HTTP2_COLLECTION_SERVICE','HTTP2_COLLECTION_SERVICE','http2 collection Service');
+	
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000308',
+			'http2CollectionServiceFailedToStart','http2CollectionServiceFailedToStart',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+			
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000309',
+			'http2CollectionServiceNoRequestReceived','http2CollectionServiceNoRequestReceived',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000310',
+			'http2CollectionServiceSyncTo','http2CollectionServiceSyncTo',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000311',
+			'http2CollectionServiceRejectedRequestAboveSpecifiedThresold','http2CollectionServiceRejectedRequestAboveSpecifiedThresold',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000312',
+			'http2CollectionServiceNoSpaceLeftOnDevice','http2CollectionServiceNoSpaceLeftOnDevice',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000313',
+			'http2CollectionServiceReloadConfig','http2CollectionServiceReloadConfig',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000314',
+			'http2CollectionServiceSyncFrom','http2CollectionServiceSyncFrom',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000315',
+			'http2CollectionServiceUp','http2CollectionServiceUp',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000316',
+			'http2CollectionServiceDown','http2CollectionServiceDown',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000317',
+			'http2CollectionServiceOutOfMemory','http2CollectionServiceOutOfMemory',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000318',
+			'http2CollectionServiceDiskSpaceResolved','http2CollectionServiceDiskSpaceResolved',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000319',
+			'http2CollectionServicePacketDrop','http2CollectionServicePacketDrop',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000320',
+			'http2CollectionServicehasNotRecievedPacketYet','http2CollectionServicehasNotRecievedPacketYet',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000321',
+			'http2CollectionServicehasPacketRecieved','http2CollectionServicehasPacketRecieved',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000322',
+			'http2CollectionServicePacketMalformInvalid','http2CollectionServicePacketMalformInvalid',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000323',
+			'http2CollectionServiceError','http2CollectionServiceError',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+		</sql>	
+	</changeSet>
+	<changeSet author="elitecore" id="HL130000000031" dbms="mysql">
+		<sql splitStatements="true">
+			INSERT INTO TBLMSNMPALERTTYPE(ID,CREATEDBYSTAFFID,CREATEDDATE,LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS,ALIAS,CATEGORY,DESCRIPTION,NAME) 
+			VALUES ((select (max(id)+1) from TBLMSNMPALERTTYPE t),1,now(),1,now(),
+			'ACTIVE','HTTP2_COLLECTION_SERVICE','HTTP2_COLLECTION_SERVICE','HTTP2_COLLECTION_SERVICE','http2 collection Service');
+	
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000308',
+			'http2CollectionServiceFailedToStart','http2CollectionServiceFailedToStart',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000309',
+			'http2CollectionServiceNoRequestReceived','http2CollectionServiceNoRequestReceived',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+			
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000310',
+			'http2CollectionServiceSyncTo','http2CollectionServiceSyncTo',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000311',
+			'http2CollectionServiceRejectedRequestAboveSpecifiedThresold','http2CollectionServiceRejectedRequestAboveSpecifiedThresold',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000312',
+			'http2CollectionServiceNoSpaceLeftOnDevice','http2CollectionServiceNoSpaceLeftOnDevice',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000313',
+			'http2CollectionServiceReloadConfig','http2CollectionServiceReloadConfig',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000314',
+			'http2CollectionServiceSyncFrom','http2CollectionServiceSyncFrom',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000315',
+			'http2CollectionServiceUp','http2CollectionServiceUp',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000316',
+			'http2CollectionServiceDown','http2CollectionServiceDown',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000317',
+			'http2CollectionServiceOutOfMemory','http2CollectionServiceOutOfMemory',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000318',
+			'http2CollectionServiceDiskSpaceResolved','http2CollectionServiceDiskSpaceResolved',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000319',
+			'http2CollectionServicePacketDrop','http2CollectionServicePacketDrop',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000320',
+			'http2CollectionServicehasNotRecievedPacketYet','http2CollectionServicehasNotRecievedPacketYet',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000321',
+			'http2CollectionServicehasPacketRecieved','http2CollectionServicehasPacketRecieved',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000322',
+			'http2CollectionServicePacketMalformInvalid','http2CollectionServicePacketMalformInvalid',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000323',
+			'http2CollectionServiceError','http2CollectionServiceError',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'HTTP2_COLLECTION_SERVICE'));
+		</sql>	
+	</changeSet>
+	
+	<changeSet author="elitecore" id="BG790000000003">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="TBLTHOURLYCDRCOUNT" columnName="DEVICETYPE" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTHOURLYCDRCOUNT">
+			<column name="DEVICETYPE" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+		</addColumn>
+	</changeSet>	
+		
+	<changeSet author="elitecore" id="BG790000000004">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="TBLTHOURLYCDRCOUNT" columnName="CIRCLEID" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTHOURLYCDRCOUNT">
+			<column name="CIRCLEID" type="INT">
+				<constraints nullable="true" />
+			</column>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000005">
+		<createTable tableName="TBLMCIRCLE">
+			<column name="ID" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="CREATEDBYSTAFFID" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="CREATEDDATE" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="LASTUPDATEDBYSTAFFID" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="LASTUPDATEDDATE" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="STATUS" type="VARCHAR(20)" defaultValue="ACTIVE">
+				<constraints nullable="false" />
+			</column>						
+			<column name="NAME" type="VARCHAR(20)">
+				<constraints nullable="false" />
+			</column>
+			<column name="DESCRIPTION" type="VARCHAR(200)" >
+				<constraints nullable="true" />
+			</column>					
+		</createTable>
+	</changeSet> 
+	<changeSet author="sterlite" id="NP790000000006">
+		<addPrimaryKey columnNames="ID" constraintName="TBLMCIRCLEPK"
+			tableName="TBLMCIRCLE" />
+	</changeSet>
+	<changeSet author="sterlite" id="NP790000000007">
+		<addColumn tableName="TBLTLICENSE">
+			<column name="CIRCLEID" type="INT"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000008">
+		<addForeignKeyConstraint baseColumnNames="CIRCLEID"
+			baseTableName="TBLTLICENSE" constraintName="FK_TBLTLICENSE_CIRCLE_ID"
+			deferrable="false" initiallyDeferred="false" referencedColumnNames="ID"
+			referencedTableName="TBLMCIRCLE" />
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000009" dbms="oracle">
+		<comment>Inserting DEFAULT CIRCLE in tblmcircle table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLMCIRCLE(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, NAME, DESCRIPTION) VALUES (1,1, SYSDATE, 1,SYSDATE, 'ACTIVE','DEFAULT','default circle');		     
+		</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000010" dbms="postgresql,mysql">
+		<comment>Inserting DEFAULT CIRCLE in tblmcircle table</comment>
+		<sql splitStatements="true" stripComments="true">
+	       INSERT INTO TBLMCIRCLE(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, NAME, DESCRIPTION) VALUES (1,1, now(), 1, now(), 'ACTIVE','DEFAULT','default circle');	              
+	    </sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000011">
+		<comment>Inserting DEFAULT CIRCLE in tblmcircle table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPRIMARYKEY (TABLE_NAME, VALUE) VALUES ('Circle', 2);		   
+		</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000012">
+		<addColumn tableName="TBLTPATHLIST">
+			<column name="CIRCLEID" type="INT" defaultValue="1"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000013">
+		<addForeignKeyConstraint baseColumnNames="CIRCLEID"
+			baseTableName="TBLTPATHLIST" constraintName="FK_TBLTPATHLIST_CIRCLE_ID"
+			deferrable="false" initiallyDeferred="false" referencedColumnNames="ID"
+			referencedTableName="TBLMCIRCLE" />
+	</changeSet>
+	
+	<changeSet author="elitecore" id="HL130000000032" dbms="oracle">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">SELECT COUNT(*) FROM TBLTPROFILENTITY WHERE ISDEFAULT='N' and ENTITYALIAS='HTTP2_COLLECTION_SERVICE' and SERVERTYPEID = 1;</sqlCheck>
+		</preConditions>
+		<comment>Adding HTTP2_COLLECTION_SERVICE into list where license already exists</comment>
+		<sql>
+		INSERT INTO TBLTPROFILENTITY( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, 
+		ENTITYALIAS, ENTITYTYPE,ISDEFAULT,SERVERTYPEID)
+		VALUES ((select max(id+1) from TBLTPROFILENTITY), 0,SYSDATE, 0, SYSDATE,'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE','N',1)
+		</sql>
+	</changeSet>
+	
+	 <changeSet author="elitecore" id="HL130000000033" dbms="postgresql,mysql">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">SELECT COUNT(*) FROM TBLTPROFILENTITY WHERE ISDEFAULT='N' and ENTITYALIAS='HTTP2_COLLECTION_SERVICE' and SERVERTYPEID = 1;</sqlCheck>
+		</preConditions>
+		<comment>Adding HTTP2_COLLECTION_SERVICE into list where license already exists</comment>
+		<sql>
+		INSERT INTO TBLTPROFILENTITY( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, 
+		ENTITYALIAS, ENTITYTYPE,ISDEFAULT,SERVERTYPEID)
+		VALUES ((select max(id+1) from TBLTPROFILENTITY as t), 0,now(), 0, now(),'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE','N',1)
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="HL130000000034" dbms="oracle">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">SELECT COUNT(*) FROM TBLTPROFILENTITY WHERE ISDEFAULT='N' and ENTITYALIAS='HTTP2_COLLECTION_SERVICE'and SERVERTYPEID = 2;</sqlCheck>
+		</preConditions>
+		<comment>Adding HTTP2_COLLECTION_SERVICE into list where license already exists</comment>
+		<sql>
+		INSERT INTO TBLTPROFILENTITY( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, 
+		ENTITYALIAS, ENTITYTYPE,ISDEFAULT,SERVERTYPEID)
+		VALUES ((select max(id+1) from TBLTPROFILENTITY), 0,SYSDATE, 0, SYSDATE,'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE','N',2)
+		</sql>
+	</changeSet>
+	
+	 <changeSet author="elitecore" id="HL130000000035" dbms="postgresql,mysql">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">SELECT COUNT(*) FROM TBLTPROFILENTITY WHERE ISDEFAULT='N' and ENTITYALIAS='HTTP2_COLLECTION_SERVICE' and SERVERTYPEID = 2;</sqlCheck>
+		</preConditions>
+		<comment>Adding HTTP2_COLLECTION_SERVICE into list where license already exists</comment>
+		<sql>
+		INSERT INTO TBLTPROFILENTITY( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, 
+		ENTITYALIAS, ENTITYTYPE,ISDEFAULT,SERVERTYPEID)
+		VALUES ((select max(id+1) from TBLTPROFILENTITY as t), 0,now(), 0, now(),'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE','N',2)
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="HL130000000036" dbms="oracle">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">SELECT COUNT(*) FROM TBLTPROFILENTITY WHERE ISDEFAULT='N' and ENTITYALIAS='HTTP2_COLLECTION_SERVICE'and SERVERTYPEID = 3;</sqlCheck>
+		</preConditions>
+		<comment>Adding HTTP2_COLLECTION_SERVICE into list where license already exists</comment>
+		<sql>
+		INSERT INTO TBLTPROFILENTITY( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, 
+		ENTITYALIAS, ENTITYTYPE,ISDEFAULT,SERVERTYPEID)
+		VALUES ((select max(id+1) from TBLTPROFILENTITY), 0,SYSDATE, 0, SYSDATE,'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE','N',3)
+		</sql>
+	</changeSet>
+	
+	 <changeSet author="elitecore" id="HL130000000037" dbms="postgresql,mysql">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">SELECT COUNT(*) FROM TBLTPROFILENTITY WHERE ISDEFAULT='N' and ENTITYALIAS='HTTP2_COLLECTION_SERVICE' and SERVERTYPEID = 3;</sqlCheck>
+		</preConditions>
+		<comment>Adding HTTP2_COLLECTION_SERVICE into list where license already exists</comment>
+		<sql>
+		INSERT INTO TBLTPROFILENTITY( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, 
+		ENTITYALIAS, ENTITYTYPE,ISDEFAULT,SERVERTYPEID)
+		VALUES ((select max(id+1) from TBLTPROFILENTITY as t), 0,now(), 0, now(),'INACTIVE','HTTP2_COLLECTION_SERVICE','SERVICE_TYPE','N',3)
+		</sql>
+	</changeSet>	
+	
+	<changeSet author="strlite" id="NP790000000014">		
+		<dropUniqueConstraint constraintName="UC_SMLI_PATH" tableName="TBLTLICENSE" />
+	</changeSet>
+	
+	<changeSet author="strlite" id="NP790000000015">
+		<comment>update all pathlist's rows for circle id column value equal to 1 if value is null</comment>
+		<sql splitStatements="true" stripComments="true">		   
+		   UPDATE TBLTPATHLIST SET CIRCLEID=1 WHERE CIRCLEID IS NULL;
+		</sql>
+	</changeSet>
+	
+	<changeSet  author="strlite"  id="NP790000000016">  
+	    <addDefaultValue columnDataType="INT"  
+	            columnName="CIRCLEID"  
+	            defaultValueNumeric="1"  	            
+	            tableName="TBLTPATHLIST"/>  
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL130000000038">
+		<createTable tableName="TBLTKAFKADSCONFIG">
+			<column name="ID" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="CREATEDBYSTAFFID" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="CREATEDDATE" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="LASTUPDATEDBYSTAFFID" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="LASTUPDATEDDATE" type="TIMESTAMP">
+				<constraints nullable="false" />
+			</column>
+			<column name="STATUS" type="VARCHAR(20)" defaultValue="ACTIVE">
+				<constraints nullable="false" />
+			</column>
+			<column name="NAME" type="VARCHAR(250)">
+				<constraints nullable="true" />
+			</column>			
+			<column name="KAFKASERVERIP" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="KAFKASERVERPORT" type="INT" defaultValue="-1">
+				<constraints nullable="true" />
+			</column>
+			<column name="MAXRETRYCOUNT" type="INT" defaultValue="-1">
+				<constraints nullable="true" />
+			</column>
+			<column name="MAXRESPONSEWAIT" type="INT" defaultValue="-1">
+				<constraints nullable="true" />
+			</column>
+			<column name="KPRETRYCOUNT" type="INT" defaultValue="-1">
+				<constraints nullable="true" />
+			</column>
+			<column name="KPREQUESTTIMEOUT" type="INT" defaultValue="-1">
+				<constraints nullable="true" />
+			</column>
+			<column name="KPRETRYBACKOFF" type="INT" defaultValue="-1">
+				<constraints nullable="true" />
+			</column>
+			<column name="KPDELIVERYTIMEOUT" type="INT" defaultValue="-1">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet> 
+	
+	<changeSet author="sterlite" id="HL130000000039">
+		<addPrimaryKey columnNames="ID" constraintName="TBLTKAFKADSCONFIG_PK"
+			tableName="TBLTKAFKADSCONFIG" />
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL130000000040">
+		<addUniqueConstraint columnNames="NAME" constraintName="TBLTKAFKADSCONFIG_UK" tableName="TBLTKAFKADSCONFIG" />
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL130000000041" dbms="oracle">
+		<comment>Adding new regex for KafkaDataSourceConfig.name regex  ^[\w@_:.][\w\s@_:.]{1,250}+$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE', 'Name', 'KafkaDataSourceConfig','KafkaDataSourceConfig.name','^[\w@_:.][\w\s@_:.]{1,250}+$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.kafkaServerPort regex -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE', 'Kafka Server Port', 'KafkaDataSourceConfig','KafkaDataSourceConfig.kafkaServerPort','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.maxRetryCount regex  -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE', 'Max Retry Count', 'KafkaDataSourceConfig','KafkaDataSourceConfig.maxRetryCount','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.maxResponseWait regex  -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE', 'Max Response Wait', 'KafkaDataSourceConfig','KafkaDataSourceConfig.maxResponseWait','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.kafkaProducerRetryCount regex  -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE', 'Kafka Producer Retry Count', 'KafkaDataSourceConfig','KafkaDataSourceConfig.kafkaProducerRetryCount','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.kafkaProducerRequestTimeout regex  -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE', 'Kafka Producer Request Timeout', 'KafkaDataSourceConfig','KafkaDataSourceConfig.kafkaProducerRequestTimeout','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.kafkaProducerRetryBackoff regex -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE', 'Kafka Producer Retry Backoff', 'KafkaDataSourceConfig','KafkaDataSourceConfig.kafkaProducerRetryBackoff','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.kafkaProducerDeliveryTimeout regex -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE', 'Kafka Producer Delivery Timeout','KafkaDataSourceConfig', 'KafkaDataSourceConfig.kafkaProducerDeliveryTimeout','-1|([0-9]{0,10})$');</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL130000000042" dbms="postgresql">
+		<comment>Adding new regex for KafkaDataSourceConfig.name regex  ^[\w@_:.][\w\s@_:.]{1,250}+$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX as t), 1,now(), 1, now(),'ACTIVE', 'Name', 'KafkaDataSourceConfig','KafkaDataSourceConfig.name','^[\w@_:.][\w\s@_:.]{1,250}+$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.kafkaServerPort regex -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX as t), 1,now(), 1, now(),'ACTIVE', 'Kafka Server Port', 'KafkaDataSourceConfig','KafkaDataSourceConfig.kafkaServerPort','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.maxRetryCount regex  -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX as t), 1,now(), 1, now(),'ACTIVE', 'Max Retry Count', 'KafkaDataSourceConfig','KafkaDataSourceConfig.maxRetryCount','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.maxResponseWait regex  -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX as t), 1,now(), 1, now(),'ACTIVE', 'Max Response Wait', 'KafkaDataSourceConfig','KafkaDataSourceConfig.maxResponseWait','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.kafkaProducerRetryCount regex  -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX as t), 1,now(), 1, now(),'ACTIVE', 'Kafka Producer Retry Count', 'KafkaDataSourceConfig','KafkaDataSourceConfig.kafkaProducerRetryCount','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.kafkaProducerRequestTimeout regex  -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX as t), 1,now(), 1, now(),'ACTIVE', 'Kafka Producer Request Timeout', 'KafkaDataSourceConfig','KafkaDataSourceConfig.kafkaProducerRequestTimeout','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.kafkaProducerRetryBackoff regex -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX as t), 1,now(), 1, now(),'ACTIVE', 'Kafka Producer Retry Backoff', 'KafkaDataSourceConfig','KafkaDataSourceConfig.kafkaProducerRetryBackoff','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.kafkaProducerDeliveryTimeout regex -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX as t), 1,now(), 1, now(),'ACTIVE', 'Kafka Producer Delivery Timeout','KafkaDataSourceConfig', 'KafkaDataSourceConfig.kafkaProducerDeliveryTimeout','-1|([0-9]{0,10})$');</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL130000000043" dbms="mysql">
+		<comment>Adding new regex for KafkaDataSourceConfig.name regex  ^[\w@_:.][\w\s@_:.]{1,250}+$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX as t), 1,now(), 1, now(),'ACTIVE', 'Name', 'KafkaDataSourceConfig','KafkaDataSourceConfig.name','^[\\w@_:.][\\w\\s@_:.]{1,250}+$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.kafkaServerPort regex -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX as t), 1,now(), 1, now(),'ACTIVE', 'Kafka Server Port', 'KafkaDataSourceConfig','KafkaDataSourceConfig.kafkaServerPort','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.maxRetryCount regex  -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX as t), 1,now(), 1, now(),'ACTIVE', 'Max Retry Count', 'KafkaDataSourceConfig','KafkaDataSourceConfig.maxRetryCount','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.maxResponseWait regex  -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX as t), 1,now(), 1, now(),'ACTIVE', 'Max Response Wait', 'KafkaDataSourceConfig','KafkaDataSourceConfig.maxResponseWait','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.kafkaProducerRetryCount regex  -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX as t), 1,now(), 1, now(),'ACTIVE', 'Kafka Producer Retry Count', 'KafkaDataSourceConfig','KafkaDataSourceConfig.kafkaProducerRetryCount','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.kafkaProducerRequestTimeout regex  -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX as t), 1,now(), 1, now(),'ACTIVE', 'Kafka Producer Request Timeout', 'KafkaDataSourceConfig','KafkaDataSourceConfig.kafkaProducerRequestTimeout','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.kafkaProducerRetryBackoff regex -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX as t), 1,now(), 1, now(),'ACTIVE', 'Kafka Producer Retry Backoff', 'KafkaDataSourceConfig','KafkaDataSourceConfig.kafkaProducerRetryBackoff','-1|([0-9]{0,10})$');</sql>
+		<comment>Adding new regex for KafkaDataSourceConfig.kafkaProducerDeliveryTimeout regex -1|([0-9]{0,10})$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES ((select (max(ID)+1) as num from TBLMREGEX as t), 1,now(), 1, now(),'ACTIVE', 'Kafka Producer Delivery Timeout','KafkaDataSourceConfig', 'KafkaDataSourceConfig.kafkaProducerDeliveryTimeout','-1|([0-9]{0,10})$');</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000017"  dbms="oracle">
+	    <sql>
+	        INSERT INTO TBLMBUSINESSMODULE(ID,CREATEDBYSTAFFID,CREATEDDATE,LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS,ALIAS,DESCRIPTION,NAME,PARENTBUSINESSMODELID) VALUES((SELECT MAX(ID)+1 FROM TBLMBUSINESSMODULE),1,SYSDATE,1,SYSDATE,'ACTIVE','CIRCLE_CONFIGURATION_MENU_VIEW','Circle Configuration Manager','Circle Configuration Manager',(SELECT ID FROM TBLMBUSINESSMODEL WHERE ALIAS = 'SERVERMANGER'));
+            INSERT INTO TBLMBUSINESSSUBMODULE(ID,CREATEDBYSTAFFID,CREATEDDATE,LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS,ALIAS,DESCRIPTION,NAME,PARENTBUSINESSMODULEID) VALUES((SELECT MAX(ID)+1 FROM TBLMBUSINESSSUBMODULE),1,SYSDATE,1,SYSDATE,'ACTIVE','CIRCLE_MANAGEMENT','Circle Management','Circle Management',(SELECT ID FROM TBLMBUSINESSMODULE WHERE ALIAS = 'CIRCLE_CONFIGURATION_MENU_VIEW'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id+1) from TBLMACTION), 'VIEW_CIRCLE_CONFIGURATION', 'View circle configuration screen', 'View circle configuration screen','1', sysdate,'1', sysdate, 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'CIRCLE_MANAGEMENT'));			
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id+1) from TBLMACTION), 'VIEW_CIRCLE', 'View configured circles', 'View configured circles','1', sysdate,'1', sysdate, 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'CIRCLE_MANAGEMENT'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id+1) from TBLMACTION), 'ADD_CIRCLE', 'Add new circle', 'Add new circle','1', sysdate,'1', sysdate, 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'CIRCLE_MANAGEMENT'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id+1) from TBLMACTION), 'EDIT_CIRCLE', 'Edit existing circle parameters', 'Edit existing circle parameters','1', sysdate,'1', sysdate, 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'CIRCLE_MANAGEMENT'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id+1) from TBLMACTION), 'DELETE_CIRCLE', 'Delete circle', 'Delete circle','1', sysdate,'1', sysdate, 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'CIRCLE_MANAGEMENT'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id+1) from TBLMACTION), 'UPLOAD_CIRCLE_DEVICE_LICENSE', 'Upload circle and device wise license key', 'Upload circle and device wise license key','1', sysdate,'1', sysdate, 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'CIRCLE_MANAGEMENT'));
+		</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000018"  dbms="postgresql,mysql">
+	    <sql>
+	        INSERT INTO TBLMBUSINESSMODULE (ID,CREATEDBYSTAFFID,CREATEDDATE,LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS,ALIAS,DESCRIPTION,NAME,PARENTBUSINESSMODELID) VALUES((SELECT MAX(ID)+1 FROM TBLMBUSINESSMODULE as t),1,now(),1,now(),'ACTIVE','CIRCLE_CONFIGURATION_MENU_VIEW','Circle Configuration Manager','Circle Configuration Manager',(SELECT ID FROM TBLMBUSINESSMODEL WHERE ALIAS = 'SERVERMANGER'));
+            INSERT INTO TBLMBUSINESSSUBMODULE (ID,CREATEDBYSTAFFID,CREATEDDATE,LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS,ALIAS,DESCRIPTION,NAME,PARENTBUSINESSMODULEID) VALUES((SELECT MAX(ID)+1 FROM TBLMBUSINESSSUBMODULE as t),1,now(),1,now(),'ACTIVE','CIRCLE_MANAGEMENT','Circle Management','Circle Management',(SELECT ID FROM TBLMBUSINESSMODULE WHERE ALIAS = 'CIRCLE_CONFIGURATION_MENU_VIEW'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(ID)+1 from TBLMACTION as t), 'VIEW_CIRCLE_CONFIGURATION', 'View circle configuration screen', 'View circle configuration screen','1', now(),'1', now(), 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'CIRCLE_MANAGEMENT'));			
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id)+1 from TBLMACTION as t), 'VIEW_CIRCLE', 'View configured circles', 'View configured circles','1', now(),'1', now(), 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'CIRCLE_MANAGEMENT'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id)+1 from TBLMACTION as t), 'ADD_CIRCLE', 'Add new circle', 'Add new circle','1', now(),'1', now(), 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'CIRCLE_MANAGEMENT'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id)+1 from TBLMACTION as t), 'EDIT_CIRCLE', 'Edit existing circle parameters', 'Edit existing circle parameters','1', now(),'1', now(), 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'CIRCLE_MANAGEMENT'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id)+1 from TBLMACTION as t), 'DELETE_CIRCLE', 'Delete circle', 'Delete circle','1', now(),'1', now(), 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'CIRCLE_MANAGEMENT'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id)+1 from TBLMACTION as t), 'UPLOAD_CIRCLE_DEVICE_LICENSE', 'Upload circle and device wise license key', 'Upload circle and device wise license key','1', now(),'1', now(), 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'CIRCLE_MANAGEMENT'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id)+1 from TBLMACTION as t), 'VIEW_CIRCLE_DEVICE_LICENSE_INFO', 'View circle and device wise license info', 'View circle and device wise license info','1', now(),'1', now(), 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'CIRCLE_MANAGEMENT'));
+		</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000019">
+	    <modifyDataType columnName="NAME"
+	        newDataType="VARCHAR(200)"
+	        tableName="TBLMCIRCLE"/>
+	</changeSet>
+	
+	<changeSet author ="sterlite" id = "NP790000000020" dbms="postgresql,mysql">
+		<comment>ADDING SUBENTITY AND AUDITACTIVITY FOR CIRCLE CONFIGURATION</comment>
+		<sql splitStatements="true">	
+			INSERT INTO TBLMAUDITSUBENTITY(ID, ALIAS, DESCRIPTION, NAME, STATUS, ENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITSUBENTITY as J), 'CIRCLE_CONFIGURATION', 'Circle Configuration', 'Circle Configuration', 'ACTIVE', (SELECT ID FROM TBLMAUDITENTITY WHERE ALIAS = 'LICENSE MANAGER'));	
+			INSERT INTO TBLMAUDITACTIVITY(ID, ALIAS, DESCRIPTION, MESSAGE, NAME, STATUS, SUBENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY as J), 'CREATE_CIRCLE', 'create new circle', 'Circle $entityName is created', 'Create circle action','ACTIVE',(SELECT ID FROM TBLMAUDITSUBENTITY WHERE ALIAS = 'CIRCLE_CONFIGURATION'));
+			INSERT INTO TBLMAUDITACTIVITY(ID, ALIAS, DESCRIPTION, MESSAGE, NAME, STATUS, SUBENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY as J), 'UPDATE_CIRCLE', 'update circle', 'Circle $entityName is update', 'Update circle action','ACTIVE',(SELECT ID FROM TBLMAUDITSUBENTITY WHERE ALIAS = 'CIRCLE_CONFIGURATION')); 
+			INSERT INTO TBLMAUDITACTIVITY(ID, ALIAS, DESCRIPTION, MESSAGE, NAME, STATUS, SUBENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY as J), 'DELETE_CIRCLE', 'delete circle', 'Circle $entityName is deleted', 'Delete circle action','ACTIVE',(SELECT ID FROM TBLMAUDITSUBENTITY WHERE ALIAS = 'CIRCLE_CONFIGURATION'));
+		</sql>
+	</changeSet>	
+	
+	<changeSet author ="sterlite" id = "NP790000000020" dbms="oracle">
+		<comment>ADDING SUBENTITY AND AUDITACTIVITY FOR CIRCLE CONFIGURATION</comment>
+		<sql splitStatements="true">
+			INSERT INTO TBLMAUDITSUBENTITY(ID, ALIAS, DESCRIPTION, NAME, STATUS, ENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITSUBENTITY), 'CIRCLE_CONFIGURATION', 'Circle Configuration', 'Circle Configuration', 'ACTIVE', (SELECT ID FROM TBLMAUDITENTITY WHERE ALIAS = 'LICENSE MANAGER'));	
+			INSERT INTO TBLMAUDITACTIVITY(ID, ALIAS, DESCRIPTION, MESSAGE, NAME, STATUS, SUBENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY), 'CREATE_CIRCLE', 'create new circle', 'Circle $entityName is created', 'Create circle action','ACTIVE',(SELECT ID FROM TBLMAUDITSUBENTITY WHERE ALIAS = 'CIRCLE_CONFIGURATION'));
+			INSERT INTO TBLMAUDITACTIVITY(ID, ALIAS, DESCRIPTION, MESSAGE, NAME, STATUS, SUBENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY), 'UPDATE_CIRCLE', 'update circle', 'Circle $entityName is update', 'Update circle action','ACTIVE',(SELECT ID FROM TBLMAUDITSUBENTITY WHERE ALIAS = 'CIRCLE_CONFIGURATION')); 
+			INSERT INTO TBLMAUDITACTIVITY(ID, ALIAS, DESCRIPTION, MESSAGE, NAME, STATUS, SUBENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY), 'DELETE_CIRCLE', 'delete circle', 'Circle $entityName is deleted', 'Delete circle action','ACTIVE',(SELECT ID FROM TBLMAUDITSUBENTITY WHERE ALIAS = 'CIRCLE_CONFIGURATION')); 
+		</sql>
+	</changeSet>
+
+	<changeSet author ="sterlite" id = "NP790000000021" dbms="oracle">
+		<comment>UPDATING PRIMARY KEY VALUE OF TABLE SUBENTITY AND AUDITACTIVITY FOR CIRCLE CONFIGURATION</comment>
+		<sql splitStatements="true">
+			UPDATE TBLTPRIMARYKEY SET VALUE = (SELECT MAX(ID+1) FROM TBLMAUDITSUBENTITY) WHERE TABLE_NAME = 'AuditSubEntity';
+			UPDATE TBLTPRIMARYKEY SET VALUE = (SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY) WHERE TABLE_NAME = 'AuditActivity';			
+		</sql>
+	</changeSet>	
+	
+	<changeSet author ="sterlite" id = "NP790000000021" dbms="postgresql,mysql">
+		<comment>UPDATING PRIMARY KEY VALUE OF TABLE SUBENTITY AND AUDITACTIVITY FOR CIRCLE CONFIGURATION</comment>
+		<sql splitStatements="true">
+			UPDATE TBLTPRIMARYKEY SET VALUE = (SELECT MAX(ID+1) FROM TBLMAUDITSUBENTITY as t) WHERE TABLE_NAME = 'AuditSubEntity';
+			UPDATE TBLTPRIMARYKEY SET VALUE = (SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY as t) WHERE TABLE_NAME = 'AuditActivity';			
+		</sql>
+	</changeSet>
+	
+	<changeSet author ="sterlite" id = "NP790000000022">
+		<comment>UPDATING AUDITACTIVITY MESSAGE VALUE FOR UPDATE_CIRCLE</comment>
+		<sql splitStatements="true">
+			UPDATE TBLMAUDITACTIVITY SET MESSAGE= 'Circle $entityName is updated' WHERE ALIAS = 'UPDATE_CIRCLE';
+		</sql>
+	</changeSet>
+	
+	<changeSet author ="sterlite" id = "NP790000000023" dbms="oracle">
+		<comment>Adding AUDITACTIVITY MESSAGE VALUE FOR UPLOAD_LICENSE</comment>
+		<sql splitStatements="true">
+			INSERT INTO TBLMAUDITACTIVITY (ID, ALIAS, DESCRIPTION, MESSAGE, NAME, STATUS, SUBENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY), 'UPLOAD_LICENSE', 'upload license', 'License key is uploaded for circle $entityName', 'Upload license action','ACTIVE',(SELECT ID FROM TBLMAUDITSUBENTITY WHERE ALIAS = 'APPLY_LICENSE'));
+			UPDATE TBLTPRIMARYKEY SET VALUE = (SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY) WHERE TABLE_NAME = 'AuditActivity';
+		</sql>
+	</changeSet>
+	
+	<changeSet author ="sterlite" id = "NP790000000024" dbms="postgresql,mysql">
+		<comment>Adding AUDITACTIVITY MESSAGE VALUE FOR UPLOAD_LICENSE</comment>
+		<sql splitStatements="true">
+			INSERT INTO TBLMAUDITACTIVITY (ID, ALIAS, DESCRIPTION, MESSAGE, NAME, STATUS, SUBENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY as t), 'UPLOAD_LICENSE', 'upload license', 'License key is uploaded for circle $entityName', 'Upload license action','ACTIVE',(SELECT ID FROM TBLMAUDITSUBENTITY WHERE ALIAS = 'APPLY_LICENSE'));
+			UPDATE TBLTPRIMARYKEY SET VALUE = (SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY as t) WHERE TABLE_NAME = 'AuditActivity';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="BG790000000005">
+		<preConditions>
+			<columnExists tableName="TBLTLICENSE" columnName="TPS" />
+		</preConditions>
+		<comment>Drop column groupserverid from TBLTLICENSE</comment>
+		<dropColumn columnName="TPS" tableName="TBLTLICENSE"/>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="BG790000000006"  dbms="oracle,mysql">
+		<comment>Adding new column TPS in TBLTLICENSE</comment>
+	    <addColumn tableName="TBLTLICENSE">
+	        <column name="TPS" type="LONGBLOB"/>
+	    </addColumn>
+	</changeSet>
+
+	<changeSet author="elitecore" id="BG790000000007"  dbms="postgresql">
+		<comment>Adding new column TPS in TBLTLICENSE</comment>
+	    <addColumn tableName="TBLTLICENSE">
+	        <column name="TPS" type="BYTEA"/>
+	    </addColumn>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL130000000044">
+		<addColumn tableName="TBLTNETFLOWCLIENT">
+			<column name="KAFKADATASOURCEID" type="INT"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL130000000045">
+		<addForeignKeyConstraint baseColumnNames="KAFKADATASOURCEID"
+			baseTableName="TBLTNETFLOWCLIENT" constraintName="FK_TBLTKAFKADSCONFIG_KDS_ID"
+			deferrable="false" initiallyDeferred="false" referencedColumnNames="ID"
+			referencedTableName="TBLTKAFKADSCONFIG" />
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL130000000046">
+		<addColumn tableName="TBLTNETFLOWCLIENT">
+			<column name="ENABLEKAFKA" type="CHAR(1)" defaultValue="N">
+				<constraints nullable="true" />
+			</column>
+		</addColumn>
+	</changeSet>
+	<changeSet author="sterlite" id="NP790000000025" dbms="oracle">
+		<sql>
+			INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS,DESCRIPTION,ENTITY,REGEXKEY, VALUE)
+			 VALUES ((select max(id+1) from TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE','Circle Name',
+			'Circle','circle.name','^[\w-._,/''][\w\s-._,/'']{2,200}+$');
+			INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION,ENTITY,REGEXKEY, VALUE)
+			 VALUES ((select max(id+1) from TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE','Circle Description',
+			'Circle','circle.description','^[\w\s-./,/'']{0,200}$');
+		</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000026" dbms="postgresql">
+		<sql>
+			INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION,ENTITY,REGEXKEY, VALUE)
+			 VALUES ((select max(id+1) from TBLMREGEX), 1,NOW(), 1, NOW(),'ACTIVE','Circle Name',
+			'Circle','circle.name','^[\w-._,/''][\w\s-._,/'']{1,200}+$');
+			INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION,ENTITY,REGEXKEY, VALUE)
+			 VALUES ((select max(id+1) from TBLMREGEX), 1,NOW(), 1, NOW(),'ACTIVE','Circle Description',
+			'Circle','circle.description','^[\w\s-./,/'']{0,200}$');
+		</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000027" dbms="mysql">
+		<sql>
+			INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION,ENTITY,REGEXKEY, VALUE)
+			 VALUES ((select max(id+1) from TBLMREGEX as a), 1,NOW(), 1, NOW(),'ACTIVE','Circle Name',
+			'Circle','circle.name','^[\\w-._,/''][\\w\\s-._,/'']{1,200}+$');
+			INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION,ENTITY,REGEXKEY, VALUE)
+			 VALUES ((select max(id+1) from TBLMREGEX as a), 1,NOW(), 1, NOW(),'ACTIVE','Circle Description',
+			'Circle','circle.description','^[\\w\\s-./,/'']{0,200}$');
+		</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000028" dbms="postgresql">
+		<preConditions>
+			<columnExists tableName="TBLTLICENSE" columnName="TPS" />
+		</preConditions>
+		<comment>Drop column TPS from TBLTLICENSE</comment>
+		<dropColumn columnName="TPS" tableName="TBLTLICENSE"/>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000029"  dbms="postgresql">
+		<comment>Adding new column TPS in TBLTLICENSE</comment>
+	    <addColumn tableName="TBLTLICENSE">
+	        <column name="TPS" type="OID"/>
+	    </addColumn>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL130000000047"  dbms="oracle">
+	    <sql>
+            INSERT INTO TBLMBUSINESSSUBMODULE(ID,CREATEDBYSTAFFID,CREATEDDATE,LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS,ALIAS,DESCRIPTION,NAME,PARENTBUSINESSMODULEID) VALUES((SELECT MAX(ID)+1 FROM TBLMBUSINESSSUBMODULE),1,SYSDATE,1,SYSDATE,'ACTIVE','KAFKA_DATASOURCE_MANAGEMENT','Kafka DataSource Management','Kafka DataSource Management',(SELECT ID FROM TBLMBUSINESSMODULE WHERE ALIAS = 'DATABASE_CONFIGURATION_MENU_VIEW'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id+1) from TBLMACTION), 'VIEW_KAFKA_DATASOURCE', 'View Kafka DataSource', 'View Kafka DataSource','1', sysdate,'1', sysdate, 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'KAFKA_DATASOURCE_MANAGEMENT'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id+1) from TBLMACTION), 'ADD_KAFKA_DATASOURCE', 'Add Kafka DataSource', 'Add Kafka DataSource','1', sysdate,'1', sysdate, 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'KAFKA_DATASOURCE_MANAGEMENT'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id+1) from TBLMACTION), 'EDIT_KAFKA_DATASOURCE', 'Edit Kafka DataSource', 'Edit Kafka DataSource','1', sysdate,'1', sysdate, 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'KAFKA_DATASOURCE_MANAGEMENT'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id+1) from TBLMACTION), 'DELETE_KAFKA_DATASOURCE', 'Delete Kafka DataSource', 'Delete Kafka DataSource','1', sysdate,'1', sysdate, 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'KAFKA_DATASOURCE_MANAGEMENT'));
+		</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL130000000048"  dbms="postgresql,mysql">
+	    <sql>
+            INSERT INTO TBLMBUSINESSSUBMODULE (ID,CREATEDBYSTAFFID,CREATEDDATE,LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS,ALIAS,DESCRIPTION,NAME,PARENTBUSINESSMODULEID) VALUES((SELECT MAX(ID)+1 FROM TBLMBUSINESSSUBMODULE as t),1,now(),1,now(),'ACTIVE','KAFKA_DATASOURCE_MANAGEMENT','Kafka DataSource Management','Kafka DataSource Management',(SELECT ID FROM TBLMBUSINESSMODULE WHERE ALIAS = 'DATABASE_CONFIGURATION_MENU_VIEW'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id)+1 from TBLMACTION as t), 'VIEW_KAFKA_DATASOURCE', 'View Kafka DataSource', 'View Kafka DataSource','1', now(),'1', now(), 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'KAFKA_DATASOURCE_MANAGEMENT'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id)+1 from TBLMACTION as t), 'ADD_KAFKA_DATASOURCE', 'Add Kafka DataSource', 'Add Kafka DataSource','1', now(),'1', now(), 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'KAFKA_DATASOURCE_MANAGEMENT'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id)+1 from TBLMACTION as t), 'EDIT_KAFKA_DATASOURCE', 'Edit Kafka DataSource', 'Edit Kafka DataSource','1', now(),'1', now(), 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'KAFKA_DATASOURCE_MANAGEMENT'));
+	    	INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id)+1 from TBLMACTION as t), 'DELETE_KAFKA_DATASOURCE', 'Delete Kafka DataSource', 'Delete Kafka DataSource','1', now(),'1', now(), 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'KAFKA_DATASOURCE_MANAGEMENT'));
+		</sql>
+	</changeSet>
+	
+	<changeSet author ="sterlite" id = "HL130000000049" dbms="oracle">
+		<comment>ADDING SUBENTITY AND AUDITACTIVITY FOR CIRCLE CONFIGURATION</comment>
+		<sql splitStatements="true">
+			INSERT INTO TBLMAUDITENTITY(ID, ALIAS, DESCRIPTION, NAME, STATUS)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITENTITY), 'DATABASE_CONFIGURATION', 'Database Configuration', 'Database Configuration', 'ACTIVE');
+			INSERT INTO TBLMAUDITSUBENTITY(ID, ALIAS, DESCRIPTION, NAME, STATUS, ENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITSUBENTITY), 'KAFKA_DATASOURCE_CONFIGURATION', 'Kafka DataSource Configuration', 'Kafka DataSource Configuration', 'ACTIVE', (SELECT ID FROM TBLMAUDITENTITY WHERE ALIAS = 'DATABASE_CONFIGURATION'));	
+			INSERT INTO TBLMAUDITACTIVITY(ID, ALIAS, DESCRIPTION, MESSAGE, NAME, STATUS, SUBENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY), 'CREATE_KAFKA_DATASOURCE', 'create kafka datasource', 'KafkaDataSource $entityName is created', 'Create KafkaDataSource action','ACTIVE',(SELECT ID FROM TBLMAUDITSUBENTITY WHERE ALIAS = 'KAFKA_DATASOURCE_CONFIGURATION'));
+			INSERT INTO TBLMAUDITACTIVITY(ID, ALIAS, DESCRIPTION, MESSAGE, NAME, STATUS, SUBENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY), 'UPDATE_KAFKA_DATASOURCE', 'update kafka datasource', 'KafkaDataSource $entityName is update', 'Update KafkaDataSource action','ACTIVE',(SELECT ID FROM TBLMAUDITSUBENTITY WHERE ALIAS = 'KAFKA_DATASOURCE_CONFIGURATION')); 
+			INSERT INTO TBLMAUDITACTIVITY(ID, ALIAS, DESCRIPTION, MESSAGE, NAME, STATUS, SUBENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY), 'DELETE_KAFKA_DATASOURCE', 'delete kafka datasource', 'KafkaDataSource $entityName is deleted', 'Delete KafkaDataSource action','ACTIVE',(SELECT ID FROM TBLMAUDITSUBENTITY WHERE ALIAS = 'KAFKA_DATASOURCE_CONFIGURATION')); 
+		</sql>
+	</changeSet>
+	
+	<changeSet author ="sterlite" id = "HL130000000050" dbms="postgresql,mysql">
+		<comment>ADDING SUBENTITY AND AUDITACTIVITY FOR CIRCLE CONFIGURATION</comment>
+		<sql splitStatements="true">
+			INSERT INTO TBLMAUDITENTITY(ID, ALIAS, DESCRIPTION, NAME, STATUS)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITENTITY as J), 'DATABASE_CONFIGURATION', 'Database Configuration', 'Database Configuration', 'ACTIVE');
+			INSERT INTO TBLMAUDITSUBENTITY(ID, ALIAS, DESCRIPTION, NAME, STATUS, ENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITSUBENTITY as J), 'KAFKA_DATASOURCE_CONFIGURATION', 'Kafka DataSource Configuration', 'Kafka DataSource Configuration', 'ACTIVE', (SELECT ID FROM TBLMAUDITENTITY WHERE ALIAS = 'DATABASE_CONFIGURATION'));	
+			INSERT INTO TBLMAUDITACTIVITY(ID, ALIAS, DESCRIPTION, MESSAGE, NAME, STATUS, SUBENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY as J), 'CREATE_KAFKA_DATASOURCE', 'create kafka datasource', 'KafkaDataSource $entityName is created', 'Create KafkaDataSource action','ACTIVE',(SELECT ID FROM TBLMAUDITSUBENTITY WHERE ALIAS = 'KAFKA_DATASOURCE_CONFIGURATION'));
+			INSERT INTO TBLMAUDITACTIVITY(ID, ALIAS, DESCRIPTION, MESSAGE, NAME, STATUS, SUBENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY as J), 'UPDATE_KAFKA_DATASOURCE', 'update kafka datasource', 'KafkaDataSource $entityName is update', 'Update KafkaDataSource action','ACTIVE',(SELECT ID FROM TBLMAUDITSUBENTITY WHERE ALIAS = 'KAFKA_DATASOURCE_CONFIGURATION')); 
+			INSERT INTO TBLMAUDITACTIVITY(ID, ALIAS, DESCRIPTION, MESSAGE, NAME, STATUS, SUBENTITYID)VALUES ((SELECT MAX(ID+1) FROM TBLMAUDITACTIVITY as J), 'DELETE_KAFKA_DATASOURCE', 'delete kafka datasource', 'KafkaDataSource $entityName is deleted', 'Delete KafkaDataSource action','ACTIVE',(SELECT ID FROM TBLMAUDITSUBENTITY WHERE ALIAS = 'KAFKA_DATASOURCE_CONFIGURATION'));
+		</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000030">
+	    <sql>	        
+            UPDATE TBLMBUSINESSSUBMODULE SET PARENTBUSINESSMODULEID = 10 WHERE ALIAS = 'CIRCLE_MANAGEMENT';
+            UPDATE TBLMBUSINESSMODULE  SET STATUS='INACTIVE' WHERE ALIAS='CIRCLE_CONFIGURATION_MENU_VIEW';
+            UPDATE TBLMACTION SET DESCRIPTION = 'Upload License Key', NAME = 'Upload License Key' WHERE ALIAS = 'UPLOAD_CIRCLE_DEVICE_LICENSE';
+            UPDATE TBLMACTION SET DESCRIPTION = 'Add Circle', NAME = 'Add Circle' WHERE ALIAS = 'ADD_CIRCLE';
+            UPDATE TBLMACTION SET DESCRIPTION = 'Edit Circle', NAME = 'Edit Circle' WHERE ALIAS = 'EDIT_CIRCLE';
+            UPDATE TBLMACTION SET DESCRIPTION = 'Delete Circle', NAME = 'Delete Circle' WHERE ALIAS = 'DELETE_CIRCLE';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000031" dbms="oracle">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">SELECT COUNT(ID) FROM TBLMACTION WHERE ALIAS = 'VIEW_CIRCLE_DEVICE_LICENSE_INFO';</sqlCheck>
+		</preConditions>
+		<comment>Adding VIEW_CIRCLE_DEVICE_LICENSE_INFO in TBLMACTION</comment>
+		<sql>
+			INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id+1) from TBLMACTION ), 'VIEW_CIRCLE_DEVICE_LICENSE_INFO', 'View circle and device wise license info', 'View circle and device wise license info','1', SYSDATE,'1', SYSDATE, 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'CIRCLE_MANAGEMENT'));
+		</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="NP790000000032" dbms="postgresql,mysql">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">SELECT COUNT(ID) FROM TBLMACTION WHERE ALIAS = 'VIEW_CIRCLE_DEVICE_LICENSE_INFO';</sqlCheck>
+		</preConditions>
+		<comment>Adding VIEW_CIRCLE_DEVICE_LICENSE_INFO in TBLMACTION</comment>
+		<sql>
+			INSERT INTO TBLMACTION (ID, ALIAS, DESCRIPTION, NAME, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, PARENTBUSINESSSUBMODULEID) VALUES ((select max(id)+1 from TBLMACTION as t), 'VIEW_CIRCLE_DEVICE_LICENSE_INFO', 'View circle and device wise license info', 'View circle and device wise license info','1', now(),'1', now(), 'ACTIVE', (SELECT ID FROM TBLMBUSINESSSUBMODULE WHERE ALIAS = 'CIRCLE_MANAGEMENT'));
+		</sql>
+	</changeSet>
+	
+		<changeSet author="elitecore" id="HL130000000051" dbms="oracle">
+		<sql splitStatements="true">
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000324',
+			'kafkaGeneric','kafkaGeneric',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'SERVER_INSTANCE'));
+			
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000325',
+			'kafkaUp','kafkaUp',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'SERVER_INSTANCE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000326',
+			'kafkaDown','kafkaDown',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'SERVER_INSTANCE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000327',
+			'kafkaError','kafkaError',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'SERVER_INSTANCE'));			
+		</sql>
+	</changeSet>
+
+
+	<changeSet author="elitecore" id="HL130000000052" dbms="postgresql">
+		<sql splitStatements="true">
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000324',
+			'kafkaGeneric','kafkaGeneric',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'SERVER_INSTANCE'));
+			
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000325',
+			'kafkaUp','kafkaUp',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'SERVER_INSTANCE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000326',
+			'kafkaDown','kafkaDown',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'SERVER_INSTANCE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000327',
+			'kafkaError','kafkaError',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'SERVER_INSTANCE'));
+		</sql>	
+	</changeSet>
+	<changeSet author="elitecore" id="HL130000000053" dbms="mysql">
+		<sql splitStatements="true">
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000324',
+			'kafkaGeneric','kafkaGeneric',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'SERVER_INSTANCE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000325',
+			'kafkaUp','kafkaUp',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'SERVER_INSTANCE'));
+			
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000326',
+			'kafkaDown','kafkaDown',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'SERVER_INSTANCE'));
+
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000327',
+			'kafkaError','kafkaError',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'SERVER_INSTANCE'));
+		</sql>	
+	</changeSet>
+	
+	<changeSet author="elitecore" id="HL130000000054">
+		<sql>
+			DELETE FROM TBLTPROFILENTITY WHERE ISDEFAULT='N' and ENTITYALIAS='HTTP2_COLLECTION_SERVICE';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SB90000000001" dbms="oracle">
+		<comment>inserting json parser in 'TBLMPLUGINTYPE' table</comment>
+		<sql splitStatements="true">
+			INSERT INTO TBLMPLUGINTYPE (ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ALIAS, CATEGORY, DESCRIPTION, PLUGINFULLCLASSNAME, TYPE) VALUES ((SELECT MAX(ID+1) FROM TBLMPLUGINTYPE), 1, SYSDATE, 1, SYSDATE, 'ACTIVE', 'JSON_PARSING_PLUGIN', 'Parser', 'Description : caters to json format', 'com.elitecore.sm.parser.model.JSONParser', 'JSON Parser');
+			UPDATE TBLTPRIMARYKEY SET VALUE = (SELECT MAX(ID+1) FROM TBLMPLUGINTYPE) WHERE TABLE_NAME = 'PluginTypeMaster';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SB90000000002" dbms="mysql,postgresql">
+		<comment>inserting json parser in 'TBLMPLUGINTYPE' table</comment>
+		<sql splitStatements="true">
+			INSERT INTO TBLMPLUGINTYPE (ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ALIAS, CATEGORY, DESCRIPTION, PLUGINFULLCLASSNAME, TYPE) VALUES ((SELECT MAX(ID+1) FROM TBLMPLUGINTYPE AS T), 1, now(), 1, now(), 'ACTIVE', 'JSON_PARSING_PLUGIN', 'Parser', 'Description : caters to json format', 'com.elitecore.sm.parser.model.JSONParser', 'JSON Parser');
+			UPDATE TBLTPRIMARYKEY SET VALUE = (SELECT MAX(ID+1) FROM TBLMPLUGINTYPE) WHERE TABLE_NAME = 'PluginTypeMaster';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SB90000000003" dbms="oracle">
+		<comment>inserting new data required for JSON_PARSING_PLUGIN in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY),1, SYSDATE, 1,SYSDATE, 'INACTIVE','JSON_PARSING_PLUGIN','PLUGIN_TYPE', 'Y', 1);
+		   UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY) WHERE TABLE_NAME='ProfileEntity';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SB90000000004" dbms="postgresql,mysql">
+		<comment>inserting new data required for JSON_PARSING_PLUGIN in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY AS T),1, now(), 1,now(), 'INACTIVE','JSON_PARSING_PLUGIN','PLUGIN_TYPE', 'Y', 1);
+	       UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY ) WHERE TABLE_NAME='ProfileEntity';
+	    </sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SB90000000005" dbms="oracle">
+		<comment>inserting new data required for JSON_PARSING_PLUGIN in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY),1, SYSDATE, 1,SYSDATE, 'INACTIVE','JSON_PARSING_PLUGIN','PLUGIN_TYPE', 'Y', 2);
+		   UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY) WHERE TABLE_NAME='ProfileEntity';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SB90000000006" dbms="postgresql,mysql">
+		<comment>inserting new data required for JSON_PARSING_PLUGIN in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY AS T),1, now(), 1,now(), 'INACTIVE','JSON_PARSING_PLUGIN','PLUGIN_TYPE', 'Y', 2);
+	       UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY ) WHERE TABLE_NAME='ProfileEntity';
+	    </sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SB90000000007" dbms="oracle">
+		<comment>inserting new data required for JSON_PARSING_PLUGIN in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY),1, SYSDATE, 1,SYSDATE, 'INACTIVE','JSON_PARSING_PLUGIN','PLUGIN_TYPE', 'Y', 3);
+		   UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY) WHERE TABLE_NAME='ProfileEntity';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SB90000000008" dbms="postgresql,mysql">
+		<comment>inserting new data required for JSON_PARSING_PLUGIN in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY AS T),1, now(), 1,now(), 'INACTIVE','JSON_PARSING_PLUGIN','PLUGIN_TYPE', 'Y', 3);
+	       UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY ) WHERE TABLE_NAME='ProfileEntity';
+	    </sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SB90000000009">
+		<sql>UPDATE TBLMREGEX SET VALUE = '^[;\w\s:,_.|-]{0,500}$' WHERE REGEXKEY = 'ParserAttribute.sourceField';</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="HL130000000055" dbms="mysql">
+		<sql>UPDATE TBLMREGEX SET VALUE = '^[;\\w\\s:,_.|-]{0,500}$' WHERE REGEXKEY = 'ParserAttribute.sourceField';</sql>
+	</changeSet>
+	
+</databaseChangeLog>

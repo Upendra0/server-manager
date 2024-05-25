@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE driver-mapping SYSTEM "http://www.elitecore.com">-->
+
+<processing-service>
+
+	<path-list>
+		<path>
+			<read-file-path></read-file-path>        <!-- source path from where we have to read file -->
+			<archive-path></archive-path>
+			<read-filename-prefix></read-filename-prefix>     <!-- Read only those file whose prefix is this -->
+			<read-filename-suffix></read-filename-suffix>     <!-- Read only those file whose suffix is this -->
+			<max-files-count-alert></max-files-count-alert>  <!-- Provide Limit for maximum files to generate alert -->
+			<read-filename-contains></read-filename-contains> <!-- Read only those file whose name contains this -->
+			<read-filename-exclude-types></read-filename-exclude-types>	<!-- Read files except this extension list -->
+			<is-compressed-input-file>false</is-compressed-input-file> <!-- If input file is compressed or not compressed  -->
+			<is-compressed-output-file>false</is-compressed-output-file> <!--  If output file is compressed or not compressed -->
+			<write-file-path></write-file-path> <!-- Comma separated destination path -->
+			<policy-name> </policy-name>
+		</path>
+	</path-list>
+	
+	<sorting-type>ASCENDING</sorting-type> <!-- ASCENDING/DESCENDING/NA -->
+	
+	<sorting-criteria>LAST_MODIFIED_DATE</sorting-criteria> <!-- LAST_MODIFIED_DATE/FILE_NAME -->
+	
+	<global-sequence enabled = "false">  <!-- Global Sequence Configuration-->
+		<global-seq-device-name></global-seq-device-name>
+		<global-seq-max-limit></global-seq-max-limit>
+	</global-sequence>
+
+ 	<device-name>device-1</device-name>
+
+	<queue-size>1500</queue-size>
+
+	<startup-mode>Automatic</startup-mode>
+	
+	<file-range></file-range><!-- <file-range>10-20</file-range> -->
+	
+	<file-sequence-order>false</file-sequence-order>
+	
+	<no-files-alert-interval /> <!-- Interval in Seconds and apply if interval is greater than Zero and if any files not received since configurable time then send the trap to ME. -->
+
+	<minimum-thread>5</minimum-thread>
+
+	<maximum-thread>5</maximum-thread>
+
+	<execution-interval>1</execution-interval>
+	
+	<is-compressed-input>false</is-compressed-input>
+
+	<is-compressed-output>false</is-compressed-output>
+
+	<immediate-execute-on-startup>true</immediate-execute-on-startup>
+
+    	<file-batch-size>10</file-batch-size>
+
+    	<record-batch-size>5000</record-batch-size>
+
+    	<source-file-types>.csv</source-file-types>
+
+    	<rule-group-name>Callkey</rule-group-name>
+    
+    	<select-file-on-prefixes></select-file-on-prefixes>
+    
+    	<select-file-on-suffixes></select-file-on-suffixes>
+    
+    	<file-copy-folders></file-copy-folders>
+    
+	<duplicate-record-policy enabled="false" type="ACROSS-FILE"> <!-- IN-FILE,ACROSS-FILE -->
+		<duplicate-check-across-file-parameters>
+			<network-elements></network-elements>
+			<duplicate-check-date-unified-field>EndDate
+			</duplicate-check-date-unified-field>
+			<duplicate-check-interval-type>HOUR</duplicate-check-interval-type> <!-- DAY/HOUR/MINUTE -->
+			<duplicate-check-interval>1</duplicate-check-interval>
+			<cache-limit>1</cache-limit>
+			<purge-cache-interval>2</purge-cache-interval> <!-- In minute -->
+		</duplicate-check-across-file-parameters>
+		<unified-fields>RecordNumber</unified-fields>
+		<alert-id></alert-id>
+		<alert-description></alert-description>
+	</duplicate-record-policy>
+	
+       <file-grouping enabled="true">
+       		<policy-grouping>RULE</policy-grouping> <!-- rulewise/groupwise/NA -->
+			<grouping-type>NA</grouping-type>
+			<for-duplicate>true</for-duplicate>
+			<for-filtered>true</for-filtered>
+			<for-invalid>true</for-invalid>
+			<for-archive>true</for-archive>
+	</file-grouping>
+	
+	<store-cdr-file-summary-in-db>false</store-cdr-file-summary-in-db> <!-- TRUE/FALSE : This will store file details in database -->
+	
+</processing-service>
+
+
+<!-- ========================================================== -->
+<!-- Details of each configuration parameter                    -->
+<!-- ========================================================== -->
+
+<!--
+<processing-service>
+
+    <source-path>C:\MEDIATION_ROOT\DISTRIBUTION_ROOT\input</source-path>
+        Source folder from where the files are taken for processing.
+        
+    <is-sorting-required>true</is-sorting-required>
+		Is sorting required can be either true or false. If it is true then collection service 
+		will do collection according to the sort order. Sorting is based on last modified date.
+    
+
+    <device-name>device-1</device-name>
+        Path to which the files read from source path are to be placed under appropriate base directory.
+        If it is processing service , the path will files are placed under PROCESSING_ROOT/${device-name}/input.
+
+     <queue-size>15000</queue-size>
+        Maximum requests that can stay in the queue, any new request recevied
+        when the queue is full will be dropped.
+        Change in value requires soft restart of the service after reloading
+        the configuration.
+
+    <startup-mode>Manual</startup-mode>
+        Startup mode of the service, can be either Manual or Automatic. In case
+        of Manual mode, the service will be added to the list but will not be
+        started, but in case of Automatic the service is started automatically
+        when the server is started.
+        Change in value requires service restart.
+
+    <minimum-thread>5</minimum-thread>
+        Minimum number of threads that should stay in the pool to handle the
+        request. All the threads will be created during initilization.
+        Change in value requires soft restart of the service after reloading
+        the configuration.
+
+    <maximum-thread>7</maximum-thread>
+        Maximum number of threads that should be created during load.
+        Change in value requires soft restart of the service after reloading
+        the configuration.
+
+    <execution-interval>60000</execution-interval>
+        Service will wait for these much time on next execution
+
+	<is-compressed-input>false</is-compressed-input>
+		We have a support of compressed input file in processing service. If value of this tag is true then mediation server can
+		able to read the .gz file according to the given extension.
+		
+	<is-compressed-output>false</is-compressed-output>
+		We have a support of compressed output file in processing service. If value of this tag is true then mediation server can
+		able to write the .gz file according to the given extension.
+		
+    <immediate-execute-on-startup>true</immediate-execute-on-startup>
+        If it is true then Service will start when it is called
+
+    <file-batch-size>100</file-batch-size>
+        Service will pick up these much files to process at a time.
+
+    <record-batch-size>50</record-batch-size>
+        Service will process these much records in a batch from the given file.
+
+    <source-file-types>.csv</source-file-types>
+        Service has to take these types of files for processing only.
+
+    <file-grouping enabled="true"> To enable file grouping
+		<grouping-type>day</grouping-type>
+			Service will insert files into archived folder in form of,
+	        If Day, duplicate/Year/Month/Day/
+    	    If Month, duplicate/Year/Month/
+        	If Year, duplicate/Year/
+		<for-duplicate></for-duplicate>
+			To move or not file in duplicate.
+		<for-error></for-error>
+			To move or not file in error.
+		<for-filtered>false</for-filtered>
+			To move or not file in filtered.
+		<for-invalid></for-invalid>
+			To move or not file in invalid.
+		<for-archive>true</for-archive>
+			To move or not file in archive.
+	</file-grouping>
+
+    <rule-group-name>Callkey</rule-group-name>
+        Specifies the rule group name. The information of rules are stored into the database.
+        Based on this parameter service will decide which rules to be executed.
+        
+	<select-file-on-prefixes>new</select-file-on-prefixes>
+		Only those file will parse who's prefix is new.
+        
+</processing-service>
+ -->
+
+<!-- ========================================================== -->
+<!-- End of configuration details                               -->
+<!-- ========================================================== -->
+
+
+
+

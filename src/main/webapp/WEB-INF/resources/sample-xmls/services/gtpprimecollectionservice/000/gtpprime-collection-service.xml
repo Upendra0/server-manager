@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gtp-prime-service>
+
+	<service-address>10.105.1.54:3386</service-address>
+	<startup-mode>Automatic</startup-mode>
+	<socket-receive-buffer-size>134217728</socket-receive-buffer-size>
+	<socket-send-buffer-size>134217728</socket-send-buffer-size>
+	<queue-size>150000</queue-size>
+	<minimum-thread>100</minimum-thread>
+	<maximum-thread>200</maximum-thread>
+	<redirection-ip>10.174.31.188</redirection-ip>
+	<max-idle-communication-time-interval>900</max-idle-communication-time-interval>
+
+	<clients>
+		<client>
+			<client-ip>10.105.1.54</client-ip>
+			<client-port>49999</client-port>
+			<node-alive-request>false</node-alive-request>
+			<echo-request>5</echo-request>
+			<request-expiry-time>3000</request-expiry-time>
+			<request-retry>100</request-retry>
+			<redirection-ip>10.174.31.188</redirection-ip>
+			<file-name>GP{yyyyMMddHHmmssS}.u</file-name>
+			<file-sequence>true</file-sequence>
+			<sequence-range>1-1000</sequence-range>
+			<file-location>/CGFDATA/Common/SM_ROOT</file-location>
+			<request-buffer-count>5</request-buffer-count>
+			<rolling-time-unit>2</rolling-time-unit>
+			<rolling-volume-unit>3072</rolling-volume-unit>
+		</client>
+		
+		<client>
+			<client-ip>192.168.14.64</client-ip>
+			<client-port>49999</client-port>
+			<node-alive-request>false</node-alive-request>
+			<echo-request>5</echo-request>
+			<request-expiry-time>3000</request-expiry-time>
+			<request-retry>100</request-retry>
+			<redirection-ip>10.174.31.188</redirection-ip>
+			<file-name>GP{yyyyMMddHHmmssS}.u</file-name>
+			<file-sequence>true</file-sequence>
+			<sequence-range>1-1000</sequence-range>
+			<file-location>/CGFDATA/Common/SM_ROOT</file-location>
+			<request-buffer-count>10</request-buffer-count>
+			<rolling-time-unit>2</rolling-time-unit>
+			<rolling-volume-unit>3072</rolling-volume-unit>
+		</client>
+		
+	</clients>
+
+</gtp-prime-service>

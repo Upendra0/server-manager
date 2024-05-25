@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<snmp>
+	<ipAddress>10.115.1.217</ipAddress>
+	<port>1167</port>
+	<offset>100</offset>
+	<community>public</community>
+</snmp>

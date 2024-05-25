@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<natflow-collection-service>
+
+	<service-address>127.0.0.1:5140</service-address>
+	<startup-mode>Automatic</startup-mode>
+	<socket-receive-buffer-size>134217728</socket-receive-buffer-size>
+	<socket-send-buffer-size>134217728</socket-send-buffer-size>
+	<queue-size>150000</queue-size>
+	<minimum-thread>100</minimum-thread>
+	<maximum-thread>200</maximum-thread>
+	<redirection-ip>10.174.31.188</redirection-ip>
+	<max-idle-communication-time-interval>900</max-idle-communication-time-interval>
+	<parallel-file-write-count>10</parallel-file-write-count>
+	<max-packet-size-in-byte>4000</max-packet-size-in-byte>
+	<max-writebuffer-in-mb>10</max-writebuffer-in-mb>
+	<read-template-initialy>true</read-template-initialy>
+	
+	<abnormal-time-alert enable="false">
+		<time-interval>5</time-interval>
+	</abnormal-time-alert>
+	<option-template-lookup enable="true">
+	
+	<option-template>
+	<option-template-id>262</option-template-id>
+	<key-field>234</key-field>
+	<value-field>236</value-field>
+	</option-template>
+	
+	<template>
+	<template-id>271,272</template-id>
+	<field>234,235</field>
+	</template>
+	
+	</option-template-lookup>
+	
+
+	<is-parallel-binary-write-enable>false</is-parallel-binary-write-enable>
+<proxy enable="true">
+		<proxy-list>
+			<proxy-info>
+				<proxy-ip>127.0.0.1</proxy-ip>
+				<proxy-port>5141</proxy-port>
+			</proxy-info>
+			<proxy-info>
+				<proxy-ip>127.0.0.1</proxy-ip>
+				<proxy-port>5143</proxy-port>
+			</proxy-info>
+		</proxy-list>
+		<proxy-service-port>5142</proxy-service-port>
+	</proxy>	
+	<clients>
+		<client>
+			<client-ip>127.0.0.1</client-ip>
+			<client-port>49999</client-port>
+			<node-alive-request>false</node-alive-request>
+			<echo-request>5</echo-request>
+			<request-expiry-time>3000</request-expiry-time>
+			<request-retry>100</request-retry>
+			<redirection-ip>10.174.31.188</redirection-ip>
+			<file-name>NATFLOW_{yyyyMMddHHmmssS}.u</file-name>
+			<file-sequence>true</file-sequence>
+			<sequence-range>1-1000</sequence-range>
+			<file-location>D:\MEDIATION_ROOT\SM_ROOT\,D:\MEDIATION_ROOT\SM_ROOT_ASCII_2\</file-location>
+			<binary-file-location></binary-file-location>
+			<request-buffer-count>5</request-buffer-count>
+			<rolling-time-unit>1</rolling-time-unit>
+			<rolling-volume-unit>100</rolling-volume-unit>
+			<file-compression>false</file-compression>
+		</client>
+	</clients>
+</natflow-collection-service>

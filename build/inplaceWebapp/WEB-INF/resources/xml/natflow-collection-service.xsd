@@ -1,0 +1,91 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="natflow-collection-service">
+    <xs:complexType>
+      <xs:all>
+        <xs:element type="xs:string" name="service-address"/>
+        <xs:element type="xs:string" name="startup-mode"/>
+        <xs:element type="xs:int" name="socket-receive-buffer-size"/>
+        <xs:element type="xs:int" name="socket-send-buffer-size"/>
+        <xs:element type="xs:int" name="queue-size"/>
+        <xs:element type="xs:int" name="minimum-thread"/>
+        <xs:element type="xs:int" name="maximum-thread"/>
+        <xs:element type="xs:string" name="redirection-ip"/>
+        <xs:element type="xs:int" name="max-idle-communication-time-interval"/>
+        <xs:element type="xs:int" name="parallel-file-write-count"/>
+        <xs:element type="xs:int" name="max-packet-size-in-byte"/>
+        <xs:element type="xs:int" name="max-writebuffer-in-mb"/>
+        <xs:element type="xs:string" name="read-template-initialy"/>
+        <xs:element name="abnormal-time-alert">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:int" name="time-interval"/>
+            </xs:all>
+            <xs:attribute type="xs:string" name="enable"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="option-template-lookup">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="option-template">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element type="xs:int" name="option-template-id"/>
+                    <xs:element type="xs:int" name="key-field"/>
+                    <xs:element type="xs:int" name="value-field"/>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="template">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element type="xs:string" name="template-id"/>
+                    <xs:element type="xs:string" name="field"/>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+            <xs:attribute type="xs:string" name="enable"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element type="xs:string" name="is-parallel-binary-write-enable"/>
+        <xs:element name="clients">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="client" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element type="xs:string" name="client-ip"/>
+                    <xs:element type="xs:int" name="client-port"/>
+                    <xs:element type="xs:string" name="node-alive-request"/>
+                    <xs:element type="xs:int" name="echo-request"/>
+                    <xs:element type="xs:int" name="request-expiry-time"/>
+                    <xs:element type="xs:int" name="request-retry"/>
+                    <xs:element type="xs:string" name="redirection-ip"/>
+                    <xs:element type="xs:string" name="file-name"/>
+                    <xs:element type="xs:string" name="file-sequence"/>
+                    <xs:element type="xs:string" name="sequence-range"/>
+                    <xs:element type="xs:string" name="file-location"/>
+                    <xs:element type="xs:string" name="binary-file-location"/>
+                    <xs:element type="xs:int" name="request-buffer-count"/>
+                    <xs:element type="xs:int" name="rolling-time-unit"/>
+                    <xs:element type="xs:int" name="rolling-volume-unit"/>
+                    <xs:element type="xs:string" name="file-compression"/>
+                    <xs:element type="xs:string" name="is-client-enable"/>
+                    <xs:element name="abnormal-time-alert">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element type="xs:int" name="time-interval"/>
+                        </xs:all>
+                        <xs:attribute type="xs:string" name="enable"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

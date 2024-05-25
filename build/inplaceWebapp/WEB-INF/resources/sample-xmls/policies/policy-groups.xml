@@ -1,0 +1,9 @@
+<policy-groups>
+	<policy-group alias="FILTERING_RULE_GROUP">
+		<policy-group-name>Filtering Rule Group</policy-group-name>
+		<policy-rules>RULE-001</policy-rules>
+		<application-order>1</application-order>
+		<description>Filtering Rule Group</description>
+		<enable>false</enable>
+	</policy-group>
+</policy-groups>

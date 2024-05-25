@@ -1,0 +1,145 @@
+"id","CREATEDBYSTAFFID","CREATEDDATE","LASTUPDATEDBYSTAFFID","LASTUPDATEDDATE","STATUS","ALIAS","DESCRIPTION","NAME","parentbusinesssubmoduleid"
+1,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","SEARCH_SERVICE_INSTANCE","Search Service Instance","Search Service Instance",1
+2,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","SYNCHRONIZE_SERVICE_INSTANCE","Synchronize Service Instance","Synchronize Service Instance",1
+3,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","IMPORT_SERVICE_INSTANCE_CONFIG","Import Service Instance Configuration ","Import Service Instance Configuration",1
+4,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","EXPORT_SERVICE_INSTANCE_CONFIG","Export Service Instance Configuration ","Export Service Instance Configuration",1
+5,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","START_SERVICE_INSTANCE","Start Service Instance","Start Service Instance",1
+6,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","STOP_SERVICE_INSTANCE","Stop Service Instance","Stop Service Instance",1
+7,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CREATE_SERVICE_INSTANCE","Create Service Instance","Create Service Instance",2
+8,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_SERVICE_INSTANCE","Delete Service Instance","Delete Service Instance",2
+9,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","UPDATE_SERVICE_INSTANCE","Update Service Instance","Update Service Instance",2
+10,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_SERVICE_INSTANCE","View Service Instance","View Service Instance",2
+11,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CREATE_COLLECTION_DRIVER","Create Collection Driver","Create Collection Driver",2
+12,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CONFIGURE_COLLECTION_DRIVER","Configure Collection Driver","Configure Collection Driver",2
+13,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_COLLECTION_DRIVER","Delete Collection Driver","Delete Collection Driver",2
+14,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","UPDATE_COLLECTION_DRIVER","Update Collection Driver","Update Collection Driver",2
+15,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_COLLECTION_DRIVER","View Collection Driver","View Collection Driver",2
+16,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CREATE_DISTRIBUTION_DRIVER","Create Distribution Driver","Create Distribution Driver",2
+17,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CONFIGURE_DISTRIBUTION_DRIVER","Configure Distribution Driver","Configure Distribution Driver",2
+18,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_DISTRIBUTION_DRIVER","Delete Distribution Driver","Delete Distribution Driver",2
+19,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","UPDATE_DISTRIBUTION_DRIVER","Update Distribution Driver","Update Distribution Driver",2
+20,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_DISTRIBUTION_DRIVER","View Distribution Driver","View Distribution Driver",2
+21,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CREATE_COLLECTION_CLIENT","Create Collection Client","Create Collection Client",2
+22,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CONFIGURE_COLLECTION_CLIENT","Configure Collection Client","Configure Collection Client",2
+23,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_COLLECTION_CLIENT","Delete Collection Client","Delete Collection Client",2
+24,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","UPDATE_COLLECTION_CLIENT","Update Collection Client","Update Collection Client",2
+25,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_COLLECTION_CLIENT","View Collection Client","View Collection Client",2
+26,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CHANGE_PASSWORD","Change Password","Change Password",3
+27,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_SYSTEM_PARAMETER","View System Parameter","View System Parameter",4
+28,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","MODIFY_SYSTEM_PARAMETER","Modify System Parameter","Modify System Parameter",4
+29,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_AUDIT","View Audit","View Audit",5
+30,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_ACCESS_GROUP","View Access Group","View Access Group",6
+31,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","ADD_ACCESS_GROUP","Add Access Group","Add Access Group",6
+32,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","EDIT_ACCESS_GROUP","Edit Access Group","Edit Access Group",6
+33,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_ACCESS_GROUP","Delete Access Group","Delete Access Group",6
+34,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_STAFF","View Staff","View Staff",7
+35,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","ADD_STAFF","Add Staff","Add Staff",7
+36,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","EDIT_STAFF","Edit Staff","Edit Staff",7
+37,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_STAFF","Delete Staff","Delete Staff",7
+38,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","LOCK_UNLOCK_STAFF","Lock Unlock Staff","Lock Unlock Staff",7
+39,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_SERVER_AND_SERVER_INSTANCES","View Server / Server Instances","View Server / Server Instances",8
+40,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CREATE_SERVER_AND_SERVER_INSTANCES","Create Server / Server Instances","Create Server / Server Instances",8
+41,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","UPDATE_SERVER_AND_SERVER_INSTANCES","Update Server / Server Instances","Update Server / Server Instances",8
+42,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_SERVER_AND_SERVER_INSTANCES","Delete Server / Server Instances","Delete Server / Server Instances",8
+43,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","SERVER_INSTANCE_SYNCHRONIZATION","Server Instance Synchronization","Server Instance Synchronization",9
+44,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","SERVER_INSTANCE_IMPORT_CONFIG","Server Instance Import Config","Server Instance Import Config",9
+45,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","SERVER_INSTANCE_EXPORT_CONFIG","Server Instance Export Config","Server Instance Export Config",9
+46,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","SERVER_INSTANCE_COPY_CONFIG","Server Instance Copy Config","Server Instance Copy Config",9
+47,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","SERVER_INSTANCE_SOFT_RESTART","Server Instance Soft Restart","Server Instance Soft Restart",9
+48,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","SERVER_INSTANCE_RELOAD_CONFIG","Server Instance Reload Config","Server Instance Reload Config",9
+49,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","SERVER_INSTANCE_RELOAD_CACHE","Server Instance Reload Cache","Server Instance Reload Cache",9
+50,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","SERVER_INSTANCE_START","Server Instance Start","Server Instance Start",9
+51,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","SERVER_INSTANCE_STOP","Server Instance Stop","Server Instance Stop",9
+52,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","SERVER_INSTANCE_UPLOAD_LICENSE","Server Instance Upload License","Server Instance Upload License",9
+53,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CONFIGURE_NMS_CONFIG","Configure NMS Config","View NMS Config",9
+54,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_SNMP_CONFIG","View SNMP Config","View SNMP Config",9
+58,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_CONSOLIDATION_STATISTIC","View Consolidation Statistic","View Consolidation Statistic",9
+59,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","ADD_CONSOLIDATION_STATISTIC","Add Consolidation Statistic","Add Consolidation Statistic",9
+60,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","UPDATE_CONSOLIDATION_STATISTIC","Update Consolidation Statistic","Update Consolidation Statistic",9
+61,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_CONSOLIDATION_STATISTIC","Delete Consolidation Statistic","Delete Consolidation Statistic",9
+62,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","INACTIVE","VIEW_WEBSERVICE_DETAIL","View Webservice Detail","View Webservice Detail",9
+63,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","INACTIVE","ADD_WEBSERVICE_DETAIL","Add Webservice Detail","Add Webservice Detail",9
+64,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","INACTIVE","UPDATE_WEBSERVICE_DETAIL","Update Webservice Detail","Update Webservice Detail",9
+65,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","INACTIVE","DELETE_WEBSERVICE_DETAIL","Delete Webservice Detail","Delete Webservice Detail",9
+66,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","ADD_DEVICE","Add Device","Add Device",10
+67,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","UPDATE_DEVICE","Update Device","Update Device",10
+68,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_DEVICE","Delete Device","Delete Device",10
+69,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","UPDATE_DEVICE_CONFIGURATION","Update Device Configuration","Update Device Configuration",11
+70,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_DEVICE","View Device","View Device",10
+71,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_DEVICE_CONFIGURATION","View Device Configuration","View Device Configuration",11
+72,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CREATE_PATHLIST","Create Pathlist","Create Pathlist",2
+73,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CONFIGURE_PATHLIST","Configure Pathlist","Configure Pathlist",2
+74,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_PATHLIST","Delete Pathlist","Delete Pathlist",2
+75,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","UPDATE_PATHLIST","Update Pathlist","Update Pathlist",2
+76,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_PATHLIST","View Pathlist","View Pathlist",2
+77,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_PARSER","view parser","View Parser",2
+78,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CREATE_PARSER","create parser","Creat Parser",2
+79,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","UPDATE_PARSER","update parser","Update Parser",2
+80,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_PARSER","delete parser","Delete Parser",2
+81,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_EMS","View EMS","View EMS",12
+82,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_COMPOSER","View Composer","View Composer",2
+83,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CREATE_COMPOSER","Create Composer","Create Composer",2
+84,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","UPDATE_COMPOSER","Update Composer","Update Composer",2
+85,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_COMPOSER","Delete Composer","Delete Composer",2
+86,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","ADD_SNMP_SERVER","Add SNMP Server","Add SNMP Server",13
+87,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","EDIT_SNMP_SERVER","Edit SNMP Server","Edit SNMP Server",13
+88,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_SNMP_SERVER","Delete SNMP Server","Delete SNMP Server",13
+89,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","ADD_SNMP_CLIENT","Add SNMP Client","Add SNMP Client",14
+90,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","EDIT_SNMP_CLIENT","Edit SNMP Client","Edit SNMP Client",14
+91,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_SNMP_CLIENT","Delete SNMP Client","Delete SNMP Client",14
+92,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","EDIT_ALERT_DETAILS","Edit Alert Details","Edit Alert Details",15
+93,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","ADD_SERVICE_THRESHOLD","Add Service Threshold","Add Service Threshold",15
+94,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","INACTIVE","VIEW_PRODUCT_CONFIGURATION","View Product Configuration","View Product Configuration",16
+95,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","INACTIVE","UPDATE_PRODUCT_CONFIGURATION","Update Product Configuration","Update Product Configuration",16
+96,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","APPLY_FULL_LICENSE","Apply/Renew Full License","Apply/Renew Full License",17
+97,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","INACTIVE","VIEW_PROFILE_CONFIGURATION","View Profile Configuration","View Profile Configuration",18
+98,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","INACTIVE","UPDATE_PROFILE_CONFIGURATION","Update Profile Configuration","Update Profile Configuration",18
+99,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_PACKET_STATASTIC_AGENT","View Packet Statistic Agent","View Packet Statistic Agent",19
+100,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","EDIT_PACKET_STATASTIC_AGENT","Update Packet Statistic Agent","Update Packet Statistic Agent",19
+101,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","UPDATE_PROFILE","Update Profile","Update Profile",20
+102,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_DATASOURCE","View DataSource","View DataSource",21
+103,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","ADD_DATASOURCE","Add DataSource","Add DataSource",21
+104,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","EDIT_DATASOURCE","Edit DataSource","Edit DataSource",21
+105,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_DATASOURCE","Delete DataSource","Delete DataSource",21
+106,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","VIEW_POLICY_CONFIGURATION","View Policy Configuration","View Policy Configuration",9
+107,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CREATE_POLICY_ACTION_CONFIGURATION","Add Policy Action Configuration","Add Policy Action Configuration",9
+108,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CREATE_POLICY_CONDITION_CONFIGURATION","Add Policy Condition Configuration","Add Policy Condition Configuration",9
+109,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CREATE_POLICY_CONFIGURATION","Add Policy Configuration","Add Policy Configuration",9
+110,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CREATE_POLICY_GROUP_CONFIGURATION","Add Policy Group Configuration","Add Policy Group Configuration",9
+111,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","CREATE_POLICY_RULE_CONFIGURATION","Add Policy Rule Configuration","Add Policy Rule Configuration",9
+112,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_POLICY_ACTION_CONFIGURATION","Delete Policy Action Configuration","Delete Policy Action Configuration",9
+113,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_POLICY_CONDITION_CONFIGURATION","Delete Policy Condition Configuration","Delete Policy Condition Configuration",9
+114,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_POLICY_CONFIGURATION","Delete Policy Configuration","Delete Policy Configuration",9
+115,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_POLICY_GROUP_CONFIGURATION","Delete Policy Group Configuration","Delete Policy Group Configuration",9
+116,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DELETE_POLICY_RULE_CONFIGURATION","Delete Policy Rule Configuration","Delete Policy Rule Configuration",9
+117,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","UPDATE_POLICY_ACTION_CONFIGURATION","Update Policy Action Configuration","Update Policy Action Configuration",9
+118,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","UPDATE_POLICY_CONDITION_CONFIGURATION","Update Policy Condition Configuration","Update Policy Condition Configuration",9
+119,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","UPDATE_POLICY_CONFIGURATION","Update Policy Configuration","Update Policy Configuration",9
+120,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","UPDATE_POLICY_GROUP_CONFIGURATION","Update Policy Group Configuration","Update Policy Group Configuration",9
+121,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","UPDATE_POLICY_RULE_CONFIGURATION","Update Policy Rule Configuration","Update Policy Rule Configuration",9
+122,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","INACTIVE","VIEW_SERVICE_WISE_SUMMARY","View Service Wise Summary","View Service Wise Summary",22
+123,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","INACTIVE","VIEW_SERVICE_WISE_DETAIL","View Service Wise Detail","View Service Wise Detail",23
+124,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","GENERATE_SERVICE_WISE_SUMMARY_REPORT","Generate Service Wise Summary Report","Generate Service Wise Summary Report",22
+125,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","GENERATE_SERVICE_WISE_DETAIL_REPORT","Generate Service Wise Detail Report","Generate Service Wise Detail Report",23
+126,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DOWNLOAD_SERVICE_WISE_SUMMARY_REPORT","Download Service Wise Summary Report","Download Service Wise Summary Report",22
+127,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DOWNLOAD_SERVICE_WISE_DETAIL_REPORT","Download Service Wise Detail Report","Download Service Wise Detail Report",23
+128,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","ADD_SERVICE_TO_FILE_RENAME_AGENT","Add service to file rename agent","Add Service To File Rename Agent",24
+129,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0001","ACTIVE","UPDATE_SERVICE_TO_FILE_RENAME_AGENT","Update service to file rename agent","Update Service To File Rename Agent",24
+130,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0001","ACTIVE","DELETE_SERVICE_FROM_FILE_RENAME_AGENT","Delete service from file rename agent","Delete Service From File Rename Agent",24
+131,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0001","ACTIVE","UPDATE_FILE_RENAME_AGENT_DETAILS","Update file rename agent details","Update File Rename Agent Details",24
+132,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0001","ACTIVE","VIEW_FILE_RENAME_AGENT_DETAILS","View file rename agent details","View File Rename Agent Details",24
+133,1,"2016-07-12 10:29:20.0000",3,"2016-07-12 10:29:20.0000","ACTIVE","DO_MIGRATION","Do Migration","Do Migration",25
+134,1,"2017-01-13 10:29:20.0000",3,"2017-01-13 10:29:20.0000","ACTIVE","DELETE_FILE","Delete File","Delete File",26
+135,1,"2017-01-13 10:29:20.0000",3,"2017-01-13 10:29:20.0000","ACTIVE","DIRECT_REPROCESS","Direct Re-process","Direct Re-process",26
+136,1,"2017-01-13 10:29:20.0000",3,"2017-01-13 10:29:20.0000","ACTIVE","UPLOAD_REPROCESS_FILE","Upload Re-process File","Upload Re-process File",26
+137,1,"2017-01-13 10:29:20.0000",3,"2017-01-13 10:29:20.0000","ACTIVE","UPDATE_RULE_DATA_CONFIG","Update Rule Data","Update Rule Data",9
+138,1,"2017-01-13 10:29:20.0000",3,"2017-01-13 10:29:20.0000","ACTIVE","VIEW_RULE_DATA_CONFIG","View Rule Data","View Rule Data",9
+139,1,"2017-01-13 10:29:20.0000",3,"2017-01-13 10:29:20.0000","ACTIVE","CREATE_RULE_DATA_CONFIG","Create Rule Data","Create Rule Data",9
+140,1,"2017-01-13 10:29:20.0000",3,"2017-01-13 10:29:20.0000","ACTIVE","DELETE_RULE_DATA_CONFIG","Delete Rule Data","Delete Rule Data",9
+141,1,"2017-01-13 10:29:20.0000",3,"2017-01-13 10:29:20.0000","ACTIVE","DOWNLOAD_FILE","Download File","Download File",26
+142,1,"2017-01-13 10:29:20.0000",3,"2017-01-13 10:29:20.0000","ACTIVE","SEARCH_BATCH_FILE","Search Batch File","Search Batch File",27
+143,1,"2017-01-13 10:29:20.0000",3,"2017-01-13 10:29:20.0000","ACTIVE","VIEW_DETAILS","View Details","View Details",27
+144,1,"2017-01-13 10:29:20.0000",3,"2017-01-13 10:29:20.0000","ACTIVE","MODIFY_FILES","Modify Files","Modify Files",26
+145,1,"2017-01-13 10:29:20.0000",3,"2017-01-13 10:29:20.0000","ACTIVE","PREVIEW_FILE","Preview File","Preview Files",26
+146,1,"2017-01-13 10:29:20.0000",3,"2017-01-13 10:29:20.0000","ACTIVE","SEARCH_FILES","Search Files","Search Files",26
+147,1,"2017-01-13 10:29:20.0000",3,"2017-01-13 10:29:20.0000","ACTIVE","VIEW_FILE","View File","View File",26

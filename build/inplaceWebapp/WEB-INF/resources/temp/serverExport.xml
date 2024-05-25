@@ -1,0 +1,2650 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<serverInstance>
+    <status>ACTIVE</status>
+    <id>14</id>
+    <name>10.151.34.220:9405:1</name>
+    <description xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+    <port>9405</port>
+    <fileStatInDBEnable>false</fileStatInDBEnable>
+    <fileCdrSummaryDBEnable>true</fileCdrSummaryDBEnable>
+    <minDiskSpace>-1</minDiskSpace>
+    <snmpAlertEnable>false</snmpAlertEnable>
+    <syncSIStatus>false</syncSIStatus>
+    <syncChildStatus>false</syncChildStatus>
+    <webservicesEnable>false</webservicesEnable>
+    <restWebservicesEnable>false</restWebservicesEnable>
+    <serverHome>/opt/crestelsetup/crestelpengine</serverHome>
+    <javaHome>/opt/crestelsetup/jdk1.8.0_241</javaHome>
+    <mediationRoot>C:\MEDIATION_ROOT</mediationRoot>
+    <minMemoryAllocation>256</minMemoryAllocation>
+    <maxMemoryAllocation>512</maxMemoryAllocation>
+    <fileStorageLocation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"/>
+    <maxConnectionRetry>3</maxConnectionRetry>
+    <retryInterval>5000</retryInterval>
+    <connectionTimeout>20</connectionTimeout>
+    <scriptName>startServer_9405.sh</scriptName>
+    <thresholdSysAlertEnable>false</thresholdSysAlertEnable>
+    <thresholdTimeInterval>10</thresholdTimeInterval>
+    <thresholdMemory>70</thresholdMemory>
+    <loadAverage>10</loadAverage>
+    <server>
+        <status>ACTIVE</status>
+        <id>1</id>
+        <name>10.151.34.220_9401</name>
+        <description>10.151.34.220</description>
+        <ipAddress>10.151.34.220</ipAddress>
+        <utilityPort>9401</utilityPort>
+        <serverType>
+            <status>ACTIVE</status>
+            <id>1</id>
+            <alias>MEDIATION</alias>
+            <name>Mediation</name>
+            <description>Mediation Server Type</description>
+        </serverType>
+        <serverId>000</serverId>
+        <containerEnvironment>true</containerEnvironment>
+    </server>
+    <databaseInit>true</databaseInit>
+    <serverManagerDatasourceConfig>
+        <status>ACTIVE</status>
+        <id>12</id>
+        <name>SERVER_MANAGER_DS_ORACLE_IMPORT_26112020</name>
+        <type>1</type>
+        <connURL>jdbc:oracle:thin:@10.151.34.18:1521:xe</connURL>
+        <username>crestelsmngt2</username>
+        <password>6372657374656c736d6e677432</password>
+        <minPoolSize>10</minPoolSize>
+        <maxPoolsize>15</maxPoolsize>
+    </serverManagerDatasourceConfig>
+    <logsDetail>
+        <level>ALL</level>
+        <rollingType>TIME-BASED</rollingType>
+        <rollingValue>5</rollingValue>
+        <maxRollingUnit>10</maxRollingUnit>
+    </logsDetail>
+    <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="parsingService">
+        <status>ACTIVE</status>
+        <id>112</id>
+        <servInstanceId>000</servInstanceId>
+        <name>parsing</name>
+        <description xsi:nil="true"/>
+        <syncStatus>false</syncStatus>
+        <enableFileStats>false</enableFileStats>
+        <enableDBStats>false</enableDBStats>
+        <fileCDRSummaryFlag>true</fileCDRSummaryFlag>
+        <svctype>
+            <status>ACTIVE</status>
+            <id>2</id>
+            <alias>PARSING_SERVICE</alias>
+            <description>Description : Parsing Service maps raw format to generalized format.</description>
+            <type>Parsing Service</type>
+            <serviceFullClassName>com.elitecore.sm.services.model.ParsingService</serviceFullClassName>
+            <typeOfService>MAIN</typeOfService>
+            <serviceCategory>OFFLINE</serviceCategory>
+        </svctype>
+        <svcExecParams>
+            <executeOnStartup>true</executeOnStartup>
+            <executionInterval>10</executionInterval>
+            <fileBatchSize>20</fileBatchSize>
+            <maxThread>8</maxThread>
+            <minThread>5</minThread>
+            <queueSize>3000</queueSize>
+            <sortingCriteria>LAST_MODIFIED_DATE</sortingCriteria>
+            <sortingType>ASCENDING</sortingType>
+            <startupMode>Automatic</startupMode>
+        </svcExecParams>
+        <svcPathList xsi:type="parsingPathList">
+            <status>ACTIVE</status>
+            <id>17</id>
+            <pathId>002</pathId>
+            <name>asciipath</name>
+            <readFilePath>/opt/crestelsetup/Services/anupa/Parsing/asciiinput</readFilePath>
+            <compressInFileEnabled>true</compressInFileEnabled>
+            <compressOutFileEnabled>true</compressOutFileEnabled>
+            <readFilenamePrefix>NBR_RAJKOT_edr_flow_format</readFilenamePrefix>
+            <readFilenameSuffix>.gz</readFilenameSuffix>
+            <readFilenameContains xsi:nil="true"/>
+            <readFilenameExcludeTypes xsi:nil="true"/>
+            <writeFilePath>/opt/crestelsetup/Services/anupa/Parsing/asciioutput</writeFilePath>
+            <writeFilenamePrefix xsi:nil="true"/>
+            <fileNamePattern xsi:nil="true"/>
+            <parserWrappers>
+                <status>ACTIVE</status>
+                <id>3</id>
+                <name>ASCII</name>
+                <parserType>
+                    <status>ACTIVE</status>
+                    <alias>ASCII_PARSING_PLUGIN</alias>
+                    <category>Parser</category>
+                    <description>Description : caters to ASCII Format</description>
+                    <id>1</id>
+                    <pluginFullClassName>com.elitecore.sm.parser.model.AsciiParser</pluginFullClassName>
+                    <type>ASCII Parser</type>
+                </parserType>
+                <readFilenamePrefix>NBR_RAJKOT_edr_flow_format</readFilenamePrefix>
+                <readFilenameSuffix>.gz</readFilenameSuffix>
+                <writeFilePath>/opt/crestelsetup/Services/anupa/Parsing/asciioutput</writeFilePath>
+                <compressInFileEnabled>true</compressInFileEnabled>
+                <compressOutFileEnabled>true</compressOutFileEnabled>
+                <maxFileCountAlert>-1</maxFileCountAlert>
+                <writeFileSplit>false</writeFileSplit>
+                <parserMapping xsi:type="asciiParserMapping">
+                    <status>ACTIVE</status>
+                    <id>14</id>
+                    <name>ASCII_Mapping</name>
+                    <parserType>
+                        <status>ACTIVE</status>
+                        <alias>ASCII_PARSING_PLUGIN</alias>
+                        <category>Parser</category>
+                        <description>Description : caters to ASCII Format</description>
+                        <id>1</id>
+                        <pluginFullClassName>com.elitecore.sm.parser.model.AsciiParser</pluginFullClassName>
+                        <type>ASCII Parser</type>
+                    </parserType>
+                    <device>
+                        <status>ACTIVE</status>
+                        <id>9</id>
+                        <name>CISCO ASR-SGW 1</name>
+                        <description>CISCO ASR-SGW 1</description>
+                        <decodeType>UPSTREAM</decodeType>
+                        <isPreConfigured>0</isPreConfigured>
+                        <deviceType>
+                            <status>ACTIVE</status>
+                            <id>8</id>
+                            <name>SGW</name>
+                            <description>SGW</description>
+                        </deviceType>
+                        <vendorType>
+                            <status>ACTIVE</status>
+                            <id>1</id>
+                            <name>Cisco</name>
+                            <description>Cisco</description>
+                        </vendorType>
+                    </device>
+                    <dateFormat>MM/dd/yyyy HH:mm:ss</dateFormat>
+                    <srcDateFormat>MM/dd/yyyy HH:mm:ss</srcDateFormat>
+                    <srcCharSetName>UTF8</srcCharSetName>
+                    <mappingType>1</mappingType>
+                    <parserAttributes xsi:type="asciiParserAttribute">
+                        <status>ACTIVE</status>
+                        <associatedByGroup>false</associatedByGroup>
+                        <attributeOrder>1</attributeOrder>
+                        <id>764</id>
+                        <sourceField>3</sourceField>
+                        <trimPosition>Both</trimPosition>
+                        <unifiedField>General1</unifiedField>
+                    </parserAttributes>
+                    <parserAttributes xsi:type="asciiParserAttribute">
+                        <status>ACTIVE</status>
+                        <associatedByGroup>false</associatedByGroup>
+                        <attributeOrder>2</attributeOrder>
+                        <id>765</id>
+                        <sourceField>4</sourceField>
+                        <trimPosition>Both</trimPosition>
+                        <unifiedField>General2</unifiedField>
+                    </parserAttributes>
+                    <parserAttributes xsi:type="asciiParserAttribute">
+                        <status>ACTIVE</status>
+                        <associatedByGroup>false</associatedByGroup>
+                        <attributeOrder>3</attributeOrder>
+                        <id>766</id>
+                        <sourceField>5</sourceField>
+                        <trimPosition>Both</trimPosition>
+                        <unifiedField>General3</unifiedField>
+                    </parserAttributes>
+                    <parserAttributes xsi:type="asciiParserAttribute">
+                        <status>ACTIVE</status>
+                        <associatedByGroup>false</associatedByGroup>
+                        <attributeOrder>4</attributeOrder>
+                        <id>767</id>
+                        <sourceField>6</sourceField>
+                        <trimPosition>Both</trimPosition>
+                        <unifiedField>General4</unifiedField>
+                    </parserAttributes>
+                    <parserAttributes xsi:type="asciiParserAttribute">
+                        <status>ACTIVE</status>
+                        <associatedByGroup>false</associatedByGroup>
+                        <attributeOrder>5</attributeOrder>
+                        <id>768</id>
+                        <sourceField>7</sourceField>
+                        <trimPosition>Both</trimPosition>
+                        <unifiedField>General5</unifiedField>
+                    </parserAttributes>
+                    <parserAttributes xsi:type="asciiParserAttribute">
+                        <status>ACTIVE</status>
+                        <associatedByGroup>false</associatedByGroup>
+                        <attributeOrder>6</attributeOrder>
+                        <id>769</id>
+                        <sourceField>8</sourceField>
+                        <trimPosition>Both</trimPosition>
+                        <unifiedField>General6</unifiedField>
+                    </parserAttributes>
+                    <parserAttributes xsi:type="asciiParserAttribute">
+                        <status>ACTIVE</status>
+                        <associatedByGroup>false</associatedByGroup>
+                        <attributeOrder>7</attributeOrder>
+                        <id>770</id>
+                        <sourceField>1</sourceField>
+                        <unifiedField>StartDate</unifiedField>
+                    </parserAttributes>
+                    <parserAttributes xsi:type="asciiParserAttribute">
+                        <status>ACTIVE</status>
+                        <associatedByGroup>false</associatedByGroup>
+                        <attributeOrder>8</attributeOrder>
+                        <id>771</id>
+                        <sourceField>2</sourceField>
+                        <unifiedField>EndDate</unifiedField>
+                    </parserAttributes>
+                    <excludeCharactersMax>0</excludeCharactersMax>
+                    <excludeCharactersMin>0</excludeCharactersMin>
+                    <fieldSeparator>,</fieldSeparator>
+                    <fileFooterEnable>true</fileFooterEnable>
+                    <fileFooterParser>STANDARD</fileFooterParser>
+                    <fileFooterRows>0</fileFooterRows>
+                    <fileHeaderContainsFields>true</fileHeaderContainsFields>
+                    <fileHeaderEnable>false</fileHeaderEnable>
+                    <fileHeaderParser>STANDARD</fileHeaderParser>
+                    <fileHeaderRow>0</fileHeaderRow>
+                    <fileHeaderStartIndex>0</fileHeaderStartIndex>
+                    <fileTypeEnum>FILE_HEADER_FOOTER</fileTypeEnum>
+                    <keyValueRecordEnable>false</keyValueRecordEnable>
+                    <linearKeyValueRecordEnable>false</linearKeyValueRecordEnable>
+                    <recordHeaderEnable>false</recordHeaderEnable>
+                    <recordHeaderSeparator xsi:nil="true"/>
+                </parserMapping>
+                <fileNamePattern xsi:nil="true"/>
+            </parserWrappers>
+            <fileGrepDateEnabled>false</fileGrepDateEnabled>
+            <dateFormat>yyyyMMddHHmm</dateFormat>
+            <position>left</position>
+            <startIndex>-1</startIndex>
+            <endIndex>-1</endIndex>
+            <parentDevice>
+                <status>ACTIVE</status>
+                <id>15</id>
+                <name>VODAFONE_ASN1_New_Auto_z_IMPORT_1570167118267</name>
+                <description>VODAFONE_ASN1_New_Auto_z_IMPORT_1570167118267</description>
+                <decodeType>UPSTREAM</decodeType>
+                <isPreConfigured>1</isPreConfigured>
+                <deviceType>
+                    <status>ACTIVE</status>
+                    <id>11</id>
+                    <name>VODAFONE_ASN1_New_Auto_z_IMPORT_1570167117883</name>
+                    <description>VODAFONE_ASN1_New_Auto_z</description>
+                </deviceType>
+                <vendorType>
+                    <status>ACTIVE</status>
+                    <id>6</id>
+                    <name>VODAFONE_ASN1_New_Auto_z_IMPORT_1570167118095</name>
+                    <description>VODAFONE_ASN1_New_Auto_z</description>
+                </vendorType>
+            </parentDevice>
+			<circle>
+				<status>ACTIVE</status>
+				<id>1</id>
+				<name>DEFAULT</name>
+				<description>default circle</description>
+			</circle>
+        </svcPathList>
+        <fileGroupingParameter>
+            <status>ACTIVE</status>
+            <id>17</id>
+            <fileGroupEnable>false</fileGroupEnable>
+            <groupingType>DAY</groupingType>
+            <enableForDuplicate>false</enableForDuplicate>
+            <sourcewiseArchive>false</sourcewiseArchive>
+            <groupingDateType>PROCESSDATE</groupingDateType>
+            <enableForArchive>false</enableForArchive>
+        </fileGroupingParameter>
+        <fileSeqOrderEnable>false</fileSeqOrderEnable>
+        <maxFileRange>300</maxFileRange>
+        <minFileRange>1</minFileRange>
+        <noFileAlert>10</noFileAlert>
+        <overrideFileDateEnabled>false</overrideFileDateEnabled>
+        <overrideFileDateType>MAXIMUM</overrideFileDateType>
+        <recordBatchSize>5000</recordBatchSize>
+        <storeCDRFileSummaryDB>false</storeCDRFileSummaryDB>
+    </services>
+    <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="processingService">
+        <status>ACTIVE</status>
+        <id>113</id>
+        <servInstanceId>000</servInstanceId>
+        <name>processing</name>
+        <description xsi:nil="true"/>
+        <syncStatus>false</syncStatus>
+        <enableFileStats>false</enableFileStats>
+        <enableDBStats>false</enableDBStats>
+        <fileCDRSummaryFlag>true</fileCDRSummaryFlag>
+        <svctype>
+            <status>ACTIVE</status>
+            <id>3</id>
+            <alias>PROCESSING_SERVICE</alias>
+            <description>Description : Processing Service manipulates data as per rules configured.</description>
+            <type>Processing Service</type>
+            <serviceFullClassName>com.elitecore.sm.services.model.ProcessingService</serviceFullClassName>
+            <typeOfService>MAIN</typeOfService>
+            <serviceCategory>OFFLINE</serviceCategory>
+        </svctype>
+        <svcExecParams>
+            <executeOnStartup>true</executeOnStartup>
+            <executionInterval>30</executionInterval>
+            <fileBatchSize>10</fileBatchSize>
+            <maxThread>10</maxThread>
+            <minThread>5</minThread>
+            <queueSize>15000</queueSize>
+            <sortingCriteria>LAST_MODIFIED_DATE</sortingCriteria>
+            <sortingType>ASCENDING</sortingType>
+            <startupMode>Automatic</startupMode>
+        </svcExecParams>
+        <svcPathList xsi:type="processingPathList">
+            <status>ACTIVE</status>
+            <id>18</id>
+            <pathId>000</pathId>
+            <name>PGW</name>
+            <readFilePath>/opt/crestelsetup/Services/anupa/processing/asainput</readFilePath>
+            <compressInFileEnabled>false</compressInFileEnabled>
+            <compressOutFileEnabled>true</compressOutFileEnabled>
+            <readFilenamePrefix xsi:nil="true"/>
+            <readFilenameSuffix>.csv</readFilenameSuffix>
+            <readFilenameContains xsi:nil="true"/>
+            <readFilenameExcludeTypes xsi:nil="true"/>
+            <writeFilePath>/opt/crestelsetup/Services/anupa/processing/asaoutput</writeFilePath>
+            <writeFilenamePrefix xsi:nil="true"/>
+            <fileNamePattern xsi:nil="true"/>
+            <maxFilesCountAlert>-1</maxFilesCountAlert>
+            <policyAlias>p1</policyAlias>
+            <fileGrepDateEnabled>false</fileGrepDateEnabled>
+            <dateFormat>yyyyMMddHHmm</dateFormat>
+            <position>left</position>
+            <startIndex>-1</startIndex>
+            <endIndex>-1</endIndex>
+            <parentDevice>
+                <status>ACTIVE</status>
+                <id>16</id>
+                <name>VFLTEPGW</name>
+                <description>VFLTEPGW</description>
+                <decodeType>UPSTREAM</decodeType>
+                <isPreConfigured>1</isPreConfigured>
+                <deviceType>
+                    <status>ACTIVE</status>
+                    <id>12</id>
+                    <name>VFLTEPGW_IMPORT_1571032510717</name>
+                    <description>VFLTEPGW</description>
+                </deviceType>
+                <vendorType>
+                    <status>ACTIVE</status>
+                    <id>7</id>
+                    <name>VFLTEPGW_IMPORT_1571032510771</name>
+                    <description>VFLTEPGW</description>
+                </vendorType>
+            </parentDevice>
+            <acrossFileDuplicateCDRCacheLimit>5000</acrossFileDuplicateCDRCacheLimit>
+            <writeCdrHeaderFooterEnabled>true</writeCdrHeaderFooterEnabled>
+            <acrossFileDuplicateDateField>StartDt</acrossFileDuplicateDateField>
+            <acrossFileDuplicateDateInterval>59</acrossFileDuplicateDateInterval>
+            <acrossFileDuplicateDateIntervalType>MINUTE</acrossFileDuplicateDateIntervalType>
+            <duplicateRecordPolicyEnabled>true</duplicateRecordPolicyEnabled>
+            <duplicateRecordPolicyType>IN_FILE</duplicateRecordPolicyType>
+            <unifiedFields>G22</unifiedFields>
+        </svcPathList>
+        <acrossFileDuplicatePurgeCacheInterval>5</acrossFileDuplicatePurgeCacheInterval>
+        <dateFieldForSummary>StartDate</dateFieldForSummary>
+        <fileGroupingParameter>
+            <status>DELETED</status>
+            <id>18</id>
+            <fileGroupEnable>true</fileGroupEnable>
+            <groupingType>NA</groupingType>
+            <enableForDuplicate>true</enableForDuplicate>
+            <sourcewiseArchive>false</sourcewiseArchive>
+            <groupingDateType>PROCESSDATE</groupingDateType>
+            <enableForArchive>true</enableForArchive>
+            <enableForFilter>true</enableForFilter>
+            <enableForInvalid>true</enableForInvalid>
+            <filterGroupType>Rulewise</filterGroupType>
+        </fileGroupingParameter>
+        <fileSeqOrderEnable>false</fileSeqOrderEnable>
+        <globalSeqEnabled>false</globalSeqEnabled>
+        <globalSeqMaxLimit>-1</globalSeqMaxLimit>
+        <maxFileRange>300</maxFileRange>
+        <minFileRange>1</minFileRange>
+        <noFileAlert>-1</noFileAlert>
+        <overrideFileDateEnabled>false</overrideFileDateEnabled>
+        <overrideFileDateType>MAXIMUM</overrideFileDateType>
+        <recordBatchSize>50000</recordBatchSize>
+		<storeCDRFileSummaryDB>false</storeCDRFileSummaryDB>
+      </services>
+    <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="distributionService">
+        <status>ACTIVE</status>
+        <id>114</id>
+        <servInstanceId>000</servInstanceId>
+        <name>distribution</name>
+        <description xsi:nil="true"/>
+        <syncStatus>false</syncStatus>
+        <enableFileStats>false</enableFileStats>
+        <enableDBStats>false</enableDBStats>
+        <fileCDRSummaryFlag>true</fileCDRSummaryFlag>
+        <svctype>
+            <status>ACTIVE</status>
+            <id>4</id>
+            <alias>DISTRIBUTION_SERVICE</alias>
+            <description>Description : Distribution Service distributes data to downstream systems.</description>
+            <type>Distribution Service</type>
+            <serviceFullClassName>com.elitecore.sm.services.model.DistributionService</serviceFullClassName>
+            <typeOfService>MAIN</typeOfService>
+            <serviceCategory>OFFLINE</serviceCategory>
+        </svctype>
+        <svcExecParams>
+            <executeOnStartup>true</executeOnStartup>
+            <executionInterval>60</executionInterval>
+            <fileBatchSize>20</fileBatchSize>
+            <maxThread>8</maxThread>
+            <minThread>5</minThread>
+            <queueSize>1000</queueSize>
+            <sortingCriteria>LAST_MODIFIED_DATE</sortingCriteria>
+            <sortingType>ASCENDING</sortingType>
+            <startupMode>Automatic</startupMode>
+        </svcExecParams>
+        <myDrivers xsi:type="localDistributionDriver">
+            <status>ACTIVE</status>
+            <id>9</id>
+            <name>local</name>
+            <timeout>1000000</timeout>
+            <applicationOrder>0</applicationOrder>
+            <maxRetrycount>10</maxRetrycount>
+            <fileSeqOrder>false</fileSeqOrder>
+            <minFileRange>1</minFileRange>
+            <maxFileRange>300</maxFileRange>
+            <driverType>
+                <status>ACTIVE</status>
+                <id>6</id>
+                <alias>LOCAL_DISTRIBUTION_DRIVER</alias>
+                <description>Local Distribution Driver</description>
+                <type>LOCAL DISTRIBUTION DRIVER</type>
+                <driverFullClassName>com.elitecore.sm.drivers.model.distribution.LocalDistributionDriver</driverFullClassName>
+                <category>DISTRIBUTION</category>
+            </driverType>
+            <driverPathList xsi:type="distributionDriverPathList">
+                <status>ACTIVE</status>
+                <id>19</id>
+                <pathId>000</pathId>
+                <name>path1</name>
+                <readFilePath>/opt/crestelsetup/Services/anupa/Parsing/asciioutput</readFilePath>
+                <compressInFileEnabled>true</compressInFileEnabled>
+                <compressOutFileEnabled>false</compressOutFileEnabled>
+                <readFilenamePrefix xsi:nil="true"/>
+                <readFilenameSuffix>.gz</readFilenameSuffix>
+                <readFilenameContains xsi:nil="true"/>
+                <readFilenameExcludeTypes xsi:nil="true"/>
+                <writeFilenamePrefix xsi:nil="true"/>
+                <fileNamePattern xsi:nil="true"/>
+                <composerWrappers>
+                    <status>ACTIVE</status>
+                    <id>3</id>
+                    <name>ASCII_COMPOSER</name>
+                    <composerType>
+                        <status>ACTIVE</status>
+                        <alias>ASCII_COMPOSER_PLUGIN</alias>
+                        <category>Composer</category>
+                        <description>Description : ASCII_COMPOSER_PLUGIN</description>
+                        <id>9</id>
+                        <pluginFullClassName>com.elitecore.sm.composer.model.ASCIIComposer</pluginFullClassName>
+                        <type>ASCII Composer</type>
+                    </composerType>
+                    <fileExtension>.dist</fileExtension>
+                    <destPath>/opt/crestelsetup/Services/anupa/Parsing/asciioutput</destPath>
+                    <composerMapping xsi:type="asciiComposerMapping">
+                        <status>ACTIVE</status>
+                        <attributeList xsi:type="asciiComposerAttr">
+                            <status>ACTIVE</status>
+                            <associatedByGroup>false</associatedByGroup>
+                            <destinationField>G3</destinationField>
+                            <id>147</id>
+                            <sequenceNumber>3</sequenceNumber>
+                            <trimPosition>Both</trimPosition>
+                            <unifiedField>General3</unifiedField>
+                            <length>0</length>
+                            <paddingEnable>false</paddingEnable>
+                            <paddingType>left</paddingType>
+                            <replaceConditionList></replaceConditionList>
+                        </attributeList>
+                        <attributeList xsi:type="asciiComposerAttr">
+                            <status>ACTIVE</status>
+                            <associatedByGroup>false</associatedByGroup>
+                            <destinationField>G2</destinationField>
+                            <id>148</id>
+                            <sequenceNumber>2</sequenceNumber>
+                            <trimPosition>Both</trimPosition>
+                            <unifiedField>General2</unifiedField>
+                            <length>0</length>
+                            <paddingEnable>false</paddingEnable>
+                            <paddingType>left</paddingType>
+                            <replaceConditionList></replaceConditionList>
+                        </attributeList>
+                        <attributeList xsi:type="asciiComposerAttr">
+                            <status>ACTIVE</status>
+                            <associatedByGroup>false</associatedByGroup>
+                            <destinationField>G1</destinationField>
+                            <id>149</id>
+                            <sequenceNumber>1</sequenceNumber>
+                            <trimPosition>Both</trimPosition>
+                            <unifiedField>General1</unifiedField>
+                            <length>0</length>
+                            <paddingEnable>false</paddingEnable>
+                            <paddingType>left</paddingType>
+                            <replaceConditionList></replaceConditionList>
+                        </attributeList>
+                        <composerType>
+                            <status>ACTIVE</status>
+                            <alias>ASCII_COMPOSER_PLUGIN</alias>
+                            <category>Composer</category>
+                            <description>Description : ASCII_COMPOSER_PLUGIN</description>
+                            <id>9</id>
+                            <pluginFullClassName>com.elitecore.sm.composer.model.ASCIIComposer</pluginFullClassName>
+                            <type>ASCII Composer</type>
+                        </composerType>
+                        <dateFormatEnum>MM-dd-yyyy HH:mm:ss</dateFormatEnum>
+                        <destCharset>UTF8</destCharset>
+                        <destDateFormat>MM/dd/yyyy HH:mm:ss</destDateFormat>
+                        <device>
+                            <status>ACTIVE</status>
+                            <id>5</id>
+                            <name>Elitecore BSS v 6.2.2</name>
+                            <description>Elitecore BSS v 6.2.2</description>
+                            <decodeType>DOWNSTREAM</decodeType>
+                            <isPreConfigured>0</isPreConfigured>
+                            <deviceType>
+<status>ACTIVE</status>
+<id>4</id>
+<name>Elitecore BSS</name>
+<description>Elitecore BSS</description>
+                            </deviceType>
+                            <vendorType>
+<status>ACTIVE</status>
+<id>3</id>
+<name>Elitecore</name>
+<description>Elitecore</description>
+                            </vendorType>
+                        </device>
+                        <id>5</id>
+                        <mappingType>1</mappingType>
+                        <name>ASCII_Composer</name>
+                        <fieldSeparator>,</fieldSeparator>
+                        <fileFooterEnable>false</fileFooterEnable>
+                        <fileFooterSummaryEnable>false</fileFooterSummaryEnable>
+                        <fileHeaderContainsFields>true</fileHeaderContainsFields>
+                        <fileHeaderEnable>true</fileHeaderEnable>
+                        <fileHeaderParser>STANDARD</fileHeaderParser>
+                        <fileHeaderSummaryEnable>false</fileHeaderSummaryEnable>
+                    </composerMapping>
+                </composerWrappers>
+                <dateFormat>yyyyMMddHHmm</dateFormat>
+                <dbReadFileNameExtraSuffix xsi:nil="true"/>
+                <endIndex>-1</endIndex>
+                <fileGrepDateEnabled>false</fileGrepDateEnabled>
+                <maxFilesCountAlert>1000</maxFilesCountAlert>
+                <parentDevice>
+                    <status>ACTIVE</status>
+                    <id>17</id>
+                    <name>SGW</name>
+                    <description>SGW</description>
+                    <decodeType>UPSTREAM</decodeType>
+                    <isPreConfigured>1</isPreConfigured>
+                    <deviceType>
+                        <status>ACTIVE</status>
+                        <id>13</id>
+                        <name>NOKIA_SGW_IMPORT_1570096674893</name>
+                        <description>NOKIA_SGW</description>
+                    </deviceType>
+                    <vendorType>
+                        <status>ACTIVE</status>
+                        <id>8</id>
+                        <name>NOKIA_SGW_IMPORT_1570096674931</name>
+                        <description>NOKIA_SGW</description>
+                    </vendorType>
+                </parentDevice>
+                <position>left</position>
+                <startIndex>-1</startIndex>
+            </driverPathList>
+            <noFileAlert>60</noFileAlert>
+            <driverControlFileParams>
+                <controlFileEnabled>false</controlFileEnabled>
+                <attributes>FILE_CREATION_DATETIME,DISTRIBUTED_FILE_NAME,TOTAL_SUCCESS_RECORDS</attributes>
+                <attributeSeparator>,</attributeSeparator>
+                <fileRollingDuration>14400</fileRollingDuration>
+                <controlFileName>CF{yyyyMMddHHmmss}.txt</controlFileName>
+                <fileSeqEnable>false</fileSeqEnable>
+            </driverControlFileParams>
+            <controlFileSeq>
+                <status>ACTIVE</status>
+                <id>3</id>
+                <startRange>0</startRange>
+                <endRange>0</endRange>
+                <nextValue>0</nextValue>
+                <resetFrequency>default</resetFrequency>
+                <paddingEnable>true</paddingEnable>
+            </controlFileSeq>
+        </myDrivers>
+        <fileGroupingParameter>
+            <status>DELETED</status>
+            <id>19</id>
+            <fileGroupEnable>false</fileGroupEnable>
+            <groupingType>DAY</groupingType>
+            <enableForDuplicate>false</enableForDuplicate>
+            <sourcewiseArchive>false</sourcewiseArchive>
+            <groupingDateType>PROCESSDATE</groupingDateType>
+            <enableForArchive>false</enableForArchive>
+        </fileGroupingParameter>
+        <fileMergeEnabled>false</fileMergeEnabled>
+        <processRecordLimit>3000</processRecordLimit>
+        <remainingFileMergeEnabled>false</remainingFileMergeEnabled>
+        <serviceSchedulingParams>
+            <status>DELETED</status>
+            <id>7</id>
+            <schedulingEnabled>false</schedulingEnabled>
+            <schType>daily</schType>
+            <date>1</date>
+            <day>2</day>
+            <time>23:55:00</time>
+        </serviceSchedulingParams>
+        <thirdPartyTransferEnabled>false</thirdPartyTransferEnabled>
+        <writeRecordLimit>-1</writeRecordLimit>
+    </services>
+    <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="aggregationService">
+        <status>ACTIVE</status>
+        <id>115</id>
+        <servInstanceId>000</servInstanceId>
+        <name>aggregation</name>
+        <description xsi:nil="true"/>
+        <syncStatus>false</syncStatus>
+        <enableFileStats>false</enableFileStats>
+        <enableDBStats>false</enableDBStats>
+        <fileCDRSummaryFlag>true</fileCDRSummaryFlag>
+        <svctype>
+            <status>ACTIVE</status>
+            <id>9</id>
+            <alias>AGGREGATION_SERVICE</alias>
+            <description>Aggregation Service</description>
+            <type>Aggregation Service</type>
+            <serviceFullClassName>com.elitecore.sm.services.model.AggregationService</serviceFullClassName>
+            <typeOfService>ADDITIONAL</typeOfService>
+            <serviceCategory>OFFLINE</serviceCategory>
+        </svctype>
+        <svcExecParams>
+            <executeOnStartup>true</executeOnStartup>
+            <executionInterval>10</executionInterval>
+            <fileBatchSize>2</fileBatchSize>
+            <maxThread>10</maxThread>
+            <minThread>1</minThread>
+            <queueSize>10000</queueSize>
+            <sortingCriteria>LAST_MODIFIED_DATE</sortingCriteria>
+            <sortingType>ASCENDING</sortingType>
+            <startupMode>Automatic</startupMode>
+        </svcExecParams>
+        <svcPathList xsi:type="aggregationServicePathList">
+            <status>ACTIVE</status>
+            <id>20</id>
+            <pathId>000</pathId>
+            <name>aa</name>
+            <readFilePath>/opt/crestelsetup/Services/anupa/aggregation/input</readFilePath>
+            <compressInFileEnabled>false</compressInFileEnabled>
+            <compressOutFileEnabled>false</compressOutFileEnabled>
+            <readFilenamePrefix xsi:nil="true"/>
+            <readFilenameSuffix>.csv</readFilenameSuffix>
+            <readFilenameContains xsi:nil="true"/>
+            <readFilenameExcludeTypes xsi:nil="true"/>
+            <writeFilePath>/opt/crestelsetup/Services/anupa/aggregation/agg</writeFilePath>
+            <writeFilenamePrefix xsi:nil="true"/>
+            <fileNamePattern xsi:nil="true"/>
+            <maxFilesCountAlert>-1</maxFilesCountAlert>
+            <fileGrepDateEnabled>false</fileGrepDateEnabled>
+            <dateFormat>yyyyMMddHHmm</dateFormat>
+            <startIndex>1</startIndex>
+            <endIndex>12</endIndex>
+            <position>left</position>
+            <wPathNonAggregate>/opt/crestelsetup/Services/anupa/aggregation/nonagg</wPathNonAggregate>
+            <wPathAggregateError>/opt/crestelsetup/Services/anupa/aggregation/error</wPathAggregateError>
+            <oFilePathName>Agg{yyyyMMddHHmmssSSS}</oFilePathName>
+            <oFileMinRange>1</oFileMinRange>
+            <oFileMaxRange>100</oFileMaxRange>
+            <oFileSeqEnables>false</oFileSeqEnables>
+            <oFilePathNameForNonAgg>Non_Agg{yyyyMMddHHmmssSSS}</oFilePathNameForNonAgg>
+            <oFileMinRangeForNonAgg>1</oFileMinRangeForNonAgg>
+            <oFileMaxRangeForNonAgg>100</oFileMaxRangeForNonAgg>
+            <oFileSeqEnablesForNonAgg>false</oFileSeqEnablesForNonAgg>
+            <oFilePathNameForError>Agg_error{yyyyMMddHHmmssSSS}</oFilePathNameForError>
+            <oFileMinRangeForError>1</oFileMinRangeForError>
+            <oFileMaxRangeForError>100</oFileMaxRangeForError>
+            <oFileSeqEnablesForError>false</oFileSeqEnablesForError>
+            <parentDevice>
+                <status>ACTIVE</status>
+                <id>13</id>
+                <name>CISCO ASR-SGW 2</name>
+                <description>CISCO ASR-SGW 2</description>
+                <decodeType>UPSTREAM</decodeType>
+                <isPreConfigured>0</isPreConfigured>
+                <deviceType>
+                    <status>ACTIVE</status>
+                    <id>8</id>
+                    <name>SGW</name>
+                    <description>SGW</description>
+                </deviceType>
+                <vendorType>
+                    <status>ACTIVE</status>
+                    <id>1</id>
+                    <name>Cisco</name>
+                    <description>Cisco</description>
+                </vendorType>
+            </parentDevice>
+        </svcPathList>
+        <minFileRange>1</minFileRange>
+        <maxFileRange>100</maxFileRange>
+        <noFileAlert>10</noFileAlert>
+        <delimiter>|</delimiter>
+        <fileGroupingParameter>
+            <status>DELETED</status>
+            <id>20</id>
+            <fileGroupEnable>false</fileGroupEnable>
+            <groupingType>DAY</groupingType>
+            <enableForDuplicate>false</enableForDuplicate>
+            <sourcewiseArchive>false</sourcewiseArchive>
+            <groupingDateType>PROCESSDATE</groupingDateType>
+        </fileGroupingParameter>
+        <serviceSchedulingParams>
+            <status>DELETED</status>
+            <id>8</id>
+            <schedulingEnabled>false</schedulingEnabled>
+            <schType>daily</schType>
+            <date>1</date>
+            <day>2</day>
+            <time>23:55:00</time>
+        </serviceSchedulingParams>
+        <aggregationDefinition>
+            <status>ACTIVE</status>
+            <id>3</id>
+            <aggDefName>GDF_IMPORT_1598435762603</aggDefName>
+            <noOfPartition>2</noOfPartition>
+            <partCDRField>EventTy</partCDRField>
+            <fLegVal>F</fLegVal>
+            <lLegVal>L</lLegVal>
+            <unifiedDateFiled>StartDt</unifiedDateFiled>
+            <aggInterval>1</aggInterval>
+            <outputFileField>0</outputFileField>
+            <aggConditionList>
+                <status>ACTIVE</status>
+                <id>5</id>
+                <condExpression>7</condExpression>
+                <condAction>Aggregate on timeout</condAction>
+            </aggConditionList>
+            <aggConditionList>
+                <status>ACTIVE</status>
+                <id>6</id>
+                <condExpression>1</condExpression>
+                <condAction>Aggregate</condAction>
+            </aggConditionList>
+            <aggKeyAttrList>
+                <status>ACTIVE</status>
+                <id>5</id>
+                <fieldName>g3</fieldName>
+            </aggKeyAttrList>
+            <aggKeyAttrList>
+                <status>ACTIVE</status>
+                <id>6</id>
+                <fieldName>g4</fieldName>
+            </aggKeyAttrList>
+            <aggAttrList>
+                <status>ACTIVE</status>
+                <id>7</id>
+                <outputFieldName>g11</outputFieldName>
+                <outputExpression>7</outputExpression>
+                <outputDataType>String</outputDataType>
+            </aggAttrList>
+            <aggAttrList>
+                <status>ACTIVE</status>
+                <id>8</id>
+                <outputFieldName>g7</outputFieldName>
+                <outputExpression>1</outputExpression>
+                <outputDataType>Double</outputDataType>
+            </aggAttrList>
+            <aggAttrList>
+                <status>ACTIVE</status>
+                <id>9</id>
+                <outputFieldName>g8</outputFieldName>
+                <outputExpression>5</outputExpression>
+                <outputDataType>String</outputDataType>
+            </aggAttrList>
+        </aggregationDefinition>
+    </services>
+    <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="dataConsolidationService">
+        <status>ACTIVE</status>
+        <id>116</id>
+        <servInstanceId>000</servInstanceId>
+        <name>consolidation</name>
+        <description xsi:nil="true"/>
+        <syncStatus>false</syncStatus>
+        <enableFileStats>false</enableFileStats>
+        <enableDBStats>false</enableDBStats>
+        <fileCDRSummaryFlag>true</fileCDRSummaryFlag>
+        <svctype>
+            <status>ACTIVE</status>
+            <id>7</id>
+            <alias>DATA_CONSOLIDATION_SERVICE</alias>
+            <description>Data Consolidation Service</description>
+            <type>Data Consolidation Service</type>
+            <serviceFullClassName>com.elitecore.sm.services.model.DataConsolidationService</serviceFullClassName>
+            <typeOfService>ADDITIONAL</typeOfService>
+            <serviceCategory>OFFLINE</serviceCategory>
+        </svctype>
+        <svcExecParams>
+            <executeOnStartup>true</executeOnStartup>
+            <executionInterval>10</executionInterval>
+            <fileBatchSize>10</fileBatchSize>
+            <maxThread>15</maxThread>
+            <minThread>10</minThread>
+            <queueSize>15000</queueSize>
+            <sortingCriteria>LAST_MODIFIED_DATE</sortingCriteria>
+            <sortingType>NA</sortingType>
+            <startupMode>Automatic</startupMode>
+        </svcExecParams>
+        <svcPathList xsi:type="dataConsolidationPathList">
+            <status>ACTIVE</status>
+            <id>21</id>
+            <pathId>000</pathId>
+            <name>NDRPGW</name>
+            <readFilePath>/home/sterlite/Downloads/conso/ip</readFilePath>
+            <compressInFileEnabled>true</compressInFileEnabled>
+            <compressOutFileEnabled>false</compressOutFileEnabled>
+            <readFilenamePrefix xsi:nil="true"/>
+            <readFilenameSuffix>.gz</readFilenameSuffix>
+            <readFilenameContains xsi:nil="true"/>
+            <readFilenameExcludeTypes xsi:nil="true"/>
+            <writeFilenamePrefix xsi:nil="true"/>
+            <fileNamePattern xsi:nil="true"/>
+            <conMappingList>
+                <status>ACTIVE</status>
+                <compressedOutput>true</compressedOutput>
+                <destPath>/home/sterlite/Downloads/conso/op</destPath>
+                <fieldNameForCount>General50</fieldNameForCount>
+                <fileName>data_cons{yyyyMMddHHmmssSSS}.gz</fileName>
+                <fileSequence>false</fileSequence>
+                <id>3</id>
+                <logicalOperator>and</logicalOperator>
+                <mappingName>DATA_CONSOLIDATE</mappingName>
+                <maxSeqRange>100</maxSeqRange>
+                <minSeqRange>1</minSeqRange>
+                <processRecordLimit>-1</processRecordLimit>
+                <recordSortingField>APartyLocationCode</recordSortingField>
+                <recordSortingFieldType>String</recordSortingFieldType>
+                <recordSortingType>NA</recordSortingType>
+                <writeOnlyConfiguredAttribute>false</writeOnlyConfiguredAttribute>
+            </conMappingList>
+            <maxCounterLimit>-1</maxCounterLimit>
+            <parentDevice>
+                <status>ACTIVE</status>
+                <id>6</id>
+                <name>DEFAULT</name>
+                <description>DEFAULT</description>
+                <decodeType>UPSTREAM</decodeType>
+                <isPreConfigured>0</isPreConfigured>
+                <deviceType>
+                    <status>ACTIVE</status>
+                    <id>5</id>
+                    <name>DEFAULT_DEVICE</name>
+                    <description>DEFAULT DEVICE</description>
+                </deviceType>
+                <vendorType>
+                    <status>ACTIVE</status>
+                    <id>4</id>
+                    <name>DEFAULT_VENDOR</name>
+                    <description>DEFAULT VENDOR</description>
+                </vendorType>
+            </parentDevice>
+        </svcPathList>
+        <acrossFileMaxBatchSize>15</acrossFileMaxBatchSize>
+        <acrossFileMinBatchSize>5</acrossFileMinBatchSize>
+        <acrossFilePartition>100</acrossFilePartition>
+        <acrossFileProcessingType>SINGLE</acrossFileProcessingType>
+        <consolidation>
+            <status>ACTIVE</status>
+            <acrossFilePartition>-1</acrossFilePartition>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>datavolumeFBCUplink</description>
+                <fieldName>General38</fieldName>
+                <id>43</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>datavolumeFBCDownlink</description>
+                <fieldName>General39</fieldName>
+                <id>44</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>timeOfReport</description>
+                <fieldName>General40</fieldName>
+                <id>45</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>FailureHandlingContinue</description>
+                <fieldName>General41</fieldName>
+                <id>46</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>serviceIdentifier</description>
+                <fieldName>General42</fieldName>
+                <id>47</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>timeUsage</description>
+                <fieldName>General32</fieldName>
+                <id>48</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>serviceConditionChange</description>
+                <fieldName>General33</fieldName>
+                <id>49</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>qCI</description>
+                <fieldName>General75</fieldName>
+                <id>50</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>maxRequestedBandwithDL</description>
+                <fieldName>General77</fieldName>
+                <id>51</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>csServingNodeAddress</description>
+                <fieldName>General37</fieldName>
+                <id>52</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>Rating Group</description>
+                <fieldName>General26</fieldName>
+                <id>53</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>resultCode</description>
+                <fieldName>General28</fieldName>
+                <id>54</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>cslocalSequenceNumber</description>
+                <fieldName>General29</fieldName>
+                <id>55</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>timeOfFirstUsage</description>
+                <fieldName>General30</fieldName>
+                <id>56</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>maxRequestedBandwithUL</description>
+                <fieldName>General76</fieldName>
+                <id>57</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>csuserLocationInformation</description>
+                <fieldName>CPartyLocationCode</fieldName>
+                <id>58</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>chargingRuleBaseName</description>
+                <fieldName>General27</fieldName>
+                <id>59</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>timeOfLastUsage</description>
+                <fieldName>General31</fieldName>
+                <id>60</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>guaranteedBitrateUL</description>
+                <fieldName>General78</fieldName>
+                <id>61</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>guaranteedBitrateDL</description>
+                <fieldName>General79</fieldName>
+                <id>62</id>
+                <operation>5</operation>
+            </consAttList>
+            <consAttList>
+                <status>ACTIVE</status>
+                <dataType>String</dataType>
+                <description>aRP</description>
+                <fieldName>General80</fieldName>
+                <id>63</id>
+                <operation>5</operation>
+            </consAttList>
+            <consGrpAttList>
+                <status>ACTIVE</status>
+                <destinationField>NA</destinationField>
+                <groupingField>General15</groupingField>
+                <id>9</id>
+                <lookUpEnable>false</lookUpEnable>
+                <regExEnable>false</regExEnable>
+            </consGrpAttList>
+            <consGrpAttList>
+                <status>ACTIVE</status>
+                <destinationField>NA</destinationField>
+                <groupingField>CPartyMIN</groupingField>
+                <id>10</id>
+                <lookUpEnable>false</lookUpEnable>
+                <regExEnable>false</regExEnable>
+            </consGrpAttList>
+            <consGrpAttList>
+                <status>ACTIVE</status>
+                <destinationField>NA</destinationField>
+                <groupingField>General19</groupingField>
+                <id>11</id>
+                <lookUpEnable>false</lookUpEnable>
+                <regExEnable>false</regExEnable>
+            </consGrpAttList>
+            <consGrpAttList>
+                <status>ACTIVE</status>
+                <destinationField>NA</destinationField>
+                <groupingField>General4</groupingField>
+                <id>12</id>
+                <lookUpEnable>false</lookUpEnable>
+                <regExEnable>false</regExEnable>
+            </consGrpAttList>
+            <consName>DATA_CONSOLIDATE</consName>
+            <id>3</id>
+            <segregationType>DAY</segregationType>
+        </consolidation>
+        <consolidationType>IN_FILE</consolidationType>
+        <fileGroupParam>
+            <status>DELETED</status>
+            <id>21</id>
+            <fileGroupEnable>true</fileGroupEnable>
+            <groupingType>NA</groupingType>
+            <enableForDuplicate>false</enableForDuplicate>
+            <sourcewiseArchive>false</sourcewiseArchive>
+            <groupingDateType>PROCESSDATE</groupingDateType>
+            <enableForArchive>true</enableForArchive>
+        </fileGroupParam>
+        <maxFileBatchSize>0</maxFileBatchSize>
+        <maxFileRange>100</maxFileRange>
+        <mergeDelimiter>#</mergeDelimiter>
+        <minFileBatchSize>0</minFileBatchSize>
+        <minFileRange>1</minFileRange>
+        <noFileAlertInterval>10</noFileAlertInterval>
+        <processingType>FILE-BASED</processingType>
+    </services>
+    <services xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="collectionService">
+        <status>ACTIVE</status>
+        <id>117</id>
+        <servInstanceId>000</servInstanceId>
+        <name>colllection</name>
+        <description></description>
+        <syncStatus>false</syncStatus>
+        <enableFileStats>false</enableFileStats>
+        <enableDBStats>false</enableDBStats>
+        <fileCDRSummaryFlag>true</fileCDRSummaryFlag>
+        <svctype>
+            <status>ACTIVE</status>
+            <id>1</id>
+            <alias>COLLECTION_SERVICE</alias>
+            <description>Description : Collection Service collects data from network elements</description>
+            <type>Collection Service</type>
+            <serviceFullClassName>com.elitecore.sm.services.model.CollectionService</serviceFullClassName>
+            <typeOfService>MAIN</typeOfService>
+            <serviceCategory>OFFLINE</serviceCategory>
+        </svctype>
+        <svcExecParams>
+            <executeOnStartup>true</executeOnStartup>
+            <executionInterval>1</executionInterval>
+            <fileBatchSize>1</fileBatchSize>
+            <maxThread>8</maxThread>
+            <minThread>5</minThread>
+            <queueSize>1000</queueSize>
+            <sortingCriteria>LAST_MODIFIED_DATE</sortingCriteria>
+            <sortingType>ASCENDING</sortingType>
+            <startupMode>Automatic</startupMode>
+        </svcExecParams>
+        <myDrivers xsi:type="localCollectionDriver">
+            <status>ACTIVE</status>
+            <id>13</id>
+            <name>local</name>
+            <timeout>0</timeout>
+            <applicationOrder>0</applicationOrder>
+            <maxRetrycount>10</maxRetrycount>
+            <fileSeqOrder>false</fileSeqOrder>
+            <minFileRange>1</minFileRange>
+            <maxFileRange>3</maxFileRange>
+            <driverType>
+                <status>ACTIVE</status>
+                <id>3</id>
+                <alias>LOCAL_COLLECTION_DRIVER</alias>
+                <description>Local Collection Driver</description>
+                <type>LOCAL COLLECTION DRIVER</type>
+                <driverFullClassName>com.elitecore.sm.drivers.model.collection.LocalCollectionDriver</driverFullClassName>
+                <category>COLLECTION</category>
+            </driverType>
+            <driverPathList xsi:type="collectionDriverPathList">
+                <status>ACTIVE</status>
+                <id>25</id>
+                <pathId>000</pathId>
+                <name>p1</name>
+                <readFilePath>/opt/crestelsetup/Services/anupa/collection/input</readFilePath>
+                <compressInFileEnabled>false</compressInFileEnabled>
+                <compressOutFileEnabled>false</compressOutFileEnabled>
+                <readFilenamePrefix xsi:nil="true"/>
+                <readFilenameSuffix xsi:nil="true"/>
+                <readFilenameContains xsi:nil="true"/>
+                <readFilenameExcludeTypes xsi:nil="true"/>
+                <writeFilePath>/opt/crestelsetup/Services/anupa/collection/output</writeFilePath>
+                <writeFilenamePrefix xsi:nil="true"/>
+                <fileNamePattern xsi:nil="true"/>
+                <maxFilesCountAlert>1000</maxFilesCountAlert>
+                <remoteFileAction>moveandrename</remoteFileAction>
+                <remoteFileActionParamName>destpath</remoteFileActionParamName>
+                <remoteFileActionValue>/opt/crestelsetup/Services/anupa/collection/colleccted</remoteFileActionValue>
+                <remoteFileActionParamNameTwo>ext</remoteFileActionParamNameTwo>
+                <remoteFileActionValueTwo>.collected</remoteFileActionValueTwo>
+                <fileGrepDateEnabled>false</fileGrepDateEnabled>
+                <dateFormat xsi:nil="true"/>
+                <position>left</position>
+                <startIndex>-1</startIndex>
+                <endIndex>-1</endIndex>
+                <fileSeqAlertEnabled>false</fileSeqAlertEnabled>
+                <seqStartIndex>0</seqStartIndex>
+                <seqEndIndex>0</seqEndIndex>
+                <referenceDevice>dsf</referenceDevice>
+                <parentDevice>
+                    <status>ACTIVE</status>
+                    <id>13</id>
+                    <name>CISCO ASR-SGW 2</name>
+                    <description>CISCO ASR-SGW 2</description>
+                    <decodeType>UPSTREAM</decodeType>
+                    <isPreConfigured>0</isPreConfigured>
+                    <deviceType>
+                        <status>ACTIVE</status>
+                        <id>8</id>
+                        <name>SGW</name>
+                        <description>SGW</description>
+                    </deviceType>
+                    <vendorType>
+                        <status>ACTIVE</status>
+                        <id>1</id>
+                        <name>Cisco</name>
+                        <description>Cisco</description>
+                    </vendorType>
+                </parentDevice>
+                <duplicateCheckParamName>name</duplicateCheckParamName>
+                <duplicateFileSuffix>false</duplicateFileSuffix>
+                <timeInterval>1</timeInterval>
+                <fileSizeCheckEnabled>false</fileSizeCheckEnabled>
+                <fileSizeCheckMinValue>-1</fileSizeCheckMinValue>
+                <fileSizeCheckMaxValue>-1</fileSizeCheckMaxValue>
+                <validFileTimeInterval>1</validFileTimeInterval>
+            </driverPathList>
+            <noFileAlert>60</noFileAlert>
+            <fileGroupingParameter>
+                <status>ACTIVE</status>
+                <id>25</id>
+                <fileGroupEnable>true</fileGroupEnable>
+                <groupingType>DAY</groupingType>
+                <enableForDuplicate>true</enableForDuplicate>
+                <sourcewiseArchive>false</sourcewiseArchive>
+                <groupingDateType>PROCESSDATE</groupingDateType>
+                <duplicateDirPath>/opt/crestelsetup/Services/anupa/collection/duplicate</duplicateDirPath>
+            </fileGroupingParameter>
+        </myDrivers>
+        <serviceSchedulingParams>
+            <status>DELETED</status>
+            <id>9</id>
+            <schedulingEnabled>false</schedulingEnabled>
+            <schType>daily</schType>
+            <date>1</date>
+            <day>2</day>
+            <time>23:55:00</time>
+        </serviceSchedulingParams>
+    </services>
+    <agentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="packetStatisticsAgent">
+        <status>ACTIVE</status>
+        <agentType>
+            <status>ACTIVE</status>
+            <id>1</id>
+            <type>Packet Statistics Agent</type>
+            <alias>PACKET_STATISTICS_AGENT</alias>
+            <description>Packet Statistics Agent</description>
+            <agentFullClassName>com.elitecore.sm.agent.model.PacketStatisticsAgent</agentFullClassName>
+        </agentType>
+        <executionInterval>60000</executionInterval>
+        <id>61</id>
+        <initialDelay>0</initialDelay>
+        <serviceList>
+            <status>ACTIVE</status>
+            <enable>false</enable>
+            <id>18</id>
+            <service xsi:type="collectionService">
+                <status>ACTIVE</status>
+                <id>117</id>
+                <servInstanceId>000</servInstanceId>
+                <name>colllection</name>
+                <description></description>
+                <syncStatus>false</syncStatus>
+                <enableFileStats>false</enableFileStats>
+                <enableDBStats>false</enableDBStats>
+                <fileCDRSummaryFlag>true</fileCDRSummaryFlag>
+                <svctype>
+                    <status>ACTIVE</status>
+                    <id>1</id>
+                    <alias>COLLECTION_SERVICE</alias>
+                    <description>Description : Collection Service collects data from network elements</description>
+                    <type>Collection Service</type>
+                    <serviceFullClassName>com.elitecore.sm.services.model.CollectionService</serviceFullClassName>
+                    <typeOfService>MAIN</typeOfService>
+                    <serviceCategory>OFFLINE</serviceCategory>
+                </svctype>
+                <svcExecParams>
+                    <executeOnStartup>true</executeOnStartup>
+                    <executionInterval>1</executionInterval>
+                    <fileBatchSize>1</fileBatchSize>
+                    <maxThread>8</maxThread>
+                    <minThread>5</minThread>
+                    <queueSize>1000</queueSize>
+                    <sortingCriteria>LAST_MODIFIED_DATE</sortingCriteria>
+                    <sortingType>ASCENDING</sortingType>
+                    <startupMode>Automatic</startupMode>
+                </svcExecParams>
+                <myDrivers xsi:type="localCollectionDriver">
+                    <status>ACTIVE</status>
+                    <id>13</id>
+                    <name>local</name>
+                    <timeout>0</timeout>
+                    <applicationOrder>0</applicationOrder>
+                    <maxRetrycount>10</maxRetrycount>
+                    <fileSeqOrder>false</fileSeqOrder>
+                    <minFileRange>1</minFileRange>
+                    <maxFileRange>3</maxFileRange>
+                    <driverType>
+                        <status>ACTIVE</status>
+                        <id>3</id>
+                        <alias>LOCAL_COLLECTION_DRIVER</alias>
+                        <description>Local Collection Driver</description>
+                        <type>LOCAL COLLECTION DRIVER</type>
+                        <driverFullClassName>com.elitecore.sm.drivers.model.collection.LocalCollectionDriver</driverFullClassName>
+                        <category>COLLECTION</category>
+                    </driverType>
+                    <driverPathList xsi:type="collectionDriverPathList">
+                        <status>ACTIVE</status>
+                        <id>25</id>
+                        <pathId>000</pathId>
+                        <name>p1</name>
+                        <readFilePath>/opt/crestelsetup/Services/anupa/collection/input</readFilePath>
+                        <compressInFileEnabled>false</compressInFileEnabled>
+                        <compressOutFileEnabled>false</compressOutFileEnabled>
+                        <readFilenamePrefix xsi:nil="true"/>
+                        <readFilenameSuffix xsi:nil="true"/>
+                        <readFilenameContains xsi:nil="true"/>
+                        <readFilenameExcludeTypes xsi:nil="true"/>
+                        <writeFilePath>/opt/crestelsetup/Services/anupa/collection/output</writeFilePath>
+                        <writeFilenamePrefix xsi:nil="true"/>
+                        <fileNamePattern xsi:nil="true"/>
+                        <maxFilesCountAlert>1000</maxFilesCountAlert>
+                        <remoteFileAction>moveandrename</remoteFileAction>
+                        <remoteFileActionParamName>destpath</remoteFileActionParamName>
+                        <remoteFileActionValue>/opt/crestelsetup/Services/anupa/collection/colleccted</remoteFileActionValue>
+                        <remoteFileActionParamNameTwo>ext</remoteFileActionParamNameTwo>
+                        <remoteFileActionValueTwo>.collected</remoteFileActionValueTwo>
+                        <fileGrepDateEnabled>false</fileGrepDateEnabled>
+                        <dateFormat xsi:nil="true"/>
+                        <position>left</position>
+                        <startIndex>-1</startIndex>
+                        <endIndex>-1</endIndex>
+                        <fileSeqAlertEnabled>false</fileSeqAlertEnabled>
+                        <seqStartIndex>0</seqStartIndex>
+                        <seqEndIndex>0</seqEndIndex>
+                        <referenceDevice>dsf</referenceDevice>
+                        <parentDevice>
+                            <status>ACTIVE</status>
+                            <id>13</id>
+                            <name>CISCO ASR-SGW 2</name>
+                            <description>CISCO ASR-SGW 2</description>
+                            <decodeType>UPSTREAM</decodeType>
+                            <isPreConfigured>0</isPreConfigured>
+                            <deviceType>
+<status>ACTIVE</status>
+<id>8</id>
+<name>SGW</name>
+<description>SGW</description>
+                            </deviceType>
+                            <vendorType>
+<status>ACTIVE</status>
+<id>1</id>
+<name>Cisco</name>
+<description>Cisco</description>
+                            </vendorType>
+                        </parentDevice>
+                        <duplicateCheckParamName>name</duplicateCheckParamName>
+                        <duplicateFileSuffix>false</duplicateFileSuffix>
+                        <timeInterval>1</timeInterval>
+                        <fileSizeCheckEnabled>false</fileSizeCheckEnabled>
+                        <fileSizeCheckMinValue>-1</fileSizeCheckMinValue>
+                        <fileSizeCheckMaxValue>-1</fileSizeCheckMaxValue>
+                        <validFileTimeInterval>1</validFileTimeInterval>
+                    </driverPathList>
+                    <noFileAlert>60</noFileAlert>
+                    <fileGroupingParameter>
+                        <status>ACTIVE</status>
+                        <id>25</id>
+                        <fileGroupEnable>true</fileGroupEnable>
+                        <groupingType>DAY</groupingType>
+                        <enableForDuplicate>true</enableForDuplicate>
+                        <sourcewiseArchive>false</sourcewiseArchive>
+                        <groupingDateType>PROCESSDATE</groupingDateType>
+                        <duplicateDirPath>/opt/crestelsetup/Services/anupa/collection/duplicate</duplicateDirPath>
+                    </fileGroupingParameter>
+                </myDrivers>
+                <serviceSchedulingParams>
+                    <status>DELETED</status>
+                    <id>9</id>
+                    <schedulingEnabled>false</schedulingEnabled>
+                    <schType>daily</schType>
+                    <date>1</date>
+                    <day>2</day>
+                    <time>23:55:00</time>
+                </serviceSchedulingParams>
+            </service>
+        </serviceList>
+        <storageLocation>/home</storageLocation>
+    </agentList>
+    <agentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="packetStatisticsAgent">
+        <status>ACTIVE</status>
+        <agentType>
+            <status>ACTIVE</status>
+            <id>1</id>
+            <type>Packet Statistics Agent</type>
+            <alias>PACKET_STATISTICS_AGENT</alias>
+            <description>Packet Statistics Agent</description>
+            <agentFullClassName>com.elitecore.sm.agent.model.PacketStatisticsAgent</agentFullClassName>
+        </agentType>
+        <executionInterval>60000</executionInterval>
+        <id>62</id>
+        <initialDelay>0</initialDelay>
+        <serviceList>
+            <status>ACTIVE</status>
+            <enable>true</enable>
+            <id>16</id>
+            <service xsi:type="parsingService">
+                <status>ACTIVE</status>
+                <id>112</id>
+                <servInstanceId>000</servInstanceId>
+                <name>parsing</name>
+                <description xsi:nil="true"/>
+                <syncStatus>false</syncStatus>
+                <enableFileStats>false</enableFileStats>
+                <enableDBStats>false</enableDBStats>
+                <fileCDRSummaryFlag>true</fileCDRSummaryFlag>
+                <svctype>
+                    <status>ACTIVE</status>
+                    <id>2</id>
+                    <alias>PARSING_SERVICE</alias>
+                    <description>Description : Parsing Service maps raw format to generalized format.</description>
+                    <type>Parsing Service</type>
+                    <serviceFullClassName>com.elitecore.sm.services.model.ParsingService</serviceFullClassName>
+                    <typeOfService>MAIN</typeOfService>
+                    <serviceCategory>OFFLINE</serviceCategory>
+                </svctype>
+                <svcExecParams>
+                    <executeOnStartup>true</executeOnStartup>
+                    <executionInterval>10</executionInterval>
+                    <fileBatchSize>20</fileBatchSize>
+                    <maxThread>8</maxThread>
+                    <minThread>5</minThread>
+                    <queueSize>3000</queueSize>
+                    <sortingCriteria>LAST_MODIFIED_DATE</sortingCriteria>
+                    <sortingType>ASCENDING</sortingType>
+                    <startupMode>Automatic</startupMode>
+                </svcExecParams>
+                <svcPathList xsi:type="parsingPathList">
+                    <status>ACTIVE</status>
+                    <id>17</id>
+                    <pathId>002</pathId>
+                    <name>asciipath</name>
+                    <readFilePath>/opt/crestelsetup/Services/anupa/Parsing/asciiinput</readFilePath>
+                    <compressInFileEnabled>true</compressInFileEnabled>
+                    <compressOutFileEnabled>true</compressOutFileEnabled>
+                    <readFilenamePrefix>NBR_RAJKOT_edr_flow_format</readFilenamePrefix>
+                    <readFilenameSuffix>.gz</readFilenameSuffix>
+                    <readFilenameContains xsi:nil="true"/>
+                    <readFilenameExcludeTypes xsi:nil="true"/>
+                    <writeFilePath>/opt/crestelsetup/Services/anupa/Parsing/asciioutput</writeFilePath>
+                    <writeFilenamePrefix xsi:nil="true"/>
+                    <fileNamePattern xsi:nil="true"/>
+                    <parserWrappers>
+                        <status>ACTIVE</status>
+                        <id>3</id>
+                        <name>ASCII</name>
+                        <parserType>
+                            <status>ACTIVE</status>
+                            <alias>ASCII_PARSING_PLUGIN</alias>
+                            <category>Parser</category>
+                            <description>Description : caters to ASCII Format</description>
+                            <id>1</id>
+                            <pluginFullClassName>com.elitecore.sm.parser.model.AsciiParser</pluginFullClassName>
+                            <type>ASCII Parser</type>
+                        </parserType>
+                        <readFilenamePrefix>NBR_RAJKOT_edr_flow_format</readFilenamePrefix>
+                        <readFilenameSuffix>.gz</readFilenameSuffix>
+                        <writeFilePath>/opt/crestelsetup/Services/anupa/Parsing/asciioutput</writeFilePath>
+                        <compressInFileEnabled>true</compressInFileEnabled>
+                        <compressOutFileEnabled>true</compressOutFileEnabled>
+                        <maxFileCountAlert>-1</maxFileCountAlert>
+                        <writeFileSplit>false</writeFileSplit>
+                        <parserMapping xsi:type="asciiParserMapping">
+                            <status>ACTIVE</status>
+                            <id>14</id>
+                            <name>ASCII_Mapping</name>
+                            <parserType>
+<status>ACTIVE</status>
+<alias>ASCII_PARSING_PLUGIN</alias>
+<category>Parser</category>
+<description>Description : caters to ASCII Format</description>
+<id>1</id>
+<pluginFullClassName>com.elitecore.sm.parser.model.AsciiParser</pluginFullClassName>
+<type>ASCII Parser</type>
+                            </parserType>
+                            <device>
+<status>ACTIVE</status>
+<id>9</id>
+<name>CISCO ASR-SGW 1</name>
+<description>CISCO ASR-SGW 1</description>
+<decodeType>UPSTREAM</decodeType>
+<isPreConfigured>0</isPreConfigured>
+<deviceType>
+    <status>ACTIVE</status>
+    <id>8</id>
+    <name>SGW</name>
+    <description>SGW</description>
+</deviceType>
+<vendorType>
+    <status>ACTIVE</status>
+    <id>1</id>
+    <name>Cisco</name>
+    <description>Cisco</description>
+</vendorType>
+                            </device>
+                            <dateFormat>MM/dd/yyyy HH:mm:ss</dateFormat>
+                            <srcDateFormat>MM/dd/yyyy HH:mm:ss</srcDateFormat>
+                            <srcCharSetName>UTF8</srcCharSetName>
+                            <mappingType>1</mappingType>
+                            <parserAttributes xsi:type="asciiParserAttribute">
+<status>ACTIVE</status>
+<associatedByGroup>false</associatedByGroup>
+<attributeOrder>1</attributeOrder>
+<id>764</id>
+<sourceField>3</sourceField>
+<trimPosition>Both</trimPosition>
+<unifiedField>General1</unifiedField>
+                            </parserAttributes>
+                            <parserAttributes xsi:type="asciiParserAttribute">
+<status>ACTIVE</status>
+<associatedByGroup>false</associatedByGroup>
+<attributeOrder>2</attributeOrder>
+<id>765</id>
+<sourceField>4</sourceField>
+<trimPosition>Both</trimPosition>
+<unifiedField>General2</unifiedField>
+                            </parserAttributes>
+                            <parserAttributes xsi:type="asciiParserAttribute">
+<status>ACTIVE</status>
+<associatedByGroup>false</associatedByGroup>
+<attributeOrder>3</attributeOrder>
+<id>766</id>
+<sourceField>5</sourceField>
+<trimPosition>Both</trimPosition>
+<unifiedField>General3</unifiedField>
+                            </parserAttributes>
+                            <parserAttributes xsi:type="asciiParserAttribute">
+<status>ACTIVE</status>
+<associatedByGroup>false</associatedByGroup>
+<attributeOrder>4</attributeOrder>
+<id>767</id>
+<sourceField>6</sourceField>
+<trimPosition>Both</trimPosition>
+<unifiedField>General4</unifiedField>
+                            </parserAttributes>
+                            <parserAttributes xsi:type="asciiParserAttribute">
+<status>ACTIVE</status>
+<associatedByGroup>false</associatedByGroup>
+<attributeOrder>5</attributeOrder>
+<id>768</id>
+<sourceField>7</sourceField>
+<trimPosition>Both</trimPosition>
+<unifiedField>General5</unifiedField>
+                            </parserAttributes>
+                            <parserAttributes xsi:type="asciiParserAttribute">
+<status>ACTIVE</status>
+<associatedByGroup>false</associatedByGroup>
+<attributeOrder>6</attributeOrder>
+<id>769</id>
+<sourceField>8</sourceField>
+<trimPosition>Both</trimPosition>
+<unifiedField>General6</unifiedField>
+                            </parserAttributes>
+                            <parserAttributes xsi:type="asciiParserAttribute">
+<status>ACTIVE</status>
+<associatedByGroup>false</associatedByGroup>
+<attributeOrder>7</attributeOrder>
+<id>770</id>
+<sourceField>1</sourceField>
+<unifiedField>StartDate</unifiedField>
+                            </parserAttributes>
+                            <parserAttributes xsi:type="asciiParserAttribute">
+<status>ACTIVE</status>
+<associatedByGroup>false</associatedByGroup>
+<attributeOrder>8</attributeOrder>
+<id>771</id>
+<sourceField>2</sourceField>
+<unifiedField>EndDate</unifiedField>
+                            </parserAttributes>
+                            <excludeCharactersMax>0</excludeCharactersMax>
+                            <excludeCharactersMin>0</excludeCharactersMin>
+                            <fieldSeparator>,</fieldSeparator>
+                            <fileFooterEnable>true</fileFooterEnable>
+                            <fileFooterParser>STANDARD</fileFooterParser>
+                            <fileFooterRows>0</fileFooterRows>
+                            <fileHeaderContainsFields>true</fileHeaderContainsFields>
+                            <fileHeaderEnable>false</fileHeaderEnable>
+                            <fileHeaderParser>STANDARD</fileHeaderParser>
+                            <fileHeaderRow>0</fileHeaderRow>
+                            <fileHeaderStartIndex>0</fileHeaderStartIndex>
+                            <fileTypeEnum>FILE_HEADER_FOOTER</fileTypeEnum>
+                            <keyValueRecordEnable>false</keyValueRecordEnable>
+                            <linearKeyValueRecordEnable>false</linearKeyValueRecordEnable>
+                            <recordHeaderEnable>false</recordHeaderEnable>
+                            <recordHeaderSeparator xsi:nil="true"/>
+                        </parserMapping>
+                        <fileNamePattern xsi:nil="true"/>
+                    </parserWrappers>
+                    <fileGrepDateEnabled>false</fileGrepDateEnabled>
+                    <dateFormat>yyyyMMddHHmm</dateFormat>
+                    <position>left</position>
+                    <startIndex>-1</startIndex>
+                    <endIndex>-1</endIndex>
+                    <parentDevice>
+                        <status>ACTIVE</status>
+                        <id>15</id>
+                        <name>VODAFONE_ASN1_New_Auto_z_IMPORT_1570167118267</name>
+                        <description>VODAFONE_ASN1_New_Auto_z_IMPORT_1570167118267</description>
+                        <decodeType>UPSTREAM</decodeType>
+                        <isPreConfigured>1</isPreConfigured>
+                        <deviceType>
+                            <status>ACTIVE</status>
+                            <id>11</id>
+                            <name>VODAFONE_ASN1_New_Auto_z_IMPORT_1570167117883</name>
+                            <description>VODAFONE_ASN1_New_Auto_z</description>
+                        </deviceType>
+                        <vendorType>
+                            <status>ACTIVE</status>
+                            <id>6</id>
+                            <name>VODAFONE_ASN1_New_Auto_z_IMPORT_1570167118095</name>
+                            <description>VODAFONE_ASN1_New_Auto_z</description>
+                        </vendorType>
+                    </parentDevice>
+					<circle>
+						<status>ACTIVE</status>
+						<id>1</id>
+						<name>DEFAULT</name>
+						<description>default circle</description>
+					</circle>
+                </svcPathList>
+                <fileGroupingParameter>
+                    <status>ACTIVE</status>
+                    <id>17</id>
+                    <fileGroupEnable>false</fileGroupEnable>
+                    <groupingType>DAY</groupingType>
+                    <enableForDuplicate>false</enableForDuplicate>
+                    <sourcewiseArchive>false</sourcewiseArchive>
+                    <groupingDateType>PROCESSDATE</groupingDateType>
+                    <enableForArchive>false</enableForArchive>
+                </fileGroupingParameter>
+                <fileSeqOrderEnable>false</fileSeqOrderEnable>
+                <maxFileRange>300</maxFileRange>
+                <minFileRange>1</minFileRange>
+                <noFileAlert>10</noFileAlert>
+                <overrideFileDateEnabled>false</overrideFileDateEnabled>
+                <overrideFileDateType>MAXIMUM</overrideFileDateType>
+                <recordBatchSize>5000</recordBatchSize>
+                <storeCDRFileSummaryDB>false</storeCDRFileSummaryDB>
+            </service>
+        </serviceList>
+        <serviceList>
+            <status>ACTIVE</status>
+            <enable>false</enable>
+            <id>13</id>
+            <service xsi:type="processingService">
+                <status>ACTIVE</status>
+                <id>113</id>
+                <servInstanceId>000</servInstanceId>
+                <name>processing</name>
+                <description xsi:nil="true"/>
+                <syncStatus>false</syncStatus>
+                <enableFileStats>false</enableFileStats>
+                <enableDBStats>false</enableDBStats>
+                <fileCDRSummaryFlag>true</fileCDRSummaryFlag>
+                <svctype>
+                    <status>ACTIVE</status>
+                    <id>3</id>
+                    <alias>PROCESSING_SERVICE</alias>
+                    <description>Description : Processing Service manipulates data as per rules configured.</description>
+                    <type>Processing Service</type>
+                    <serviceFullClassName>com.elitecore.sm.services.model.ProcessingService</serviceFullClassName>
+                    <typeOfService>MAIN</typeOfService>
+                    <serviceCategory>OFFLINE</serviceCategory>
+                </svctype>
+                <svcExecParams>
+                    <executeOnStartup>true</executeOnStartup>
+                    <executionInterval>30</executionInterval>
+                    <fileBatchSize>10</fileBatchSize>
+                    <maxThread>10</maxThread>
+                    <minThread>5</minThread>
+                    <queueSize>15000</queueSize>
+                    <sortingCriteria>LAST_MODIFIED_DATE</sortingCriteria>
+                    <sortingType>ASCENDING</sortingType>
+                    <startupMode>Automatic</startupMode>
+                </svcExecParams>
+                <svcPathList xsi:type="processingPathList">
+                    <status>ACTIVE</status>
+                    <id>18</id>
+                    <pathId>000</pathId>
+                    <name>PGW</name>
+                    <readFilePath>/opt/crestelsetup/Services/anupa/processing/asainput</readFilePath>
+                    <compressInFileEnabled>false</compressInFileEnabled>
+                    <compressOutFileEnabled>true</compressOutFileEnabled>
+                    <readFilenamePrefix xsi:nil="true"/>
+                    <readFilenameSuffix>.csv</readFilenameSuffix>
+                    <readFilenameContains xsi:nil="true"/>
+                    <readFilenameExcludeTypes xsi:nil="true"/>
+                    <writeFilePath>/opt/crestelsetup/Services/anupa/processing/asaoutput</writeFilePath>
+                    <writeFilenamePrefix xsi:nil="true"/>
+                    <fileNamePattern xsi:nil="true"/>
+                    <maxFilesCountAlert>-1</maxFilesCountAlert>
+                    <policyAlias>p1</policyAlias>
+                    <fileGrepDateEnabled>false</fileGrepDateEnabled>
+                    <dateFormat>yyyyMMddHHmm</dateFormat>
+                    <position>left</position>
+                    <startIndex>-1</startIndex>
+                    <endIndex>-1</endIndex>
+                    <parentDevice>
+                        <status>ACTIVE</status>
+                        <id>16</id>
+                        <name>VFLTEPGW</name>
+                        <description>VFLTEPGW</description>
+                        <decodeType>UPSTREAM</decodeType>
+                        <isPreConfigured>1</isPreConfigured>
+                        <deviceType>
+                            <status>ACTIVE</status>
+                            <id>12</id>
+                            <name>VFLTEPGW_IMPORT_1571032510717</name>
+                            <description>VFLTEPGW</description>
+                        </deviceType>
+                        <vendorType>
+                            <status>ACTIVE</status>
+                            <id>7</id>
+                            <name>VFLTEPGW_IMPORT_1571032510771</name>
+                            <description>VFLTEPGW</description>
+                        </vendorType>
+                    </parentDevice>
+                    <acrossFileDuplicateCDRCacheLimit>5000</acrossFileDuplicateCDRCacheLimit>
+                    <writeCdrHeaderFooterEnabled>true</writeCdrHeaderFooterEnabled>
+                    <acrossFileDuplicateDateField>StartDt</acrossFileDuplicateDateField>
+                    <acrossFileDuplicateDateInterval>59</acrossFileDuplicateDateInterval>
+                    <acrossFileDuplicateDateIntervalType>MINUTE</acrossFileDuplicateDateIntervalType>
+                    <duplicateRecordPolicyEnabled>true</duplicateRecordPolicyEnabled>
+                    <duplicateRecordPolicyType>IN_FILE</duplicateRecordPolicyType>
+                    <unifiedFields>G22</unifiedFields>
+                </svcPathList>
+                <acrossFileDuplicatePurgeCacheInterval>5</acrossFileDuplicatePurgeCacheInterval>
+                <dateFieldForSummary>StartDate</dateFieldForSummary>
+                <fileGroupingParameter>
+                    <status>DELETED</status>
+                    <id>18</id>
+                    <fileGroupEnable>true</fileGroupEnable>
+                    <groupingType>NA</groupingType>
+                    <enableForDuplicate>true</enableForDuplicate>
+                    <sourcewiseArchive>false</sourcewiseArchive>
+                    <groupingDateType>PROCESSDATE</groupingDateType>
+                    <enableForArchive>true</enableForArchive>
+                    <enableForFilter>true</enableForFilter>
+                    <enableForInvalid>true</enableForInvalid>
+                    <filterGroupType>Rulewise</filterGroupType>
+                </fileGroupingParameter>
+                <fileSeqOrderEnable>false</fileSeqOrderEnable>
+                <globalSeqEnabled>false</globalSeqEnabled>
+                <globalSeqMaxLimit>-1</globalSeqMaxLimit>
+                <maxFileRange>300</maxFileRange>
+                <minFileRange>1</minFileRange>
+                <noFileAlert>-1</noFileAlert>
+                <overrideFileDateEnabled>false</overrideFileDateEnabled>
+        		<overrideFileDateType>MAXIMUM</overrideFileDateType>
+        		<recordBatchSize>50000</recordBatchSize>
+				<storeCDRFileSummaryDB>false</storeCDRFileSummaryDB>
+              </service>
+        </serviceList>
+        <serviceList>
+            <status>ACTIVE</status>
+            <enable>false</enable>
+            <id>14</id>
+            <service xsi:type="distributionService">
+                <status>ACTIVE</status>
+                <id>114</id>
+                <servInstanceId>000</servInstanceId>
+                <name>distribution</name>
+                <description xsi:nil="true"/>
+                <syncStatus>false</syncStatus>
+                <enableFileStats>false</enableFileStats>
+                <enableDBStats>false</enableDBStats>
+                <fileCDRSummaryFlag>true</fileCDRSummaryFlag>
+                <svctype>
+                    <status>ACTIVE</status>
+                    <id>4</id>
+                    <alias>DISTRIBUTION_SERVICE</alias>
+                    <description>Description : Distribution Service distributes data to downstream systems.</description>
+                    <type>Distribution Service</type>
+                    <serviceFullClassName>com.elitecore.sm.services.model.DistributionService</serviceFullClassName>
+                    <typeOfService>MAIN</typeOfService>
+                    <serviceCategory>OFFLINE</serviceCategory>
+                </svctype>
+                <svcExecParams>
+                    <executeOnStartup>true</executeOnStartup>
+                    <executionInterval>60</executionInterval>
+                    <fileBatchSize>20</fileBatchSize>
+                    <maxThread>8</maxThread>
+                    <minThread>5</minThread>
+                    <queueSize>1000</queueSize>
+                    <sortingCriteria>LAST_MODIFIED_DATE</sortingCriteria>
+                    <sortingType>ASCENDING</sortingType>
+                    <startupMode>Automatic</startupMode>
+                </svcExecParams>
+                <myDrivers xsi:type="localDistributionDriver">
+                    <status>ACTIVE</status>
+                    <id>9</id>
+                    <name>local</name>
+                    <timeout>1000000</timeout>
+                    <applicationOrder>0</applicationOrder>
+                    <maxRetrycount>10</maxRetrycount>
+                    <fileSeqOrder>false</fileSeqOrder>
+                    <minFileRange>1</minFileRange>
+                    <maxFileRange>300</maxFileRange>
+                    <driverType>
+                        <status>ACTIVE</status>
+                        <id>6</id>
+                        <alias>LOCAL_DISTRIBUTION_DRIVER</alias>
+                        <description>Local Distribution Driver</description>
+                        <type>LOCAL DISTRIBUTION DRIVER</type>
+                        <driverFullClassName>com.elitecore.sm.drivers.model.distribution.LocalDistributionDriver</driverFullClassName>
+                        <category>DISTRIBUTION</category>
+                    </driverType>
+                    <driverPathList xsi:type="distributionDriverPathList">
+                        <status>ACTIVE</status>
+                        <id>19</id>
+                        <pathId>000</pathId>
+                        <name>path1</name>
+                        <readFilePath>/opt/crestelsetup/Services/anupa/Parsing/asciioutput</readFilePath>
+                        <compressInFileEnabled>true</compressInFileEnabled>
+                        <compressOutFileEnabled>false</compressOutFileEnabled>
+                        <readFilenamePrefix xsi:nil="true"/>
+                        <readFilenameSuffix>.gz</readFilenameSuffix>
+                        <readFilenameContains xsi:nil="true"/>
+                        <readFilenameExcludeTypes xsi:nil="true"/>
+                        <writeFilenamePrefix xsi:nil="true"/>
+                        <fileNamePattern xsi:nil="true"/>
+                        <composerWrappers>
+                            <status>ACTIVE</status>
+                            <id>3</id>
+                            <name>ASCII_COMPOSER</name>
+                            <composerType>
+<status>ACTIVE</status>
+<alias>ASCII_COMPOSER_PLUGIN</alias>
+<category>Composer</category>
+<description>Description : ASCII_COMPOSER_PLUGIN</description>
+<id>9</id>
+<pluginFullClassName>com.elitecore.sm.composer.model.ASCIIComposer</pluginFullClassName>
+<type>ASCII Composer</type>
+                            </composerType>
+                            <fileExtension>.dist</fileExtension>
+                            <destPath>/opt/crestelsetup/Services/anupa/Parsing/asciioutput</destPath>
+                            <composerMapping xsi:type="asciiComposerMapping">
+<status>ACTIVE</status>
+<attributeList xsi:type="asciiComposerAttr">
+    <status>ACTIVE</status>
+    <associatedByGroup>false</associatedByGroup>
+    <destinationField>G3</destinationField>
+    <id>147</id>
+    <sequenceNumber>3</sequenceNumber>
+    <trimPosition>Both</trimPosition>
+    <unifiedField>General3</unifiedField>
+    <length>0</length>
+    <paddingEnable>false</paddingEnable>
+    <paddingType>left</paddingType>
+    <replaceConditionList></replaceConditionList>
+</attributeList>
+<attributeList xsi:type="asciiComposerAttr">
+    <status>ACTIVE</status>
+    <associatedByGroup>false</associatedByGroup>
+    <destinationField>G2</destinationField>
+    <id>148</id>
+    <sequenceNumber>2</sequenceNumber>
+    <trimPosition>Both</trimPosition>
+    <unifiedField>General2</unifiedField>
+    <length>0</length>
+    <paddingEnable>false</paddingEnable>
+    <paddingType>left</paddingType>
+    <replaceConditionList></replaceConditionList>
+</attributeList>
+<attributeList xsi:type="asciiComposerAttr">
+    <status>ACTIVE</status>
+    <associatedByGroup>false</associatedByGroup>
+    <destinationField>G1</destinationField>
+    <id>149</id>
+    <sequenceNumber>1</sequenceNumber>
+    <trimPosition>Both</trimPosition>
+    <unifiedField>General1</unifiedField>
+    <length>0</length>
+    <paddingEnable>false</paddingEnable>
+    <paddingType>left</paddingType>
+    <replaceConditionList></replaceConditionList>
+</attributeList>
+<composerType>
+    <status>ACTIVE</status>
+    <alias>ASCII_COMPOSER_PLUGIN</alias>
+    <category>Composer</category>
+    <description>Description : ASCII_COMPOSER_PLUGIN</description>
+    <id>9</id>
+    <pluginFullClassName>com.elitecore.sm.composer.model.ASCIIComposer</pluginFullClassName>
+    <type>ASCII Composer</type>
+</composerType>
+<dateFormatEnum>MM-dd-yyyy HH:mm:ss</dateFormatEnum>
+<destCharset>UTF8</destCharset>
+<destDateFormat>MM/dd/yyyy HH:mm:ss</destDateFormat>
+<device>
+    <status>ACTIVE</status>
+    <id>5</id>
+    <name>Elitecore BSS v 6.2.2</name>
+    <description>Elitecore BSS v 6.2.2</description>
+    <decodeType>DOWNSTREAM</decodeType>
+    <isPreConfigured>0</isPreConfigured>
+    <deviceType>
+        <status>ACTIVE</status>
+        <id>4</id>
+        <name>Elitecore BSS</name>
+        <description>Elitecore BSS</description>
+    </deviceType>
+    <vendorType>
+        <status>ACTIVE</status>
+        <id>3</id>
+        <name>Elitecore</name>
+        <description>Elitecore</description>
+    </vendorType>
+</device>
+<id>5</id>
+<mappingType>1</mappingType>
+<name>ASCII_Composer</name>
+<fieldSeparator>,</fieldSeparator>
+<fileFooterEnable>false</fileFooterEnable>
+<fileFooterSummaryEnable>false</fileFooterSummaryEnable>
+<fileHeaderContainsFields>true</fileHeaderContainsFields>
+<fileHeaderEnable>true</fileHeaderEnable>
+<fileHeaderParser>STANDARD</fileHeaderParser>
+<fileHeaderSummaryEnable>false</fileHeaderSummaryEnable>
+                            </composerMapping>
+                        </composerWrappers>
+                        <dateFormat>yyyyMMddHHmm</dateFormat>
+                        <dbReadFileNameExtraSuffix xsi:nil="true"/>
+                        <endIndex>-1</endIndex>
+                        <fileGrepDateEnabled>false</fileGrepDateEnabled>
+                        <maxFilesCountAlert>1000</maxFilesCountAlert>
+                        <parentDevice>
+                            <status>ACTIVE</status>
+                            <id>17</id>
+                            <name>SGW</name>
+                            <description>SGW</description>
+                            <decodeType>UPSTREAM</decodeType>
+                            <isPreConfigured>1</isPreConfigured>
+                            <deviceType>
+<status>ACTIVE</status>
+<id>13</id>
+<name>NOKIA_SGW_IMPORT_1570096674893</name>
+<description>NOKIA_SGW</description>
+                            </deviceType>
+                            <vendorType>
+<status>ACTIVE</status>
+<id>8</id>
+<name>NOKIA_SGW_IMPORT_1570096674931</name>
+<description>NOKIA_SGW</description>
+                            </vendorType>
+                        </parentDevice>
+                        <position>left</position>
+                        <startIndex>-1</startIndex>
+                    </driverPathList>
+                    <noFileAlert>60</noFileAlert>
+                    <driverControlFileParams>
+                        <controlFileEnabled>false</controlFileEnabled>
+                        <attributes>FILE_CREATION_DATETIME,DISTRIBUTED_FILE_NAME,TOTAL_SUCCESS_RECORDS</attributes>
+                        <attributeSeparator>,</attributeSeparator>
+                        <fileRollingDuration>14400</fileRollingDuration>
+                        <controlFileName>CF{yyyyMMddHHmmss}.txt</controlFileName>
+                        <fileSeqEnable>false</fileSeqEnable>
+                    </driverControlFileParams>
+                    <controlFileSeq>
+                        <status>ACTIVE</status>
+                        <id>3</id>
+                        <startRange>0</startRange>
+                        <endRange>0</endRange>
+                        <nextValue>0</nextValue>
+                        <resetFrequency>default</resetFrequency>
+                        <paddingEnable>true</paddingEnable>
+                    </controlFileSeq>
+                </myDrivers>
+                <fileGroupingParameter>
+                    <status>DELETED</status>
+                    <id>19</id>
+                    <fileGroupEnable>false</fileGroupEnable>
+                    <groupingType>DAY</groupingType>
+                    <enableForDuplicate>false</enableForDuplicate>
+                    <sourcewiseArchive>false</sourcewiseArchive>
+                    <groupingDateType>PROCESSDATE</groupingDateType>
+                    <enableForArchive>false</enableForArchive>
+                </fileGroupingParameter>
+                <fileMergeEnabled>false</fileMergeEnabled>
+                <processRecordLimit>3000</processRecordLimit>
+                <remainingFileMergeEnabled>false</remainingFileMergeEnabled>
+                <serviceSchedulingParams>
+                    <status>DELETED</status>
+                    <id>7</id>
+                    <schedulingEnabled>false</schedulingEnabled>
+                    <schType>daily</schType>
+                    <date>1</date>
+                    <day>2</day>
+                    <time>23:55:00</time>
+                </serviceSchedulingParams>
+                <thirdPartyTransferEnabled>false</thirdPartyTransferEnabled>
+                <writeRecordLimit>-1</writeRecordLimit>
+            </service>
+        </serviceList>
+        <serviceList>
+            <status>ACTIVE</status>
+            <enable>false</enable>
+            <id>15</id>
+            <service xsi:type="aggregationService">
+                <status>ACTIVE</status>
+                <id>115</id>
+                <servInstanceId>000</servInstanceId>
+                <name>aggregation</name>
+                <description xsi:nil="true"/>
+                <syncStatus>false</syncStatus>
+                <enableFileStats>false</enableFileStats>
+                <enableDBStats>false</enableDBStats>
+                <fileCDRSummaryFlag>true</fileCDRSummaryFlag>
+                <svctype>
+                    <status>ACTIVE</status>
+                    <id>9</id>
+                    <alias>AGGREGATION_SERVICE</alias>
+                    <description>Aggregation Service</description>
+                    <type>Aggregation Service</type>
+                    <serviceFullClassName>com.elitecore.sm.services.model.AggregationService</serviceFullClassName>
+                    <typeOfService>ADDITIONAL</typeOfService>
+                    <serviceCategory>OFFLINE</serviceCategory>
+                </svctype>
+                <svcExecParams>
+                    <executeOnStartup>true</executeOnStartup>
+                    <executionInterval>10</executionInterval>
+                    <fileBatchSize>2</fileBatchSize>
+                    <maxThread>10</maxThread>
+                    <minThread>1</minThread>
+                    <queueSize>10000</queueSize>
+                    <sortingCriteria>LAST_MODIFIED_DATE</sortingCriteria>
+                    <sortingType>ASCENDING</sortingType>
+                    <startupMode>Automatic</startupMode>
+                </svcExecParams>
+                <svcPathList xsi:type="aggregationServicePathList">
+                    <status>ACTIVE</status>
+                    <id>20</id>
+                    <pathId>000</pathId>
+                    <name>aa</name>
+                    <readFilePath>/opt/crestelsetup/Services/anupa/aggregation/input</readFilePath>
+                    <compressInFileEnabled>false</compressInFileEnabled>
+                    <compressOutFileEnabled>false</compressOutFileEnabled>
+                    <readFilenamePrefix xsi:nil="true"/>
+                    <readFilenameSuffix>.csv</readFilenameSuffix>
+                    <readFilenameContains xsi:nil="true"/>
+                    <readFilenameExcludeTypes xsi:nil="true"/>
+                    <writeFilePath>/opt/crestelsetup/Services/anupa/aggregation/agg</writeFilePath>
+                    <writeFilenamePrefix xsi:nil="true"/>
+                    <fileNamePattern xsi:nil="true"/>
+                    <maxFilesCountAlert>-1</maxFilesCountAlert>
+                    <fileGrepDateEnabled>false</fileGrepDateEnabled>
+                    <dateFormat>yyyyMMddHHmm</dateFormat>
+                    <startIndex>1</startIndex>
+                    <endIndex>12</endIndex>
+                    <position>left</position>
+                    <wPathNonAggregate>/opt/crestelsetup/Services/anupa/aggregation/nonagg</wPathNonAggregate>
+                    <wPathAggregateError>/opt/crestelsetup/Services/anupa/aggregation/error</wPathAggregateError>
+                    <oFilePathName>Agg{yyyyMMddHHmmssSSS}</oFilePathName>
+                    <oFileMinRange>1</oFileMinRange>
+                    <oFileMaxRange>100</oFileMaxRange>
+                    <oFileSeqEnables>false</oFileSeqEnables>
+                    <oFilePathNameForNonAgg>Non_Agg{yyyyMMddHHmmssSSS}</oFilePathNameForNonAgg>
+                    <oFileMinRangeForNonAgg>1</oFileMinRangeForNonAgg>
+                    <oFileMaxRangeForNonAgg>100</oFileMaxRangeForNonAgg>
+                    <oFileSeqEnablesForNonAgg>false</oFileSeqEnablesForNonAgg>
+                    <oFilePathNameForError>Agg_error{yyyyMMddHHmmssSSS}</oFilePathNameForError>
+                    <oFileMinRangeForError>1</oFileMinRangeForError>
+                    <oFileMaxRangeForError>100</oFileMaxRangeForError>
+                    <oFileSeqEnablesForError>false</oFileSeqEnablesForError>
+                    <parentDevice>
+                        <status>ACTIVE</status>
+                        <id>13</id>
+                        <name>CISCO ASR-SGW 2</name>
+                        <description>CISCO ASR-SGW 2</description>
+                        <decodeType>UPSTREAM</decodeType>
+                        <isPreConfigured>0</isPreConfigured>
+                        <deviceType>
+                            <status>ACTIVE</status>
+                            <id>8</id>
+                            <name>SGW</name>
+                            <description>SGW</description>
+                        </deviceType>
+                        <vendorType>
+                            <status>ACTIVE</status>
+                            <id>1</id>
+                            <name>Cisco</name>
+                            <description>Cisco</description>
+                        </vendorType>
+                    </parentDevice>
+                </svcPathList>
+                <minFileRange>1</minFileRange>
+                <maxFileRange>100</maxFileRange>
+                <noFileAlert>10</noFileAlert>
+                <delimiter>|</delimiter>
+                <fileGroupingParameter>
+                    <status>DELETED</status>
+                    <id>20</id>
+                    <fileGroupEnable>false</fileGroupEnable>
+                    <groupingType>DAY</groupingType>
+                    <enableForDuplicate>false</enableForDuplicate>
+                    <sourcewiseArchive>false</sourcewiseArchive>
+                    <groupingDateType>PROCESSDATE</groupingDateType>
+                </fileGroupingParameter>
+                <serviceSchedulingParams>
+                    <status>DELETED</status>
+                    <id>8</id>
+                    <schedulingEnabled>false</schedulingEnabled>
+                    <schType>daily</schType>
+                    <date>1</date>
+                    <day>2</day>
+                    <time>23:55:00</time>
+                </serviceSchedulingParams>
+                <aggregationDefinition>
+                    <status>ACTIVE</status>
+                    <id>3</id>
+                    <aggDefName>GDF_IMPORT_1598435762603</aggDefName>
+                    <noOfPartition>2</noOfPartition>
+                    <partCDRField>EventTy</partCDRField>
+                    <fLegVal>F</fLegVal>
+                    <lLegVal>L</lLegVal>
+                    <unifiedDateFiled>StartDt</unifiedDateFiled>
+                    <aggInterval>1</aggInterval>
+                    <outputFileField>0</outputFileField>
+                    <aggConditionList>
+                        <status>ACTIVE</status>
+                        <id>5</id>
+                        <condExpression>7</condExpression>
+                        <condAction>Aggregate on timeout</condAction>
+                    </aggConditionList>
+                    <aggConditionList>
+                        <status>ACTIVE</status>
+                        <id>6</id>
+                        <condExpression>1</condExpression>
+                        <condAction>Aggregate</condAction>
+                    </aggConditionList>
+                    <aggKeyAttrList>
+                        <status>ACTIVE</status>
+                        <id>5</id>
+                        <fieldName>g3</fieldName>
+                    </aggKeyAttrList>
+                    <aggKeyAttrList>
+                        <status>ACTIVE</status>
+                        <id>6</id>
+                        <fieldName>g4</fieldName>
+                    </aggKeyAttrList>
+                    <aggAttrList>
+                        <status>ACTIVE</status>
+                        <id>7</id>
+                        <outputFieldName>g11</outputFieldName>
+                        <outputExpression>7</outputExpression>
+                        <outputDataType>String</outputDataType>
+                    </aggAttrList>
+                    <aggAttrList>
+                        <status>ACTIVE</status>
+                        <id>8</id>
+                        <outputFieldName>g7</outputFieldName>
+                        <outputExpression>1</outputExpression>
+                        <outputDataType>Double</outputDataType>
+                    </aggAttrList>
+                    <aggAttrList>
+                        <status>ACTIVE</status>
+                        <id>9</id>
+                        <outputFieldName>g8</outputFieldName>
+                        <outputExpression>5</outputExpression>
+                        <outputDataType>String</outputDataType>
+                    </aggAttrList>
+                </aggregationDefinition>
+            </service>
+        </serviceList>
+        <serviceList>
+            <status>ACTIVE</status>
+            <enable>false</enable>
+            <id>17</id>
+            <service xsi:type="dataConsolidationService">
+                <status>ACTIVE</status>
+                <id>116</id>
+                <servInstanceId>000</servInstanceId>
+                <name>consolidation</name>
+                <description xsi:nil="true"/>
+                <syncStatus>false</syncStatus>
+                <enableFileStats>false</enableFileStats>
+                <enableDBStats>false</enableDBStats>
+                <fileCDRSummaryFlag>true</fileCDRSummaryFlag>
+                <svctype>
+                    <status>ACTIVE</status>
+                    <id>7</id>
+                    <alias>DATA_CONSOLIDATION_SERVICE</alias>
+                    <description>Data Consolidation Service</description>
+                    <type>Data Consolidation Service</type>
+                    <serviceFullClassName>com.elitecore.sm.services.model.DataConsolidationService</serviceFullClassName>
+                    <typeOfService>ADDITIONAL</typeOfService>
+                    <serviceCategory>OFFLINE</serviceCategory>
+                </svctype>
+                <svcExecParams>
+                    <executeOnStartup>true</executeOnStartup>
+                    <executionInterval>10</executionInterval>
+                    <fileBatchSize>10</fileBatchSize>
+                    <maxThread>15</maxThread>
+                    <minThread>10</minThread>
+                    <queueSize>15000</queueSize>
+                    <sortingCriteria>LAST_MODIFIED_DATE</sortingCriteria>
+                    <sortingType>NA</sortingType>
+                    <startupMode>Automatic</startupMode>
+                </svcExecParams>
+                <svcPathList xsi:type="dataConsolidationPathList">
+                    <status>ACTIVE</status>
+                    <id>21</id>
+                    <pathId>000</pathId>
+                    <name>NDRPGW</name>
+                    <readFilePath>/home/sterlite/Downloads/conso/ip</readFilePath>
+                    <compressInFileEnabled>true</compressInFileEnabled>
+                    <compressOutFileEnabled>false</compressOutFileEnabled>
+                    <readFilenamePrefix xsi:nil="true"/>
+                    <readFilenameSuffix>.gz</readFilenameSuffix>
+                    <readFilenameContains xsi:nil="true"/>
+                    <readFilenameExcludeTypes xsi:nil="true"/>
+                    <writeFilenamePrefix xsi:nil="true"/>
+                    <fileNamePattern xsi:nil="true"/>
+                    <conMappingList>
+                        <status>ACTIVE</status>
+                        <compressedOutput>true</compressedOutput>
+                        <destPath>/home/sterlite/Downloads/conso/op</destPath>
+                        <fieldNameForCount>General50</fieldNameForCount>
+                        <fileName>data_cons{yyyyMMddHHmmssSSS}.gz</fileName>
+                        <fileSequence>false</fileSequence>
+                        <id>3</id>
+                        <logicalOperator>and</logicalOperator>
+                        <mappingName>DATA_CONSOLIDATE</mappingName>
+                        <maxSeqRange>100</maxSeqRange>
+                        <minSeqRange>1</minSeqRange>
+                        <processRecordLimit>-1</processRecordLimit>
+                        <recordSortingField>APartyLocationCode</recordSortingField>
+                        <recordSortingFieldType>String</recordSortingFieldType>
+                        <recordSortingType>NA</recordSortingType>
+                        <writeOnlyConfiguredAttribute>false</writeOnlyConfiguredAttribute>
+                    </conMappingList>
+                    <maxCounterLimit>-1</maxCounterLimit>
+                    <parentDevice>
+                        <status>ACTIVE</status>
+                        <id>6</id>
+                        <name>DEFAULT</name>
+                        <description>DEFAULT</description>
+                        <decodeType>UPSTREAM</decodeType>
+                        <isPreConfigured>0</isPreConfigured>
+                        <deviceType>
+                            <status>ACTIVE</status>
+                            <id>5</id>
+                            <name>DEFAULT_DEVICE</name>
+                            <description>DEFAULT DEVICE</description>
+                        </deviceType>
+                        <vendorType>
+                            <status>ACTIVE</status>
+                            <id>4</id>
+                            <name>DEFAULT_VENDOR</name>
+                            <description>DEFAULT VENDOR</description>
+                        </vendorType>
+                    </parentDevice>
+                </svcPathList>
+                <acrossFileMaxBatchSize>15</acrossFileMaxBatchSize>
+                <acrossFileMinBatchSize>5</acrossFileMinBatchSize>
+                <acrossFilePartition>100</acrossFilePartition>
+                <acrossFileProcessingType>SINGLE</acrossFileProcessingType>
+                <consolidation>
+                    <status>ACTIVE</status>
+                    <acrossFilePartition>-1</acrossFilePartition>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>datavolumeFBCUplink</description>
+                        <fieldName>General38</fieldName>
+                        <id>43</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>datavolumeFBCDownlink</description>
+                        <fieldName>General39</fieldName>
+                        <id>44</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>timeOfReport</description>
+                        <fieldName>General40</fieldName>
+                        <id>45</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>FailureHandlingContinue</description>
+                        <fieldName>General41</fieldName>
+                        <id>46</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>serviceIdentifier</description>
+                        <fieldName>General42</fieldName>
+                        <id>47</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>timeUsage</description>
+                        <fieldName>General32</fieldName>
+                        <id>48</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>serviceConditionChange</description>
+                        <fieldName>General33</fieldName>
+                        <id>49</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>qCI</description>
+                        <fieldName>General75</fieldName>
+                        <id>50</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>maxRequestedBandwithDL</description>
+                        <fieldName>General77</fieldName>
+                        <id>51</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>csServingNodeAddress</description>
+                        <fieldName>General37</fieldName>
+                        <id>52</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>Rating Group</description>
+                        <fieldName>General26</fieldName>
+                        <id>53</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>resultCode</description>
+                        <fieldName>General28</fieldName>
+                        <id>54</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>cslocalSequenceNumber</description>
+                        <fieldName>General29</fieldName>
+                        <id>55</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>timeOfFirstUsage</description>
+                        <fieldName>General30</fieldName>
+                        <id>56</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>maxRequestedBandwithUL</description>
+                        <fieldName>General76</fieldName>
+                        <id>57</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>csuserLocationInformation</description>
+                        <fieldName>CPartyLocationCode</fieldName>
+                        <id>58</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>chargingRuleBaseName</description>
+                        <fieldName>General27</fieldName>
+                        <id>59</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>timeOfLastUsage</description>
+                        <fieldName>General31</fieldName>
+                        <id>60</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>guaranteedBitrateUL</description>
+                        <fieldName>General78</fieldName>
+                        <id>61</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>guaranteedBitrateDL</description>
+                        <fieldName>General79</fieldName>
+                        <id>62</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consAttList>
+                        <status>ACTIVE</status>
+                        <dataType>String</dataType>
+                        <description>aRP</description>
+                        <fieldName>General80</fieldName>
+                        <id>63</id>
+                        <operation>5</operation>
+                    </consAttList>
+                    <consGrpAttList>
+                        <status>ACTIVE</status>
+                        <destinationField>NA</destinationField>
+                        <groupingField>General15</groupingField>
+                        <id>9</id>
+                        <lookUpEnable>false</lookUpEnable>
+                        <regExEnable>false</regExEnable>
+                    </consGrpAttList>
+                    <consGrpAttList>
+                        <status>ACTIVE</status>
+                        <destinationField>NA</destinationField>
+                        <groupingField>CPartyMIN</groupingField>
+                        <id>10</id>
+                        <lookUpEnable>false</lookUpEnable>
+                        <regExEnable>false</regExEnable>
+                    </consGrpAttList>
+                    <consGrpAttList>
+                        <status>ACTIVE</status>
+                        <destinationField>NA</destinationField>
+                        <groupingField>General19</groupingField>
+                        <id>11</id>
+                        <lookUpEnable>false</lookUpEnable>
+                        <regExEnable>false</regExEnable>
+                    </consGrpAttList>
+                    <consGrpAttList>
+                        <status>ACTIVE</status>
+                        <destinationField>NA</destinationField>
+                        <groupingField>General4</groupingField>
+                        <id>12</id>
+                        <lookUpEnable>false</lookUpEnable>
+                        <regExEnable>false</regExEnable>
+                    </consGrpAttList>
+                    <consName>DATA_CONSOLIDATE</consName>
+                    <id>3</id>
+                    <segregationType>DAY</segregationType>
+                </consolidation>
+                <consolidationType>IN_FILE</consolidationType>
+                <fileGroupParam>
+                    <status>DELETED</status>
+                    <id>21</id>
+                    <fileGroupEnable>true</fileGroupEnable>
+                    <groupingType>NA</groupingType>
+                    <enableForDuplicate>false</enableForDuplicate>
+                    <sourcewiseArchive>false</sourcewiseArchive>
+                    <groupingDateType>PROCESSDATE</groupingDateType>
+                    <enableForArchive>true</enableForArchive>
+                </fileGroupParam>
+                <maxFileBatchSize>0</maxFileBatchSize>
+                <maxFileRange>100</maxFileRange>
+                <mergeDelimiter>#</mergeDelimiter>
+                <minFileBatchSize>0</minFileBatchSize>
+                <minFileRange>1</minFileRange>
+                <noFileAlertInterval>10</noFileAlertInterval>
+                <processingType>FILE-BASED</processingType>
+            </service>
+        </serviceList>
+        <storageLocation>/home</storageLocation>
+    </agentList>
+    <agentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fileRenameAgent">
+        <status>ACTIVE</status>
+        <agentType>
+            <status>ACTIVE</status>
+            <id>2</id>
+            <type>File Rename Agent</type>
+            <alias>FILE_RENAME_AGENT</alias>
+            <description>File Rename Agent</description>
+            <agentFullClassName>com.elitecore.sm.agent.model.FileRenameAgent</agentFullClassName>
+        </agentType>
+        <executionInterval>60000</executionInterval>
+        <id>63</id>
+        <initialDelay>0</initialDelay>
+    </agentList>
+    <agentList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fileRenameAgent">
+        <status>ACTIVE</status>
+        <agentType>
+            <status>ACTIVE</status>
+            <id>2</id>
+            <type>File Rename Agent</type>
+            <alias>FILE_RENAME_AGENT</alias>
+            <description>File Rename Agent</description>
+            <agentFullClassName>com.elitecore.sm.agent.model.FileRenameAgent</agentFullClassName>
+        </agentType>
+        <executionInterval>60000</executionInterval>
+        <id>64</id>
+        <initialDelay>0</initialDelay>
+    </agentList>
+    <policyList>
+        <status>ACTIVE</status>
+        <id>3</id>
+        <alias>p1</alias>
+        <name>p1</name>
+        <policyGroups>
+            <policyGroup>r1</policyGroup>
+        </policyGroups>
+        <policyGroupStr>r1</policyGroupStr>
+    </policyList>
+    <policyGroupList>
+        <status>ACTIVE</status>
+        <id>3</id>
+        <alias>r1</alias>
+        <name>r1</name>
+        <policyRules>
+            <policyRule>a1</policyRule>
+        </policyRules>
+        <policyRuleStr>a1</policyRuleStr>
+    </policyGroupList>
+    <policyRuleList>
+        <status>ACTIVE</status>
+        <id>3</id>
+        <alias>a1</alias>
+        <name>a1</name>
+        <operator>AND</operator>
+        <policyConditions>
+            <policyCondition>Cond_26</policyCondition>
+        </policyConditions>
+        <policyActions>
+            <policyAction>a2</policyAction>
+            <policyAction>a1</policyAction>
+        </policyActions>
+        <policyConditionStr>Cond_26</policyConditionStr>
+        <policyActionStr>a2,a1</policyActionStr>
+        <category>Missing</category>
+        <severity>High</severity>
+        <errorCode></errorCode>
+    </policyRuleList>
+    <policyConditionList>
+        <status>ACTIVE</status>
+        <id>5</id>
+        <alias>Cond_26</alias>
+        <name>Cond_26</name>
+        <conditionExpression>!isBlank( g22 )</conditionExpression>
+        <type>expression</type>
+        <conditionExpressionForSync>!isBlank( g22 )</conditionExpressionForSync>
+    </policyConditionList>
+    <policyConditionList>
+        <status>ACTIVE</status>
+        <id>6</id>
+        <alias>c2</alias>
+        <name>c2</name>
+        <conditionExpression>isNull(g25)</conditionExpression>
+        <type>expression</type>
+        <conditionExpressionForSync>isNull(g25)</conditionExpressionForSync>
+    </policyConditionList>
+    <policyActionList>
+        <status>ACTIVE</status>
+        <id>5</id>
+        <alias>a1</alias>
+        <name>a1</name>
+        <action>Invalid</action>
+        <actionExpression>g22 = subString( g22,1,3 )</actionExpression>
+        <type>expression</type>
+        <actionExpressionForSync>g22 = subString( g22,1,3 )</actionExpressionForSync>
+    </policyActionList>
+    <policyActionList>
+        <status>ACTIVE</status>
+        <id>6</id>
+        <alias>a2</alias>
+        <name>a2</name>
+        <action>g25=QUERY-001</action>
+        <type>dynamic</type>
+        <databaseQueryAlias>QUERY-001</databaseQueryAlias>
+    </policyActionList>
+    <databaseQueryList>
+        <status>ACTIVE</status>
+        <id>3</id>
+        <alias>QUERY-001</alias>
+        <queryName>QUERY-001</queryName>
+        <queryValue>select CIRCLEIMSI,MSISDNSIX from TBLADIL</queryValue>
+        <returnMultipleRowsEnable>false</returnMultipleRowsEnable>
+        <cacheEnable>true</cacheEnable>
+        <logicalOperator>and</logicalOperator>
+        <conditionExpressionEnable>false</conditionExpressionEnable>
+        <databaseQueryConditions>
+            <status>ACTIVE</status>
+            <id>3</id>
+            <databaseFieldName>MSISDNSIX</databaseFieldName>
+            <policyConditionOperatorEnum>InOperator</policyConditionOperatorEnum>
+            <unifiedField>g23</unifiedField>
+            <databaseKey>false</databaseKey>
+        </databaseQueryConditions>
+        <databaseQueryActions>
+            <status>ACTIVE</status>
+            <id>3</id>
+            <databaseFieldName>CIRCLEIMSI</databaseFieldName>
+            <unifiedField>g24</unifiedField>
+        </databaseQueryActions>
+        <description>Get CIRCLEIMSI</description>
+        <associationStatus>Associated</associationStatus>
+    </databaseQueryList>
+</serverInstance>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><jndi-properties>
+<jndi-property>
+<jndi-property-name>MEDIATION_SERVER_JNDI_1</jndi-property-name>
+<factory-initial>org.jnp.interfaces.NamingContextFactory</factory-initial>
+<factory-url-pkgs>org.jboss.naming:org.jnp.interfaces</factory-url-pkgs>
+<provider-url>192.168.4.50:1099</provider-url>
+<security-principal/>
+<security-credentials/>
+<security-authentication/>
+</jndi-property>
+<jndi-property>
+<jndi-property-name>MEDIATION_SERVER_JNDI_2</jndi-property-name>
+<factory-initial>org.jnp.interfaces.NamingContextFactory</factory-initial>
+<factory-url-pkgs>org.jboss.naming:org.jnp.</factory-url-pkgs>
+<provider-url>192.168.4.50:1099</provider-url>
+<security-principal/>
+<security-credentials/>
+<security-authentication/>
+</jndi-property>
+</jndi-properties>

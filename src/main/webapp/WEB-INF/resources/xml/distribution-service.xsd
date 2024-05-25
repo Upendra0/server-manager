@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="distribution-service">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="startup-mode" type="xs:string"/>
+        <xs:element name="sorting-type" type="xs:string"/>
+        <xs:element name="sorting-criteria" type="xs:string"/>
+        <xs:element name="execution-interval" type="xs:integer"/>
+        <xs:element name="third-party-transfer" type="xs:string"/>
+        <xs:element name="immediate-execute-on-startup" type="xs:string"/>
+        <xs:element name="minimum-thread" type="xs:integer"/>
+        <xs:element name="maximum-thread" type="xs:integer"/>
+        <xs:element name="thread-queue-size" type="xs:integer"/>
+        <xs:element name="file-batch-size" type="xs:integer"/>
+        <xs:element name="timesten-datasource-name" type="xs:string"/>
+        <xs:element name="process-record-limit" type="xs:integer"/>
+        <xs:element name="write-record-limit" type="xs:integer" minOccurs="0" maxOccurs="1" default="-1"/>
+        <xs:element name="file-merge" type="xs:boolean"/>
+        <xs:element name="driver-list">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="driver" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="application-order" type="xs:integer"/>
+                    <xs:element name="driver-name" type="xs:string"/>
+                    <xs:element name="enabled" type="xs:string"/>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="scheduling">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="scheduling-type" type="xs:string"/>
+              <xs:element name="scheduling-time" type="xs:time"/>
+              <xs:element name="scheduling-day" type="xs:integer"/>
+              <xs:element name="scheduling-date" type="xs:integer"/>
+            </xs:all>
+            <xs:attribute name="enabled" type="xs:boolean" use="required"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="file-grouping">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="grouping-type" type="xs:string"/>
+              <xs:element name="for-archive" type="xs:boolean"/>
+              <xs:element name="archive-path" type="xs:string"  maxOccurs="1" minOccurs="0" />
+            </xs:all>
+            <xs:attribute name="enabled" type="xs:boolean" use="required"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="store-cdr-file-summary-in-db" type="xs:string"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="sftp-collection-driver">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="file-transfer-mode" type="xs:string"/>
+        <xs:element name="file-range" type="xs:string"/>
+        <xs:element name="file-sequence-order" type="xs:string"/>
+        <xs:element name="host-list">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="host" type="xs:string"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="port" type="xs:byte"/>
+        <xs:element name="sftp-timeout" type="xs:integer"/>
+        <xs:element name="path-list">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="path">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="read-file-path" type="xs:string"/>
+                    <xs:element name="read-filename-prefix" type="xs:string"/>
+                    <xs:element name="read-filename-suffix" type="xs:string"/>
+                    <xs:element name="max-files-count-alert" type="xs:integer" default="-1"/>
+                    <xs:element name="read-filename-contains" type="xs:string"/>
+                    <xs:element name="write-file-path" type="xs:string"/>
+                    <xs:element name="write-filename-prefix" type="xs:string"/>
+                    <xs:element name="filter-pattern">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element name="action" type="xs:string"/>
+                          <xs:element name="param">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute name="key" type="xs:string"/>
+                                  <xs:attribute name="value" type="xs:string"/>
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:all>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="file-date">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element name="date-format" type="xs:string"/>
+                          <xs:element name="position" type="xs:string"/>
+                          <xs:element name="start-index" type="xs:integer"/>
+                          <xs:element name="end-index" type="xs:integer"/>
+                        </xs:all>
+                        <xs:attribute name="enabled" type="xs:string"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="file-sequence-alert">
+                      <xs:complexType>
+                        <xs:all>
+                          <xs:element name="start-index" type="xs:integer"/>
+                          <xs:element name="end-index" type="xs:integer"/>
+                          <xs:element name="max-counter-limit" type="xs:integer"/>
+                        </xs:all>
+                        <xs:attribute name="enabled" type="xs:string"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="user-name" type="xs:string"/>
+        <xs:element name="password" type="xs:string"/>
+        <xs:element name="max-retry-count" type="xs:integer"/>
+        <xs:element name="remote-system-file-seperator" type="xs:string"/>
+        <xs:element name="file-grouping">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="grouping-type" type="xs:string"/>
+              <xs:element name="for-duplicate" type="xs:string"/>
+            </xs:all>
+            <xs:attribute name="enabled" type="xs:string"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="file-fetch-rule">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="file-fetch-type" type="xs:string"/>
+              <xs:element name="file-fetch-interval" type="xs:integer"/>
+              <xs:element name="time-zone" type="xs:string"/>
+            </xs:all>
+            <xs:attribute name="enabled" type="xs:string"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="no-files-alert-interval" type="xs:integer"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

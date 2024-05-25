@@ -1,0 +1,1 @@
+curl --insecure  GET https://$(hostname -I):10080/ServerManager/

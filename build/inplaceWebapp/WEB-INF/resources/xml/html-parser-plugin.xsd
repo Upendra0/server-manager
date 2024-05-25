@@ -1,0 +1,38 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ascii-parser-plugin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="instance" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:all>
+              <xs:element type="xs:string" name="recordWiseExcelFormat"/>
+              <xs:element type="xs:string" name="is-file-parsed"/>
+             
+              <xs:element name="attribute-list">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="attribute" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:choice maxOccurs="unbounded" minOccurs="0">
+                          <xs:element type="xs:string" name="source-field"/>
+                          <xs:element type="xs:string" name="unified-field"/>
+                          <xs:element type="xs:string" name="default-value"/>
+                          <xs:element type="xs:string" name="description"/>
+                          <xs:element type="xs:string" name="trim-character"/>
+                          <xs:element type="xs:string" name="field-identifier"/>
+                          <xs:element type="xs:string" name="field-extraction-method"/>
+                          <xs:element type="xs:string" name="field-section-id"/>
+                        </xs:choice>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:all>
+            <xs:attribute type="xs:int" name="id"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

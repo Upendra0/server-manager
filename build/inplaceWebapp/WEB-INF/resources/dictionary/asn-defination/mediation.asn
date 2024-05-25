@@ -1,0 +1,145 @@
+MEDIATION DEFINITIONS AUTOMATIC TAGS ::=
+
+BEGIN
+
+CallDataRecord    ::= CHOICE
+{
+    unifiedRecord              [0]	SEQUENCE OF UnifiedRecord
+}
+
+UnifiedRecord    ::=	SET {
+    serialNumber							[0]	CDRDataType			OPTIONAL	,
+	recordNumber							[1]	CDRDataType			OPTIONAL	,
+	originalRecordNumber                   	[2] CDRDataType			OPTIONAL	,
+	aPartyMDN                              	[3] CDRDataType			OPTIONAL	,
+	aPartyMIN                              	[4] CDRDataType			OPTIONAL	,
+	aPartyLocationCode                     	[5] CDRDataType			OPTIONAL	,
+	bPartyMDN                              	[6] CDRDataType			OPTIONAL	,
+	bPartyMIN                              	[7] CDRDataType			OPTIONAL	,
+	bPartyLocationCode                     	[8] CDRDataType			OPTIONAL	,
+	cPartyMDN                              	[9] CDRDataType			OPTIONAL	,
+	cPartyMIN                              [10] CDRDataType			OPTIONAL	,
+	cPartyLocationCode                     [11] CDRDataType			OPTIONAL	,
+	ingressStartDate                       [12] TimeStamp			OPTIONAL	,
+	ingressEndDate                         [13] TimeStamp			OPTIONAL	,
+	egressStartDate                        [14] TimeStamp			OPTIONAL	,
+	egressEndDate                          [15] TimeStamp			OPTIONAL	,
+	ingressCallDirection                   [16] CDRDataType			OPTIONAL	,
+	egressCallDirection                    [17] CDRDataType			OPTIONAL	,
+	ingressTrunkGroupName                  [18] CDRDataType			OPTIONAL	,
+	egressTrunkGroupName                   [19] CDRDataType			OPTIONAL	,
+	ratingStream                           [20] CDRDataType			OPTIONAL	,
+	startDate                              [21] TimeStamp			OPTIONAL	,
+	endDate                                [22] TimeStamp			OPTIONAL	,
+	duration                               [23] CDRDataType			OPTIONAL	,
+	eventType                              [24] CDRDataType			OPTIONAL	,
+	eventSubType                           [25] CDRDataType			OPTIONAL	,
+	onNetCode                              [27] CDRDataType			OPTIONAL	,
+	distanceBand                           [28] CDRDataType			OPTIONAL	,
+	callDirection                          [29] CDRDataType			OPTIONAL	,
+	general1                               [30] CDRDataType			OPTIONAL	,
+	general2                               [31] CDRDataType			OPTIONAL	,
+	general3                               [32] CDRDataType			OPTIONAL	,
+	general4                               [33] CDRDataType			OPTIONAL	,
+	general5                               [34] CDRDataType			OPTIONAL	,
+	general6                               [35] CDRDataType			OPTIONAL	,
+	general7                               [36] CDRDataType			OPTIONAL	,
+	general8                               [37] CDRDataType			OPTIONAL	,
+	general9                               [38] CDRDataType			OPTIONAL	,
+	general10                              [39] CDRDataType			OPTIONAL	,
+	general11                              [40] CDRDataType			OPTIONAL	,
+	general12                              [41] CDRDataType			OPTIONAL	,
+	general13                              [45] CDRDataType			OPTIONAL	,
+	general14                              [46] CDRDataType			OPTIONAL	,
+	general15                              [49] CDRDataType			OPTIONAL	,
+	general16                              [50] CDRDataType			OPTIONAL	,
+	general17                              [51] CDRDataType			OPTIONAL	,
+	general18                              [52] CDRDataType			OPTIONAL	,
+	general19                              [53] CDRDataType			OPTIONAL	,
+	general20                              [54] CDRDataType			OPTIONAL	,
+	general21                              [55] CDRDataType			OPTIONAL	,
+	general22                              [56] CDRDataType			OPTIONAL	,
+	general23                              [57] CDRDataType			OPTIONAL	,
+	general24                              [58] CDRDataType			OPTIONAL	,
+	general25                              [59] CDRDataType			OPTIONAL	,
+	general26                              [60] CDRDataType			OPTIONAL	,
+	general27                              [61] CDRDataType			OPTIONAL	,
+	general28                              [62] CDRDataType			OPTIONAL	,
+	general29                              [63] CDRDataType			OPTIONAL	,
+	general30                              [64] CDRDataType			OPTIONAL	,
+	general31                              [65] CDRDataType			OPTIONAL	,
+	general32                              [66] CDRDataType			OPTIONAL	,
+	general33                              [67] CDRDataType			OPTIONAL	,
+	general34                              [68] CDRDataType			OPTIONAL	,
+	general35                              [69] CDRDataType			OPTIONAL	,
+	general36                              [70] CDRDataType			OPTIONAL	,
+	general37                              [71] CDRDataType			OPTIONAL	,
+	general38                              [72] CDRDataType			OPTIONAL	,
+	general39                              [73] CDRDataType			OPTIONAL	,
+	general40                              [74] CDRDataType			OPTIONAL	,
+	general41                              [75] CDRDataType			OPTIONAL	,
+	general42                              [76] CDRDataType			OPTIONAL	,
+	general43                              [77] CDRDataType			OPTIONAL	,
+	general44                              [78] CDRDataType			OPTIONAL	,
+	general45                              [79] CDRDataType			OPTIONAL	,
+	general46                              [80] CDRDataType			OPTIONAL	,
+	general47                              [81] CDRDataType			OPTIONAL	,
+	general48                              [82] CDRDataType			OPTIONAL	,
+	general49                              [83] CDRDataType			OPTIONAL	,
+	general50                              [84] CDRDataType			OPTIONAL	,
+	general51                              [85] CDRDataType			OPTIONAL	,
+	general52                              [86] CDRDataType			OPTIONAL	,
+	general53                              [87] CDRDataType			OPTIONAL	,
+	general54                              [88] CDRDataType			OPTIONAL	,
+	general55                              [89] CDRDataType			OPTIONAL	,
+	general56                              [90] CDRDataType			OPTIONAL	,
+	general57                              [91] CDRDataType			OPTIONAL	,
+	general58                              [92] CDRDataType			OPTIONAL	,
+	general59                              [93] CDRDataType			OPTIONAL	,
+	general60                              [94] CDRDataType			OPTIONAL	,
+	general61                              [95] CDRDataType			OPTIONAL	,
+	general62                              [96] CDRDataType			OPTIONAL	,
+	general63                              [97] CDRDataType			OPTIONAL	,
+	general64                              [98] CDRDataType			OPTIONAL	,
+	general65                              [99] CDRDataType			OPTIONAL	,
+	general66                             [100] CDRDataType			OPTIONAL	,
+	general67                             [101] CDRDataType			OPTIONAL	,
+	general68                             [102] CDRDataType			OPTIONAL	,
+	general69                             [103] CDRDataType			OPTIONAL	,
+	general70                             [104] CDRDataType			OPTIONAL	,
+	general71                             [105] CDRDataType			OPTIONAL	,
+	general72                             [106] CDRDataType			OPTIONAL	,
+	general73                             [107] CDRDataType			OPTIONAL	,
+	general74                             [108] CDRDataType			OPTIONAL	,
+	general75                             [109] CDRDataType			OPTIONAL	,
+	general76                             [110] CDRDataType			OPTIONAL	,
+	general77                             [111] CDRDataType			OPTIONAL	,
+	general78                             [112] CDRDataType			OPTIONAL	,
+	general79                             [113] CDRDataType			OPTIONAL	,
+	general80                             [114] CDRDataType			OPTIONAL	,
+	statusMessage                         [115] CDRDataType			OPTIONAL	,
+	partnerId1                            [116] CDRDataType			OPTIONAL	,
+	partnerId2                            [117] CDRDataType			OPTIONAL	,
+	sourceUnitName                        [118] CDRDataType			OPTIONAL	,
+	duplicateCheckKey                     [119] CDRDataType			OPTIONAL	,
+	autoCorrectedCDR                      [120] CDRDataType			OPTIONAL	
+}
+
+CDRDataType	::= OCTET STRING (SIZE(0..32))
+
+TimeStamp	::= OCTET STRING (SIZE(6))
+        --
+        -- The contents of this field are a compact form of the UTCTime format
+        -- containing local time plus an offset to universal time. Binary coded
+        -- decimal encoding is employed for the digits to reduce the storage and
+        -- transmission overhead
+        -- e.g. YYMMDDhhmmssShhmm
+        -- where
+        -- YY   =       Year 00 to 99           BCD encoded
+        -- MM   =       Month 01 to 12          BCD encoded
+        -- DD   =       Day 01 to 31            BCD encoded
+        -- hh   =       hour 00 to 23           BCD encoded
+        -- mm   =       minute 00 to 59         BCD encoded
+        -- ss   =       second 00 to 59         BCD encoded
+	
+END

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:hz="http://www.hazelcast.com/schema/spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
+		http://www.hazelcast.com/schema/spring http://www.hazelcast.com/schema/spring/hazelcast-spring-3.0.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<beans:bean id="propertyConfigurer"
+              class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+              <beans:property name="locations">
+                     <beans:list>
+                           <beans:value>classpath:jdbc.properties</beans:value>
+                           <beans:value>classpath:misreport.properties</beans:value>
+                     </beans:list>
+              </beans:property>
+    </beans:bean>
+	
+	<beans:bean id="jmxConnectionPool" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+	    <beans:property name="location" value="classpath:jmxpool.properties"/>
+	</beans:bean>
+	
+		<beans:bean id="enumMapping" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+	    <beans:property name="location" value="classpath:enum_mapping.properties"/>
+	</beans:bean>
+	
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<beans:import resource="i18N-context.xml"/>
+	
+	<beans:import resource="view-controller-context.xml"/>
+	<context:component-scan base-package="com.elitecore.sm.scheduler" />
+	<beans:bean id="joblistener" class="com.elitecore.sm.scheduler.QuartJobSchedulingListener">
+	
+	</beans:bean>
+	<beans:bean id="schedulerfactory" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<beans:property name="jobFactory">
+	    	<beans:bean id="jobfactory" class="com.elitecore.sm.scheduler.SpringQuartzJobFactory"></beans:bean>
+	    </beans:property>   
+    </beans:bean>
+	
+	<!-- Package Scan for Searching Repository in packages -->
+ 	<context:component-scan base-package="com.elitecore.sm.rulelookup.dao" />
+	<context:component-scan base-package="com.elitecore.sm.agent.dao" />
+	<context:component-scan base-package="com.elitecore.sm.common.dao" />
+	<context:component-scan base-package="com.elitecore.sm.config.dao" />
+	<context:component-scan base-package="com.elitecore.sm.datasource.dao" />
+	<context:component-scan base-package="com.elitecore.sm.kafka.datasource.dao" />
+	<context:component-scan base-package="com.elitecore.sm.drivers.dao" />
+	
+	<context:component-scan base-package="com.elitecore.sm.netflowclient.dao" />
+	<context:component-scan base-package="com.elitecore.sm.parser.dao" />
+	<context:component-scan base-package="com.elitecore.sm.pathlist.dao" />
+	<context:component-scan base-package="com.elitecore.sm.server.dao" />
+	<context:component-scan base-package="com.elitecore.sm.serverinstance.dao" />
+	<context:component-scan base-package="com.elitecore.sm.services.dao" />
+	
+	<context:component-scan base-package="com.elitecore.sm.systemaudit.dao" /> 
+	<context:component-scan base-package="com.elitecore.sm.device.dao" /> 
+	<context:component-scan base-package="com.elitecore.sm.snmp.dao" />	
+	<context:component-scan base-package="com.elitecore.sm.composer.dao" />
+	<context:component-scan base-package="com.elitecore.sm.license.dao" />
+	<context:component-scan base-package="com.elitecore.sm.productconfig.dao" />
+	<context:component-scan base-package="com.elitecore.sm.mis.dao" />
+	<context:component-scan base-package="com.elitecore.sm.policy.dao" />
+	<context:component-scan base-package="com.elitecore.sm.systemparam.dao" />
+	<context:component-scan base-package="com.elitecore.sm.consolidationservice.dao" />
+	<context:component-scan base-package="com.elitecore.sm.migration.dao" />
+	<context:component-scan base-package="com.elitecore.sm.errorreprocess.dao" />
+	<context:component-scan base-package="com.elitecore.sm.aggregationservice.dao" />
+	<context:component-scan base-package="com.elitecore.sm.fileseqmgmt.dao" />		
+	<context:component-scan base-package="com.elitecore.sm.roaming.dao"/>
+	<context:component-scan base-package="com.elitecore.sm.diameterpeer.dao"/>
+	<context:component-scan base-package="com.elitecore.sm.trigger.dao"/>
+	<context:component-scan base-package="com.elitecore.sm.job.dao"/>
+	<context:component-scan base-package="com.elitecore.sm.configmanager.dao"/>
+	<context:component-scan base-package="com.elitecore.sm.dictionarymanager.dao"/>
+
+	<!-- Package Scan for Searching Service -->
+	
+	<context:component-scan base-package="com.elitecore.sm.agent.service" />
+	<context:component-scan base-package="com.elitecore.sm.config.service" />
+	<context:component-scan base-package="com.elitecore.sm.datasource.service" />
+	<context:component-scan base-package="com.elitecore.sm.kafka.datasource.service" />
+	<context:component-scan base-package="com.elitecore.sm.drivers.service" />
+	<context:component-scan base-package="com.elitecore.sm.services.service" />
+	<context:component-scan base-package="com.elitecore.sm.iam.service" />
+	<context:component-scan base-package="com.elitecore.sm.netflowclient.service" />
+	<context:component-scan base-package="com.elitecore.sm.parser.service" />
+	<context:component-scan base-package="com.elitecore.sm.pathlist.service" />
+	<context:component-scan base-package="com.elitecore.sm.server.service" />
+	<context:component-scan base-package="com.elitecore.sm.serverinstance.service" />
+	<context:component-scan base-package="com.elitecore.sm.systemaudit.service" />
+	<context:component-scan base-package="com.elitecore.sm.device.service" />
+	<context:component-scan base-package="com.elitecore.sm.snmp.service" />	
+	<context:component-scan base-package="com.elitecore.sm.composer.service" />
+	<context:component-scan base-package="com.elitecore.sm.license.service" />
+	<context:component-scan base-package="com.elitecore.sm.productconfig.service" />
+	<context:component-scan base-package="com.elitecore.sm.profileconfig.service" />
+	<context:component-scan base-package="com.elitecore.sm.mis.service" />
+	<context:component-scan base-package="com.elitecore.sm.policy.service" />
+	<context:component-scan base-package="com.elitecore.sm.systemparam.service" />
+	<context:component-scan base-package="com.elitecore.sm.consolidationservice.service"/>
+	<context:component-scan base-package="com.elitecore.sm.migration.service" />	
+	<context:component-scan base-package="com.elitecore.sm.errorreprocess.service" />
+	<context:component-scan base-package="com.elitecore.sm.rulelookup.service" />
+	<context:component-scan base-package="com.elitecore.sm.nfv.service"/>
+	<context:component-scan base-package="com.elitecore.sm.aggregationservice.service"/>
+	<context:component-scan base-package="com.elitecore.sm.roaming.service" />
+	<context:component-scan base-package="com.elitecore.sm.diameterpeer.service" />
+	<context:component-scan base-package="com.elitecore.sm.trigger.service" />
+	<context:component-scan base-package="com.elitecore.sm.job.service" />
+	<context:component-scan base-package="com.elitecore.sm.configmanager.service" />
+	<context:component-scan base-package="com.elitecore.sm.dictionarymanager.service" />
+	
+	<!-- Package Scan for Searching Controller in Packages -->
+	
+	<context:component-scan base-package="com.elitecore.sm.systemparam.controller" />
+	<context:component-scan base-package="com.elitecore.sm.agent.controller" />
+	<context:component-scan base-package="com.elitecore.sm.common.controller" />
+	<context:component-scan base-package="com.elitecore.sm.config.controller" />
+	<context:component-scan base-package="com.elitecore.sm.dashboard.controller" />
+	<context:component-scan base-package="com.elitecore.sm.drivers.controller" />
+	<context:component-scan base-package="com.elitecore.sm.dsconfig.controller" />
+	<context:component-scan base-package="com.elitecore.sm.kafka.datasource.controller" />
+	<context:component-scan base-package="com.elitecore.sm.iam.controller" />
+	<context:component-scan base-package="com.elitecore.sm.licence.controller" />
+	<context:component-scan base-package="com.elitecore.sm.netflowclient.controller" />
+	<context:component-scan base-package="com.elitecore.sm.pathlist.controller" />
+	<context:component-scan base-package="com.elitecore.sm.policy.controller" />
+	<context:component-scan base-package="com.elitecore.sm.productconfig.controller" />	
+	<context:component-scan base-package="com.elitecore.sm.server.controller" />
+	<context:component-scan base-package="com.elitecore.sm.server.controller" />
+	<context:component-scan base-package="com.elitecore.sm.serverinstance.controller" />
+	<context:component-scan base-package="com.elitecore.sm.services.controller" />	
+	<context:component-scan base-package="com.elitecore.sm.systemparam.controller" />
+	<context:component-scan base-package="com.elitecore.sm.workflow.controller" />
+	<context:component-scan base-package="com.elitecore.sm.parser.controller" />
+	<context:component-scan base-package="com.elitecore.sm.device.controller" />
+	<context:component-scan base-package="com.elitecore.sm.snmp.controller" />
+	<context:component-scan base-package="com.elitecore.sm.composer.controller" />
+	<context:component-scan base-package="com.elitecore.sm.license.controller" />
+	<context:component-scan base-package="com.elitecore.sm.profileconfig.controller" />
+	<context:component-scan base-package="com.elitecore.sm.mis.controller"/>
+	<context:component-scan base-package="com.elitecore.sm.consolidationservice.controller"/>
+	<context:component-scan base-package="com.elitecore.sm.errorreprocess.controller" />
+	<context:component-scan base-package="com.elitecore.sm.rulelookup.controller"/>
+	<context:component-scan base-package="com.elitecore.sm.nfv.controller"/>
+	<context:component-scan base-package="com.elitecore.sm.aggregationservice.controller"/>
+	<context:component-scan base-package="com.elitecore.sm.roaming.controller"/>
+	<context:component-scan base-package="com.elitecore.sm.diameterpeer.controller"/>
+	<context:component-scan base-package="com.elitecore.sm.trigger.controller"/>
+	<context:component-scan base-package="com.elitecore.sm.job.controller"/>
+	<context:component-scan base-package="com.elitecore.sm.report.controller"/>
+	<context:component-scan base-package="com.elitecore.sm.configmanager.controller"/>
+	<context:component-scan base-package="com.elitecore.sm.dictionarymanager.controller"/>
+	
+	<!-- Package Scan for Searching Validators -->
+	<context:component-scan base-package="com.elitecore.sm.common.validator" />
+	<context:component-scan base-package="com.elitecore.sm.drivers.validator" />
+	<context:component-scan base-package="com.elitecore.sm.iam.validator" />
+	<context:component-scan base-package="com.elitecore.sm.netflowclient.validator" />
+	<context:component-scan base-package="com.elitecore.sm.pathlist.validator" />
+	<context:component-scan base-package="com.elitecore.sm.server.validator" />
+	<context:component-scan base-package="com.elitecore.sm.serverinstance.validator" />
+	<context:component-scan base-package="com.elitecore.sm.services.validator" />
+	<context:component-scan base-package="com.elitecore.sm.systemparam.validator" />	
+	<context:component-scan base-package="com.elitecore.sm.parser.validator" />
+	<context:component-scan base-package="com.elitecore.sm.device.validator" />	
+	<context:component-scan base-package="com.elitecore.sm.snmp.validator" />
+	<context:component-scan base-package="com.elitecore.sm.composer.validator"/>	
+	<context:component-scan base-package="com.elitecore.sm.datasource.validator"/>
+	<context:component-scan base-package="com.elitecore.sm.kafka.datasource.validator"/>
+	<context:component-scan base-package="com.elitecore.sm.agent.validator" />
+	<context:component-scan base-package="com.elitecore.sm.mis.validator" />
+	<context:component-scan base-package="com.elitecore.sm.policy.validator" />
+	<context:component-scan base-package="com.elitecore.sm.service.filerenameconfig.validator" />	
+	<context:component-scan base-package="com.elitecore.sm.consolidationservice.validator"/>
+	<context:component-scan base-package="com.elitecore.sm.migration.validator" />	
+	<context:component-scan base-package="com.elitecore.sm.errorreprocess.validator" />
+	<context:component-scan base-package="com.elitecore.sm.rulelookup.validator" />
+	<context:component-scan base-package="com.elitecore.sm.nfv.validator" />
+	<context:component-scan base-package="com.elitecore.sm.aggregationservice.validator"/>
+	<context:component-scan base-package="com.elitecore.sm.roaming.validator"/>
+	<context:component-scan base-package="com.elitecore.sm.diameterpeer.validator"/>
+	<context:component-scan base-package="com.elitecore.sm.trigger.validator"/>
+	<context:component-scan base-package="com.elitecore.sm.job.validator"/>
+	<context:component-scan base-package="com.elitecore.sm.license.validator"/>
+	
+	<!-- Package Scan for Searching Models- -->
+	<context:component-scan base-package="com.elitecore.sm.rulelookup.model" />
+	<context:component-scan base-package="com.elitecore.sm.agent.model" />
+	<context:component-scan base-package="com.elitecore.sm.common.model" />
+	<context:component-scan base-package="com.elitecore.sm.composer.model" />
+	<context:component-scan base-package="com.elitecore.sm.config.model" />
+	<context:component-scan base-package="com.elitecore.sm.datasource.model" />
+	<context:component-scan base-package="com.elitecore.sm.kafka.datasource.model" />
+	<context:component-scan base-package="com.elitecore.sm.drivers.model" />
+	<context:component-scan base-package="com.elitecore.sm.iam.model" />
+	<context:component-scan base-package="com.elitecore.sm.netflowclient.model" />
+	<context:component-scan base-package="com.elitecore.sm.parser.model" />
+	<context:component-scan base-package="com.elitecore.sm.pathlist.model" />
+	<context:component-scan base-package="com.elitecore.sm.policy.model" />
+	<context:component-scan base-package="com.elitecore.sm.server.model" />
+	<context:component-scan base-package="com.elitecore.sm.services.model" />	
+	<context:component-scan base-package="com.elitecore.sm.serverinstance.model" />
+	<context:component-scan base-package="com.elitecore.sm.snmp.model" />	
+	<context:component-scan base-package="com.elitecore.sm.systemaudit.model" />
+	<context:component-scan base-package="com.elitecore.sm.systemparam.model" />
+	<context:component-scan base-package="com.elitecore.sm.device.model" />
+	<context:component-scan base-package="com.elitecore.sm.util" />
+	<context:component-scan base-package="com.elitecore.sm.license.model" />
+	<context:component-scan base-package="com.elitecore.sm.productconfig.model" />
+	<context:component-scan base-package="com.elitecore.sm.mis.model" />
+	<context:component-scan base-package="com.elitecore.sm.consolidationservice.model"/>
+	<context:component-scan base-package="com.elitecore.sm.migration.model" />
+	<context:component-scan base-package="com.elitecore.sm.errorreprocess.model" />
+	<context:component-scan base-package="com.elitecore.sm.nfv.model" />
+	<context:component-scan base-package="com.elitecore.sm.roaming.model"/>
+	<context:component-scan base-package="com.elitecore.sm.diameterpeer.model"/>
+	<context:component-scan base-package="com.elitecore.sm.trigger.model"/>
+	<context:component-scan base-package="com.elitecore.sm.job.model"/>
+	<context:component-scan base-package="com.elitecore.sm.configmanager.model"/>
+	<context:component-scan base-package="com.elitecore.sm.dictionarymanager.model"/>
+
+	<!-- Adding license util package -->
+	<context:component-scan base-package="com.elitecore.sm.license.util" />
+	<context:component-scan base-package="com.elitecore.sm.nfv.commons.license" />
+	
+	<context:component-scan base-package="com.elitecore.sm.rest.client" />
+	<context:component-scan base-package="com.elitecore.sm.rest.service" />
+	<context:component-scan base-package="com.elitecore.sm.rest.model" />
+	
+	<beans:bean id="misReportUtils"
+		class="com.elitecore.sm.common.util.MISReportUtils">
+	</beans:bean>
+	
+	<beans:bean id="migrationUtil"  class="com.elitecore.sm.util.MigrationUtil">
+	</beans:bean>
+			
+	<beans:import resource="scheduler.xml"/>
+	
+	<!-- For DI -->
+	<beans:bean id="eliteUtils" class="com.elitecore.sm.util.EliteUtils" scope="prototype" >
+		<beans:qualifier value="eliteUtilsQualifier"></beans:qualifier>
+	</beans:bean>
+	
+	<beans:bean id="licenseUtility" class="com.elitecore.sm.license.util.LicenseUtility" scope="prototype" >
+		<beans:qualifier value="licenseUtilityQualifier"></beans:qualifier>
+	</beans:bean>
+	
+	<!-- Spring Application Context Provider -->
+	<beans:bean class="com.elitecore.sm.common.util.SpringApplicationContext"></beans:bean>
+	
+	<beans:bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<beans:property name="corePoolSize" value="${misreport.corePoolSize}"/>
+		<beans:property name="maxPoolSize" value="${misreport.maxPoolSize}"/>
+		<beans:property name="WaitForTasksToCompleteOnShutdown" value="${misreport.WaitForTasksToCompleteOnShutdown}" />
+	</beans:bean>
+	
+	<!--  string pojo converter using  GSON -->
+	<beans:bean id="gson" class="com.elitecore.sm.util.GsonFactory" factory-method="create" />
+   
+	<beans:import resource="aspect.xml"/>
+
+    <!--  added for file upload -->
+   	<beans:bean id="multipartResolver"
+				class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		 <!-- setting maximum upload size in bytes-->
+<!-- 		<beans:property name="maxUploadSize" value="4194304" /> -->
+	</beans:bean>
+	
+	<!-- <hz:hazelcast id="hazelcastInstance">
+    <hz:config>
+        <hz:group name="dev" password="password"/>
+        <hz:network port="5701" port-auto-increment="false">
+            <hz:join>
+                <hz:multicast enabled="false"
+                              multicast-group="224.2.2.3"
+                              multicast-port="54327"/>
+                <hz:tcp-ip enabled="true">
+                    <hz:members>10.151.1.17</hz:members>
+                </hz:tcp-ip>
+            </hz:join>
+        </hz:network>        
+    </hz:config>
+	</hz:hazelcast> -->
+ </beans:beans>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE driver-mapping SYSTEM "http://www.elitecore.com">-->
+
+<ascii-composer-plugin>
+
+	<instance id="000">
+ 
+    <file-header present="true">
+        <file-header-parser>STANDARD</file-header-parser>
+        <contains-fields>false</contains-fields>
+    </file-header>
+
+    <destination-charset-name>UTF8</destination-charset-name>
+    
+    <destination-date-format>yyyy-MM-dd+HH:mm:ss</destination-date-format>
+    
+    <field-separator>,</field-separator>
+    
+    <destination-file-extension>.0</destination-file-extension>
+    
+    <attribute-list>
+        <attribute>
+			<sequence-number>1</sequence-number>
+            <destination-field>SerialNumber</destination-field>
+            <unified-field>SerialNumber</unified-field>                            
+            <default-value></default-value>
+			<trim-chars>"</trim-chars>
+            <description></description>
+			
+			<replace-condition-list></replace-condition-list>
+			<data-type>String</data-type>
+			<date-format></date-format>
+       </attribute>
+       <attribute>
+			<sequence-number>2</sequence-number>
+            <destination-field>RecordNumber</destination-field>
+            <unified-field>RecordNumber</unified-field>                            
+            <default-value></default-value>
+			<trim-chars>"</trim-chars>
+            <description></description>
+			
+			<replace-condition-list>271:C,272:D</replace-condition-list>
+			<data-type>String</data-type>
+	    	<date-format></date-format>
+	    	<padding enable="true">
+                  <length>9</length>
+                  <padding-type>left</padding-type>
+                  <padding-char>0</padding-char>
+                  <prefix>${General64}</prefix>
+                  <suffix></suffix>
+            </padding>
+       </attribute>   
+       <attribute>
+			<sequence-number>3</sequence-number>
+            <destination-field>OriginalRecordNumber</destination-field>
+            <unified-field>OriginalRecordNumber</unified-field>                            
+            <default-value></default-value>
+			<trim-chars>"</trim-chars>
+            <description></description>
+			
+			<replace-condition-list></replace-condition-list>
+			<data-type>String</data-type>
+			<date-format></date-format>
+       </attribute>
+       <attribute>
+			<sequence-number>4</sequence-number>
+            <destination-field>IngressStartDate</destination-field>
+            <unified-field>IngressStartDate</unified-field>                            
+            <default-value></default-value>
+			<trim-chars>"</trim-chars>
+            <description></description>
+			
+			<replace-condition-list></replace-condition-list>
+			<data-type>Date</data-type>
+			<date-format></date-format>
+       </attribute>      
+    </attribute-list>
+    </instance>
+        
+</ascii-composer-plugin>

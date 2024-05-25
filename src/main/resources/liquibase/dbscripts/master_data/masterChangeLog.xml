@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<databaseChangeLog logicalFilePath="./masterChangeLog.xml"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+<changeSet author="vandana.awatramani (generated)" id="SM0000000000" runAlways="true"
+		dbms="oracle">
+		<comment>this to ensure the ISO setting for NLS parameters.</comment>
+		<sql>alter session set NLS_DATE_FORMAT='YYYY-MM-DD HH24:MI:SS';
+			alter session set nls_timestamp_format= 'YYYY-MM-DD HH24:MI:SSXFF';
+			alter session set nls_timestamp_tz_format='YYYY-MM-DD HH24:MI:SSXFF TZR';
+		</sql>
+</changeSet>
+<include file="DDLChangeLog.xml"   relativeToChangelogFile="true"/>  
+<include file="DMLChangeLog.xml"   relativeToChangelogFile="true"/> 
+<include file="sqlQueryChangeLog.xml"   relativeToChangelogFile="true"/>
+<include file="sqlQueryChangeLog_7.1.0.xml"   relativeToChangelogFile="true"/>  
+<include file="sqlQueryChangeLog_7.2.0.xml"   relativeToChangelogFile="true"/>
+<include file="sqlQueryChangeLog_7.3.0.xml"   relativeToChangelogFile="true"/>
+<include file="sqlQueryChangeLog_7.4.0.xml"   relativeToChangelogFile="true"/>
+<include file="sqlQueryChangeLog_7.5.0.xml"   relativeToChangelogFile="true"/>
+<include file="sqlQueryChangeLog_7.6.0.xml"   relativeToChangelogFile="true"/>
+<include file="sqlQueryChangeLog_7.7.0.xml"   relativeToChangelogFile="true"/>
+<include file="sqlQueryChangeLog_7.8.0.xml"   relativeToChangelogFile="true"/>
+<include file="sqlQueryChangeLog_7.9.0.xml"   relativeToChangelogFile="true"/>
+<include file="sqlQueryChangeLog_7.10.0.xml"   relativeToChangelogFile="true"/>
+<include file="sqlQueryChangeLog_7.14.0.xml"   relativeToChangelogFile="true"/>
+</databaseChangeLog> 

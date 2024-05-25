@@ -1,0 +1,7 @@
+"ID","ALIAS","DESCRIPTION","NAME","STATUS"
+1,"SERVER MANAGER","Server Manager","Server","ACTIVE"
+2,"SYSTEM MANAGER","System Manager","System","ACTIVE"
+3,"STAFF MANAGER","Staff Manager","Staff","ACTIVE"
+4,"SERVICE MANAGER","Service Manager","Service","ACTIVE"
+5,"DEVICE MANAGER","Device Manager","Device","ACTIVE"
+6,"RULE LOOKUP MANAGER","Rule Lookup Manager","Rulelookup","ACTIVE"

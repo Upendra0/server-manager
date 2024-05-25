@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="ftp-distribution-driver">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="file-transfer-mode" type="xs:string"/>
+        <xs:element name="host-list">
+          <xs:complexType>
+            <xs:all>
+              <xs:element name="host" type="xs:string"/>
+            </xs:all>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="port" type="xs:integer"/>
+        <xs:element name="file-range" type="xs:string"/>
+        <xs:element name="file-sequence-order" type="xs:string"/>
+        <xs:element name="no-files-alert-interval" type="xs:integer" default="10"/>
+        <xs:element name="ftp-timeout" type="xs:integer"/>
+        <xs:element name="user-name" type="xs:string"/>
+        <xs:element name="password" type="xs:string"/>
+        <xs:element name="max-retry-count" type="xs:integer" default="-1"/>
+        <xs:element name="remote-system-file-seperator" type="xs:string"/>
+        <xs:element name="validate-inprocess-file" type="xs:boolean"/>
+        <xs:element name="path-list">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="path" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="read-file-path" type="xs:string"/>
+                    <xs:element name="archive-path" type="xs:string"/>
+                    <xs:element name="read-filename-prefix" type="xs:string"/>
+                    <xs:element name="read-filename-suffix" type="xs:string"/>
+                    <xs:element name="max-files-count-alert" type="xs:integer"/>
+                    <xs:element name="read-filename-contains" type="xs:string"/>
+                    <xs:element name="read-filename-exclude-types" type="xs:string"/>
+                    <xs:element name="is-compressed-input-file" type="xs:string"/>
+                    <xs:element name="is-compressed-output-file" type="xs:string"/>
+                    <xs:element name="write-file-path" type="xs:string"/>
+                    <xs:element name="plugin-list">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="plugin" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                              <xs:all>
+                                <xs:element name="plugin-name" type="xs:string"/>
+                                <xs:element name="plugin-instance-id" type="xs:integer"/>
+                                <xs:element name="file-name-prefix" type="xs:string"/>
+                                <xs:element name="file-name-postfix" type="xs:string"/>
+                                <xs:element name="destination-path" type="xs:string"/>
+                                <xs:element name="distributed-file-backup-path" type="xs:string"/>
+                                <xs:element name="file-extension-after-rename" type="xs:string"/>
+                                <xs:element name="character-renaming-operation">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="character" nillable="true" minOccurs="0" maxOccurs="unbounded">
+                                        <xs:complexType>
+                                          <xs:all>
+                                            <xs:element name="sequence-no" type="xs:integer"/>
+                                            <xs:element name="query" type="xs:string"/>
+                                            <xs:element name="position" type="xs:string"/>
+                                            <xs:element name="start-index" type="xs:integer" default="0"/>
+                                            <xs:element name="end-index" type="xs:integer" default="0"/>
+                                            <xs:element name="padding">
+                                              <xs:complexType>
+                                                <xs:simpleContent>
+                                                  <xs:extension base="xs:string">
+                                                    <xs:attribute name="type" type="xs:string"/>
+                                                  </xs:extension>
+                                                </xs:simpleContent>
+                                              </xs:complexType>
+                                            </xs:element>
+                                            <xs:element name="default-value" type="xs:string"/>
+                                            <xs:element name="length" type="xs:integer"/>
+                                          </xs:all>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:all>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:all>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE driver-mapping SYSTEM "http://www.elitecore.com">-->
+
+<ftp-collection-driver>
+
+	<file-transfer-mode>BINARY</file-transfer-mode>
+	<file-range>20-25</file-range>
+	<file-sequence-order>false</file-sequence-order>
+	<host-list> 
+ 		<host>192.168.1.120</host>
+	</host-list>
+
+	<port>21</port>
+	
+	<ftp-timeout>60000</ftp-timeout>
+
+	<path-list>
+		 <path>
+			<read-file-path></read-file-path>	 <!-- source path from where we have to read file -->
+			<read-filename-prefix></read-filename-prefix>	<!-- Read only those file whose prefix is this -->
+        	<read-filename-suffix></read-filename-suffix>	 <!-- Read only those file whose suffix is this -->
+        	<max-files-count-alert></max-files-count-alert>  <!-- Provide Limit for maximum files to generate alert -->
+			<read-filename-contains></read-filename-contains> <!-- Read only those file whose name contains this -->
+			<write-file-path></write-file-path>	<!-- Comma separated destination path -->
+			<write-filename-prefix></write-filename-prefix>	<!-- This parameter will add the given value to file name as a prefix -->
+			<filter-pattern>
+				<action>move</action>	<!-- move/rename/na -->	
+				<param key="destpath" value="/home/copyfolders3/src/move1"/>
+			</filter-pattern>
+			<file-date enabled="true">
+				<date-format>ddMMyyyyHHmm</date-format>
+				<position>left</position>	<!-- left/right -->
+				<start-index>6</start-index>
+				<end-index>17</end-index>
+			</file-date>
+			<file-sequence-alert enabled="false">
+				<start-index>27</start-index>
+				<end-index>29</end-index>
+				<max-counter-limit>1000</max-counter-limit>
+			</file-sequence-alert>
+		</path>
+	</path-list>
+
+	<user-name>admin</user-name>
+
+	<password>admin</password>
+
+   <!-- <duplicate-file-grouping>day</duplicate-file-grouping> -->
+
+	<max-retry-count>10</max-retry-count>
+
+	<remote-system-file-seperator>/</remote-system-file-seperator>
+	
+	<file-grouping enabled="true">
+		<grouping-type>day</grouping-type>
+		<for-duplicate>true</for-duplicate>
+	</file-grouping>
+	
+	<file-fetch-rule enabled="true">
+		<file-fetch-type>local</file-fetch-type>
+		<file-fetch-interval>30</file-fetch-interval>
+		<time-zone>GMT+05:30</time-zone>
+	</file-fetch-rule>
+	
+	<no-files-alert-interval>0</no-files-alert-interval> <!-- Interval in Seconds and apply if interval is greater than Zero and if any files not received since configurable time then send the trap to ME. -->
+	
+</ftp-collection-driver>
+
+
+<!-- ========================================================== -->
+<!-- Details of each configuration parameter                    -->
+<!-- ========================================================== -->
+
+<!--
+
+<ftp-collection-driver>
+
+	<file-transfer-mode>BINARY</file-transfer-mode>
+		Transfer mode of the files, can be either ASCII or BINARY.
+		The files will be transfered in the mode specified.
+
+	<host>192.168.1.120</host>
+		The IP address to which the server will connect and fetch
+		the raw files and copies it to the collected folder of collection service.
+	    Change in value requires service restart.
+
+	<port>21</port>
+		Defines the FTP Port to which the server will connect.
+	    Change in value requires service restart.
+	    
+	<ftp-timeout>60000</ftp-timeout>
+		Specify the time in milisecond. Upto this much time ftp server will trying to create a connection with host in case of failure.
+
+	<source-path>nirav</source-path>
+		The path from which the raw files are to be collected.
+
+	<user-name>admin</user-name>
+		User Name to connect FTP Server
+
+	<password>admin</password>
+		Password to connect FTP Server
+
+	<source-file-types>.nbd</source-file-types>
+		Represents the extension type of the files which are to be picked for
+		collection from the source path.
+
+	<filter-pattern>
+	
+		<action>rename</action>	
+		<param name="destpath" value=".col"/>
+		
+		Represents the extension type by which the files are to be renamed on
+		the FTP Server which are collected to the destination path for filtering,
+		so that the files are not picked up again.
+		
+		<action>move</action>	
+		<param name="destpath" value="D:\device\SSTP1"/>
+		Above action will move the files from soure to specified destination after colletion.
+		
+	</filter-pattern>
+		
+    <file-grouping enabled="true"> To enable file grouping
+		<grouping-type>day</grouping-type>
+			Service will insert files into archived folder in form of,
+	        If Day, duplicate/Year/Month/Day/
+    	    If Month, duplicate/Year/Month/
+        	If Year, duplicate/Year/
+		<for-archive>false</for-archive>
+			To move or not file in archieve.
+		<for-duplicate>false</for-duplicate>
+			To move or not file in duplicate.
+	</file-grouping>
+        
+
+	<max-retry-count>10</max-retry-count>
+		Number of times by which the service will retry in terms of any failure.
+
+	<recursive>true</recursive>
+		If true, collects raw data files recursively from the source path.
+		
+	<remote-system-file-seperator>/</remote-system-file-seperator>
+		Represents the file seperator of the remote server.
+	
+	
+</ftp-collection-driver>
+
+ -->
+
+<!-- ========================================================== -->
+<!-- End of configuration details                               -->
+<!-- ========================================================== -->

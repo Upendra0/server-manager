@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+ 
+	<!-- Change set id should start with <Your Initials>130000000001 like. HL130000000001 -->
+
+	<changeSet id="HL130000000001" author="sterlite">
+		<preConditions>
+			<not>
+				<columnExists tableName="TBLTDISTSVC" columnName="FILEMERGEGROUPINGBY"/>
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTDISTSVC">
+			<column name="FILEMERGEGROUPINGBY" type="VARCHAR(20)">
+				<constraints nullable="true"/>
+			</column>
+		</addColumn>
+	</changeSet>
+	<changeSet author="sterlite" id="AS130000000001">
+        <comment>expression character Limitation of 1000 to 4000 (MEDSUP-1980)</comment>
+	    <modifyDataType columnName="CONDITIONEXPRESSION" newDataType="VARCHAR(4000)" tableName="TBLTPOLICYCONDITION"/>
+	</changeSet>
+	<changeSet author="sterlite" id="AS130000000002">
+	    <comment> DROPING UNIFIEDFIELD NULL Constraint  (MEDSUP-1978)  </comment>
+		<dropNotNullConstraint columnDataType="VARCHAR(255)"
+			columnName="UNIFIEDFIELD" tableName="TBLTDATABASEQUERYACTIONS" />
+	</changeSet>
+	<changeSet author="sterlite" id="AS130000000003">
+	     <comment> DROPING UNIFIEDFIELD NULL Constraint  (MEDSUP-1978)  </comment>	
+		<dropNotNullConstraint columnDataType="VARCHAR(255)"
+			columnName="UNIFIEDFIELD" tableName="TBLTDATABASEQUERYCONDITIONS" />
+	</changeSet>
+	<changeSet id="HL140000000002" author="sterlite">
+		<preConditions>
+			<not>
+				<columnExists tableName="TBLTPARSERMAPPING" columnName="RECORDLENGTHATTRIBUTE"/>
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTPARSERMAPPING">
+			<column name="RECORDLENGTHATTRIBUTE" type="VARCHAR(100)">
+				<constraints nullable="true"/>
+			</column>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="NP7100000000001" dbms="oracle">
+		<comment>Updating regex patter for MEDSUP-2012, MEDSUP-2008</comment>
+		<sql splitStatements="true">
+			UPDATE TBLMREGEX SET VALUE = '^[;\w\s:,_${}|-]{0,500}$', LASTUPDATEDDATE=SYSDATE WHERE REGEXKEY = 'ParserAttribute.sourceField';
+			UPDATE TBLMREGEX SET VALUE = '^[;\w\s:,_${}|-]{0,200}+$', LASTUPDATEDDATE=SYSDATE WHERE REGEXKEY = 'ParserAttribute.asciiSourceField';
+			UPDATE TBLMREGEX SET VALUE = '^[\w\d\s.\''-_,:()|%!\*;]{1,4000}+$', LASTUPDATEDDATE=SYSDATE WHERE REGEXKEY = 'DatabaseQuery.value';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="NP7100000000002" dbms="postgresql">
+		<comment>Updating regex patter for MEDSUP-2012, MEDSUP-2008</comment>
+		<sql splitStatements="true">
+			UPDATE TBLMREGEX SET VALUE = '^[;\w\s:,_${}|-]{0,500}$', LASTUPDATEDDATE=now() WHERE REGEXKEY = 'ParserAttribute.sourceField';
+			UPDATE TBLMREGEX SET VALUE = '^[;\w\s:,_${}|-]{0,200}+$', LASTUPDATEDDATE=now() WHERE REGEXKEY = 'ParserAttribute.asciiSourceField';
+			UPDATE TBLMREGEX SET VALUE = '^[\w\d\s.\''-_,:()|%!\*;]{1,4000}+$', LASTUPDATEDDATE=now() WHERE REGEXKEY = 'DatabaseQuery.value';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="NP7100000000003" dbms="mysql">
+		<comment>Updating regex patter for MEDSUP-2012, MEDSUP-2008</comment>
+		<sql splitStatements="true">
+			UPDATE TBLMREGEX SET VALUE = '^[;\\w\\s:,_${}|-]{0,500}$', LASTUPDATEDDATE=now() WHERE REGEXKEY = 'ParserAttribute.sourceField';
+			UPDATE TBLMREGEX SET VALUE = '^[;\\w\\s:,_${}|-]{0,200}+$', LASTUPDATEDDATE=now() WHERE REGEXKEY = 'ParserAttribute.asciiSourceField';
+			UPDATE TBLMREGEX SET VALUE = '^[\\w\d\\s.\\''-_,:()|%!\\*;]{1,4000}+$', LASTUPDATEDDATE=now() WHERE REGEXKEY = 'DatabaseQuery.value';
+		</sql>
+	</changeSet>
+	<changeSet author="elitecore" id="AS130000000004">
+		<addColumn tableName="TBLTCOMPOSER">
+			<column name="FILESPLITENABLED" type="CHAR(1)">
+				<constraints nullable="true" />
+			</column>
+		</addColumn>
+	</changeSet>	
+	<changeSet author="elitecore" id="AS130000000006">
+		<comment>Updating default value of filesplitenabled </comment>
+		<sql>UPDATE TBLTCOMPOSER SET FILESPLITENABLED='N';</sql>
+	</changeSet>
+	<changeSet author="elitecore" id="AS130000000009">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="TBLTPATHLIST" columnName="MANDATORYFIELDS" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTPATHLIST">
+			<column name="MANDATORYFIELDS" type="VARCHAR(3000)" />
+		</addColumn>
+	</changeSet>
+	
+	<changeSet id="SS130000000001" author="sterlite">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<columnExists tableName="TBLTDRIVERATTR" columnName="PADDINGENABLE"/>
+				<columnExists tableName="TBLTDRIVERATTR" columnName="LENGTH"/>
+				<columnExists tableName="TBLTDRIVERATTR" columnName="PADDINGTYPE"/>
+				<columnExists tableName="TBLTDRIVERATTR" columnName="PADDINGCHAR"/>
+				<columnExists tableName="TBLTDRIVERATTR" columnName="PREFIX"/>
+				<columnExists tableName="TBLTDRIVERATTR" columnName="SUFFIX"/>
+			</not>
+		</preConditions>
+		<comment> Adding Padding Attributes for Database Distributor Driver  (MEDSUP-2029)  </comment>
+		<addColumn tableName="TBLTDRIVERATTR">
+			<column name="PADDINGENABLE" type="CHAR(1)" defaultValue="N">
+				<constraints nullable="true"/>
+			</column>
+			<column name="LENGTH" type="INT" defaultValue="0">
+				<constraints nullable="true" />
+			</column>
+			<column name="PADDINGTYPE" type="VARCHAR(100)">
+				<constraints nullable="true"/>
+			</column>
+			<column name="PADDINGCHAR" type="VARCHAR(100)">
+				<constraints nullable="true"/>
+			</column>
+			<column name="PREFIX" type="VARCHAR(100)">
+				<constraints nullable="true"/>
+			</column>
+			<column name="SUFFIX" type="VARCHAR(100)">
+				<constraints nullable="true"/>
+			</column>
+		</addColumn>
+	</changeSet>
+	<changeSet author="sterlite" id="SS130000000002" dbms="oracle">
+		<comment>Adding new regex for Databse Driver Padding Attribute (MEDSUP-2029)</comment>
+			<sql splitStatements="true" stripComments="true">
+				INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((select max(id+1) from TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE','DatabaseDisDriverAttr PaddingLength','DatabaseDisDriverAttribute','DatabaseDistributionDriverAttribute.length','^[0-9]{1,20}');
+				INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((select max(id+1) from TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE','DatabaseDisDriverAttr PaddingChar','DatabaseDisDriverAttribute','DatabaseDistributionDriverAttribute.paddingChar','^.{0,100}');
+				INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((select max(id+1) from TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE','DatabaseDisDriverAttr Prefix','DatabaseDisDriverAttribute','DatabaseDistributionDriverAttribute.prefix',<![CDATA['^[^<>:"/\|?*]{0,50}$']]>);
+				INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((select max(id+1) from TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE','DatabaseDisDriverAttr Suffix','DatabaseDisDriverAttribute','DatabaseDistributionDriverAttribute.suffix',<![CDATA['^[^<>:"/\|?*]{0,50}$']]>);
+			</sql>
+	</changeSet>
+	<changeSet author="sterlite" id="SS130000000003" dbms="postgresql">
+		<comment>Adding new regex for Databse Driver Padding Attribute (MEDSUP-2029)</comment>
+		<sql splitStatements="true"  stripComments="true">
+				INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((select max(id+1) from TBLMREGEX), 1,now(), 1, now(),'ACTIVE','DatabaseDisDriverAttr PaddingLength','DatabaseDisDriverAttribute','DatabaseDistributionDriverAttribute.length','^[0-9]{1,20}');
+				INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((select max(id+1) from TBLMREGEX), 1,now(), 1, now(),'ACTIVE','DatabaseDisDriverAttr PaddingChar','DatabaseDisDriverAttribute','DatabaseDistributionDriverAttribute.paddingChar','^.{0,100}');
+				INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((select max(id+1) from TBLMREGEX), 1,now(), 1, now(),'ACTIVE','DatabaseDisDriverAttr Prefix','DatabaseDisDriverAttribute','DatabaseDistributionDriverAttribute.prefix',<![CDATA['^[^<>:"/\|?*]{0,50}$']]>);
+				INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((select max(id+1) from TBLMREGEX), 1,now(), 1, now(),'ACTIVE','DatabaseDisDriverAttr Suffix','DatabaseDisDriverAttribute','DatabaseDistributionDriverAttribute.suffix',<![CDATA['^[^<>:"/\|?*]{0,50}$']]>);
+		</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="SS130000000004" dbms="mysql">
+		<comment>Adding new regex for Databse Driver Padding Attribute (MEDSUP-2029)</comment>
+		<sql splitStatements="true"  stripComments="true">
+				INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((select max(id+1) from TBLMREGEX t), 1,now(), 1, now(),'ACTIVE','DatabaseDisDriverAttr PaddingLength','DatabaseDisDriverAttribute','DatabaseDistributionDriverAttribute.length','^[0-9]{1,20}');
+				INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((select max(id+1) from TBLMREGEX t), 1,now(), 1, now(),'ACTIVE','DatabaseDisDriverAttr PaddingChar','DatabaseDisDriverAttribute','DatabaseDistributionDriverAttribute.paddingChar','^.{0,100}');
+				INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((select max(id+1) from TBLMREGEX t), 1,now(), 1, now(),'ACTIVE','DatabaseDisDriverAttr Prefix','DatabaseDisDriverAttribute','DatabaseDistributionDriverAttribute.prefix',<![CDATA['^[^<>:"/\|?*]{0,50}$']]>);
+				INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((select max(id+1) from TBLMREGEX t), 1,now(), 1, now(),'ACTIVE','DatabaseDisDriverAttr Suffix','DatabaseDisDriverAttribute','DatabaseDistributionDriverAttribute.suffix',<![CDATA['^[^<>:"/\|?*]{0,50}$']]>);
+		</sql>
+	</changeSet>
+	<changeSet author="sterlite" id="HL140000000003">
+        <comment>expression character Limitation of 100 to 4000 (MEDSUP-2076)</comment>
+	    <modifyDataType columnName="UNIFIEDFILEDS" newDataType="VARCHAR(4000)" tableName="TBLTPATHLIST"/>
+	</changeSet>
+	<changeSet author="sterlite" id="HL140000000004" dbms="oracle">
+		<comment>updating tblmregex column value for regex key unifiedfield </comment>
+		<sql>
+			UPDATE TBLMREGEX SET VALUE='^[\w\s-./,/'']{1,4000}$' WHERE REGEXKEY='ProcessingService.unifiedFields';
+		</sql>
+	</changeSet>
+	<changeSet author="sterlite" id="HL140000000005" dbms="postgresql">
+		<comment>updating tblmregex column value for regex key unifiedfield</comment>
+		<sql>
+			UPDATE TBLMREGEX SET VALUE='^[\w\s-./,/'']{1,4000}$' WHERE REGEXKEY='ProcessingService.unifiedFields';
+		</sql>
+	</changeSet>
+	<changeSet author="sterlite" id="HL140000000006" dbms="mysql">
+		<comment>updating tblmregex column value for regex key unifiedfield</comment>
+		<sql>
+			UPDATE TBLMREGEX SET VALUE='^[\\w\\s-./,/'']{1,4000}$' WHERE REGEXKEY='ProcessingService.unifiedFields';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL140000000007">
+    	<preConditions onFail="MARK_RAN">
+		  	<not>
+			  	<columnExists tableName="TBLTCOMPOSER" columnName="DEFAULTFILEEXTREMOVE" />
+		  	</not>
+		</preConditions>
+    	<addColumn tableName="TBLTCOMPOSER">
+    		<column name="DEFAULTFILEEXTREMOVE" type="char(1)" defaultValue="N">
+				<constraints nullable="true" />
+    		</column>
+    	</addColumn>
+    </changeSet>
+    
+    <changeSet author="sterlite" id="HL140000000008" dbms="oracle,postgresql">
+		<comment>Updating regex for writepath field in Collection Service , allowing comma</comment>
+		<sql>update TBLMREGEX set VALUE='^[\_$\s\w-:./\\,]{1,500}$' where REGEXKEY='CommonPathList.writeFilePath';</sql>
+    </changeSet>
+    
+    <changeSet author="sterlite" id="HL140000000009" dbms="mysql">
+		<comment>Updating regex for writepath field in Collection Service , allowing comma</comment>
+		<sql>update TBLMREGEX set VALUE='^[\\_$\\s\\w-:./\\\\,]{1,500}$' where REGEXKEY='CommonPathList.writeFilePath';</sql>
+    </changeSet>
+    
+    <changeSet author="sterlite" id="HL140000000010" dbms="oracle,postgresql">
+		<sql>UPDATE TBLMREGEX SET  VALUE = '^[\_$\s\w-:,./\\]{1,4000}$' WHERE REGEXKEY='Parser.writeFilePath';</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL140000000011" dbms="mysql">
+		<sql>UPDATE TBLMREGEX SET  VALUE = '^[\\_$\\s\\w-:,./\\\\]{1,4000}$' WHERE REGEXKEY='Parser.writeFilePath';</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="SS130000000005" dbms="oracle,postgresql">
+		<sql>update TBLMDYNAMICREPORT set VIEWNAME='MonthlyFileStatistics' where REPORTNAME='Monthly File Statistics';</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="SS130000000006" dbms="mysql">
+		<sql>update TBLMDYNAMICREPORT set VIEWNAME='MonthlyFileStatistics' where REPORTNAME='Monthly File Statistics';</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="SS130000000007" dbms="oracle,postgresql">
+		<sql>update TBLMREGEX set VALUE='-1|([0-9]{0,10})$' where REGEXKEY='ProcessingService.globalSeqMaxLimit';</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="SS130000000008" dbms="mysql">
+		<sql>update TBLMREGEX set VALUE='-1|([0-9]{0,10})$' where REGEXKEY='ProcessingService.globalSeqMaxLimit';</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="SS130000000009" dbms="oracle,postgresql">
+		<sql>update TBLMVALIDATIONRANGE set maxrange='1000000000' where ENTITYTYPE='com.elitecore.sm.services.model.ProcessingService' and ENTITYREGEXID=(select id from TBLMREGEX where REGEXKEY='ProcessingService.globalSeqMaxLimit');</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="SS130000000010" dbms="mysql">
+		<sql>update TBLMVALIDATIONRANGE set maxrange='1000000000' where ENTITYTYPE='com.elitecore.sm.services.model.ProcessingService' and ENTITYREGEXID=(select id from TBLMREGEX where REGEXKEY='ProcessingService.globalSeqMaxLimit');</sql>
+	</changeSet>
+	
+	<!--  The new SNMP alerts for parsing, processing, distribution services -->
+	<changeSet author="elitecore" id="HL140000000012" dbms="oracle">
+		<sql splitStatements="true">
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000456',
+			'parsingServiceFileReceived','Generated at the time when Files Received In Parsing Service',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'PARSING_SERVICE'));
+			
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000457',
+			'processingServiceFileReceived','Generated at the time when Files Received In Processing Service',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'PROCESSING_SERVICE'));
+			
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000458',
+			'distributionServiceFileReceived','Generated at the time when Files Received In Distribution Service',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'DISTRIBUTION_SERVICE'));
+		</sql>
+	</changeSet>
+
+
+	<changeSet author="elitecore" id="HL140000000012" dbms="postgresql">
+			<sql splitStatements="true">
+				INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+				THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000456',
+				'parsingServiceFileReceived','Generated at the time when Files Received In Parsing Service',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'PARSING_SERVICE'));
+				
+				INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+				THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000457',
+				'processingServiceFileReceived','Generated at the time when Files Received In Processing Service',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'PROCESSING_SERVICE'));
+				
+				INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+				THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000458',
+				'distributionServiceFileReceived','Generated at the time when Files Received In Distribution Service',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'DISTRIBUTION_SERVICE'));
+			</sql>
+	</changeSet>
+	
+	
+	<changeSet author="elitecore" id="HL140000000012" dbms="mysql">
+			<sql splitStatements="true">
+				INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+				THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000456',
+				'parsingServiceFileReceived','Generated at the time when Files Received In Parsing Service',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'PARSING_SERVICE'));
+				
+				INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+				THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000457',
+				'processingServiceFileReceived','Generated at the time when Files Received In Processing Service',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'PROCESSING_SERVICE'));
+				
+				INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+				THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000458',
+				'distributionServiceFileReceived','Generated at the time when Files Received In Distribution Service',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'DISTRIBUTION_SERVICE'));
+			</sql>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL140000000013" dbms="oracle">
+		<comment>updating tblmregex column value for regex key equalcheckvalue </comment>
+		<sql>
+			UPDATE TBLMREGEX SET VALUE='^(.){0,4000}$' WHERE REGEXKEY='Service.equalCheckValue';
+		</sql>
+	</changeSet>
+	<changeSet author="sterlite" id="HL140000000013" dbms="postgresql">
+		<comment>updating tblmregex column value for regex key equalcheckvalue</comment>
+		<sql>
+			UPDATE TBLMREGEX SET VALUE='^(.){0,4000}$' WHERE REGEXKEY='Service.equalCheckValue';
+		</sql>
+	</changeSet>
+	<changeSet author="sterlite" id="HL140000000013" dbms="mysql">
+		<comment>updating tblmregex column value for regex key equalcheckvalue</comment>
+		<sql>
+			UPDATE TBLMREGEX SET VALUE='^(.){0,4000}$' WHERE REGEXKEY='Service.equalCheckValue';
+		</sql>
+	</changeSet>
+	<changeSet author="sterlite" id="HL140000000014">
+        <comment>Modify datatype of EQUALCHECKVALUE for ParsingService</comment>
+	    <modifyDataType columnName="EQUALCHECKVALUE" newDataType="VARCHAR(4000)" tableName="TBLTPARSINGSERVICE"/>
+	</changeSet>
+	<changeSet author="sterlite" id="HL140000000015">
+        <comment>Modify datatype of NEWVALUE for SystemAuditDetails</comment>
+	    <modifyDataType columnName="NEWVALUE" newDataType="VARCHAR(4000)" tableName="TBLTSYSTEMAUDITDETAIL"/>
+	</changeSet>
+	<changeSet author="sterlite" id="HL140000000016">
+        <comment>Modify datatype of OLDVALUE for SystemAuditDetails</comment>
+	    <modifyDataType columnName="OLDVALUE" newDataType="VARCHAR(4000)" tableName="TBLTSYSTEMAUDITDETAIL"/>
+	</changeSet>
+	<changeSet author="sterlite" id="HL1400000000017" dbms="oracle">
+		<comment>updating tblmregex column value for regex key TAB separator </comment>
+		<sql>
+			UPDATE TBLMREGEX SET VALUE='^[^\w]{1,4}$' WHERE REGEXKEY='AsciiComposerMapping.fieldSeparator';
+		</sql>
+	</changeSet>
+	<changeSet author="sterlite" id="HL1400000000017" dbms="postgresql">
+		<comment>updating tblmregex column value for regex key TAB separator </comment>
+		<sql>
+			UPDATE TBLMREGEX SET VALUE='^[^\w]{1,4}$' WHERE REGEXKEY='AsciiComposerMapping.fieldSeparator';
+		</sql>
+	</changeSet>
+	<changeSet author="sterlite" id="HL1400000000017" dbms="mysql">
+		<comment>updating tblmregex column value for regex key TAB separator </comment>
+		<sql>
+			UPDATE TBLMREGEX SET VALUE='^[^\w]{1,4}$' WHERE REGEXKEY='AsciiComposerMapping.fieldSeparator';
+		</sql>
+	</changeSet>
+	
+</databaseChangeLog>
+
+

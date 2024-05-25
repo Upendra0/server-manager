@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE driver-mapping SYSTEM "http://www.elitecore.com">-->
+
+<iplog-parsing-service>
+
+        <source-path>/home/elitecore/MEDIATION_ROOT/collected/bin/127.0.0.1</source-path> <!-- Comma separated path -->
+        
+        <sorting-type>ASCENDING</sorting-type> <!-- ASCENDING/DESCENDING/NA -->
+        
+		<sorting-criteria></sorting-criteria>
+
+        <is-compressed>true</is-compressed>
+
+       	<minimum-thread>5</minimum-thread>
+
+        <maximum-thread>5</maximum-thread>
+
+        <file-batch-size>10</file-batch-size>
+
+        <queue-size>15000</queue-size>
+
+        <file-splitting-enabled>false</file-splitting-enabled>
+
+        <record-batch-size>5000</record-batch-size>
+
+        <startup-mode>Automatic</startup-mode>
+
+        <execution-interval>40</execution-interval>
+
+        <immediate-execute-on-startup>true</immediate-execute-on-startup>
+
+        <source-file-types>.gz</source-file-types>
+    
+        <select-file-on-prefixes></select-file-on-prefixes>
+    
+        <select-file-on-suffixes></select-file-on-suffixes>
+   
+        <file-compression>true</file-compression>
+    
+        <plugin-name>NATFLOW_PARSING_PLUGIN</plugin-name>
+
+        <file-grouping enabled="true">
+                <grouping-type>year</grouping-type>
+                <for-archive>true</for-archive>
+                <archive-path></archive-path>
+        </file-grouping>
+
+        <exclude-file-types></exclude-file-types>
+    
+    <syslog-output-configuration>
+    
+        <destination-directory-path>/home/elitecore/MEDIATION_ROOT/collected/bin/parsed</destination-directory-path>
+    
+        <file-partition>
+                <field-seperator>_</field-seperator>
+                <partition-type>hash-base</partition-type> <!-- hash-base/ip-base -->
+                <field-based-hash-partition>
+                        <key-field type="Date">
+                                <unified-field-name>StartDate</unified-field-name>
+                                <range>HOUR</range>   <!-- DATE/HOUR/MINUTE -->
+                        </key-field>
+                       	<key-field type="PUBLIC_IP">
+								<unified-field-name>General6</unified-field-name>
+								<range>100</range>       <!-- Number of IP Address approx. e.g. 10000 -->
+					   	</key-field>
+						<key-field type="PRIVATE_IP">
+								<unified-field-name>General7</unified-field-name>
+								<range>100</range>       <!-- Number of IP Address approx. e.g. 10000 -->
+						</key-field>
+                </field-based-hash-partition>
+    
+        </file-partition>
+    
+        <inprocess-file-purge>
+                <purge-interval>1</purge-interval>
+                <max-rename-interval>1</max-rename-interval>
+        </inprocess-file-purge>
+    
+    </syslog-output-configuration>
+    
+    <equal-check-field></equal-check-field>
+    <equal-check-value></equal-check-value>
+    
+    <output-file-header></output-file-header>
+	
+	<pre-correlation enabled="false"> <!-- With this field pre-correlation can be made as enable or disable -->
+		<cdr-type-field>General9</cdr-type-field> <!-- Please note that this field is case-sensitive so configure unified field correctly as per the file header -->
+		<destination-port-field>General5</destination-port-field> <!-- Please note that this field is case-sensitive so configure unified field correctly as per the file header -->
+		<destination-ports-filter>80,8080,443,53</destination-ports-filter> <!-- Comma separated values without having space in between -->
+		<c-data-destination-path>D:\MEDIATION_ROOT\PARSED_C\</c-data-destination-path>
+		<d-data-destination-path>D:\MEDIATION_ROOT\PARSED_D\</d-data-destination-path>
+	</pre-correlation>
+	 
+</iplog-parsing-service>

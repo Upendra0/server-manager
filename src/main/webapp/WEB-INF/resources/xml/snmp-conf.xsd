@@ -1,0 +1,34 @@
+
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:simpleType name="emptyString">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="int-1999">
+		<xs:restriction base="xs:int">
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="snmp" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true">
+		<xs:complexType>
+			<xs:all>
+				<xs:element type="xs:string" name="ipAddress" minOccurs="0"/>
+				<xs:element name="port" minOccurs="0"
+					nillable="true">
+					<xs:simpleType>
+						<xs:union memberTypes="int-1999 emptyString" />
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="offset" minOccurs="0"
+					nillable="true">
+					<xs:simpleType>
+						<xs:union memberTypes="int-1999 emptyString" />
+					</xs:simpleType>
+				</xs:element>
+				<xs:element type="xs:string" name="community" minOccurs="0"/>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
+

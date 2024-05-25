@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+ 
+	<!-- Change set id should start with <Your Initials>120000000001 like. HL120000000001 -->
+	
+	<changeSet author="sterlite" id="HL120000000001" dbms="oracle,postgresql">
+		<comment>Updating regex for destPath field in Composer , allowing comma</comment>
+		<sql>update TBLMREGEX set VALUE='^[\_$\s\w-:./\\,]{1,500}$' where REGEXKEY='Composer.destPath';</sql>
+    </changeSet>
+    
+    <changeSet author="sterlite" id="HL120000000002" dbms="mysql">
+		<comment>Updating regex for destPath field in Composer , allowing comma</comment>
+		<sql>update TBLMREGEX set VALUE='^[\\_$\\s\\w-:./\\\\,]{1,500}$' where REGEXKEY='Composer.destPath';</sql>
+    </changeSet>
+    
+    <changeSet author="sterlite" id="HL120000000003" dbms="oracle,postgresql">
+		<comment>Updating regex for writepath field in Collection Service , allowing comma</comment>
+		<sql>update TBLMREGEX set VALUE='^[\_$\s\w-:./\\,]{1,500}$' where REGEXKEY='CommonPathList.writeFilePath';</sql>
+    </changeSet>
+    
+    <changeSet author="sterlite" id="HL120000000004" dbms="mysql">
+		<comment>Updating regex for writepath field in Collection Service , allowing comma</comment>
+		<sql>update TBLMREGEX set VALUE='^[\\_$\\s\\w-:./\\\\,]{1,500}$' where REGEXKEY='CommonPathList.writeFilePath';</sql>
+    </changeSet>
+    
+    <changeSet author="sterlite" id="NP78000000000001">
+        <comment>Child attribute character Limitation of 2500 to 4000 (MEDSUP-1916)</comment>
+	    <modifyDataType columnName="CHILDATTR" newDataType="VARCHAR(4000)" tableName="TBLTPARSERATTR"/>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL120000000005" dbms="oracle,postgresql">
+		<comment>Updating regex for fileExtension field in Composer</comment>
+		<sql>update TBLMREGEX set VALUE='^[^&lt;&gt;:/\\|?*]{0,20}$' where REGEXKEY='Composer.fileExtension';</sql>
+    </changeSet>
+    
+    <changeSet author="sterlite" id="HL120000000006" dbms="mysql">
+		<comment>Updating regex for fileExtension field in Composer</comment>
+		<sql>update TBLMREGEX set VALUE='^[^&lt;&gt;:/\\\\|?*]{0,20}$' where REGEXKEY='Composer.fileExtension';</sql>
+    </changeSet>
+    
+    <changeSet author="sterlite" id="HL120000000007" dbms="mysql,postgresql">
+    	<modifyDataType tableName="TBLTPARSERATTR" columnName="LENGTH" newDataType="VARCHAR(50)"/>
+    </changeSet>
+    
+    <changeSet author="sterlite" id="HL120000000008">
+    	<comment>Updating regex for length field in FixedLengthASCIIParserAttribute</comment>
+		<sql>update TBLMREGEX set VALUE='^[0-9][0-9,]{0,10000}+$' where REGEXKEY='FixedLengthASCIIParserAttribute.length';</sql>
+    </changeSet>
+    
+    <changeSet author="sterlite" id="HL120000000009">
+    	<comment>Updating regex for length field in FixedLengthBinaryParserAttribute</comment>
+		<sql>update TBLMREGEX set VALUE='^[0-9]{0,10000}+$' where REGEXKEY='FixedLengthBinaryParserAttribute.length';</sql>
+    </changeSet>
+    
+    <changeSet author="sterlite" id="HL120000000010" dbms="oracle">
+    	<preConditions onFail="MARK_RAN">
+		  	<not>
+			  	<columnExists tableName="TBLTPARSERATTR" columnName="FLENGTH" />
+		  	</not>
+		</preConditions>
+    	<addColumn tableName="TBLTPARSERATTR">
+    		<column name="FLENGTH" type="VARCHAR(50)">
+				<constraints nullable="true" />
+    		</column>
+    	</addColumn>
+    </changeSet>
+    
+    <changeSet author="sterlite" id="HL120000000011" dbms="oracle">
+		<sql>UPDATE TBLTPARSERATTR A SET A.FLENGTH = (SELECT B.LENGTH FROM TBLTPARSERATTR B WHERE A.ID = B.ID);</sql>    
+    </changeSet>
+
+	<changeSet author="sterlite" id="HL120000000012" dbms="oracle">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="TBLTPARSERATTR" columnName="LENGTH" />
+		</preConditions>
+		<dropColumn tableName="TBLTPARSERATTR" columnName="LENGTH"/>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL120000000013" dbms="oracle">
+		<renameColumn tableName="TBLTPARSERATTR" oldColumnName="FLENGTH" newColumnName="LENGTH"/>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL120000000014" dbms="mysql,postgresql">
+		<modifyDataType tableName="TBLTCOMPOSER" columnName="FILEEXTENSION" newDataType="VARCHAR(20)"/>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL120000000015" dbms="oracle">
+    	<preConditions onFail="MARK_RAN">
+		  	<not>
+			  	<columnExists tableName="TBLTCOMPOSER" columnName="NEWFILEEXTENSION" />
+		  	</not>
+		</preConditions>
+    	<addColumn tableName="TBLTCOMPOSER">
+    		<column name="NEWFILEEXTENSION" type="VARCHAR(20)">
+				<constraints nullable="true" />
+    		</column>
+    	</addColumn>
+    </changeSet>
+    
+    <changeSet author="sterlite" id="HL120000000016" dbms="oracle">
+		<sql>UPDATE TBLTCOMPOSER A SET A.NEWFILEEXTENSION = (SELECT B.FILEEXTENSION FROM TBLTCOMPOSER B WHERE A.ID = B.ID);</sql>    
+    </changeSet>
+
+	<changeSet author="sterlite" id="HL120000000017" dbms="oracle">
+		<preConditions onFail="MARK_RAN">
+			<columnExists tableName="TBLTCOMPOSER" columnName="FILEEXTENSION" />
+		</preConditions>
+		<dropColumn tableName="TBLTCOMPOSER" columnName="FILEEXTENSION"/>
+	</changeSet>
+	
+	<changeSet author="sterlite" id="HL120000000018" dbms="oracle">
+		<renameColumn tableName="TBLTCOMPOSER" oldColumnName="NEWFILEEXTENSION" newColumnName="FILEEXTENSION"/>
+	</changeSet>
+																			
+</databaseChangeLog>

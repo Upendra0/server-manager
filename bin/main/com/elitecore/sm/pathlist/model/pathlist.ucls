@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.8" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <class id="1" language="java" name="com.elitecore.sm.pathlist.model.CharRenameOperation" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/pathlist/model/CharRenameOperation.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="567" width="172" x="214" y="-136"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.elitecore.sm.pathlist.model.DistributionDriverPathList" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/pathlist/model/DistributionDriverPathList.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="153" width="289" x="214" y="1150"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.elitecore.sm.pathlist.model.ProcessingPathList" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/pathlist/model/ProcessingPathList.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="155" x="543" y="1150"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.elitecore.sm.pathlist.model.CollectionDriverPathList" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/pathlist/model/CollectionDriverPathList.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="801" width="240" x="738" y="1150"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="com.elitecore.sm.pathlist.model.PathList" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/pathlist/model/PathList.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="387" width="162" x="678" y="-136"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="com.elitecore.sm.pathlist.model.FileGroupingParameterProcessing" 
+    project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/pathlist/model/FileGroupingParameterProcessing.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="639" width="250" x="978" y="471"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.elitecore.sm.pathlist.model.FileGroupingParameter" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/pathlist/model/FileGroupingParameter.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="315" width="211" x="978" y="-136"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="com.elitecore.sm.pathlist.model.CommonPathList" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/pathlist/model/CommonPathList.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="531" width="234" x="409" y="471"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="com.elitecore.sm.pathlist.model.FileFetchParams" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/pathlist/model/FileFetchParams.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="297" width="212" x="426" y="-136"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.elitecore.sm.pathlist.model.ParsingPathList" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/pathlist/model/ParsingPathList.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="153" width="255" x="683" y="471"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="11">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <generalization id="12">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <generalization id="13">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="14">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="7"/>  
+  </generalization>  
+  <generalization id="15">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="5"/>  
+  </generalization>  
+  <generalization id="16">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

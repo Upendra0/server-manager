@@ -1,0 +1,1445 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alerts>
+	<alert>
+		<id>AT00039</id>
+		<name>serverUp</name>
+		<description>Generated at the time of server is up</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT0004</id>
+		<name>serverDown</name>
+		<description>Generated when server goes down</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00072</id>
+		<name>failedToStart</name>
+		<description>Generated at the time of failure in start up process of
+			server
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00015</id>
+		<name>outOfMemory</name>
+		<description>Generated when server is goes out of memory</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000106</id>
+		<name>reloadCache</name>
+		<description>Generated at the time of reload cache operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00056</id>
+		<name>softRestart</name>
+		<description>Generated at the time of soft restart operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000108</id>
+		<name>reloadConfig</name>
+		<description>Generated at the time of reload config operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00086</id>
+		<name>syncConfToServer</name>
+		<description>Generated at the time of synchronization to operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00090</id>
+		<name>syncConfFromServer</name>
+		<description>Generated at the time of synchronization from operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00037</id>
+		<name>databaseUp</name>
+		<description>Generated whin database goes up</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00028</id>
+		<name>databaseDown</name>
+		<description>Generated when database goes down</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00013</id>
+		<name>databaseError</name>
+		<description>Generated when any database error occured</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00081</id>
+		<name>collectionServiceUp</name>
+		<description>Generated at the time of collection service instance goes
+			up
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00030</id>
+		<name>collectionServiceDown</name>
+		<description>Generated at the time of collection service instance goes
+			down
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00026</id>
+		<name>collectionServiceFailedToStart</name>
+		<description>Generated at the time of failure in start up process of
+			collection service
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000102</id>
+		<name>collectionServiceOutOfMemory</name>
+		<description>Generated at the time of collection service instance goes
+			out of memory
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00023</id>
+		<name>collectionServiceSyncTo</name>
+		<description>Generated at the time of synchronization to operation for
+			collection service instance
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00049</id>
+		<name>collectionServiceSyncFrom</name>
+		<description>Generated at the time of synchronization from operation
+			for collection service instance
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00052</id>
+		<name>collectionServiceFileTransferFailed</name>
+		<description>Generated at the time of some abnormal condition like no
+			access to destination folder or no space left on the device
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00064</id>
+		<name>collectionServiceReceivedFileSizeZero</name>
+		<description>Generated at the time of receiving file of zero size
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00087</id>
+		<name>collectionServiceConnectionLost</name>
+		<description>Generated at the time of connection lost to database or
+			ftp server
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00062</id>
+		<name>collectionServiceNoSpaceLeft</name>
+		<description>generated at the time of no space left on the device
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00020</id>
+		<name>collectionServiceDuplicateFileReceived</name>
+		<description>Generated at the time of receiving duplicate file
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000111</id>
+		<name>collectionServiceError</name>
+		<description>Generated at the time of collection service will be in
+			Error
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00079</id>
+		<name>gtpPrimeServiceUp</name>
+		<description>Generated at the time of GTP Prime service instance goes
+			up
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00018</id>
+		<name>gtpPrimeServiceDown</name>
+		<description>Generated at the time of GTP Prime service instance goes
+			down
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT0003</id>
+		<name>gtpPrimeServiceFailedToStart</name>
+		<description>Generated at the time of GTP Prime service instance
+			failed to start
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00043</id>
+		<name>gtpPrimeServiceOutOfMemory</name>
+		<description>Generated at the time of GTP Prime service instance goes
+			out of memory
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00031</id>
+		<name>gtpPrimeServiceSyncTo</name>
+		<description>Generated at the time of synchronized to configuration
+			operation to GTP Prime Service instance
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00050</id>
+		<name>gtpPrimeServiceSyncFrom</name>
+		<description>Generated at the time of synchronized from configuration
+			operation to GTP Prime Service instance
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00045</id>
+		<name>gtpPrimeServiceNoRequestReceived</name>
+		<description>Generated at the time of no request receive for specific
+			interval in GTP Prime Service instance
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00063</id>
+		<name>gtpPrimeServiceTotalRejectedRequestAboveSpecifiedThresold</name>
+		<description>Generated at the time of total rejected request reach up
+			to certain limit for GTP Prime Service instance
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000104</id>
+		<name>gtpPrimeServiceNoSpaceLeftOnDevice</name>
+		<description>Generated at the time when no space left on device for
+			GTP Prime Service instance
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000115</id>
+		<name>gtpPrimeServiceError</name>
+		<description>Generated at the time of GTP Prime service will be in
+			Error
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00017</id>
+		<name>natFlowCollectionServiceUp</name>
+		<description>Generated at the time of Nat Flow Collection service goes
+			up
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT0005</id>
+		<name>natFlowCollectionServiceDown</name>
+		<description>Generated at the time of Nat Flow Collection service goes
+			down
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000105</id>
+		<name>natFlowCollectionServiceFailedToStart</name>
+		<description>Generated at the time of Nat Flow Collection service
+			failed to start
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00091</id>
+		<name>natFlowCollectionServiceOutOfMemory</name>
+		<description>Generated at the time Natflow Collection Service is out
+			of memrory
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00047</id>
+		<name>natFlowCollectionServiceSyncTo</name>
+		<description>Generated at the time Natflow Collection service instance
+			is Synchronized to configuration operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00012</id>
+		<name>natFlowCollectionServiceSyncFrom</name>
+		<description>Generated at the time Natflow Collection service instance
+			is Synchronized from configuration operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00040</id>
+		<name>natFlowCollectionServiceNoSpaceLeftOnDevice</name>
+		<description>Generated at the time when no space left on device for
+			Natflow Collection Service instance
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000113</id>
+		<name>natFlowCollectionServiceError</name>
+		<description>Generated at the time of Natflow Collection service will
+			be in Error
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00092</id>
+		<name>natFlowBinaryCollectionServiceUp</name>
+		<description>Generated when Nat Flow Collection service goes up
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00084</id>
+		<name>natFlowBinaryCollectionServiceDown</name>
+		<description>Generated when Nat Flow Collection service goes down
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00082</id>
+		<name>natFlowBinaryCollectionServiceFailedToStart</name>
+		<description>Nat Flow Collection service failed to start</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00044</id>
+		<name>natFlowBinaryCollectionServiceOutOfMemory</name>
+		<description>Generated at the time Natflow Binary Collection Service
+			is out of memrory
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT0001</id>
+		<name>natFlowBinaryCollectionServiceSyncTo</name>
+		<description>Generated at the time Natflow Binary Collection service
+			instance is Synchronized to configuration operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00051</id>
+		<name>natFlowBinaryCollectionServiceSyncFrom</name>
+		<description>Generated at the time Natflow Binary Collection service
+			instance is Synchronized from configuration operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT0008</id>
+		<name>natFlowBinaryCollectionServiceNoSpaceLeftOnDevice</name>
+		<description>Generated at the time when no space left on device for
+			Natflow Binary Collection Service instance
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000114</id>
+		<name>natFlowBinaryCollectionServiceError</name>
+		<description>Generated at the time of Natflow Binary Collection
+			service will be in Error
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00070</id>
+		<name>sysLogCollectionServiceUp</name>
+		<description>Generated at the time SysLog Collection Service goes Up
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00078</id>
+		<name>sysLogCollectionServiceDown</name>
+		<description>Generated at the time Syslog Collection Service goes down
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00036</id>
+		<name>sysLogCollectionServiceFailedToStart</name>
+		<description>Generated at the time Syslog Collection Service Failed to
+			start
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00088</id>
+		<name>sysLogCollectionServiceOutOfMemory</name>
+		<description>Generated at the time Syslog Collection Service is out of
+			memrory
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00021</id>
+		<name>sysLogCollectionServiceSyncTo</name>
+		<description>Generated at the time Syslog Collection service instance
+			is Synchronized to configuration operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00060</id>
+		<name>sysLogCollectionServiceSyncFrom</name>
+		<description>Generated at the time Syslog Collection service instance
+			is Synchronized from configuration operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00054</id>
+		<name>sysLogCollectionServiceNoSpaceLeftOnDevice</name>
+		<description>Generated at the time when no space left on device for
+			Syslog Collection Service instance
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000112</id>
+		<name>sysLogCollectionServiceError</name>
+		<description>Generated at the time of Syslog Collection service will
+			be in Error
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00077</id>
+		<name>parsingServiceUp</name>
+		<description>Parsing service goes up</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00046</id>
+		<name>parsingServiceDown</name>
+		<description>Parsing service goes down</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00022</id>
+		<name>parsingServiceFailedToStart</name>
+		<description>Parsing service failed to start</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00016</id>
+		<name>parsingServiceOutOfMemory</name>
+		<description>Generated at the time parsing service instance is out of
+			memory
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00035</id>
+		<name>parsingServiceSyncTo</name>
+		<description>Generated at the time parsing service instance is
+			Synchronized to configuration operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00055</id>
+		<name>parsingServiceSyncFrom</name>
+		<description>Generated at the time parsing service instance is
+			Synchronized from configuration operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00075</id>
+		<name>parsingServiceNoSpaceLeftOnDevice</name>
+		<description>Generated at the time parsing service instance is out of
+			memory
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000116</id>
+		<name>parsingServiceError</name>
+		<description>Generated at the time when no space left on device for
+			Parsing Service instance
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000100</id>
+		<name>ipLoggerParsingServiceUp</name>
+		<description>Generated at the time iplogger parsing service instance
+			goes up
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00038</id>
+		<name>ipLoggerParsingServiceDown</name>
+		<description>Generated at the time iplogger parsing service instance
+			goes down
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000110</id>
+		<name>ipLoggerParsingServiceFailedToStart</name>
+		<description>Generated at the time iplogger parsing service instance
+			failed to start
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00099</id>
+		<name>ipLoggerParsingServiceOutOfMemory</name>
+		<description>Generated at the time iplogger parsing service instance
+			is out of memory
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00065</id>
+		<name>ipLoggerParsingServiceSyncTo</name>
+		<description>Generated at the time iplogger parsing service instance
+			is Synchronized to configuration operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00027</id>
+		<name>ipLoggerParsingServiceSyncFrom</name>
+		<description>Generated at the time iplogger parsing service instance
+			is Synchronized from configuration operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00053</id>
+		<name>ipLoggerParsingServiceNoSpaceLeftOnDevice</name>
+		<description>Generated at the time when no space left on device for
+			iplogger Parsing Service instance
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000117</id>
+		<name>ipLoggerParsingServiceError</name>
+		<description>Generated at the time of iplogger Parsing service will be
+			in Error
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00019</id>
+		<name>processingServiceUp</name>
+		<description>Generated at the time processing service instance goes up
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00048</id>
+		<name>processingServiceDown</name>
+		<description>Generated at the time processing service instance goes
+			down
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT0006</id>
+		<name>processingServiceFailedToStart</name>
+		<description>Generated at the time processing service instance failed
+			to start
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00042</id>
+		<name>processingServiceOutOfMemory</name>
+		<description>Generated at the time processing service instance is out
+			of memory
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00096</id>
+		<name>processingServiceSyncTo</name>
+		<description>Generated at the time processing service instance is
+			Synchronized to configuration operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00074</id>
+		<name>processingServiceSyncFrom</name>
+		<description>Generated at the time processing service instance is
+			Synchronized from configuration operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000101</id>
+		<name>processingServiceNoSpaceLeftOnDevice</name>
+		<description>Generated at the time when no space left on device for
+			Processing Service instance
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000118</id>
+		<name>processingServiceError</name>
+		<description>Generated at the time processing service instance falls
+			into error
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000109</id>
+		<name>distributionServiceUp</name>
+		<description>Generated at the time Distribution service instance goes
+			up
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00066</id>
+		<name>distributionServiceDown</name>
+		<description>Generated at the time Distribution service instance goes
+			down
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT0009</id>
+		<name>distributionServiceFailedToStart</name>
+		<description>Generated at the time Distribution service instance
+			failed to start
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00094</id>
+		<name>distributionServiceOutOfMemory</name>
+		<description>Generated at the time Distribution service instance is
+			out of memory
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00098</id>
+		<name>distributionServiceSyncTo</name>
+		<description>Generated at the time Distribution service instance is
+			Synchronized to configuration operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00029</id>
+		<name>distributionServiceSyncFrom</name>
+		<description>Generated at the time Distribution service instance is
+			Synchronized from configuration operation
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000103</id>
+		<name>distributionServiceFileTransferFailed</name>
+		<description>Generated at the time Distribution service instance is
+			failed to transfer a file
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00085</id>
+		<name>distributionServiceDownStreamConnectionLost</name>
+		<description>Generated at the time connection among Distribution
+			service instance and downstream device will lost
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT00032</id>
+		<name>distributionServiceNoSpaceLeftOnDevice</name>
+		<description>Generated at the time Distribution service instance is
+			out of memory
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000119</id>
+		<name>distributionServiceError</name>
+		<description>Generated at the time Distribution service instance falls
+			into error
+		</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000120</id>
+		<name>generic1</name>
+		<description>generic1</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000121</id>
+		<name>generic2</name>
+		<description>generic2</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000122</id>
+		<name>generic3</name>
+		<description>generic3</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000123</id>
+		<name>generic4</name>
+		<description>generic4</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000124</id>
+		<name>generic5</name>
+		<description>generic5</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000125</id>
+		<name>generic6</name>
+		<description>generic6</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000126</id>
+		<name>generic7</name>
+		<description>generic7</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000127</id>
+		<name>generic8</name>
+		<description>generic8</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000128</id>
+		<name>generic9</name>
+		<description>generic9</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000129</id>
+		<name>generic10</name>
+		<description>generic10</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000130</id>
+		<name>generic11</name>
+		<description>generic11</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000131</id>
+		<name>generic12</name>
+		<description>generic12</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000132</id>
+		<name>generic13</name>
+		<description>generic13</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000133</id>
+		<name>generic14</name>
+		<description>generic14</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000134</id>
+		<name>generic15</name>
+		<description>generic15</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000135</id>
+		<name>generic16</name>
+		<description>generic16</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000136</id>
+		<name>generic17</name>
+		<description>generic17</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000137</id>
+		<name>generic18</name>
+		<description>generic18</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000138</id>
+		<name>generic19</name>
+		<description>generic19</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000139</id>
+		<name>generic20</name>
+		<description>generic20</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000140</id>
+		<name>generic21</name>
+		<description>generic21</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000141</id>
+		<name>generic22</name>
+		<description>generic22</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000142</id>
+		<name>generic23</name>
+		<description>generic23</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000143</id>
+		<name>generic24</name>
+		<description>generic24</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000144</id>
+		<name>generic25</name>
+		<description>generic25</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000145</id>
+		<name>generic26</name>
+		<description>generic26</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000146</id>
+		<name>generic27</name>
+		<description>generic27</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000147</id>
+		<name>generic28</name>
+		<description>generic28</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000148</id>
+		<name>generic29</name>
+		<description>generic29</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000149</id>
+		<name>generic30</name>
+		<description>generic30</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000150</id>
+		<name>generic31</name>
+		<description>generic31</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000151</id>
+		<name>generic32</name>
+		<description>generic32</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000152</id>
+		<name>generic33</name>
+		<description>generic33</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000153</id>
+		<name>generic34</name>
+		<description>generic34</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000154</id>
+		<name>generic35</name>
+		<description>generic35</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000155</id>
+		<name>generic36</name>
+		<description>generic36</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000156</id>
+		<name>generic37</name>
+		<description>generic37</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000157</id>
+		<name>generic38</name>
+		<description>generic38</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000158</id>
+		<name>generic39</name>
+		<description>generic39</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000159</id>
+		<name>generic40</name>
+		<description>generic40</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000160</id>
+		<name>generic41</name>
+		<description>generic41</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000161</id>
+		<name>generic42</name>
+		<description>generic42</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000162</id>
+		<name>generic43</name>
+		<description>generic43</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000163</id>
+		<name>generic44</name>
+		<description>generic44</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000164</id>
+		<name>generic45</name>
+		<description>generic45</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000165</id>
+		<name>generic46</name>
+		<description>generic46</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000166</id>
+		<name>generic47</name>
+		<description>generic47</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000167</id>
+		<name>generic48</name>
+		<description>generic48</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000168</id>
+		<name>generic49</name>
+		<description>generic49</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000169</id>
+		<name>generic50</name>
+		<description>generic50</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000170</id>
+		<name>licenseNotification</name>
+		<description>Generated as reminder for License Date expiry</description>
+	</alert>
+	<alert>
+		<id>AT000171</id>
+		<name>radiusServiceUp</name>
+		<description>Generated at the time of radius service is up</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000172</id>
+		<name>radiusServiceDown</name>
+		<description>Generated at the time of radius service is down</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000173</id>
+		<name>radiusServiceFailedToStart</name>
+		<description>Generated at the time of radius service is failed to start</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000174</id>
+		<name>radiusServiceOutOfMemory</name>
+		<description>Generated at the time of radius service is out of memory</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000175</id>
+		<name>radiusServiceReloadConfig</name>
+		<description>Generated at the time of radius service reload configuration</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000176</id>
+		<name>radiusServiceSyncTo</name>
+		<description>Generated at the time of radius service synchronization to operation</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000177</id>
+		<name>radiusServiceSyncFrom</name>
+		<description>Generated at the time of radius service synchronization from operation</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000178</id>
+		<name>radiusServiceNoRequestReceived</name>
+		<description>Generated at the time of no request received for radius service</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000179</id>
+		<name>radiusServiceTotalRejectedRequestAboveSpecifiedThresold</name>
+		<description>Generated at the time of total rejected request above specified thresold for radius service</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000180</id>
+		<name>radiusServiceNoSpaceLeftOnDevice</name>
+		<description>Generated at the time of no space left on device for radius service</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000181</id>
+		<name>radiusServiceError</name>
+		<description>Generated when any radius service error occured</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	
+	<alert>
+		<id>AT000182</id>
+		<name>dataConsolidationServiceUp</name>
+		<description>dataConsolidationServiceUp</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000183</id>
+		<name>dataConsolidationServiceDown</name>
+		<description>dataConsolidationServiceDown</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000184</id>
+		<name>dataConsolidationServiceFailedToStart</name>
+		<description>dataConsolidationServiceFailedToStart</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000185</id>
+		<name>dataConsolidationServiceOutOfMemory</name>
+		<description>dataConsolidationServiceOutOfMemory</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000186</id>
+		<name>dataConsolidationServiceReloadConfig</name>
+		<description>dataConsolidationServiceReloadConfig</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000187</id>
+		<name>dataConsolidationServiceSyncTo</name>
+		<description>dataConsolidationServiceSyncTo</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000188</id>
+		<name>dataConsolidationServiceSyncFrom</name>
+		<description>dataConsolidationServiceSyncFrom</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000189</id>
+		<name>dataConsolidationServiceNoSpaceLeftOnDevice</name>
+		<description>dataConsolidationServiceNoSpaceLeftOnDevice</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+		<id>AT000190</id>
+		<name>dataConsolidationServiceError</name>
+		<description>dataConsolidationServiceError</description>
+		<service-threshold-list></service-threshold-list>
+	</alert>
+	<alert>
+	<id>AT000191</id>
+	<name>natFlowCollectionServicehasNotRecievedPacketYet</name>
+	<description>Generated at the time of Natflow Collection Service has
+		not received packet yet
+	</description>
+	<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000192</id>
+		<name>natFlowCollectionServicehasPacketRecieved</name>
+		<description>Generated at the time of Natflow Collection Service has
+			received packet after delay of packets
+		</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000193</id>
+		<name>natFlowBinaryCollectionServicehasNotRecievedPacketYet</name>
+		<description>Generated at the time of Natflow Binary Collection
+			Service
+			has not received packet yet
+		</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000194</id>
+		<name>natFlowBinaryCollectionServicehasPacketRecieved</name>
+		<description>Generated at the time of Natflow Binary Collection
+			Service
+			has received packet after delay of packets
+		</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000195</id>
+		<name>gtpPrimeCollectionServiceRedirectionRequest</name>
+		<description>Generated at the time When sending Redirection Request in
+			GTP Prime Collection Service
+		</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000196</id>
+		<name>collectionServiceConnectionEstablished</name>
+		<description>Generated at the time of Connection Established In Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000197</id>
+		<name>collectionServiceMoveRenameFileAlert</name>
+		<description>Generated at the time of Move or Rename Operation on File In Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000198</id>
+		<name>gtpPrimeServiceEchoRequestDropped</name>
+		<description>Generated at the time When Echo Request Dropped in GTP Prime Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000199</id>
+		<name>gtpPrimeServiceNodeAliveRequestDropped</name>
+		<description>Generated at the time When Node Alive Request Dropped in GTP Prime Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000200</id>
+		<name>gtpPrimeServiceRedirectionRequestDropped</name>
+		<description>Generated at the time When Redirection Request Dropped in GTP Prime Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000201</id>
+		<name>gtpPrimeServiceDataRecordRequestDropped</name>
+		<description>Generated at the time When Data Request Dropped in GTP Prime Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000202</id>
+		<name>gtpPrimeServiceRequestDropped</name>
+		<description>Generated at the time When Request Dropped in GTP Prime Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000203</id>
+		<name>gtpPrimeServiceRequestMalformed</name>
+		<description>Generated at the time When Request Malformed in GTP Prime Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000204</id>
+		<name>gtpPrimeServiceRequestInvalid</name>
+		<description>Generated at the time When Request Invalidated in GTP Prime Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000205</id>
+		<name>natFlowCollectionServicePacketDrop</name>
+		<description>Generated at the time of Packet Dropped in Natflow Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000206</id>
+		<name>natFlowCollectionServicePacketMalformInvalid</name>
+		<description>Generated at the time of Packet Malformed or Invalidated in Natflow Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000207</id>
+		<name>natFlowBinaryCollectionServicePacketDrop</name>
+		<description>Generated at the time of Natflow Binary Collection Service has dropped packets</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000208</id>
+		<name>natFlowBinaryCollectionServicePacketMalformInvalid</name>
+		<description>Generated at the time of Natflow Binary Collection Service has Malform or Invalid packets</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000209</id>
+		<name>distributionServiceConnectionEstablished</name>
+		<description>Generated at the time of Connection Established In Distribution Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000210</id>
+		<name>collectionServiceMaxFilesAlert</name>
+		<description>Generated at the time of Maximum Files Threshold Reached In Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000211</id>
+		<name>collectionServiceMaxRetryReached</name>
+		<description>Generated at the time of Maximum Retry Reached In Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000212</id>
+		<name>distributionServiceMaxFilesAlert</name>
+		<description>Generated at the time of Maximum Files Threshold Reached In Distribution Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000213</id>
+		<name>parsingServiceMaxFilesAlert</name>
+		<description>Generated at the time of Maximum Files Threshold Reached In Parsing Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000214</id>
+		<name>processingServiceMaxFilesAlert</name>
+		<description>Generated at the time of Maximum Files Threshold Reached In Processing Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000215</id>
+		<name>dataConsolidationServiceMaxFilesAlert</name>
+		<description>Generated at the time of Maximum Files Threshold Reached In Data Consolidation Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000216</id>
+		<name>distributionServiceNoFileReceived</name>
+		<description>Generated at the time of No Files Received In Distribution Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000217</id>
+		<name>parsingServiceNoFileReceived</name>
+		<description>Generated at the time of No Files Received In Parsing Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000218</id>
+		<name>processingServiceNoFileReceived</name>
+		<description>Generated at the time of No Files Received In Processing Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000219</id>
+		<name>dataConsolidationServiceNoFileReceived</name>
+		<description>Generated at the time of No Files Received In Data Consolidation Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000220</id>
+		<name>resetCounter</name>
+		<description>Generated at the time of ResetCounter</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000221</id>
+		<name>collectionServiceDiskSpaceResolved</name>
+		<description>Generated at the time of Disk space is Resolved In Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000222</id>
+		<name>natFlowBinaryCollectionServiceDiskSpaceResolved</name>
+		<description>Generated at the time of Disk space is Resolved In Natflow Binary Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000223</id>
+		<name>sysLogCollectionServiceDiskSpaceResolved</name>
+		<description>Generated at the time of Disk space is Resolved In Syslog Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000224</id>
+		<name>distributionServiceDiskSpaceResolved</name>
+		<description>Generated at the time of Disk space is Resolved In Distribution Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000225</id>
+		<name>natFlowCollectionServiceDiskSpaceResolved</name>
+		<description>Generated at the time of Disk space is Resolved In Natflow Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000226</id>
+		<name>ipLoggerParsingServiceDiskSpaceResolved</name>
+		<description>Generated at the time of Disk space is Resolved In IPLog Parsing Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000227</id>
+		<name>parsingServiceDiskSpaceResolved</name>
+		<description>Generated at the time of Disk space is Resolved In Parsing Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000228</id>
+		<name>processingServiceDiskSpaceResolved</name>
+		<description>Generated at the time of Disk space is Resolved In Processing Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000229</id>
+		<name>gtpPrimeServiceDiskSpaceResolved</name>
+		<description>Generated at the time of Disk space is Resolved In GTP Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000230</id>
+		<name>dataConsolidationServiceDiskSpaceResolved</name>
+		<description>Generated at the time of Disk space is Resolved In Data Consolidation Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000231</id>
+		<name>highMemoryUtilization</name>
+		<description>Generated at the time of ResetCounter</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000232</id>
+		<name>highLoadAverage</name>
+		<description>Generated at the time of ResetCounter</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000233</id>
+		<name>sysLogCollectionServicePacketDrop</name>
+		<description>Generated at the time of Packet Dropped in Syslog Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000234</id>
+		<name>sysLogCollectionServicehasNotRecievedPacketYet</name>
+		<description>Generated at the time of SysLog Collection Service has not received packet yet</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000235</id>
+		<name>sysLogCollectionServicehasPacketRecieved</name>
+		<description>Generated at the time of SysLog Collection Service has received packet after delay of packets</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000236</id>
+		<name>radiusCollectionServicePacketDrop</name>
+		<description>Generated at the time of Packet Dropped in Syslog Collection Service</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000237</id>
+		<name>radiusCollectionServicehasNotRecievedPacketYet</name>
+		<description>Generated at the time of SysLog Collection Service has not received packet yet</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000238</id>
+		<name>radiusCollectionServicehasPacketRecieved</name>
+		<description>Generated at the time of SysLog Collection Service has received packet after delay of packets</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000239</id>
+		<name>radiusCollectionServiceMalformPacketRecieved</name>
+		<description>Generated at the time of Radius Collection Service has recieved malform or invalid packet</description>
+		<service-threshold-list />
+	</alert>
+	<alert>
+		<id>AT000275</id>
+	 	<name>collectionServiceFileSizeNotInRange</name>
+		<description>Generated at the time of receiving file of size not in
+			range within configured range</description>
+		<service-threshold-list />
+	</alert>
+</alerts>

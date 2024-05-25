@@ -1,0 +1,26 @@
+"ID","ALIAS","DESCRIPTION","NAME","STATUS","ENTITYID"
+1,"SERVER","Server Sub Menu","Server","ACTIVE",1
+2,"SERVER_INSTANCE","Server Instance Sub Menu","Server Instance","ACTIVE",1
+3,"DATASOURCE","Data Source Sub Menu","DataSource ","ACTIVE",1
+4,"RULE_DATA_DICTIONARY","Rule Data Dictionary Sub Menu","Rule Data Dictionary","ACTIVE",1
+5,"PROPERTY","Property Sub Menu","Property","ACTIVE",1
+6,"GENERAL_PARAMETER","general parameter Sub Menu","general parameter","ACTIVE",2
+7,"PASSWORD_POICY","password poicy Sub Menu","password poicy","ACTIVE",2
+8,"CUSTOMER_DETAILS","customer details Sub Menu","customer details","ACTIVE",2
+9,"STAFF_MANAGEMENT","Staff Management Sub Menu","Staff Management","ACTIVE",3
+10,"ACCESS_GROUP_MANAGEMENT","Access Group Management Sub Menu","Access Group Management","ACTIVE",3
+11,"SERVICE","Service Sub Menu","Service","ACTIVE",4
+12,"AGENT","Agent Sub Menu","Agent","ACTIVE",4
+13,"POLICY","Policy Sub Menu","Policy","ACTIVE",4
+14,"DRIVER","Driver Sub Menu","Driver","ACTIVE",4
+15,"CLIENT","client Sub Menu","client","ACTIVE",4
+16,"PARSER","Parser","Parser","ACTIVE",4
+17,"COMPOSER","composer","Composer","ACTIVE",4
+18,"PATHLIST","pathlist","pathlist","ACTIVE",4
+19,"LOGIN_HISTORY","login history","login history","ACTIVE",3
+20,"DEVICE MANAGEMENT","Device Management","Device Management","ACTIVE",5
+21,"MAPPING MANAGEMENT","Mapping Management","Mapping Management","ACTIVE",5
+22,SNMP,Snmp,snmp ,ACTIVE,2
+23,PRODUCT_CONFIGURATION,Product configuration,Product configuration ,ACTIVE,2
+24,POLICY,Policy Configuration,Policy,ACTIVE,1
+25,RULE_LOOKUP_MANAGER,Rule Lookup Manager,Rulelookup,ACTIVE,6

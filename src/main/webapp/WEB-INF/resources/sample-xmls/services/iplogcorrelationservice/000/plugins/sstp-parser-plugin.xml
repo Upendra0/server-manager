@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE driver-mapping SYSTEM "http://www.elitecore.com">-->
+
+<sstp-parser-plugin>
+
+	<source-date-format>ddMMyyyy|HHmmss</source-date-format>
+	
+	<attribute-list>
+		<attribute>
+			<unified-field>RecordNumber</unified-field>
+			<source-field>unitname,recordindex</source-field>
+			<default-value></default-value>
+		</attribute>
+
+		<attribute>
+			<unified-field>APartyMDN</unified-field>
+			<source-field>cgpadigits</source-field>
+			<default-value></default-value>
+		</attribute>
+
+		<attribute>
+			<unified-field>BPartyMDN</unified-field>
+			<source-field>cdpadigits</source-field>
+			<default-value></default-value>
+		</attribute>
+
+		<attribute>
+			<unified-field>StartDate</unified-field>
+			<source-field>startdate,starttime</source-field>
+			<default-value></default-value>
+		</attribute>
+
+		<attribute>
+			<unified-field>EndDate</unified-field>
+			<source-field>enddate,endtime</source-field>
+			<default-value></default-value>
+		</attribute>
+
+		<attribute>
+			<unified-field>General1</unified-field>
+			<source-field>stp</source-field>
+			<default-value></default-value>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General2</unified-field>
+			<source-field>starttime</source-field>
+			<default-value></default-value>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General3</unified-field>
+			<source-field>endtime</source-field>
+			<default-value></default-value>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General4</unified-field>
+			<source-field>linkid</source-field>
+			<default-value></default-value>
+		</attribute>
+
+		<attribute>
+			<unified-field>General5</unified-field>
+			<source-field>msucount</source-field>
+			<default-value></default-value>
+		</attribute>
+
+		<attribute>
+			<unified-field>General6</unified-field>
+			<source-field>octcount</source-field>
+			<default-value></default-value>
+		</attribute>
+
+		<attribute>
+			<unified-field>General7</unified-field>
+			<source-field>opc</source-field>
+			<default-value></default-value>
+		</attribute>
+
+		<attribute>
+			<unified-field>General8</unified-field>
+			<source-field>dpc</source-field>
+			<default-value></default-value>
+		</attribute>
+
+		<attribute>
+			<unified-field>General9</unified-field>
+			<source-field>map</source-field>
+			<default-value></default-value>
+		</attribute>
+
+		<attribute>
+			<unified-field>General10</unified-field>
+			<source-field>opcode</source-field>
+			<default-value></default-value>
+		</attribute>
+
+		<attribute>
+			<unified-field>General11</unified-field>
+			<source-field>cgpapc</source-field>
+			<default-value></default-value>
+		</attribute>
+
+		<attribute>
+			<unified-field>General12</unified-field>
+			<source-field>cdpapc</source-field>
+			<default-value></default-value>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General13</unified-field>
+			<source-field>collector</source-field>
+			<default-value></default-value>
+		</attribute>
+		
+		<attribute>
+			<unified-field>General14</unified-field>
+			<source-field>signalingstandard</source-field>
+			<default-value></default-value>
+		</attribute>
+
+		<attribute>
+			<unified-field>General15</unified-field>
+			<source-field>si</source-field>
+			<default-value></default-value>
+		</attribute>
+		
+		<attribute>
+			<unified-field>PartnerId1</unified-field>
+			<source-field></source-field>
+			<default-value></default-value>
+		</attribute>
+
+		<attribute>
+			<unified-field>PartnerId2</unified-field>
+			<source-field></source-field>
+			<default-value></default-value>
+		</attribute>
+
+
+		<attribute>
+			<unified-field>EventType</unified-field>
+			<source-field></source-field>
+			<default-value>-</default-value>
+		</attribute>
+		<attribute>
+			<unified-field>EventSubType</unified-field>
+			<source-field></source-field>
+			<default-value></default-value>
+		</attribute>
+		<attribute>
+			<unified-field>OnNetCode</unified-field>
+			<source-field></source-field>
+			<default-value></default-value>
+		</attribute>
+		<attribute>
+			<unified-field>DistanceBand</unified-field>
+			<source-field></source-field>
+			<default-value></default-value>
+		</attribute>
+		<attribute>
+			<unified-field>CallDirection</unified-field>
+			<source-field></source-field>
+			<default-value>-</default-value>
+		</attribute>
+		
+		<attribute>
+			<unified-field>Duration</unified-field>
+			<source-field>duration</source-field>
+			<default-value></default-value>
+		</attribute>
+
+	</attribute-list>
+
+</sstp-parser-plugin>
+
+<!-- ========================================================== -->
+<!-- End of configuration details                               -->
+<!-- ========================================================== -->
+<!-- 
+	<source-date-format>ddMMyyyy|HHmmss</source-date-format>
+		This field represent the date format of your cdr file.
+		Example - 20082008|155500
+		
+	<attribute-list>
+        Specifies the list of attrbute and the mapping of the fields of raw files and unified fields.
+        
+        <attribute>
+           <unified-field>RecordNumber</unified-field>
+                Specifies the unified field name.
+                
+          	<source-field>cgpadigits</source-field>                         
+                Specifies the list of source fields.
+                        
+           <default-value></default-value>
+                Specifies the default value. If the source field is specified, 
+                the default value won't be considered.
+       </attribute>
+            
+    </attribute-list>         	 
+ -->
+<!-- ========================================================== -->
+<!-- End of configuration details                               -->
+<!-- ========================================================== -->
+
+
+

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.1.8" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
+  associations="true" dependencies="true" nesting-relationships="true">  
+  <class id="1" language="java" name="com.elitecore.sm.parser.model.FixedLengthASCIIParserAttribute" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/FixedLengthASCIIParserAttribute.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="423" width="211" x="1701" y="3360"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="com.elitecore.sm.parser.model.ASN1Parser" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/ASN1Parser.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="459" width="280" x="853" y="1696"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="com.elitecore.sm.parser.model.FixedLengthASCIIParser" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/FixedLengthASCIIParser.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="162" x="-37" y="1696"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="com.elitecore.sm.parser.model.RegexParserAttribute" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/RegexParserAttribute.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="207" width="148" x="1952" y="3360"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="5" language="java" name="com.elitecore.sm.parser.model.ParserTypeEnum" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/ParserTypeEnum.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="169" x="182" y="-922"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="6" language="java" name="com.elitecore.sm.parser.model.PluginTypeMaster" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/PluginTypeMaster.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="423" width="198" x="165" y="1696"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="com.elitecore.sm.parser.model.AsciiParser" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/AsciiParser.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="909" width="231" x="403" y="1696"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="8" language="java" name="com.elitecore.sm.parser.model.ASN1ATTRTYPE" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/ASN1ATTRTYPE.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="135" width="165" x="853" y="3360"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="9" language="java" name="com.elitecore.sm.parser.model.ASN1ParserAttribute" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/ASN1ParserAttribute.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="675" width="282" x="1182" y="2645"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="com.elitecore.sm.parser.model.NATFlowParser" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/NATFlowParser.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="477" width="215" x="1887" y="1696"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="com.elitecore.sm.parser.model.RegexParser" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/RegexParser.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="139" x="674" y="1696"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="12" language="java" name="com.elitecore.sm.parser.model.UnifiedFiedEnum" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/UnifiedFiedEnum.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="2133" width="231" x="610" y="-922"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="13" language="java" name="com.elitecore.sm.parser.model.DetailLocalParser" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/DetailLocalParser.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="405" width="253" x="1552" y="1696"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="com.elitecore.sm.parser.model.SstpXmlParser" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/SstpXmlParser.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="139" x="1173" y="1696"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="com.elitecore.sm.parser.model.XMLParser" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/XMLParser.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="139" x="1352" y="1696"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <enumeration id="16" language="java" name="com.elitecore.sm.parser.model.CharsetTypeEnum" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/CharsetTypeEnum.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="150" x="1101" y="-922"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </enumeration>  
+  <class id="17" language="java" name="com.elitecore.sm.parser.model.NatflowASN1Parser" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/NatflowASN1Parser.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="139" x="2159" y="2645"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="com.elitecore.sm.parser.model.ParserWrapper" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/ParserWrapper.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="783" width="234" x="1512" y="-922"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="com.elitecore.sm.parser.model.Parser" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/Parser.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="405" width="253" x="1512" y="1251"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="com.elitecore.sm.parser.model.ParserAttribute" project="SMRevamp" 
+    file="/SMRevamp/modules/servermanager/src/com/elitecore/sm/parser/model/ParserAttribute.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="477" width="293" x="1826" y="2645"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="false" package="false" protected="false" private="false" static="true"/>    
+    </display>  
+  </class>  
+  <dependency id="21">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <association id="22">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="23" name="parser">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="19" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="25">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="26" name="attrType">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="27" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="28">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <generalization id="29">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <generalization id="30">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="20"/>  
+  </generalization>  
+  <generalization id="31">    
+    <end type="SOURCE" refId="17"/>    
+    <end type="TARGET" refId="10"/>  
+  </generalization>  
+  <generalization id="32">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="20"/>  
+  </generalization>  
+  <generalization id="33">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="20"/>  
+  </generalization>  
+  <association id="34">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="35" name="parserType">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="36" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="37">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <generalization id="38">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <generalization id="39">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <generalization id="40">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <generalization id="41">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <generalization id="42">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="19"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><detail-local-parser-plugin>
+<instance id="000">
+<source-charset-name>UTF8</source-charset-name>
+<attribute-seperator>=</attribute-seperator>
+<source-date-format>E MMM dd HH:mm:ss yyyy</source-date-format>
+<vendor-name-seperator present="false">
+<vendor-name-value>:</vendor-name-value>
+</vendor-name-seperator>
+<attribute-list>
+<attribute>
+<unified-field/>
+<description/>
+<source-field/>
+<default-value/>
+<trim-chars/>
+</attribute>
+</attribute-list>
+</instance>
+</detail-local-parser-plugin>

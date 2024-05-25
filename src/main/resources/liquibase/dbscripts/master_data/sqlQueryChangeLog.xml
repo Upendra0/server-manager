@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog logicalFilePath="./sqlQueryChangeLog.xml"
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<changeSet author="elitecore" id="BS4000000001" >
+		<comment>Updating default value of system parameter(MAX_CSV_FILE_SIZE) re-processing system parameters</comment>
+		<sql>UPDATE TBLMSYSTEMPARAMETER SET REGEX='^[0-9]*$', VALUE='1024' WHERE PARAMETERID = 26 ;</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="BS4000000002" >
+		<comment>Updating default value of system parameter(MAX_COMPRESSED_FILE_SIZE) re-processing system parameters</comment>
+		<sql>UPDATE TBLMSYSTEMPARAMETER SET REGEX='^[0-9]*$', VALUE='1024' WHERE PARAMETERID = 27 ;</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="BS4000000003" >
+		<comment>Updating default value of system parameter(MAX_CSV_FILE_SIZE) re-processing system parameters</comment>
+		<sql>UPDATE TBLMSYSTEMPARAMETER SET REGEX='^(5000(\.0)?|([1-4]?\d?\d?\d)(\.\d)?)$', VALUE='1000' WHERE PARAMETERID = 26 ;</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="BS4000000004" >
+		<comment>Updating default value of system parameter(MAX_COMPRESSED_FILE_SIZE) re-processing system parameters</comment>
+		<sql>UPDATE TBLMSYSTEMPARAMETER SET REGEX='^(3000(\.0)?|([1-2]?\d?\d?\d)(\.\d)?)$', VALUE='1000' WHERE PARAMETERID = 27 ;</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="BS4000000005" dbms="mysql">
+		<comment>Insert new system parameter in file re-processing (RECORDS_FOR_INLINE_FILE_VIEW)</comment>
+		<sql>INSERT INTO TBLMSYSTEMPARAMETER(PARAMETERID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ALIAS, DESCRIPTION, DISPLAYORDER, enabled, ERRORMSG, NAME, REGEX, VALUE, SYSTEMPARAMGROUPID) VALUES (29, 0, '2017-04-18 10:17:13.0000', 0, '2017-04-18 10:17:13.0000', 'ACTIVE', 'RECORDS_FOR_INLINE_FILE_VIEW', 'No. of records for inline file view', 29, 'Y', 'systemParameter.recordForInlineFileView.error', 'No. of records for inline file view', '^(?:[1-9][0-9]{0,4}(?:\\.\\d{1,2})?|100000|100000.00)$', '500', 4);</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="BS4000000006" dbms="oracle">
+		<comment>Insert new system parameter in file re-processing (RECORDS_FOR_INLINE_FILE_VIEW)</comment>
+		<sql>INSERT INTO TBLMSYSTEMPARAMETER(PARAMETERID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ALIAS, DESCRIPTION, DISPLAYORDER, enabled, ERRORMSG, NAME, REGEX, VALUE, SYSTEMPARAMGROUPID) VALUES (29, 0, SYSDATE, 0, SYSDATE, 'ACTIVE', 'RECORDS_FOR_INLINE_FILE_VIEW', 'No. of records for inline file view', 29, 'Y', 'systemParameter.recordForInlineFileView.error', 'No. of records for inline file view', '^(?:[1-9][0-9]{0,4}(?:\.\d{1,2})?|100000|100000.00)$', '500', 4);</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="BS4000000007" dbms="postgresql">
+		<comment>Insert new system parameter in file re-processing (RECORDS_FOR_INLINE_FILE_VIEW)</comment>
+		<sql>INSERT INTO TBLMSYSTEMPARAMETER(PARAMETERID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ALIAS, DESCRIPTION, DISPLAYORDER, enabled, ERRORMSG, NAME, REGEX, VALUE, SYSTEMPARAMGROUPID) VALUES (29, 0, '2017-04-18 10:17:13.0000', 0, '2017-04-18 10:17:13.0000', 'ACTIVE', 'RECORDS_FOR_INLINE_FILE_VIEW', 'No. of records for inline file view', 29, 'Y', 'systemParameter.recordForInlineFileView.error', 'No. of records for inline file view', '^(?:[1-9][0-9]{0,4}(?:\.\d{1,2})?|100000|100000.00)$', '500', 4);</sql>
+	</changeSet>
+
+	<changeSet author="elitecore" id="RR4000000001" dbms="postgresql,oracle">
+		<comment>Updating regex for data consolidation service cons name value.</comment>
+		<sql>UPDATE TBLMREGEX  SET VALUE='^[\w-._,/''][\w\s-._,/'']{1,200}+$' WHERE ID=253;</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="RR4000000002" dbms="mysql">
+		<comment>Updating regex for data consolidation service cons name value.</comment>
+		<sql>UPDATE TBLMREGEX  SET VALUE='^[\\w-._,/''][\\w\\s-._,/'']{1,200}+$' WHERE ID=253;</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="RR4000000003" dbms="postgresql,oracle">
+		<comment>Updating regex for data consolidation service cons name value.</comment>
+		<sql>UPDATE TBLMREGEX  SET VALUE='^(\S)[^&lt;&gt;:\"/\|?*]{1,100}$' WHERE ID=73;</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="RR4000000004" dbms="mysql">
+		<comment>Updating re-gex value for do not allow space at start</comment>
+		<sql>UPDATE TBLMREGEX  SET VALUE='^(\\S)[^&lt;&gt;:\\"/\|?*]{1,100}$' WHERE ID=73;</sql>
+	</changeSet>
+	
+	<!-- Change set for new fixed length ascii parser -->
+	
+	<changeSet author="elitecore" id="RR4000000005" dbms="oracle">
+		<comment>Adding new regex for fixed length ascii parser regex  ^[0-9]{1,20}+$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES (271, 1,SYSDATE, 1, SYSDATE,'ACTIVE', 'Fixed length ASCII parser validation for start length', 'FixedLengthASCIIParserAttribute','FixedLengthASCIIParserAttribute.startLength','^[0-9]{0,10000}+$');</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="RR4000000006" dbms="postgresql,mysql">
+		<comment>Adding new regex for fixed length ascii parser start length  ^[0-9]{1,20}+$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES (271, 1, now(), 1, now(),'ACTIVE', 'Fixed length ASCII parser validation for start length', 'FixedLengthASCIIParserAttribute','FixedLengthASCIIParserAttribute.startLength','^[0-9]{0,10000}+$');</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="RR4000000007" dbms="oracle">
+		<comment>Adding new regex for fixed length ascii parser regex  ^[0-9]{1,20}+$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES (272, 1,SYSDATE, 1, SYSDATE,'ACTIVE', 'Fixed length ASCII parser validation for end length', 'FixedLengthASCIIParserAttribute','FixedLengthASCIIParserAttribute.endLength','^[0-9]{0,10000}+$');</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="RR4000000008" dbms="postgresql,mysql">
+		<comment>Adding new regex for fixed length ascii parser start length  ^[0-9]{1,20}+$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES (272, 1, now(), 1, now(),'ACTIVE', 'Fixed length ASCII parser validation for end length', 'FixedLengthASCIIParserAttribute','FixedLengthASCIIParserAttribute.endLength','^[0-9]{0,10000}+$');</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SG4000000001" >
+		<comment>Updating regex for data consolidation service cons name value.</comment>
+		<sql>DELETE FROM TBLTPROFILENTITY WHERE ENTITYALIAS='NATFLOW_ASN_PARSING_PLUGIN';</sql>
+	</changeSet>
+
+	<changeSet author="elitecore" id="RR4000000009" dbms="oracle">
+		<comment>Adding new regex for fixed length ascii parser regex  ^[0-9]{1,20}+$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES (273, 1,SYSDATE, 1, SYSDATE,'ACTIVE', 'Fixed length ASCII parser validation for length', 'FixedLengthASCIIParserAttribute','FixedLengthASCIIParserAttribute.length','^[0-9]{0,10000}+$');</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="RR4000000010" dbms="postgresql,mysql">
+		<comment>Adding new regex for fixed length ascii parser start length  ^[0-9]{1,20}+$</comment>
+		<sql>INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY, REGEXKEY, VALUE) VALUES (273, 1, now(), 1, now(),'ACTIVE', 'Fixed length ASCII parser validation for length', 'FixedLengthASCIIParserAttribute','FixedLengthASCIIParserAttribute.length','^[0-9]{0,10000}+$');</sql>
+	</changeSet>
+	
+	<!-- Validation range for above all regex -->
+	<changeSet author="elitecore" id="RR4000000011" dbms="oracle">
+		<comment>Adding new validation range for fixed length ascii parser start length</comment>
+		<sql>INSERT INTO TBLMVALIDATIONRANGE(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, ENTITYTYPE, MAXRANGE, MINRANGE, ENTITYREGEXID, ADDITIONALCHECKVAL) VALUES (161, 1, SYSDATE, 1, SYSDATE, 'ACTIVE', 'com.elitecore.sm.parser.model.FixedLengthASCIIParserAttribute', 10000, 1, 271, '-1');</sql>
+	</changeSet>
+	<changeSet author="elitecore" id="RR4000000012" dbms="postgresql,mysql">
+		<comment>Adding new validation range for fixed length ascii parser start length</comment>
+		<sql>INSERT INTO TBLMVALIDATIONRANGE(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, ENTITYTYPE, MAXRANGE, MINRANGE, ENTITYREGEXID, ADDITIONALCHECKVAL) VALUES (161, 1, now(), 1, now(), 'ACTIVE', 'com.elitecore.sm.parser.model.FixedLengthASCIIParserAttribute', 10000, 1, 271, '-1');</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="RR4000000013" dbms="oracle">
+		<comment>Adding new validation range for fixed length ascii parser end length</comment>
+		<sql>INSERT INTO TBLMVALIDATIONRANGE(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, ENTITYTYPE, MAXRANGE, MINRANGE, ENTITYREGEXID, ADDITIONALCHECKVAL) VALUES (162, 1, SYSDATE, 1, SYSDATE, 'ACTIVE', 'com.elitecore.sm.parser.model.FixedLengthASCIIParserAttribute', 10000, 1, 272, '-1');</sql>
+	</changeSet>
+	<changeSet author="elitecore" id="RR4000000014" dbms="postgresql,mysql">
+		<comment>Adding new validation range for fixed length ascii parser end length</comment>
+		<sql>INSERT INTO TBLMVALIDATIONRANGE(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, ENTITYTYPE, MAXRANGE, MINRANGE, ENTITYREGEXID, ADDITIONALCHECKVAL) VALUES (162, 1, now(), 1, now(), 'ACTIVE', 'com.elitecore.sm.parser.model.FixedLengthASCIIParserAttribute', 10000, 1, 272, '-1');</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="RR4000000015" dbms="oracle">
+		<comment>Adding new validation range for fixed length ascii parser length</comment>
+		<sql>INSERT INTO TBLMVALIDATIONRANGE(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, ENTITYTYPE, MAXRANGE, MINRANGE, ENTITYREGEXID, ADDITIONALCHECKVAL) VALUES (163, 1, SYSDATE, 1, SYSDATE, 'ACTIVE', 'com.elitecore.sm.parser.model.FixedLengthASCIIParserAttribute', 10000, 1, 273, '-1');</sql>
+	</changeSet>
+	<changeSet author="elitecore" id="RR4000000016" dbms="postgresql,mysql">
+		<comment>Adding new validation range for fixed length ascii parser length</comment>
+		<sql>INSERT INTO TBLMVALIDATIONRANGE(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, ENTITYTYPE, MAXRANGE, MINRANGE, ENTITYREGEXID, ADDITIONALCHECKVAL) VALUES (163, 1, now(), 1, now(), 'ACTIVE', 'com.elitecore.sm.parser.model.FixedLengthASCIIParserAttribute', 10000, 1, 273, '-1');</sql>
+	</changeSet>
+
+	<changeSet author="elitecore" id="RR4000000017" >
+		<comment>Updating re-gex value for start length </comment>
+		<sql>UPDATE TBLMREGEX  SET VALUE='^[0-9-]{0,10000}+$' WHERE ID=271;</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="RR4000000018" >
+		<comment>Updating re-gex value for end length </comment>
+		<sql>UPDATE TBLMREGEX  SET VALUE='^[0-9-]{0,10000}+$' WHERE ID=272;</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="RR4000000019" >
+		<comment>Updating re-gex value for length </comment>
+		<sql>UPDATE TBLMREGEX  SET VALUE='^[0-9-]{0,10000}+$' WHERE ID=273;</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="AS70000000003">
+		<preConditions onFail="MARK_RAN"> 
+			<not>
+				<columnExists tableName="TBLTPARSERMAPPING" columnName="SKIPATTRIBUTEFORVALIDATION" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTPARSERMAPPING">
+	        <column name="SKIPATTRIBUTEFORVALIDATION" type="VARCHAR(300)" >
+				<constraints nullable="true" />
+			</column>
+	    </addColumn>
+    </changeSet>
+    
+    <changeSet author="elitecore" id="AS70000000004">
+		<preConditions onFail="MARK_RAN"> 
+			<not>
+				<columnExists tableName="TBLTPARSERMAPPING" columnName="OVERRIDETEMPLATE" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTPARSERMAPPING">
+	        <column name="OVERRIDETEMPLATE" type="CHAR(1)" defaultValue="N" >
+				<constraints nullable="true" />
+			</column>
+	    </addColumn>
+    </changeSet>
+    
+    <changeSet author="elitecore" id="AS70000000005" dbms="oracle">
+		<sql splitStatements="true">
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,sysdate,1,sysdate,'ACTIVE','AT000274',
+			'Generated at the time when input file has malformed packets in Parsing Service','parsingServiceFileWithMalformedPacketReceived',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'PARSING_SERVICE'));
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="AS70000000006" dbms="postgres">
+		<sql splitStatements="true">
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT),1,now(),1,now(),'ACTIVE','AT000274',
+			'Generated at the time when input file has malformed packets in Parsing Service','parsingServiceFileWithMalformedPacketReceived',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'PARSING_SERVICE'));
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="AS70000000007" dbms="mysql">
+		<sql splitStatements="true">
+			INSERT INTO TBLTSNMPALERT (ID,CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID,LASTUPDATEDDATE,STATUS, ALERTID, DESCRIPTION,NAME, 
+			THRESHOLD,ALERTYPEID) VALUES((select (max(id)+1) as num from TBLTSNMPALERT t),1,now(),1,now(),'ACTIVE','AT000274',
+			'Generated at the time when input file has malformed packets in Parsing Service','parsingServiceFileWithMalformedPacketReceived',1,(SELECT ID FROM TBLMSNMPALERTTYPE WHERE ALIAS = 'PARSING_SERVICE'));
+		</sql>
+	</changeSet>
+
+	<changeSet author="elitecore" id="SB7100000001">
+			<preConditions onFail="MARK_RAN"> 
+				<not>
+					<columnExists tableName="TBLTPARSERATTR" columnName="MULTIRECORD" />
+				</not>
+			</preConditions>
+			<addColumn tableName="TBLTPARSERATTR">
+				<column name="MULTIRECORD" type="CHAR(1)" defaultValue="N">
+					<constraints nullable="false" />
+				</column>
+			</addColumn>
+	</changeSet>
+
+	<changeSet author="elitecore" id="SB7100000002" dbms="oracle">
+		<comment>inserting MT Siemens Binary parser in 'TBLMPLUGINTYPE' table</comment>
+		<sql splitStatements="true">
+			INSERT INTO TBLMPLUGINTYPE (ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ALIAS, CATEGORY, DESCRIPTION, PLUGINFULLCLASSNAME, TYPE) VALUES ((SELECT MAX(ID+1) FROM TBLMPLUGINTYPE), 1, SYSDATE, 1, SYSDATE, 'ACTIVE', 'MTSIEMENS_BINARY_PARSING_PLUGIN', 'Parser', 'Description : MTSiemens Binary parser plugin', 'com.elitecore.sm.parser.model.MTSiemensBinaryParser', 'MTSiemens Binary Parser');
+			UPDATE TBLTPRIMARYKEY SET VALUE = (SELECT MAX(ID+1) FROM TBLMPLUGINTYPE) WHERE TABLE_NAME = 'PluginTypeMaster';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SB7100000003" dbms="mysql,postgresql">
+		<comment>inserting MT Siemens Binary parser in 'TBLMPLUGINTYPE' table</comment>
+		<sql splitStatements="true">
+			INSERT INTO TBLMPLUGINTYPE (ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ALIAS, CATEGORY, DESCRIPTION, PLUGINFULLCLASSNAME, TYPE) VALUES ((SELECT MAX(ID+1) FROM TBLMPLUGINTYPE AS T), 1, now(), 1, now(), 'ACTIVE', 'MTSIEMENS_BINARY_PARSING_PLUGIN', 'Parser', 'Description : MTSiemens parser plugin', 'com.elitecore.sm.parser.model.MTSiemensBinaryParser', 'MTSiemens Binary Parser');
+			UPDATE TBLTPRIMARYKEY SET VALUE = (SELECT MAX(ID+1) FROM TBLMPLUGINTYPE) WHERE TABLE_NAME = 'PluginTypeMaster';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SB7100000004" dbms="oracle">
+		<comment>inserting new data required for MTSIEMENS_BINARY_PARSING_PLUGIN in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY),1, SYSDATE, 1,SYSDATE, 'INACTIVE','MTSIEMENS_BINARY_PARSING_PLUGIN','PLUGIN_TYPE', 'Y', 1);
+		   UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY) WHERE TABLE_NAME='ProfileEntity';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SB7100000005" dbms="postgresql,mysql">
+		<comment>inserting new data required for MTSIEMENS_BINARY_PARSING_PLUGIN in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY AS T),1, now(), 1,now(), 'INACTIVE','MTSIEMENS_BINARY_PARSING_PLUGIN','PLUGIN_TYPE', 'Y', 1);
+	       UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY ) WHERE TABLE_NAME='ProfileEntity';
+	    </sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SB7100000006" dbms="oracle">
+		<comment>inserting new data required for MTSIEMENS_BINARY_PARSING_PLUGIN in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY),1, SYSDATE, 1,SYSDATE, 'INACTIVE','MTSIEMENS_BINARY_PARSING_PLUGIN','PLUGIN_TYPE', 'Y', 2);
+		   UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY) WHERE TABLE_NAME='ProfileEntity';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SB7100000007" dbms="postgresql,mysql">
+		<comment>inserting new data required for MTSIEMENS_BINARY_PARSING_PLUGIN in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY AS T),1, now(), 1,now(), 'INACTIVE','MTSIEMENS_BINARY_PARSING_PLUGIN','PLUGIN_TYPE', 'Y', 2);
+	       UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY ) WHERE TABLE_NAME='ProfileEntity';
+	    </sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SB7100000008" dbms="oracle">
+		<comment>inserting new data required for MTSIEMENS_BINARY_PARSING_PLUGIN in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY),1, SYSDATE, 1,SYSDATE, 'INACTIVE','MTSIEMENS_BINARY_PARSING_PLUGIN','PLUGIN_TYPE', 'Y', 3);
+		   UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY) WHERE TABLE_NAME='ProfileEntity';
+		</sql>
+	</changeSet>
+	
+	<changeSet author="elitecore" id="SB7100000009" dbms="postgresql,mysql">
+		<comment>inserting new data required for MTSIEMENS_BINARY_PARSING_PLUGIN in 'PUBLIC.TBLTPROFILENTITY' table</comment>
+		<sql splitStatements="true" stripComments="true">
+		   INSERT INTO TBLTPROFILENTITY(ID, CREATEDBYSTAFFID, CREATEDDATE, LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE, STATUS, ENTITYALIAS, ENTITYTYPE, ISDEFAULT, SERVERTYPEID) VALUES ((SELECT MAX(ID+1) FROM TBLTPROFILENTITY AS T),1, now(), 1,now(), 'INACTIVE','MTSIEMENS_BINARY_PARSING_PLUGIN','PLUGIN_TYPE', 'Y', 3);
+	       UPDATE TBLTPRIMARYKEY SET VALUE=(SELECT MAX(ID+1) FROM TBLTPROFILENTITY ) WHERE TABLE_NAME='ProfileEntity';
+	    </sql>
+	</changeSet>
+	
+
+</databaseChangeLog> 

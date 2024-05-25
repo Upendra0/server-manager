@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-consolidation-service>
+	<startup-mode>Automatic</startup-mode>
+	<immediate-execute-on-startup>true</immediate-execute-on-startup>
+	<execution-interval>1</execution-interval>
+	<sorting-type>ASCENDING</sorting-type>
+	<file-range></file-range><!-- <file-range>16-49</file-range> -->
+	<no-files-alert-interval /> <!-- Interval in Seconds and apply if interval is greater than Zero and if any files not received since configurable time then send the trap to ME. -->
+	<sorting-criteria>FILE_NAME</sorting-criteria>
+	<processing-type>FILE-BASED</processing-type>
+	<minimum-thread>10</minimum-thread>
+	<maximum-thread>10</maximum-thread>
+	<thread-queue-size>1500</thread-queue-size>
+	<file-batch-size>10</file-batch-size>
+	<data-consolidation-parameters>
+		<consolidation-type>IN_FILE</consolidation-type>
+		<across-file-processing-type> multiple  </across-file-processing-type>
+		<across-file-partition> 20 </across-file-partition>
+		<across-file-min-batch-size> 4 </across-file-min-batch-size>
+		<across-file-max-batch-size> 4 </across-file-max-batch-size>
+	</data-consolidation-parameters>
+	<file-grouping enabled="true">
+		<grouping-type>DAY</grouping-type>
+		<for-archive>true</for-archive>
+	</file-grouping>
+	<consolidation-list>
+		<consolidation name="Type-1">
+			<consolidate-across-file-partition></consolidate-across-file-partition>
+			<group-attribute-list>
+				<date-field-name>StartDate</date-field-name>
+				<date-segregation-type>HOUR</date-segregation-type>
+				<grouping-attribute-list>
+					<group-attribute>
+						<group-field-name>General2</group-field-name>
+						<regex-extraction-expression regex-enable="true">
+							<regex-expression>EXTRACT_HOSTNAME</regex-expression>
+							<destination-field>General8</destination-field>
+						</regex-extraction-expression>
+						<table-lookup lookup-enable="true">
+							<table-name>URLLOOKUP</table-name>
+							<table-column>URL</table-column>
+						</table-lookup>
+					</group-attribute>
+				</grouping-attribute-list>
+			</group-attribute-list>
+			<consolidation-attribute-list>
+				<attribute>
+					<field-name>General17</field-name>
+					<data-type>Double</data-type>
+					<operation>1</operation>
+					<description />
+				</attribute>
+				<attribute>
+					<field-name>Duration</field-name>
+					<data-type>Double</data-type>
+					<operation>2</operation>
+					<description />
+				</attribute>
+			</consolidation-attribute-list>
+		</consolidation>
+	</consolidation-list>
+	<path-list>
+		<path>
+			<source-path>/home/elitecore/MEDIATION_HOME/DATA_CONSOLIDATION/INPUT
+			</source-path>
+			<read-filename-suffix>.csv,.u</read-filename-suffix>
+			<max-files-count-alert></max-files-count-alert>  <!-- Provide Limit for maximum files to generate alert -->
+			<read-filename-prefix />
+			<is-compressed-input>false</is-compressed-input>
+			<consolidation-mapping-list>
+				<consolidation-mapping>
+					<consolidation-name>Type-1</consolidation-name>
+					<condition-list>COND_URL_NOT_BLANK,COND_RESPONSE_CODE_404</condition-list>
+					<condition-logical-operation>and</condition-logical-operation>
+					<process-record-limit></process-record-limit>
+					<destination-path>/home/elitecore/MEDIATION_HOME/DATA_CONSOLIDATION/OUTPUT
+					</destination-path>
+					<is-compressed-output>true</is-compressed-output>
+					<write-configured-attributes-only>true
+					</write-configured-attributes-only>
+					<field-name-for-count>General75</field-name-for-count>
+					<record-sorting-type>NA</record-sorting-type>
+					<record-sorting-field>Duration</record-sorting-field>
+					<record-sorting-field-type> Integer </record-sorting-field-type>
+					<file-parameters>
+						<file-name>dest11{yyyyMMddHHmmssSSS}.csv</file-name>
+						<file-sequence>true</file-sequence>
+						<sequence-range>1-100</sequence-range>
+					</file-parameters>
+				</consolidation-mapping>
+			</consolidation-mapping-list>
+		</path>
+	</path-list>
+</data-consolidation-service>

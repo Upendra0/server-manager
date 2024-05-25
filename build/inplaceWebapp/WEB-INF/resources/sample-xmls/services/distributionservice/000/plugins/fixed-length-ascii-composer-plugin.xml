@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE driver-mapping SYSTEM "http://www.elitecore.com">-->
+
+<fixed-length-ascii-composer-plugin>
+<instance id="000">
+ 
+    <destination-charset-name>UTF8</destination-charset-name> 
+    
+    <destination-date-format>yyyy-MM-dd+HH:mm:ss</destination-date-format>
+    
+    <destination-file-extension>.dat</destination-file-extension>  
+	
+	<field-seperator></field-seperator>
+
+    <attribute-list>
+    	<attribute>
+			<sequence-number>1</sequence-number>
+			<length>25</length>
+			<prefix></prefix>
+			<postfix></postfix>
+    		<unified-field>SerialNumber</unified-field>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<data-type>String</data-type>
+			<date-format></date-format>
+			<padding type="left" value=""/>
+    	</attribute>
+    	<attribute>
+			<sequence-number>2</sequence-number>
+			<length>5</length>
+			<prefix></prefix>
+			<postfix></postfix>
+    		<unified-field>RecordNumber</unified-field>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<data-type>String</data-type>
+			<date-format></date-format>
+			<padding type="left" value=""/>
+    	</attribute>
+    	<attribute>
+			<sequence-number>3</sequence-number>
+			<length>30</length>
+			<prefix>pr</prefix>
+			<postfix>po</postfix>
+    		<unified-field>OriginalRecordNumber</unified-field>
+			<default-value></default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<data-type>String</data-type>
+			<date-format></date-format>
+			<padding type="left" value=""/>
+    	</attribute>
+    	<attribute>
+			<sequence-number>4</sequence-number>
+			<length>5</length>
+			<prefix></prefix>
+			<postfix></postfix>
+    		<unified-field></unified-field>
+			<default-value>Himanshu</default-value>
+			<trim-chars></trim-chars>
+            <description></description>
+			
+			<data-type>String</data-type>
+			<date-format></date-format>
+			<padding type="left" value=""/>
+    	</attribute>
+	</attribute-list>
+	    	</instance>
+</fixed-length-ascii-composer-plugin>

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+ 
+	<!-- Change set id should start with <Your Initials>130000000001 like. HL130000000001 -->
+
+	<!-- MEDSUP-2491 : username regex allow numeric with special characters(.-_) in between -->
+	<changeSet author="sterlite" id="HL150000000018">
+		<comment>updating tblmregex column value for regex key Staff.username </comment>
+		<sql>
+		UPDATE TBLMREGEX SET VALUE='^(?![_\-.])(?!.*[_.-]$)[a-zA-Z0-9.\-_][a-zA-Z0-9.\-_]{1,255}+$' WHERE REGEXKEY='Staff.username';
+		</sql>
+	</changeSet>
+
+	<!-- MED-12944 -->
+	<!-- NatFLow Parsing Plugin -->
+
+	<!-- adding indicator for enanbling default OID on the template -->
+	<changeSet author="sterlite" id="BM10000000000">
+		<preConditions onFail="MARK_RAN"> 
+			<not>
+				<columnExists tableName="TBLTPARSERMAPPING" columnName="DEFAULTTEMPLATE" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTPARSERMAPPING">
+	        	<column name="DEFAULTTEMPLATE" type="CHAR(1)" defaultValue="N" >
+				<constraints nullable="true" />
+			</column>
+	    	</addColumn>
+        </changeSet>	
+
+	<!-- adding write cdr header/footer enable -->	
+	<changeSet author="sterlite" id="BK100000000000">
+    		<preConditions onFail="MARK_RAN">
+		  	<not>
+			  	<columnExists tableName="TBLTPARSER" columnName="WRITECDRHEADERFOOTERENABLED" />
+		  	</not>
+		</preConditions>
+    		<addColumn tableName="TBLTPARSER">
+    			<column name="WRITECDRHEADERFOOTERENABLED" type="char(1)" defaultValue="N">
+				<constraints nullable="true" />
+    			</column>
+    		</addColumn>
+    	</changeSet>
+	<changeSet author="sterlite" id="BK100000000001">
+    		<preConditions onFail="MARK_RAN">
+		  	<not>
+			  	<columnExists tableName="TBLTPATHLIST" columnName="WRITECDRHEADERFOOTERENABLED" />
+		  	</not>
+		</preConditions>
+    		<addColumn tableName="TBLTPATHLIST">
+    			<column name="WRITECDRHEADERFOOTERENABLED" type="char(1)" defaultValue="N">
+				<constraints nullable="true" />
+    			</column>
+    		</addColumn>
+    	</changeSet>
+
+	<!-- adding indicator for enanbling default OID on the template -->
+	<changeSet author="sterlite" id="BM10000000001">
+		<preConditions onFail="MARK_RAN"> 
+			<not>
+				<columnExists tableName="TBLTPARSERATTR" columnName="DESTDATEFORMAT" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTPARSERATTR">
+	        	<column name="DESTDATEFORMAT" type="VARCHAR(255)" defaultValue="" afterColumn="SOURCEFIELDFORMAT">
+				<constraints nullable="true" />
+			</column>
+	    	</addColumn>
+        </changeSet>	
+	
+	<!-- regex for parserattr.destdateformat -->
+	<changeSet author="sterlite" id="BM10000000002" dbms="mysql,postgresql">
+		<comment>adding new regex for ParserAttribute.DestDateFormat</comment>
+		<sql splitStatements="true">
+			INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((SELECT MAX(ID+1) FROM TBLMREGEX AS P), 1,now(), 1, now(),'ACTIVE','ParserAttribute Destination Date Format','NatFlowParserAttribute','ParserAttribute.destDateFormat','^[\sdMyYhmsHAaCcDdEeNnOoSTtUuWw0-9&amp;/:-]{0,100}');
+		</sql>
+        </changeSet>
+        
+        <changeSet author="sterlite" id="BM10000000002" dbms="oracle">
+		<comment>adding new regex for ParserAttribute.DestDateFormat</comment>
+		<sql splitStatements="true">
+			INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((SELECT MAX(ID+1) FROM TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE','ParserAttribute Destination Date Format','NatFlowParserAttribute','ParserAttribute.destDateFormat','^[\sdMyYhmsHAaCcDdEeNnOoSTtUuWw0-9&amp;/:-]{0,100}');
+		</sql>
+    </changeSet>
+
+	<!-- adding write cdr default attributes enable -->	
+	<changeSet author="sterlite" id="BK100000000002">
+    		<preConditions onFail="MARK_RAN">
+		  	<not>
+			  	<columnExists tableName="TBLTPARSER" columnName="WRITECDRDEFAULTATTRIBUTES" />
+		  	</not>
+		</preConditions>
+    		<addColumn tableName="TBLTPARSER">
+    			<column name="WRITECDRDEFAULTATTRIBUTES" type="char(1)" defaultValue="N">
+				<constraints nullable="true" />
+    			</column>
+    		</addColumn>
+    	</changeSet>
+	<changeSet author="sterlite" id="BK100000000003">
+    		<preConditions onFail="MARK_RAN">
+		  	<not>
+			  	<columnExists tableName="TBLTPATHLIST" columnName="WRITECDRDEFAULTATTRIBUTES" />
+		  	</not>
+		</preConditions>
+    		<addColumn tableName="TBLTPATHLIST">
+    			<column name="WRITECDRDEFAULTATTRIBUTES" type="char(1)" defaultValue="N">
+				<constraints nullable="true" />
+    			</column>
+    		</addColumn>
+    	</changeSet>
+    	
+    <!-- MED-12910 -->
+	<!-- NatFLow Binary collector -->
+	<!-- Adding PKT Threshold natflow binary collection service. -->
+	<changeSet author="sterlite" id="UP10000000000">
+		<preConditions onFail="MARK_RAN"> 
+			<not>
+				<columnExists tableName="TBLTNETFLOWBINARYCOLLSVC" columnName="PKTTHRESHOLD" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTNETFLOWBINARYCOLLSVC">
+			<column name="PKTTHRESHOLD" type="BIGINT" defaultValue="-1">
+				<constraints nullable="false" />
+			</column>
+	    </addColumn>
+    </changeSet>	
+
+<!-- Adding BIT Threshold natflow binary collection service. -->
+	<changeSet author="sterlite" id="UP10000000001">
+		<preConditions onFail="MARK_RAN"> 
+			<not>
+				<columnExists tableName="TBLTNETFLOWBINARYCOLLSVC" columnName="BITTHRESHOLD" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTNETFLOWBINARYCOLLSVC">
+			<column name="BITTHRESHOLD" type="BIGINT" defaultValue="-1">
+				<constraints nullable="false" />
+			</column>
+	    </addColumn>
+    </changeSet>
+    <changeSet author="sterlite" id="BK100000000004">
+    		<preConditions onFail="MARK_RAN">
+		  	<not>
+			  	<columnExists tableName="TBLTPATHLIST" columnName="ACROSSFILEDUPLICATEDATEFIELDFORMAT" />
+		  	</not>
+		</preConditions>
+    		<addColumn tableName="TBLTPATHLIST">
+    			<column name="ACROSSFILEDUPLICATEDATEFIELDFORMAT" type="VARCHAR(255)" defaultValue="" afterColumn="ACROSSFILEDUPLICATEDATEFIELD">
+				<constraints nullable="true" />
+    			</column>
+    		</addColumn>
+    	</changeSet>
+    <changeSet author="sterlite" id="KD100000000001">
+    		<preConditions onFail="MARK_RAN">
+		  	<not>
+			  	<columnExists tableName="TBLTPROCESSINGSERVICE" columnName="DATEFIELDFORSUMMARY" />
+			  	<columnExists tableName="TBLTPROCESSINGSERVICE" columnName="CDRSUMMARYDB" />
+			  	<columnExists tableName="TBLTPROCESSINGSERVICE" columnName="DATETYPEFORSUMMARY" />
+			  	<columnExists tableName="TBLTPROCESSINGSERVICE" columnName="OVERRIDEFILEDATEENABLE" />
+			  	<columnExists tableName="TBLTPROCESSINGSERVICE" columnName="OVERRIDEFILEDATETYPE" />
+		  	</not>
+		</preConditions>
+		<comment> Adding CDR date summary for processing </comment>
+    		<addColumn tableName="TBLTPROCESSINGSERVICE">
+    			<column name="DATEFIELDFORSUMMARY" type="VARCHAR(50)" defaultValue="" >
+				<constraints nullable="true" />
+    			</column>
+    			<column name="CDRSUMMARYDB" type="CHAR(1)" defaultValue="" >
+				<constraints nullable="true" />
+    			</column>
+    			<column name="DATETYPEFORSUMMARY" type="VARCHAR(15)" defaultValue="" >
+				<constraints nullable="true" />
+    			</column>
+    			<column name="OVERRIDEFILEDATEENABLE" type="CHAR(1)" defaultValue="" >
+				<constraints nullable="true" />
+    			</column>
+    			<column name="OVERRIDEFILEDATETYPE" type="VARCHAR(15)" defaultValue="" >
+				<constraints nullable="true" />
+    			</column>
+    		</addColumn>
+    	</changeSet>
+    	
+   	<!--Development for MED-13020 -->
+    <!-- Adding Filtering rules for Natflow Parsing plugin -->
+	<changeSet author="sterlite" id="UP20000000001">
+		<preConditions onFail="MARK_RAN"> 
+			<not>
+				<columnExists tableName="TBLTPARSERMAPPING" columnName="FILTERENABLE" />
+				<columnExists tableName="TBLTPARSERMAPPING" columnName="FILTERPROTOCOL" />
+				<columnExists tableName="TBLTPARSERMAPPING" columnName="FILTERTRANSPORT" />
+				<columnExists tableName="TBLTPARSERMAPPING" columnName="FILTERPORT" />
+			</not>
+		</preConditions>
+		<addColumn tableName="TBLTPARSERMAPPING">
+			<column name="FILTERENABLE" type="CHAR(1)" defaultValue="">
+				<constraints nullable="true" />
+			</column>
+	    </addColumn>
+		<addColumn tableName="TBLTPARSERMAPPING">
+			<column name="FILTERPROTOCOL" type="VARCHAR(300)" defaultValue="">
+				<constraints nullable="true" />
+			</column>
+	    </addColumn>
+		<addColumn tableName="TBLTPARSERMAPPING">
+			<column name="FILTERTRANSPORT" type="VARCHAR(300)" defaultValue="">
+				<constraints nullable="true" />
+			</column>
+	    </addColumn>
+		<addColumn tableName="TBLTPARSERMAPPING">
+			<column name="FILTERPORT" type="VARCHAR(300)" defaultValue="">
+				<constraints nullable="true" />
+			</column>
+	    </addColumn>
+    </changeSet>
+
+    
+    <!-- regex for NATFlowParserMapping filter Protocol -->
+	<changeSet author="sterlite" id="UP20000000003" dbms="mysql,postgresql">
+		<comment>adding Regex for validation of Natflow plugin filter configurations</comment>
+		<sql splitStatements="true">
+			INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((SELECT MAX(ID+1) FROM TBLMREGEX AS P), 1,now(), 1, now(),'ACTIVE','NATFlowParserMapping filterProtocol','NATFlowParserMapping','NATFlowParserMapping.filterProtocol','^(DNS|)$');
+			INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((SELECT MAX(ID+1) FROM TBLMREGEX AS P), 1,now(), 1, now(),'ACTIVE','NATFlowParserMapping filterTransport','NATFlowParserMapping','NATFlowParserMapping.filterTransport','^((UDP|TCP|SCTP)(,(?!.*\b\1\b)(UDP|TCP|SCTP))*|)$');
+			INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((SELECT MAX(ID+1) FROM TBLMREGEX AS P), 1,now(), 1, now(),'ACTIVE','NATFlowParserMapping filterPort','NATFlowParserMapping','NATFlowParserMapping.filterPort','^([1-9]\d*(,[1-9]\d*)*|)$');
+		</sql>
+   </changeSet>
+        
+   <changeSet author="sterlite" id="UP20000000003" dbms="oracle">
+		<comment>adding Regex for validation of Natflow plugin filter configurations</comment>
+		<sql splitStatements="true">
+			INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((SELECT MAX(ID+1) FROM TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE','NATFlowParserMapping filterProtocol','NATFlowParserMapping','NATFlowParserMapping.filterProtocol','^DNS|$');
+			INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((SELECT MAX(ID+1) FROM TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE','NATFlowParserMapping filterTransport','NATFlowParserMapping','NATFlowParserMapping.filterTransport','^((UDP|TCP|SCTP)(,(?!.*\b\1\b)(UDP|TCP|SCTP))*|)$');
+			INSERT INTO TBLMREGEX( ID, CREATEDBYSTAFFID, CREATEDDATE,LASTUPDATEDBYSTAFFID, LASTUPDATEDDATE,STATUS, DESCRIPTION, ENTITY,REGEXKEY, VALUE) VALUES ((SELECT MAX(ID+1) FROM TBLMREGEX), 1,SYSDATE, 1, SYSDATE,'ACTIVE','NATFlowParserMapping filterPort','NATFlowParserMapping','NATFlowParserMapping.filterPort','^([1-9]\d*(,[1-9]\d*)*|)$');
+		</sql>
+    </changeSet>
+    
+</databaseChangeLog>
+
+

@@ -1,0 +1,13 @@
+<policy-conditions>
+
+		<policy-condition alias="CONDITION-001">
+			<policy-condition-name>general8 is zero</policy-condition-name>
+			<unified-field-name>general8</unified-field-name>
+			<operator>EqualsToOperator</operator>
+			<value>0</value>
+			<expression></expression>
+			<type>static</type> <!-- function/dynamic/static/expression -->
+			<description>general8 is zero</description>
+		</policy-condition>
+				
+</policy-conditions>

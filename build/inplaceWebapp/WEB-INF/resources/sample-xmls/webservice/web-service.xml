@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-service>
+	<web-service-url>http://localhost</web-service-url>
+	<time-format>hour</time-format>
+	<field-seperator>_</field-seperator>
+	<iplog-file-path>/home/elitecore/DATA</iplog-file-path>
+	<file-compression>1</file-compression>
+	<parsing-type>hashbase</parsing-type>
+	<public-ip-range>100</public-ip-range>
+	<private-ip-range>100</private-ip-range>
+	<date-format-for-search>yyyyMMddHHmmss</date-format-for-search>
+	<temp-directory-path>/home/elitecore/dumped</temp-directory-path>
+	<default-server-id>SVI0062</default-server-id>
+	<output-format>StartDate,General11,General5,General6,General7,General8,General9,General10,General12,General13,General14,General15</output-format>
+	<certificate-file-path >/home/elitecore/sslcert/keystore_file</certificate-file-path>
+	<certificate-password >keygen</certificate-password>
+	<max-parallel-search>1</max-parallel-search>
+	<max-rows-in-answer-file>100000</max-rows-in-answer-file>
+	<max-duration-for-search>1000</max-duration-for-search>
+	<max-parameter-for-search>1</max-parameter-for-search>
+	<file-transfer>
+		<file-transfer-protocol>scp</file-transfer-protocol>
+		<file-transfer-timeout>15</file-transfer-timeout>
+		<hostname>10.115.1.217</hostname>
+		<port>22</port>
+		<destination-path>/home/dipensompura/testing</destination-path>
+		<key-file-location>/home/elitecore/.ssh/id_rsa</key-file-location>
+		<file-compression>true</file-compression>
+		<control-file required="true">
+			<algorithm>md5</algorithm>
+		</control-file>
+	</file-transfer>
+	<multi-location-search enable="false">
+		<threshold-limit>0</threshold-limit>
+		<table-name>TBLMRECORDCOUNTHOURLY</table-name>
+		<remote-path>/home/</remote-path>
+	</multi-location-search>
+	<no-partition-scan>3</no-partition-scan>
+</web-service>

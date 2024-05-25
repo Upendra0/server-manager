@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<parsing-service>
+	<minimum-thread>1</minimum-thread>
+	<sorting-criteria>LAST_MODIFIED_DATE</sorting-criteria> <!-- LAST_MODIFIED_DATE/FILE_NAME -->
+	<maximum-thread>1</maximum-thread>
+	<file-batch-size>2</file-batch-size>
+	<queue-size>1500</queue-size>
+	<file-sequence-order>false</file-sequence-order>
+	<startup-mode>Automatic</startup-mode>
+	<file-range></file-range><!-- <file-range>10-20</file-range> -->
+	<no-files-alert-interval /> <!-- Interval in Seconds and apply if interval is greater than Zero and if any files not received since configurable time then send the trap to ME. -->
+	<execution-interval>1</execution-interval>
+	<immediate-execute-on-startup>true</immediate-execute-on-startup>
+	<store-cdr-file-summary-in-db>false</store-cdr-file-summary-in-db> <!-- TRUE/FALSE : This will store file details in database -->
+	<equal-check-value />
+	<equal-check-field />
+	<cdr-date-summary>
+		<date>StartDate</date>  <!-- StartDate/EndDate/IngressStartDate/IngressEndDate/EgressStartDate/EgressEndDate-->
+		<type>MINUTE</type> 	<!-- DAY/HOUR/MINUTE -->
+		<override-file-date-type>min</override-file-date-type>
+		<override-file-date-type />
+	</cdr-date-summary>
+	<sorting-type>ASCENDING</sorting-type> <!-- ASCENDING/DESCENDING/NA -->
+	<file-copy-folders />
+	<file-grouping enabled="true">
+		<grouping-type />
+		<for-archive>true</for-archive>
+	</file-grouping>
+	<file-splitting-enabled />
+	<record-batch-size>10</record-batch-size>
+	<path-list>
+		<path> <!-- Path related information for single source -->
+			<read-file-path>/home/bhavybhut/PARSE/Input</read-file-path> <!-- source path from where we have to read file -->
+			<archive-path></archive-path>
+			<plugin-list>
+				<plugin>
+					<plugin-name>ASCII_PARSING_PLUGIN</plugin-name>
+					<is-compressed-input-file>false</is-compressed-input-file> <!-- If input file is compressed or not compressed  -->
+					<is-compressed-output-file>true</is-compressed-output-file> <!--  If output file is compressed or not compressed -->
+					<max-files-count-alert></max-files-count-alert>  <!-- Provide Limit for maximum files to generate alert -->
+					<read-filename-prefix>ABC</read-filename-prefix>  <!-- Read only those file whose prefix is this -->
+					<read-filename-suffix>.csv</read-filename-suffix> <!-- Read only those file whose suffix is this -->
+					<read-filename-contains /> <!-- Read only those file whose name contains this -->
+					<read-filename-exclude-types></read-filename-exclude-types>	<!-- Read files except this extension list -->
+					<write-file-path>/home/bhavybhut/PARSE/Output</write-file-path> <!-- Comma separated destination path -->
+					<write-file-splitting>true</write-file-splitting> <!-- File splitting is true or false > --> 
+					<read-filename-exclude-types />
+					<plugin-instance-id>000</plugin-instance-id> <!-- Plugin Instance Id -->
+				</plugin>
+				<!-- <plugin>
+					<plugin-name>ASCII_PARSING_PLUGIN</plugin-name>
+					<is-compressed-input-file>false</is-compressed-input-file>
+					<is-compressed-output-file>true</is-compressed-output-file>
+					<read-filename-prefix>DEF</read-filename-prefix>
+					<read-filename-suffix>.csv</read-filename-suffix>
+					<read-filename-contains />
+					<write-file-path>/home/bhavybhut/PARSE/Output2
+					</write-file-path>
+					<write-file-splitting>false</write-file-splitting>
+					<read-filename-exclude-types />
+					<plugin-instance-id>001</plugin-instance-id>
+				</plugin> -->
+			</plugin-list>
+		</path>
+		<!-- <path>
+			<read-file-path>/home/bhavybhut/PARSE/Input1
+			</read-file-path>
+			<plugin-list>
+				<plugin>
+					<plugin-name>ASCII_PARSING_PLUGIN</plugin-name>
+					<is-compressed-input-file>true</is-compressed-input-file>
+					<is-compressed-output-file>true</is-compressed-output-file>
+					<read-filename-prefix />
+					<read-filename-suffix>.gz</read-filename-suffix>
+					<read-filename-contains />
+					<write-file-path>/home/bhavybhut/PARSE/Output1
+					</write-file-path>
+					<write-file-splitting>true</write-file-splitting>
+					<read-filename-exclude-types />
+					<plugin-instance-id>002</plugin-instance-id>
+				</plugin>
+			</plugin-list>
+		</path> -->
+	</path-list>
+</parsing-service>

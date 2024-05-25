@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE driver-mapping SYSTEM "http://www.elitecore.com">-->
+
+<crestel-content-distribution-driver>
+	<jndi-property-name>MEDIATION_SERVER_JNDI_1</jndi-property-name>
+    <is-batch-process-rating>false</is-batch-process-rating>
+    <path-list>
+		<path>
+			<read-file-path>/home/elitecore/MEDIATION_ROOT/PROCESSING_ROOT/SGSN/input/</read-file-path>        <!-- source path from where we have to read file -->
+			<read-filename-prefix></read-filename-prefix>     <!-- Read only those file whose prefix is this -->
+			<read-filename-suffix></read-filename-suffix>     <!-- Read only those file whose suffix is this -->
+			<read-filename-contains></read-filename-contains> <!-- Read only those file whose name contains this -->
+			<read-filename-exclude-types></read-filename-exclude-types>	<!-- Read files except this extension list -->
+		</path>
+	</path-list>
+    <attribute-list>
+	    <attribute>
+		<interface-field-name>Sr. No</interface-field-name>
+	            <unified-field-name>SerialNumber</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	   <attribute>
+		<interface-field-name>Username</interface-field-name>
+	            <unified-field-name>APartyMDN</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	    <attribute>
+		<interface-field-name>Customer Reference ID</interface-field-name>
+	            <unified-field-name>APartyMIN</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	    <attribute>
+		<interface-field-name>Content Name</interface-field-name>
+	            <unified-field-name>General1</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	    <attribute>
+		<interface-field-name>Subscription Type</interface-field-name>
+	            <unified-field-name>General4</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	    <attribute>
+		<interface-field-name>Order Code</interface-field-name>
+	            <unified-field-name>General4</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	    <attribute>
+		<interface-field-name>Subscription Flag</interface-field-name>
+	            <unified-field-name>General2</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	    <attribute>
+		<interface-field-name>Event Date Time</interface-field-name>
+	            <unified-field-name>StartDate</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	    <attribute>
+		<interface-field-name>Event Source</interface-field-name>
+	            <unified-field-name>General3</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	    
+	    
+	    <!-- 
+	    
+	     <attribute>
+		<interface-field-name>SR_NO_HEADER</interface-field-name>
+	            <unified-field-name>SerialNumber</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	   <attribute>
+		<interface-field-name>USER_NAME_HEADER</interface-field-name>
+	            <unified-field-name>APartyMDN</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	    <attribute>
+		<interface-field-name>EXTERNAL_REFERENCE_ID_HEADER</interface-field-name>
+	            <unified-field-name>APartyMIN</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	    <attribute>
+		<interface-field-name>CONTENT_NAME_HEADER</interface-field-name>
+	            <unified-field-name>General1</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	    <attribute>
+		<interface-field-name>SUBSCRIPTION_TYPE_HEADER</interface-field-name>
+	            <unified-field-name>General4</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	    <attribute>
+		<interface-field-name>ORDER_CODE_HEADER</interface-field-name>
+	            <unified-field-name>General4</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	    <attribute>
+		<interface-field-name>SUBSCRIPTION_FLAG_HEADER</interface-field-name>
+	            <unified-field-name>General2</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	    <attribute>
+		<interface-field-name>EVENT_DATE_TIME_HEADER</interface-field-name>
+	            <unified-field-name>StartDate</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	    <attribute>
+		<interface-field-name>EVENT_SOURCE_HEADER</interface-field-name>
+	            <unified-field-name>General3</unified-field-name>
+		<data-type>String</data-type>
+	            <default-value></default-value>
+	    </attribute>   
+	    -->
+    </attribute-list>
+    
+</crestel-content-distribution-driver>

@@ -1,0 +1,10 @@
+package com.elitecore.sm.common.model;
+
+public enum DistributionDriverTypeEnum {
+	FTP_DISTRIBUTION_DRIVER,
+	DATABASE_DISTRIBUTION_DRIVER,
+	HADOOP_DISTRIBUTION_DRIVER,
+	LOCAL_DISTRIBUTION_DRIVER,
+	SFTP_DISTRIBUTION_DRIVER
+
+}
